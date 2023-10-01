@@ -2,251 +2,251 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Marek&#39;s Blog</title>
-    <link>https://msemjan.github.io/blog/tags/</link>
+    <link>https://msemjan.github.io/tags/</link>
     <description>Recent content in Tags on Marek&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Oct 2023 17:29:22 +0200</lastBuildDate><atom:link href="https://msemjan.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Oct 2023 17:29:22 +0200</lastBuildDate><atom:link href="https://msemjan.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Academic writing</title>
-      <link>https://msemjan.github.io/blog/tags/academic-writing/</link>
+      <link>https://msemjan.github.io/tags/academic-writing/</link>
       <pubDate>Sun, 01 Oct 2023 17:29:22 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/academic-writing/</guid>
+      <guid>https://msemjan.github.io/tags/academic-writing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Latex</title>
-      <link>https://msemjan.github.io/blog/tags/latex/</link>
+      <link>https://msemjan.github.io/tags/latex/</link>
       <pubDate>Sun, 01 Oct 2023 17:29:22 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/latex/</guid>
+      <guid>https://msemjan.github.io/tags/latex/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Typesetting</title>
-      <link>https://msemjan.github.io/blog/tags/typesetting/</link>
+      <link>https://msemjan.github.io/tags/typesetting/</link>
       <pubDate>Sun, 01 Oct 2023 17:29:22 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/typesetting/</guid>
+      <guid>https://msemjan.github.io/tags/typesetting/</guid>
       <description></description>
     </item>
     
     <item>
       <title>About</title>
-      <link>https://msemjan.github.io/blog/tags/about/</link>
+      <link>https://msemjan.github.io/tags/about/</link>
       <pubDate>Fri, 11 Aug 2023 21:36:44 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/about/</guid>
+      <guid>https://msemjan.github.io/tags/about/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Alpine.js</title>
-      <link>https://msemjan.github.io/blog/tags/alpine.js/</link>
+      <link>https://msemjan.github.io/tags/alpine.js/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/alpine.js/</guid>
+      <guid>https://msemjan.github.io/tags/alpine.js/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Back-end development</title>
-      <link>https://msemjan.github.io/blog/tags/back-end-development/</link>
+      <link>https://msemjan.github.io/tags/back-end-development/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/back-end-development/</guid>
+      <guid>https://msemjan.github.io/tags/back-end-development/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Front-end development</title>
-      <link>https://msemjan.github.io/blog/tags/front-end-development/</link>
+      <link>https://msemjan.github.io/tags/front-end-development/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/front-end-development/</guid>
+      <guid>https://msemjan.github.io/tags/front-end-development/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Fullstack development</title>
-      <link>https://msemjan.github.io/blog/tags/fullstack-development/</link>
+      <link>https://msemjan.github.io/tags/fullstack-development/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/fullstack-development/</guid>
+      <guid>https://msemjan.github.io/tags/fullstack-development/</guid>
       <description></description>
     </item>
     
     <item>
       <title>GHAST-Stack</title>
-      <link>https://msemjan.github.io/blog/tags/ghast-stack/</link>
+      <link>https://msemjan.github.io/tags/ghast-stack/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/ghast-stack/</guid>
+      <guid>https://msemjan.github.io/tags/ghast-stack/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang</title>
-      <link>https://msemjan.github.io/blog/tags/golang/</link>
+      <link>https://msemjan.github.io/tags/golang/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/golang/</guid>
+      <guid>https://msemjan.github.io/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>HTMX</title>
-      <link>https://msemjan.github.io/blog/tags/htmx/</link>
+      <link>https://msemjan.github.io/tags/htmx/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/htmx/</guid>
+      <guid>https://msemjan.github.io/tags/htmx/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Programming</title>
-      <link>https://msemjan.github.io/blog/tags/programming/</link>
+      <link>https://msemjan.github.io/tags/programming/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/programming/</guid>
+      <guid>https://msemjan.github.io/tags/programming/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SQL</title>
-      <link>https://msemjan.github.io/blog/tags/sql/</link>
+      <link>https://msemjan.github.io/tags/sql/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/sql/</guid>
+      <guid>https://msemjan.github.io/tags/sql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tailwind</title>
-      <link>https://msemjan.github.io/blog/tags/tailwind/</link>
+      <link>https://msemjan.github.io/tags/tailwind/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/tailwind/</guid>
+      <guid>https://msemjan.github.io/tags/tailwind/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tech-stack</title>
-      <link>https://msemjan.github.io/blog/tags/tech-stack/</link>
+      <link>https://msemjan.github.io/tags/tech-stack/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/tech-stack/</guid>
+      <guid>https://msemjan.github.io/tags/tech-stack/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Emoji</title>
-      <link>https://msemjan.github.io/blog/tags/emoji/</link>
+      <link>https://msemjan.github.io/tags/emoji/</link>
       <pubDate>Tue, 28 Mar 2023 16:54:44 +0100</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/emoji/</guid>
+      <guid>https://msemjan.github.io/tags/emoji/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Github Markdown</title>
-      <link>https://msemjan.github.io/blog/tags/github-markdown/</link>
+      <link>https://msemjan.github.io/tags/github-markdown/</link>
       <pubDate>Tue, 28 Mar 2023 16:54:44 +0100</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/github-markdown/</guid>
+      <guid>https://msemjan.github.io/tags/github-markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Markdown</title>
-      <link>https://msemjan.github.io/blog/tags/markdown/</link>
+      <link>https://msemjan.github.io/tags/markdown/</link>
       <pubDate>Tue, 28 Mar 2023 16:54:44 +0100</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/markdown/</guid>
+      <guid>https://msemjan.github.io/tags/markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Reference</title>
-      <link>https://msemjan.github.io/blog/tags/reference/</link>
+      <link>https://msemjan.github.io/tags/reference/</link>
       <pubDate>Tue, 28 Mar 2023 16:54:44 +0100</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/reference/</guid>
+      <guid>https://msemjan.github.io/tags/reference/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Bash</title>
-      <link>https://msemjan.github.io/blog/tags/bash/</link>
+      <link>https://msemjan.github.io/tags/bash/</link>
       <pubDate>Mon, 27 Mar 2023 11:33:22 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/bash/</guid>
+      <guid>https://msemjan.github.io/tags/bash/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Scripting</title>
-      <link>https://msemjan.github.io/blog/tags/scripting/</link>
+      <link>https://msemjan.github.io/tags/scripting/</link>
       <pubDate>Mon, 27 Mar 2023 11:33:22 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/scripting/</guid>
+      <guid>https://msemjan.github.io/tags/scripting/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Terminal</title>
-      <link>https://msemjan.github.io/blog/tags/terminal/</link>
+      <link>https://msemjan.github.io/tags/terminal/</link>
       <pubDate>Mon, 27 Mar 2023 11:33:22 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/terminal/</guid>
+      <guid>https://msemjan.github.io/tags/terminal/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tips &amp; Tricks</title>
-      <link>https://msemjan.github.io/blog/tags/tips-tricks/</link>
+      <link>https://msemjan.github.io/tags/tips-tricks/</link>
       <pubDate>Mon, 27 Mar 2023 11:33:22 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/tips-tricks/</guid>
+      <guid>https://msemjan.github.io/tags/tips-tricks/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Blog</title>
-      <link>https://msemjan.github.io/blog/tags/blog/</link>
+      <link>https://msemjan.github.io/tags/blog/</link>
       <pubDate>Sun, 26 Mar 2023 21:58:30 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/blog/</guid>
+      <guid>https://msemjan.github.io/tags/blog/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo</title>
-      <link>https://msemjan.github.io/blog/tags/hugo/</link>
+      <link>https://msemjan.github.io/tags/hugo/</link>
       <pubDate>Sun, 26 Mar 2023 21:58:30 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/hugo/</guid>
+      <guid>https://msemjan.github.io/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Writing</title>
-      <link>https://msemjan.github.io/blog/tags/writing/</link>
+      <link>https://msemjan.github.io/tags/writing/</link>
       <pubDate>Sun, 26 Mar 2023 21:58:30 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/writing/</guid>
+      <guid>https://msemjan.github.io/tags/writing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Introduction</title>
-      <link>https://msemjan.github.io/blog/tags/introduction/</link>
+      <link>https://msemjan.github.io/tags/introduction/</link>
       <pubDate>Sun, 26 Mar 2023 16:34:01 +0200</pubDate>
       
-      <guid>https://msemjan.github.io/blog/tags/introduction/</guid>
+      <guid>https://msemjan.github.io/tags/introduction/</guid>
       <description></description>
     </item>
     
