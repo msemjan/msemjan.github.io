@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Academic writing on Marek&#39;s Blog</title>
+    <link>https://msemjan.github.io/blog/tags/academic-writing/</link>
+    <description>Recent content in Academic writing on Marek&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 Oct 2023 17:29:22 +0200</lastBuildDate><atom:link href="https://msemjan.github.io/blog/tags/academic-writing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Getting Started With Latex</title>
+      <link>https://msemjan.github.io/blog/posts/getting-started-with-latex/</link>
+      <pubDate>Sun, 01 Oct 2023 17:29:22 +0200</pubDate>
+      
+      <guid>https://msemjan.github.io/blog/posts/getting-started-with-latex/</guid>
+      <description>Latex is a typesetting software commonly used in Academia. It allows you to easily create publication quality documents with beautiful equations. In this post I will show you the basics of Latex and teach you how to create simple documents with automatically generated table of contents, list of figures, and bibliography.</description>
+    </item>
+    
+  </channel>
+</rss>

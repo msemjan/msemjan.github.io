@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>About on Marek&#39;s Blog</title>
+    <link>https://msemjan.github.io/blog/tags/about/</link>
+    <description>Recent content in About on Marek&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 11 Aug 2023 21:36:44 +0200</lastBuildDate><atom:link href="https://msemjan.github.io/blog/tags/about/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://msemjan.github.io/blog/about/</link>
+      <pubDate>Fri, 11 Aug 2023 21:36:44 +0200</pubDate>
+      
+      <guid>https://msemjan.github.io/blog/about/</guid>
+      <description>I am Marek, a software developer from Slovakia 🇸🇰
+Programming and quantum mechanics are closest we can get to magic in real world. I was always drawn to the magical side of the nature, and because of this I&amp;rsquo;ve decided to study these subjects. For a quiet some time I was contemplating whether I should choose computer science, software engineering or natural sciences. When I was approximately nine, I&amp;rsquo;ve decided to study (computer) physics, because it allowed me to combine the two interests.</description>
+    </item>
+    
+  </channel>
+</rss>
