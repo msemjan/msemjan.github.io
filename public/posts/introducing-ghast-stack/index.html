@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.a43a549406127e0715f68083c987d71d0c71054cd57edea77aa709ed9958af6e.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+
+
+
+  
+  
+    
+  
+  
+
+
+
+
+<title itemprop="name">Marek&#39;s Blog - Introducing GHAST Stack</title>
+<meta property="og:title" content=Marek&#39;s&#32;Blog&#32;-&#32;Introducing&#32;GHAST&#32;Stack />
+<meta name="twitter:title" content=Marek&#39;s&#32;Blog&#32;-&#32;Introducing&#32;GHAST&#32;Stack />
+<meta itemprop="name" content=Marek&#39;s&#32;Blog&#32;-&#32;Introducing&#32;GHAST&#32;Stack />
+<meta name="application-name" content=Marek&#39;s&#32;Blog&#32;-&#32;Introducing&#32;GHAST&#32;Stack />
+<meta property="og:site_name" content="Marek&#39;s Blog" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="/posts/introducing-ghast-stack/" />
+<link rel="canonical" href="/posts/introducing-ghast-stack/" itemprop="url" />
+<meta name="url" content="/posts/introducing-ghast-stack/" />
+<meta name="twitter:url" content="/posts/introducing-ghast-stack/" />
+<meta property="og:url" content="/posts/introducing-ghast-stack/" />
+
+
+
+
+
+<meta property="og:updated_time" content=11008-11-06T812:17:23&#43;0200 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='/sitemap.xml' />
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Marek&#39;s Blog" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+
+
+<meta property="og:type" content="article" />
+<meta property="article:publisher" content="" />
+<meta property="og:article:published_time" content=11008-11-06T812:17:23&#43;0200 />
+<meta property="article:published_time" content=11008-11-06T812:17:23&#43;0200 />
+
+
+  <meta property="og:article:author" content="M. semjan" />
+  <meta property="article:author" content="M. semjan" />
+  <meta name="author" content="M. semjan" />
+
+
+
+
+<script defer type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Introducing GHAST Stack",
+    "author": {
+      "@type": "Person",
+      "name": "https:\/\/github.com\/msemjan"
+    },
+    "datePublished": "2023-08-11",
+    "description": "",
+    "wordCount": "1253",
+    "mainEntityOfPage": "True",
+    "dateModified": "2023-08-11",
+    "image": {
+      "@type": "imageObject",
+      "url": ""
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Marek\u0027s Blog",
+      "logo": {
+        "@type": "imageObject",
+        "url": ""
+      }
+    }
+  }
+</script>
+
+
+
+<meta name="generator" content="Hugo 0.118.2">
+
+
+    
+    
+
+<link type="text/css" rel="stylesheet" href="/css/bundle.min.aa949ea27ee9836d60d6ea4c073fd0885f51948c7eea0247da6b1aff4bc25c44.css">
+
+
+    
+    <style>
+    body {
+        --sidebar-bg-color: #202020;
+        --sidebar-img-border-color: #515151;
+        --sidebar-p-color: #909090;
+        --sidebar-h1-color: #FFF;
+        --sidebar-a-color: #FFF;
+        --sidebar-socials-color: #FFF;
+        --text-color: #222;
+        --bkg-color: #FAF9F6;
+        --post-title-color: #303030;
+        --list-color: #5a5a5a;
+        --link-color: #268bd2;
+        --date-color: #515151;
+        --table-border-color: #E5E5E5;
+        --table-stripe-color: #F9F9F9;
+        --code-color: #bf616a;
+        --code-background-color: #E5E5E5;
+        --moon-sun-color: #FFF;
+        --moon-sun-background-color: #515151;
+    }
+    body.dark-theme {
+        --text-color: #eee;
+        --bkg-color: #121212;
+        --post-title-color: #DBE2E9;
+        --list-color: #9d9d9d;
+        --link-color: #268bd2;
+        --date-color: #9a9a9a;
+        --table-border-color: #515151;
+        --table-stripe-color: #202020;
+        --code-color: #ff7f7f;
+        --code-background-color: #393D47;
+    }
+    body {
+        background-color: var(--bkg-color);
+    }
+</style>
+
+</head>
+
+    <body class="dark-theme">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="/">
+                <h1>Marek&#39;s Blog</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Welcome to my humble internet abode
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+
+        
+        
+        
+        
+            
+
+            
+                
+                
+            
+            
+                
+                
+            
+                
+                
+                        
+                            <li class="heading">
+                                <a href="/about/">About</a>
+                            </li>
+                            
+                    
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+            
+        
+        
+            
+
+            
+                
+                
+                    <li class="heading">
+                        <a href="/posts/">Posts</a>
+                    </li>
+                    
+                        <li class="sub-heading">
+                            Recent
+                        </li>
+                        
+                            <li class="bullet">
+                                <a href="/posts/getting-started-with-latex/">Getting Started With Latex</a>
+                            </li>
+                        
+                            <li class="bullet">
+                                <a href="/posts/introducing-ghast-stack/">Introducing GHAST Stack</a>
+                            </li>
+                        
+                            <li class="bullet">
+                                <a href="/posts/emoji/">Github Markdown Emoji Reference</a>
+                            </li>
+                        
+                            <li class="bullet">
+                                <a href="/posts/terminal-tips-and-tricks/">Terminal Tips and Tricks</a>
+                            </li>
+                        
+                            <li class="bullet">
+                                <a href="/posts/creating-a-blog-with-hugo/">Creating a blog with Hugo</a>
+                            </li>
+                        
+                    
+                
+            
+            
+                
+                
+            
+                
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+                        
+                
+            
+        
+
+    </ul>
+</nav>
+
+        
+    <a target="_blank" class="social" title="GitHub" href="https://github.com/msemjan">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="-2 -2 24 24">
+            <path fill="currentColor" d="M18.88 1.099C18.147.366 17.265 0 16.233 0H3.746C2.714 0 1.832.366 1.099 1.099C.366 1.832 0 2.714 0 3.746v12.487c0 1.032.366 1.914 1.099 2.647c.733.733 1.615 1.099 2.647 1.099H6.66c.19 0 .333-.007.429-.02a.504.504 0 0 0 .286-.169c.095-.1.143-.245.143-.435l-.007-.885c-.004-.564-.006-1.01-.006-1.34l-.3.052c-.19.035-.43.05-.721.046a5.555 5.555 0 0 1-.904-.091a2.026 2.026 0 0 1-.872-.39a1.651 1.651 0 0 1-.572-.8l-.13-.3a3.25 3.25 0 0 0-.41-.663c-.186-.243-.375-.407-.566-.494l-.09-.065a.956.956 0 0 1-.17-.156a.723.723 0 0 1-.117-.182c-.026-.061-.004-.111.065-.15c.07-.04.195-.059.378-.059l.26.04c.173.034.388.138.643.311a2.1 2.1 0 0 1 .631.677c.2.355.44.626.722.813c.282.186.566.28.852.28c.286 0 .533-.022.742-.065a2.59 2.59 0 0 0 .585-.196c.078-.58.29-1.028.637-1.34a8.907 8.907 0 0 1-1.333-.234a5.314 5.314 0 0 1-1.223-.507a3.5 3.5 0 0 1-1.047-.872c-.277-.347-.505-.802-.683-1.365c-.177-.564-.266-1.215-.266-1.952c0-1.049.342-1.942 1.027-2.68c-.32-.788-.29-1.673.091-2.652c.252-.079.625-.02 1.119.175c.494.195.856.362 1.086.5c.23.14.414.257.553.352a9.233 9.233 0 0 1 2.497-.338c.859 0 1.691.113 2.498.338l.494-.312a6.997 6.997 0 0 1 1.197-.572c.46-.174.81-.221 1.054-.143c.39.98.424 1.864.103 2.653c.685.737 1.028 1.63 1.028 2.68c0 .737-.089 1.39-.267 1.957c-.177.568-.407 1.023-.689 1.366a3.65 3.65 0 0 1-1.053.865c-.42.234-.828.403-1.223.507a8.9 8.9 0 0 1-1.333.235c.45.39.676 1.005.676 1.846v3.11c0 .147.021.266.065.357a.36.36 0 0 0 .208.189c.096.034.18.056.254.064c.074.01.18.013.318.013h2.914c1.032 0 1.914-.366 2.647-1.099c.732-.732 1.099-1.615 1.099-2.647V3.746c0-1.032-.367-1.914-1.1-2.647z"/>
+        </svg>
+    </a>
+
+
+
+    <a target="_blank" class="social" title="LinkedIn" href="https://sk.linkedin.com/in/marek-semjan-12497a26a">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1.2em" viewBox="0 0 448 512">
+            <path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5c0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7c-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5c67.2 0 79.7 44.3 79.7 101.9V416z"/>
+        </svg>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a target="_blank" class="social" title="RSS Feed" href="//posts/index.xml">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1.2em" viewBox="0 0 1280.000000 1280.000000">
+            <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)" fill="currentColor">
+                <path d="M2295 11929 c-284 -12 -642 -45 -707 -65 -17 -5 -18 -63 -18 -1039 0 -569 4 -1036 8 -1039 5 -3 74 6 153 19 510 86 1168 95 1789 25 1348 -153 2602 -677 3670 -1531 385 -308 820 -744 1126 -1129 842 -1060 1362 -2313 1514 -3650 70 -621 61 -1279 -25 -1789 -13 -79 -22 -148 -19 -153 3 -4 471 -8 1039 -8 l1035 0 5 23 c51 225 85 942 67 1419 -23 605 -77 1044 -198 1617 -294 1400 -927 2734 -1823 3846 -1043 1295 -2364 2259 -3909 2854 -1158 447 -2451 656 -3707 600z"/>
+                <path d="M2255 7845 c-269 -25 -620 -81 -667 -106 -17 -9 -18 -55 -18 -899 0 -706 3 -890 13 -890 6 0 66 18 132 41 130 44 288 79 467 105 154 21 577 30 749 15 1207 -107 2267 -823 2814 -1902 166 -327 268 -637 330 -1001 38 -227 48 -384 42 -662 -8 -348 -44 -590 -126 -831 -23 -66 -41 -126 -41 -132 0 -10 184 -13 890 -13 844 0 890 1 899 18 27 50 88 452 110 725 14 162 14 624 1 782 -59 703 -233 1323 -545 1945 -481 956 -1313 1788 -2270 2268 -620 310 -1239 483 -1940 542 -165 14 -669 10 -840 -5z"/>
+                <path d="M2519 3815 c-391 -66 -725 -336 -868 -703 -79 -201 -96 -462 -45 -677 83 -344 338 -641 666 -774 116 -47 205 -69 330 -80 412 -39 811 153 1040 500 193 292 240 648 128 981 -135 403 -492 699 -914 757 -100 14 -241 12 -337 -4z"/>
+            </g>
+        </svg>
+    </a>
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2023 Marek&#39;s Blog. All rights reserved.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <div class="info">
+    <h1 class="post-title">
+        <a href="/posts/introducing-ghast-stack/">Introducing GHAST Stack</a>
+    </h1>
+    
+        <time datetime="2023-08-11T18:12:17&#43;0200" class="post-date">
+            August 11, 2023
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-Tech-stack">
+            <a href="/tags/tech-stack">Tech-stack</a>
+        </li>
+        
+        <li class="tag-GHAST-Stack">
+            <a href="/tags/ghast-stack">GHAST-Stack</a>
+        </li>
+        
+        <li class="tag-Golang">
+            <a href="/tags/golang">Golang</a>
+        </li>
+        
+        <li class="tag-HTMX">
+            <a href="/tags/htmx">HTMX</a>
+        </li>
+        
+        <li class="tag-Alpine.js">
+            <a href="/tags/alpine.js">Alpine.js</a>
+        </li>
+        
+        <li class="tag-SQL">
+            <a href="/tags/sql">SQL</a>
+        </li>
+        
+        <li class="tag-Tailwind">
+            <a href="/tags/tailwind">Tailwind</a>
+        </li>
+        
+        <li class="tag-Front-end development">
+            <a href="/tags/front-end-development">Front-end development</a>
+        </li>
+        
+        <li class="tag-Back-end development">
+            <a href="/tags/back-end-development">Back-end development</a>
+        </li>
+        
+        <li class="tag-Fullstack development">
+            <a href="/tags/fullstack-development">Fullstack development</a>
+        </li>
+        
+        <li class="tag-Programming">
+            <a href="/tags/programming">Programming</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <h1 id="introducing-ghast-stack">Introducing GHAST Stack</h1>
+<p>GHAST stack is a new tech-stack for developing web applications without excessive use of Javascript. In this article I describe why I am suggesting usage of this tech-stack and what technologies it uses.</p>
+<h2 id="why-a-new-tech-stack">Why A New Tech-Stack?</h2>
+<p>Modern web app development heavily relies on Javascript libraries, such as <a href="https://react.dev/" target="_blank">React</a>, <a href="https://vuejs.org/" target="_blank">Vue</a>, <a href="https://angular.io/" target="_blank">Angular</a>, <a href="https://svelte.dev/" target="_blank">Svelte</a>, or some other lesser-known emerging players. Moreover, in 2009 Javascript also invaded the back-end world in a form of <a href="https://nodejs.org/" target="_blank">Node.js</a>.</p>
+<p>Over the years the Javascript ecosystem became a hot mess with a large number of packages, modules, libraries, and frameworks, which makes it difficult for the newcomers to navigate. The sheer volume of choices is overwhelming. Last year I&rsquo;ve decided that I&rsquo;ll learn a little bit of front-end, and I found it hard to decide what to learn. If you want to land a job in a front-end position, React is a solid choice, but I didn&rsquo;t like it. I found Vue to be prettier than React, but that means that I still have to write Javascript. The same with Angular, plus in the recent years it was on a steady decline in terms of popularity.</p>
+<p>What are options do you have? If you are a back-end developer, like myself, you will quickly realize that your favorite back-end language is more or less good only for writing APIs or at the best case scenario server-side rendering, which allows you to create dynamic webpages, but if you want to change only a part of the website, the user needs to make a HTTP request that will cause a re-render of the entire web page.</p>
+<p>However, there is a light at the end of the tunnel. It is HTMX, which can be thought of as an extension of HTML, and it gives you an access to AJAX, CSS transitions, WebSockets, and Server Sent Events directly in HTML. With HTMX, you can sprinkle islands of interactivity into your web page, that dynamically change when user interacts with your web page. Since most back-end languages, such as Python, Golang, Ruby, PHP, etc., have a templating engines, you can render parts of the web page, and send them to front-end, where HTMX will swap the original content with your snippet of HTML.</p>
+<p>This means that you can don&rsquo;t have to use Javascript for changing only a small part of the website, and you don&rsquo;t have to re-render the entire web page, when the user interacts with it. Moreover, you can use your favorite back-end language that you are familiar with and don&rsquo;t have to sink countless hours into learning (and relearning, since the Javascript landscape is constantly changing, and what was the hottest thing last year is painfully outdated today) front-end Javascript framework.</p>
+<p><img src="https://htmx.org/img/memes/fullstack.jpg" alt="You&rsquo;re fullstack now"></p>
+<p><em>Source: <a href="https://htmx.org/essays/#memes" target="_blank">HTMX Official Website</a></em></p>
+<h2 id="what-is-ghast-stack">What Is GHAST Stack?</h2>
+<p>GHAST Stack is comprised of five technologies:</p>
+<ul>
+<li><a href="https://go.dev/learn/" target="_blank">Golang</a> programming language</li>
+<li><a href="https://htmx.org/" target="_blank">HTMX</a></li>
+<li><a href="https://alpinejs.dev/" target="_blank">Alpine.js</a></li>
+<li>SQL (e.g. <a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a>, <a href="https://www.mysql.com/" target="_blank">MySQL</a>, <a href="https://www.sqlite.org/index.html" target="_blank">SQLite</a>, &hellip;)</li>
+<li><a href="https://tailwindcss.com/" target="_blank">Tailwind</a></li>
+</ul>
+<p>The core of the GHAST stack is Golang programming language (mostly because I like it at the moment, but also to have a cool acronym 😅). Golang is among younger programming language, but it is growing in popularity. In the <a href="https://survey.stackoverflow.co/2023/" target="_blank">Stack Overflow Developer Survey 2023</a> it ranked 13-th in the most popular programming technology list. It is simple to learn, but has a large standard library that allows you to accomplish most common tasks without a need for third-party dependencies. Additionally, there is a growing community of Golang developers (who call themselves Gophers), who are writing useful libraries and frameworks, which will benefit your future projects. Since it is backed by large companies, such as Google, we can expect that Golang will only become more popular in the coming years.</p>
+<p>As discussed in the previous section, we want to use a back-end programming language and still have some interactivity in our application. Therefore, we will use HTMX to do the heavy lifting. Parts of the website that should change will be swapped with the snippets of HTML generated by our Golang server. This can be easily done with the built-in <a href="https://pkg.go.dev/text/template" target="_blank"><code>template</code></a> package. Since we are working directly with HTML, we can also avoid the need to transform JSON into something that can be displayed on the front-end as is often the case when using Javascript libraries, such as React.</p>
+<p>Alpine.js is another front-end library. It may seem that including it in our stack goes against everything said against the usage of Javascript. However, I think it is okay to use a little bit of Javascript for small things such as animations, transitions, and other small tasks that are not the best fit for the back-end server. Even the official website of HTMX features an <a href="https://htmx.org/essays/hypermedia-friendly-scripting/" target="_blank">essay</a> that argues that some Javascript scripting is HTMX-friendly. It mostly comes down to avoiding changes to the state of your application using Javascript (in HTMX, the state is stored in the HTML). I recommend reading the essay for better understanding of when it is suitable to use Javascript in your application. When using Alpine.js, you probably should also consider using the <a href="https://htmx.org/docs/#included-extensions" target="_blank">alpine-morph extension/plugin</a>.</p>
+<p>I think that the choice of SQL is fairly self-explanatory. Using databases for data-persistence is an industry standard. Since I wanted that cool acronym, I left the specific implementation of SQL free to the user&rsquo;s preference. Use whatever you like and what makes sense in your use-case.</p>
+<p>The last technology used in the GHAST stack is Tailwind, a utility CSS framework that will make styling of our application much easier than using pure CSS. It defines a large set of small, constrained utility classes, which can be combined to achieve the desired look.</p>
+<h2 id="when-to-use-ghast-stack">When To Use GHAST Stack?</h2>
+<p>GHAST stack is intended for smaller applications, which don&rsquo;t have very complex front-ends. The interactivity should be contained within well-defined &ldquo;islands&rdquo; of interactivity. It is great for UIs that are mostly text and images. It is also great if you need a good first-render performance. Basically, this stack is mostly limited by the same <a href="https://htmx.org/essays/when-to-use-hypermedia/" target="_blank">things as HTMX</a> itself.</p>
+<h2 id="when-not-to-use-ghast-stack">When Not To Use GHAST Stack?</h2>
+<p>GHAST is not ideal for applications that have complex UI with dynamic inter-dependencies, where a change in one place causes updates all over the web page. If the interactivity is not localized in smaller blocks, a more standard approach using one of the popular Javascript libraries is more suitable.</p>
+<p>Also, hypermedia approach is not ideal if the state of the application changes very frequently (e.g. in a games), since a lot of syncing between the client and the server is required. You can however, embed a <em>single page application</em> (SPA) component within a larger hypermedia architecture.</p>
+<p>The last reason not to use the GHAST stack is when you need to hire developers (or be hired) to work on a web application, since technologies, such as React, are much more popular there are more developers who can work with them. The same is true, if your existing team isn&rsquo;t on board.</p>
+<h2 id="conclusions">Conclusions</h2>
+<p>In this post I&rsquo;ve introduced a new tech-stack, which is built around Golang, HTMX, Alpine.js, SQL, and Tailwind. It is an alternative to the more popular approaches to building web application based on Javascript. GHOST stack is suitable for smaller applications that have smaller interactive parts that don&rsquo;t update very frequently. The majority of the work is done on our Golang server and the generated snippets that return from the Golang app are inserted into our front-end. Alpine.js can be used to enhance our website with small amount of inline Javascript. These tools provide everything necessary to build a well-functioning web application.</p>
+
+  <hr>
+<div class="footer">
+    
+	    
+            <a class="previous-post" href="/posts/emoji/?ref=footer"><span style="font-weight:bold;">« Previous</span><br>Github Markdown Emoji Reference</a>
+        
+	    
+            <div class="next-post">
+                <a href="/posts/getting-started-with-latex/?ref=footer"><span style="font-weight:bold;">Next »</span><br>Getting Started With Latex</a>
+            </div>
+        
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#why-a-new-tech-stack">Why A New Tech-Stack?</a></li>
+    <li><a href="#what-is-ghast-stack">What Is GHAST Stack?</a></li>
+    <li><a href="#when-to-use-ghast-stack">When To Use GHAST Stack?</a></li>
+    <li><a href="#when-not-to-use-ghast-stack">When Not To Use GHAST Stack?</a></li>
+    <li><a href="#conclusions">Conclusions</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div>
+    </body>
+</html>
