@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Scripting on Marek&#39;s Blog</title>
-    <link>/tags/scripting/</link>
+    <link>https://msemjan.github.io/blog/tags/scripting/</link>
     <description>Recent content in Scripting on Marek&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Mar 2023 11:33:22 +0200</lastBuildDate><atom:link href="/tags/scripting/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Mar 2023 11:33:22 +0200</lastBuildDate><atom:link href="https://msemjan.github.io/blog/tags/scripting/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Terminal Tips and Tricks</title>
-      <link>/posts/terminal-tips-and-tricks/</link>
+      <link>https://msemjan.github.io/blog/posts/terminal-tips-and-tricks/</link>
       <pubDate>Mon, 27 Mar 2023 11:33:22 +0200</pubDate>
       
-      <guid>/posts/terminal-tips-and-tricks/</guid>
+      <guid>https://msemjan.github.io/blog/posts/terminal-tips-and-tricks/</guid>
       <description>Learn tips and tricks for effective work with Terminal - useful tricks for both interactive shell usage and scripting are included.</description>
     </item>
     
