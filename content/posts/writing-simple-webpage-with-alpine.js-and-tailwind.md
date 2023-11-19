@@ -1,7 +1,13 @@
 ---
-title: "Writing Simple Webpage With Alpine.js and Tailwind"
-date: 2023-09-04T21:21:13+02:00
+author: "M. Semjan"
+date: "2023-09-04T21:21:13+02:00"
 draft: true
+title: Writing Simple Webpage With Alpine.js and Tailwind
+summary: "Alpine.js is a lightweight Javscript framework that was designed to be a minimal tool for composing behavior directly in your markup. In this post I'll show you how to create a simple website with Alpine.js."
+tags:
+- Alpine.js
+- Tailwind
+- Frontend
 ---
 ## Introduction
 

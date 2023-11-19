@@ -1,12 +1,15 @@
 ---
-title: 'Getting Started With Latex'
-date: 2023-10-01T17:29:22+02:00
+date: "2023-10-01T17:29:22+02:00"
 draft: false
-summary: "Latex is a typesetting software commonly used in Academia. It allows you to easily create publication quality documents with beautiful equations. In this post I will show you the basics of Latex and teach you how to create simple documents with automatically generated table of contents, list of figures, and bibliography."
+summary: Latex is a typesetting software commonly used in Academia. It allows you
+  to easily create publication quality documents with beautiful equations. In this
+  post I will show you the basics of Latex and teach you how to create simple documents
+  with automatically generated table of contents, list of figures, and bibliography.
 tags:
-  - "Latex"
-  - "Typesetting"
-  - "Academic writing"
+- Latex
+- Typesetting
+- Academic writing
+title: Getting Started With Latex
 ---
 ## Introduction
 

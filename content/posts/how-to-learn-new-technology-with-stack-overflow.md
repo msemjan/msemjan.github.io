@@ -1,14 +1,17 @@
 ---
-title: "How to Learn New Technology With Stack Overflow"
-date: 2023-07-14T18:07:25+02:00
+date: "2023-07-14T18:07:25+02:00"
 draft: true
-summary: "Constant learning is important to keep up with constantly changing technical fields, such as programming, software engineering, data science, or DevOps. Therefore, it makes sense to pick up a studying tips and tricks to optimize learning. In this post I'll describe how to use Stack Overflow to learn new things."
-type: post
+summary: Constant learning is important to keep up with constantly changing technical
+  fields, such as programming, software engineering, data science, or DevOps. Therefore,
+  it makes sense to pick up a studying tips and tricks to optimize learning. In this
+  post I'll describe how to use Stack Overflow to learn new things.
 tags:
-  - Learning
-  - Studying
-  - Technology
-  - Tips & Tricks
+- Learning
+- Studying
+- Technology
+- Tips & Tricks
+title: How to Learn New Technology With Stack Overflow
+type: post
 ---
 # How to Learn New Technology With Stack Overflow
 

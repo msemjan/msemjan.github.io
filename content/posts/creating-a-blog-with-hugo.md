@@ -1,14 +1,15 @@
 ---
-title: "Creating a blog with Hugo"
-date: 2023-03-26T21:58:30+02:00
-type: post
-draft: false 
 author: M. Semjan
-summary: "Hugo is a fast framework for building websites written in Go. With this post, you will learn how to create a simple blog with Hugo."
+date: "2023-03-26T21:58:30+02:00"
+draft: false
+summary: Hugo is a fast framework for building websites written in Go. With this post,
+  you will learn how to create a simple blog with Hugo.
 tags:
-  - Hugo
-  - Blog
-  - Writing
+- Hugo
+- Blog
+- Writing
+title: Creating a blog with Hugo
+type: post
 ---
 # Creating a blog with Hugo
 

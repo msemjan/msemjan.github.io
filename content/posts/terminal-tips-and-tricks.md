@@ -1,15 +1,16 @@
 ---
-title: "Terminal Tips and Tricks"
-date: 2023-03-27T11:33:22+02:00
-type: post
-draft: false
 author: M. Semjan
-summary: "Learn tips and tricks for effective work with Terminal - useful tricks for both interactive shell usage and scripting are included."
+date: "2023-03-27T11:33:22+02:00"
+draft: false
+summary: Learn tips and tricks for effective work with Terminal - useful tricks for
+  both interactive shell usage and scripting are included.
 tags:
-  - Bash
-  - Terminal
-  - Scripting
-  - Tips & Tricks
+- Bash
+- Terminal
+- Scripting
+- Tips & Tricks
+title: Terminal Tips and Tricks
+type: post
 ---
 # Terminal Tips and Tricks
 

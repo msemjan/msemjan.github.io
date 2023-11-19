@@ -1,15 +1,16 @@
 ---
-title: "Linking Vimwiki And Markdown Notes"
 author: Marek Semjan
-type: post
+created: "2023-03-26 17:03:52"
 draft: true
-created: 2023-03-26 17:03:52
-summary: "Can you link notes written in Markdown and Vimwiki syntax? If yes, how? This was a question that is answered in this post."
+summary: Can you link notes written in Markdown and Vimwiki syntax? If yes, how? This
+  was a question that is answered in this post.
 tags:
-  - Note
-  - Markdown
-  - Vimwiki
-  - ChatGPT
+- Note
+- Markdown
+- Vimwiki
+- ChatGPT
+title: Linking Vimwiki And Markdown Notes
+type: post
 ---
 # Linking Vimwiki And Markdown Notes
 

@@ -1,14 +1,16 @@
 ---
-title: "Github Markdown Emoji Reference"
-author: "M. Semjan"
-description: "Github flavor of Markdown let's you work with emojis in your Markdown documents easily. In this post you can find a handy reference table with the supported emojis and their shortcodes."
-date: 2023-03-28T16:54:44+01:00
-type: post
+author: M. Semjan
+date: "2023-03-28T16:54:44+01:00"
+description: Github flavor of Markdown let's you work with emojis in your Markdown
+  documents easily. In this post you can find a handy reference table with the supported
+  emojis and their shortcodes.
 tags:
-  - Markdown
-  - Github Markdown
-  - Emoji
-  - Reference
+- Markdown
+- Github Markdown
+- Emoji
+- Reference
+title: Github Markdown Emoji Reference
+type: post
 ---
 ## Introduction
 

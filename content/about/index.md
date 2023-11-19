@@ -1,9 +1,9 @@
 ---
-title: "About"
-date: 2023-08-11T21:36:44+02:00
+date: "2023-08-11T21:36:44+02:00"
 draft: false
 tags:
-  - "About"
+- About
+title: About
 ---
 I am Marek, a software developer from Slovakia 🇸🇰
 

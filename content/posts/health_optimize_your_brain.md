@@ -1,15 +1,16 @@
 ---
-title: "Optimize Your brain"
 author: M. Semjan
-summary: "In this post I summarize various habits and strategies that can improve your brain health."
 date: 2023-04-01T12:39:47+0200
 draft: true
-type: post
+summary: In this post I summarize various habits and strategies that can improve your
+  brain health.
 tags:
-  - Health
-  - Optimization
-  - Brain health
-  - Lifestyle
+- Health
+- Optimization
+- Brain health
+- Lifestyle
+title: Optimize Your brain
+type: post
 ---
 # Optimize Your brain
 

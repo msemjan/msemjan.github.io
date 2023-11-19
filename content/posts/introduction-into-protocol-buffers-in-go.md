@@ -1,13 +1,16 @@
 ---
-title: "Introduction Into Protocol Buffers in Go"
-summary: "Protocol buffers are a language-agnostic and platform-independent mechanism for serialization of data created by Google. Protocol buffers can be used as a replacement for older formats, such as JSON or XML, but they are designed to be much smaller, faster and simpler."
-date: 2023-08-26T09:14:53+02:00
+date: "2023-08-26T09:14:53+02:00"
 draft: true
+summary: Protocol buffers are a language-agnostic and platform-independent mechanism
+  for serialization of data created by Google. Protocol buffers can be used as a replacement
+  for older formats, such as JSON or XML, but they are designed to be much smaller,
+  faster and simpler.
 tags:
-  - "Protocol Buffers"
-  - "Golang"
-  - "Go"
-  - "Data Serialization"
+- Protocol Buffers
+- Golang
+- Go
+- Data Serialization
+title: Introduction Into Protocol Buffers in Go
 ---
 ## Introduction
 
@@ -15,7 +18,7 @@ Protocol buffers[^1] are a language-agnostic and platform-independent mechanism 
 
 Before using them, one has to specify how the data is structured, and then the language-specific code can be automatically generated. Currently protocol buffers are supported in the following languages: Java, Python, Objective-C, and C++, and in `proto3` version you can also use Kotlin, Dart, Go, Ruby, PHP, and C#.
 
-The most notable application of protocol buffers is in gRPC[^2], which is a high-performance framework that can run in any environment and can be used as a more efficient replacement for REST APIs in some applications.
+The most notable application of protocol buffers is in [gRPC](../introduction-into-grpc-in-go), which is a high-performance framework that can run in any environment and can be used as a more efficient replacement for REST APIs in some applications[^2].
 
 One of the main benefits of protocol buffers is that they are language-independent and therefore the producer of a message can be written in a different language than the consumer.
 

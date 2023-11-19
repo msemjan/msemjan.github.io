@@ -1,15 +1,15 @@
 ---
-title: "Adding Math Support to Hugo"
-author: "M. Semjan"
-date: 2023-04-01T11:45:03+02:00
-summary: "In this post I describe how I've added Math support to my template with MathJax."
+author: M. Semjan
+date: "2023-04-01T11:45:03+02:00"
 draft: true
-type: post 
+summary: In this post I describe how I've added Math support to my template with MathJax.
 tags:
-  - Hugo
-  - Math support
-  - Markdown
-  - MathJax
+- Hugo
+- Math support
+- Markdown
+- MathJax
+title: Adding Math Support to Hugo
+type: post
 ---
 # Adding Math Support to Hugo
 

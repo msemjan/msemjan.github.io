@@ -1,13 +1,13 @@
 ---
-title: "My First Post"
-date: 2023-03-26T16:34:01+02:00
-type: post
-draft: false
 author: M. Semjan
-summary: "So... I've started a blog."
+date: "2023-03-26T16:34:01+02:00"
+draft: false
+summary: So... I've started a blog.
 tags:
-  - Introduction
-  - Hugo
+- Introduction
+- Hugo
+title: My First Post
+type: post
 ---
 # Introduction
 

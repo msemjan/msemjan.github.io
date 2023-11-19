@@ -1,21 +1,23 @@
 ---
-title: "Introducing GHAST Stack"
-date: 2023-08-11T18:12:17+02:00
 author: M. Semjan
-summary: "GHAST stack is a new tech-stack for developing web applications without excessive use of Javascript. In this article I describe why I am suggesting usage of this tech-stack and what technologies it uses."
+date: "2023-08-11T18:12:17+02:00"
 draft: false
+summary: GHAST stack is a new tech-stack for developing web applications without excessive
+  use of Javascript. In this article I describe why I am suggesting usage of this
+  tech-stack and what technologies it uses.
 tags:
-  - Tech-stack
-  - GHAST-Stack
-  - Golang
-  - HTMX
-  - Alpine.js
-  - SQL
-  - Tailwind
-  - Front-end development
-  - Back-end development
-  - Fullstack development
-  - Programming
+- Tech-stack
+- GHAST-Stack
+- Golang
+- HTMX
+- Alpine.js
+- SQL
+- Tailwind
+- Front-end development
+- Back-end development
+- Fullstack development
+- Programming
+title: Introducing GHAST Stack
 ---
 # Introducing GHAST Stack
 
