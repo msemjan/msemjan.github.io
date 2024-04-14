@@ -1,0 +1,411 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script><meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="robots" content="index, follow">
+<meta name="revisit-after" content="15 days">
+<link rel="author" href="/blog/humans.txt">
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/site.webmanifest">
+<meta name="msapplication-TileImage" content="/blog/mstile-144x144.png">
+<meta name="theme-color" content="#494f5c">
+<meta name="msapplication-TileColor" content="#494f5c">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#494f5c"><meta name="author" content="M. Semjan">
+<meta itemprop="name" content="Terminal Tips and Tricks">
+<meta itemprop="description" content="Learn tips and tricks for effective work with Terminal - useful tricks for both interactive shell usage and scripting are included."><meta itemprop="datePublished" content="2023-03-27T11:33:22+02:00" />
+<meta itemprop="dateModified" content="2023-03-27T11:33:22+02:00" />
+<meta itemprop="wordCount" content="1935">
+<meta itemprop="keywords" content="Bash,Terminal,Scripting,Tips &amp; Tricks," /><meta property="og:title" content="Terminal Tips and Tricks" />
+<meta property="og:description" content="Learn tips and tricks for effective work with Terminal - useful tricks for both interactive shell usage and scripting are included." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/blog/en/posts/terminal-tips-and-tricks/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-27T11:33:22+02:00" />
+<meta property="article:modified_time" content="2023-03-27T11:33:22+02:00" /><meta property="og:site_name" content="Marek&#39;s Blog" />
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Terminal Tips and Tricks"/>
+<meta name="twitter:description" content="Learn tips and tricks for effective work with Terminal - useful tricks for both interactive shell usage and scripting are included."/>
+<title>Terminal Tips and Tricks</title>
+<link rel="stylesheet dns-prefetch preconnect preload prefetch" as="style" href="http://localhost:1313/blog/css/style.min.345c563a38b4f7575cf28aec1272efcd1e50c614529052cf51ec1ea1eba36fac.css" integrity="sha256-NFxWOji091dc8orsEnLvzR5QxhRSkFLPUeweoeujb6w=" crossorigin="anonymous">
+	</head>
+<body id="page">
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://localhost:1313/blog/">Marek&#39;s Blog (ᵔ◡ᵔ)	</a>
+				</div>
+				<nav class="site-nav hide-in-mobile"><a href="http://localhost:1313/blog/en/posts/">Posts</a><a href="http://localhost:1313/blog/en/about-hugo/">About</a></nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://sk.linkedin.com/in/marek-semjan-12497a26a" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://github.com/msemjan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://www.researchgate.net/profile/Marek-Semjan-2" target="_blank" rel="noopener me" title="Researchgate"><svg xmlns="http://www.w3.org/2000/svg" class="feather feather-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></span><button id="share-btn" class="hdr-btn" title="Share"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></button>
+ 
+<div id="share-links" class="animated fast">
+    
+    
+    
+    
+    <ul>
+        <li>
+            <a href="https://twitter.com/intent/tweet?hashtags=hermit2&amp;url=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fterminal-tips-and-tricks%2f&amp;text=Terminal%20Tips%20and%20Tricks" target="_blank" rel="noopener" aria-label="Share on X"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path class="st0" d="m21.3 21.1 -11.4 -18.2h-7.2l11.4 18.2zm-18.6 0 7.2 -6.6m4.2 -5 7.2 -6.6"/></svg></a>
+        </li>
+        <li>
+            <a href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fterminal-tips-and-tricks%2f" target="_blank" rel="noopener" aria-label="Share on Facebook"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+        </li>
+        <li>
+            <a href="mailto:?subject=Terminal%20Tips%20and%20Tricks&amp;body=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fterminal-tips-and-tricks%2f" target="_self" rel="noopener" aria-label="Share on Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+        </li>
+        <li>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fterminal-tips-and-tricks%2f&amp;source=http%3a%2f%2flocalhost%3a1313%2fblog%2f&amp;title=Terminal%20Tips%20and%20Tricks&amp;summary=Terminal%20Tips%20and%20Tricks%2c%20by%20M.%20Semjan%0a%0a%3cnil%3e%0a" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+        </li>
+        <li>
+            <a href="#" onclick="linkShare(&#34;Terminal Tips and Tricks&#34;,&#34;http://localhost:1313/blog/en/posts/terminal-tips-and-tricks/&#34;,&#34;Terminal Tips and Tricks, by M. Semjan\n\n\u003cnil\u003e\n&#34;); return false;" target="_self" rel="noopener" aria-label="Copy Link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></a>
+        </li>
+    </ul>
+</div><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://localhost:1313/blog/en/posts/">Posts</a></li>
+			<li><a href="http://localhost:1313/blog/en/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster"><article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 27, 2023</span></div>
+				<h1>Terminal Tips and Tricks</h1>
+			</header>
+			<div class="post-info"><p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg><a href="" target="_blank">M. Semjan</a></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://localhost:1313/blog/en/tags/bash">Bash</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/terminal">Terminal</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/scripting">Scripting</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/tips-tricks">Tips &amp; Tricks</a></span></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1935 Words
+    •
+    
+    
+    
+    8 Minutes, 47 Seconds</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-03-27 11:33 &#43;0200</p></div>
+			<hr class="post-end">
+			<div class="content">
+				<h1 id="terminal-tips-and-tricks">Terminal Tips and Tricks<a href="#terminal-tips-and-tricks" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>This cheat sheet shows you various tips and tricks for working with terminal.</p>
+<h2 id="interactive-shell">Interactive Shell<a href="#interactive-shell" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>If you are using Ubuntu, you can open terminal with <code>CTRL + ALT + T</code> keyboard shortcut.</p>
+<h3 id="basic-tasks">Basic Tasks<a href="#basic-tasks" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>Print the current working directory: <code>pwd</code></li>
+<li>List files in the current directory: <code>ls</code></li>
+<li>List files in a list format: <code>ls -l</code></li>
+<li>List all files (including hidden ones): <code>ls -a</code></li>
+<li>List all files in a list format: <code>ls -al</code></li>
+<li>List all files in a list format, and use a human readable format for file sizes: <code>ls -alh</code></li>
+<li>Change into a directory: <code>cd my-directory</code></li>
+<li>Move to the home directory: <code>cd ~</code></li>
+<li>Go to the previous directory: <code>cd -</code> (useful, when you want to jump back and forth between two folders)</li>
+<li>Create an empty file: <code>touch my-file</code></li>
+<li>Create a directory: <code>mkdir my-directory</code></li>
+<li>Create a directory and <code>cd</code> into it: <code>mkdir dir_name &amp;&amp; cd $_</code></li>
+<li>Create a directory with it&rsquo;s parents: <code>mkdir -p path/to/some/dir</code></li>
+<li>Create multiple subdirectories: <code>mkdir -p path/{subdirectory1,subdirectory2,subdirectory3}</code></li>
+<li>Download a file from the internet:
+<ul>
+<li>Using <code>curl</code>: <code>curl -O URL</code></li>
+<li>Using <code>wget</code>: <code>wget URL</code></li>
+</ul>
+</li>
+<li>You can use <code>TAB</code> to auto-complete a command or a folder/file name, after you&rsquo;ve written several letters</li>
+<li>Get a list of all environment variables: <code>env</code></li>
+<li>Get help with a given command: <code>man command</code></li>
+<li>Redirect the <code>STDOUT</code> output of one command into the <code>STDIN</code> of another command: <code>command1 | command2</code></li>
+<li>Redirect the <code>STDOUT</code> output of a command into a file: <code>command &gt; /path/to/file.txt</code> (if the file doesn&rsquo;t exist, it will be created, if it exists, it will be overwritten)</li>
+<li>Append the <code>STDOUT</code> output of a command into a file: <code>command &gt;&gt; /path/to/file.txt</code> (if the file doesn&rsquo;t exist, it will be created, if it exists, it won&rsquo;t be overwritten)</li>
+<li>Display a simple calendar: <code>cal</code> (or <code>cal -3</code> to display three months)</li>
+</ul>
+<h3 id="running-scripts">Running Scripts<a href="#running-scripts" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>Give your user ability to run a script: <code>chmod u+x my-script.sh</code></li>
+<li>Remove your user&rsquo;s ability to run a script: <code>chmod u-x my-script.sh</code></li>
+<li>Run the script from the current directory: <code>./my-script.sh</code></li>
+<li>Run the script from a different directory: <code>./path/to/my-script.sh</code></li>
+<li>You can create a directory for your executable scripts (e.g. <code>~/bin</code>), move your scripts there, and add this directory to your path (<code>export PATH=$PATH:~/bin</code>). You can then you can run your script without <code>./</code> or the path (e.g. <code>my-script.sh</code>)</li>
+</ul>
+<h3 id="history">History<a href="#history" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>View commands you&rsquo;ve used in the past: <code>history</code></li>
+<li>For a more convenient browsing of history: <code>history | less</code></li>
+<li>Search for some pattern in history: <code>history | grep &quot;pattern&quot;</code></li>
+<li>Click <code>CTRL + R</code> and start typing, this will bring up the last command that matches what you&rsquo;ve written. Click <code>CTRL + R</code> repeatedly to find older matches</li>
+<li>Use arrow up and down to &ldquo;scroll&rdquo; through recent commands</li>
+<li>Re-run the last command: <code>!!</code></li>
+<li>Re-run the last command, but as a superuser: <code>sudo !!</code></li>
+<li>Refer to the n-th command in the history: <code>!n</code></li>
+<li>Refer to the n-th command from the end in the history: <code>!-n</code></li>
+<li>Re-run the second last command: <code>!-2</code></li>
+<li>Refer to the most recent command in the history starting with <code>string</code>: <code>!string</code>, e.g. <code>!cd</code></li>
+</ul>
+<h3 id="administrative-tasks">Administrative Tasks<a href="#administrative-tasks" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>Update and upgrade Debian-based Linux distros: <code>sudo apt-get install &amp;&amp; sudo apt-get upgrade</code></li>
+<li>Install a package in Debian-based Linux distros: <code>sudo apt-get install some-package</code></li>
+<li>Search for a package in repositories: <code>apt search my-query</code> (this is useful, if you are not sure, what is the package with a program called)</li>
+<li>Show details of a package: <code>apt show some-package</code></li>
+<li>Shutdown the computer: <code>sudo shutdown -h now</code></li>
+<li>Restart the computer immediately: <code>sudo shutdown -r now</code></li>
+<li>Restart the computer in 60 minutes: <code>sudo shutdown -r +60</code></li>
+<li>Continually monitor a log file: <code>tail -f /var/log/some.log</code></li>
+<li>Get your IP address: <code>ifconfig</code></li>
+<li>Get your external address: <code>curl ipecho.net/plain; echo</code></li>
+<li>Test connectivity to a website: <code>ping -c 10 URL</code></li>
+<li>Task monitor: <code>top</code> or for more colorful option <code>htop</code></li>
+</ul>
+<h3 id="development">Development<a href="#development" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>Start a simple server in any directory: <code>python -m SimpleHTTPServer 8000</code> (you need Python installed)</li>
+</ul>
+<h3 id="remote-shell">Remote Shell<a href="#remote-shell" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="automating-common-tasks">Automating Common Tasks<a href="#automating-common-tasks" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>If you often run a long command (either with many flags and options, or several commands chained together), it you probably should create a alias to simplify running the command.</p>
+<p>To create a alias, add the line that looks like this to your <code>~/.bashrc</code> file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>alias cmd<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;my-very-very-long-often-used-command&#39;</span>
+</span></span></code></pre></div><p>Replace everything between the quotes with your command and it&rsquo;s flags and options. Make sure that you use the single quote (<code>'</code>) and not the double quote (<code>&quot;</code>). When you are done with adding <code>~/.bashrc</code>, close and reopen terminal, or run <code>source ~/.bashrc</code>.</p>
+<p>You can then use the alias like a normal command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cmd
+</span></span></code></pre></div><p>The alias doesn&rsquo;t have to be a complete command, it can contain just the flags and options, and you add some input parameter when you use the alias:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cmd <span style="color:#e6db74">&#34;some input&#34;</span>
+</span></span></code></pre></div><p>Disadvantage of aliases is that you can not pass parameters that are &ldquo;in the middle&rdquo; of the command. But you can functions that use parameters to your <code>~/.bashrc</code>, e.g.:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>repeat <span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  local count<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span> i;
+</span></span><span style="display:flex;"><span>  shift;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> i in <span style="color:#66d9ef">$(</span>_seq <span style="color:#ae81ff">1</span> <span style="color:#e6db74">&#34;</span>$count<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    eval <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Subfunction needed by `repeat&#39;.</span>
+</span></span><span style="display:flex;"><span>_seq <span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  local lower upper output;
+</span></span><span style="display:flex;"><span>  lower<span style="color:#f92672">=</span>$1 upper<span style="color:#f92672">=</span>$2;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $lower -ge $upper <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span> <span style="color:#66d9ef">return</span>; <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span> <span style="color:#f92672">[</span> $lower -lt $upper <span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    echo -n <span style="color:#e6db74">&#34;</span>$lower<span style="color:#e6db74"> &#34;</span>
+</span></span><span style="display:flex;"><span>    lower<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span>$lower <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">))</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>  echo <span style="color:#e6db74">&#34;</span>$lower<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>This function repeats a given command given number of times. Example usage:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>repeat <span style="color:#ae81ff">10</span> echo foo
+</span></span></code></pre></div><p>Here is a couple of aliases from my <code>.bashrc</code> for inspiration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Make outputs more colorful</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -x /usr/bin/dircolors <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>  test -r ~/.dircolors <span style="color:#f92672">&amp;&amp;</span> eval <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>dircolors -b ~/.dircolors<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">||</span> eval <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>dircolors -b<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>  alias ls<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ls --color=auto&#39;</span>
+</span></span><span style="display:flex;"><span>  alias grep<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;grep --color=auto&#39;</span>
+</span></span><span style="display:flex;"><span>  alias fgrep<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;fgrep --color=auto&#39;</span>
+</span></span><span style="display:flex;"><span>  alias egrep<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;egrep --color=auto&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># some ls aliases</span>
+</span></span><span style="display:flex;"><span>alias ll<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ls -alF&#39;</span>
+</span></span><span style="display:flex;"><span>alias la<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ls -A&#39;</span>
+</span></span><span style="display:flex;"><span>alias l<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ls -CF&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Debian/Ubuntu</span>
+</span></span><span style="display:flex;"><span>alias age<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;sudo apt-get&#39;</span>
+</span></span><span style="display:flex;"><span>alias ags<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;apt search&#39;</span>
+</span></span><span style="display:flex;"><span>alias apu<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;sudo apt update &amp;&amp; sudo apt upgrade&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Faster navigation</span>
+</span></span><span style="display:flex;"><span>alias ..<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cd ..&#34;</span>
+</span></span><span style="display:flex;"><span>alias ...<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cd ../..&#34;</span>
+</span></span><span style="display:flex;"><span>alias ....<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cd ../../..&#34;</span>
+</span></span><span style="display:flex;"><span>alias .....<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cd ../../../..&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Frequently used commands</span>
+</span></span><span style="display:flex;"><span>alias c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;clear&#39;</span> <span style="color:#75715e"># you can use CTRL+L instead, if you haven&#39;t remaped it like I did</span>
+</span></span><span style="display:flex;"><span>alias h<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;history&#39;</span>
+</span></span><span style="display:flex;"><span>alias ss<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ps -aux&#34;</span>
+</span></span><span style="display:flex;"><span>alias dot<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ls .[a-zA-Z0-9_]*&#39;</span>
+</span></span><span style="display:flex;"><span>alias texclean<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;rm -f *.toc *.aux *.log *.cp *.fn *.tp *.vr *.pg *.ky&#39;</span>
+</span></span><span style="display:flex;"><span>alias cp<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cp -i&#34;</span>                          <span style="color:#75715e"># confirm before overwriting something</span>
+</span></span><span style="display:flex;"><span>alias df<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;df -h&#39;</span>                          <span style="color:#75715e"># human-readable sizes</span>
+</span></span><span style="display:flex;"><span>alias free<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;free -m&#39;</span>                      <span style="color:#75715e"># show sizes in MB</span>
+</span></span><span style="display:flex;"><span>alias more<span style="color:#f92672">=</span>less
+</span></span><span style="display:flex;"><span>alias alert<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;notify-send --urgency=low -i &#34;$([ $? = 0 ] &amp;&amp; echo terminal || echo error)&#34; &#34;$(history|tail -n1|sed -e &#39;</span><span style="color:#ae81ff">\&#39;</span><span style="color:#e6db74">&#39;s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//&#39;</span><span style="color:#ae81ff">\&#39;</span><span style="color:#e6db74">&#39;)&#34;&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tmux</span>
+</span></span><span style="display:flex;"><span>alias ta<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;tmux attach-session -t $(tmux list-sessions | fzf | cut -d&#34;:&#34; -f 1)&#39;</span>
+</span></span><span style="display:flex;"><span>alias ts<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;tmux new-session -s&#39;</span>      <span style="color:#75715e"># create a new named session</span>
+</span></span><span style="display:flex;"><span>alias tl<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;tmux list-sessions&#39;</span>
+</span></span><span style="display:flex;"><span>alias tksv<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;tmux kill-server&#39;</span>       <span style="color:#75715e"># kill all the server and all the sessions</span>
+</span></span><span style="display:flex;"><span>alias tkss<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;tmux kill-session -t&#39;</span>   <span style="color:#75715e"># kill a named session</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Simple fun or useful stuff</span>
+</span></span><span style="display:flex;"><span>alias wttr<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;curl wttr.in/&lt;your-town&gt;&#39;</span>
+</span></span><span style="display:flex;"><span>alias clear<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;[ $[$RANDOM % 15] = 0 ] &amp;&amp; timeout 1 cmatrix || clear&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Common misspellings</span>
+</span></span><span style="display:flex;"><span>alias mroe<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;more&#39;</span>
+</span></span><span style="display:flex;"><span>alias moar<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;more&#39;</span>
+</span></span><span style="display:flex;"><span>alias pdw<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;pwd&#39;</span>
+</span></span><span style="display:flex;"><span>alias exot<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;exit&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Dice</span>
+</span></span><span style="display:flex;"><span>alias d4<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;shuf -i1-4 -n1&#39;</span>
+</span></span><span style="display:flex;"><span>alias d6<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;shuf -i1-6 -n1&#39;</span>
+</span></span><span style="display:flex;"><span>alias d8<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;shuf -i1-8 -n1&#39;</span>
+</span></span><span style="display:flex;"><span>alias d20<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;shuf -i1-20 -n1&#39;</span>
+</span></span><span style="display:flex;"><span>alias d60<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;shuf -i1-60 -n1&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Git</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># You must install Git first</span>
+</span></span><span style="display:flex;"><span>alias gs<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;git status&#39;</span>
+</span></span><span style="display:flex;"><span>alias gl<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;git log --graph --oneline --all&#39;</span>
+</span></span><span style="display:flex;"><span>alias ga<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;git add .&#39;</span>
+</span></span><span style="display:flex;"><span>alias gc<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;git commit -m&#39;</span> <span style="color:#75715e"># requires you to type a commit message</span>
+</span></span><span style="display:flex;"><span>alias gp<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;git push&#39;</span>
+</span></span><span style="display:flex;"><span>alias gau<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;git add -u&#39;</span>
+</span></span><span style="display:flex;"><span>alias grm<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;git rm $(git ls-files --deleted)&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># # ex - archive extractor</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># # usage: ex &lt;file&gt;</span>
+</span></span><span style="display:flex;"><span>ex <span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -f $1 <span style="color:#f92672">]</span> ; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> $1 in
+</span></span><span style="display:flex;"><span>      *.tar.bz2<span style="color:#f92672">)</span>   tar xjf $1   ;;
+</span></span><span style="display:flex;"><span>      *.tar.gz<span style="color:#f92672">)</span>    tar xzf $1   ;;
+</span></span><span style="display:flex;"><span>      *.bz2<span style="color:#f92672">)</span>       bunzip2 $1   ;;
+</span></span><span style="display:flex;"><span>      *.rar<span style="color:#f92672">)</span>       unrar x $1   ;;
+</span></span><span style="display:flex;"><span>      *.gz<span style="color:#f92672">)</span>        gunzip $1    ;;
+</span></span><span style="display:flex;"><span>      *.tar<span style="color:#f92672">)</span>       tar xf $1    ;;
+</span></span><span style="display:flex;"><span>      *.tbz2<span style="color:#f92672">)</span>      tar xjf $1   ;;
+</span></span><span style="display:flex;"><span>      *.tgz<span style="color:#f92672">)</span>       tar xzf $1   ;;
+</span></span><span style="display:flex;"><span>      *.zip<span style="color:#f92672">)</span>       unzip $1     ;;
+</span></span><span style="display:flex;"><span>      *.Z<span style="color:#f92672">)</span>         uncompress $1;;
+</span></span><span style="display:flex;"><span>      *.7z<span style="color:#f92672">)</span>        7z x $1      ;;
+</span></span><span style="display:flex;"><span>      *<span style="color:#f92672">)</span>           echo <span style="color:#e6db74">&#34;&#39;</span>$1<span style="color:#e6db74">&#39; cannot be extracted via ex()&#34;</span> ;;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">esac</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;&#39;</span>$1<span style="color:#e6db74">&#39; is not a valid file&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="scripting">Scripting<a href="#scripting" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>You can use all the tricks from interactive section while scripting.</p>
+<h3 id="comment-your-code">Comment Your Code<a href="#comment-your-code" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>You will thank me when you return to your script after longer period of time and won&rsquo;t remember what it does and why.</p>
+<p>I also recommend using longer versions of the flags, when writing a script, because it documents the script. E.g instead of <code>-q</code> use <code>--quiet</code>.</p>
+<h3 id="make-script-exit-on-fail">Make Script Exit On Fail<a href="#make-script-exit-on-fail" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>set -o errexit
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># OR</span>
+</span></span><span style="display:flex;"><span>set -e
+</span></span></code></pre></div><h3 id="make-script-fail-when-it-uses-undeclared-variables">Make Script Fail When It Uses Undeclared Variables<a href="#make-script-fail-when-it-uses-undeclared-variables" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>set -o nounset
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># OR</span>
+</span></span><span style="display:flex;"><span>set -u
+</span></span></code></pre></div><h3 id="consider-using-functions-in-longer-scripts">Consider Using Functions In Longer Scripts<a href="#consider-using-functions-in-longer-scripts" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Functions make your code more readable, document it, and make it more reusable. With exception of the small scripts, it is a good idea to use functions.</p>
+<p>Syntax for writing functions is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> function_name <span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># function code`</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or</span>
+</span></span><span style="display:flex;"><span>function_name <span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># function code`</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># It can be written in a single line</span>
+</span></span><span style="display:flex;"><span>function_name<span style="color:#f92672">()</span> <span style="color:#f92672">{</span> command1; command2; <span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="multi-line-output-and-input">Multi-Line Output And Input<a href="#multi-line-output-and-input" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>You can use documents to output a multi-line message. E.g. for outputting a help message:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat <span style="color:#e6db74">&lt;&lt; EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">usage: up [--level &lt;n&gt;| -n &lt;levels&gt;][--help][--version]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Report bugs to: support@up.app
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">up home page: https://up.app
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span></code></pre></div><p>You can also load multi-line string into a variable like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>read -d <span style="color:#e6db74">&#39;&#39;</span> variable <span style="color:#e6db74">&lt;&lt;- EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">This is a very long document.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">It has several lines.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">And one more.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">You can even your variables, such as &#34;$USER&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Now you can use your variable</span>
+</span></span></code></pre></div><h3 id="use--instead-of--for-string-comparisons">Use = Instead Of == For String Comparisons<a href="#use--instead-of--for-string-comparisons" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Note that <code>==</code> is a synonym for <code>=</code>, therefore only use a single <code>=</code> for string comparisons.</p>
+<h3 id="command-substitution">Command Substitution<a href="#command-substitution" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Command substitution replaces a command with it&rsquo;s output. You can use <code>$(command)</code> or surround the command with backticks (legacy approach to command substitution), but <code>$(command)</code> is recommended. Example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>user<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>echo “$UID”<span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>user<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo “$UID”<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><h3 id="use-read-only-to-declare-static-variables">Use Read-Only To Declare Static Variables<a href="#use-read-only-to-declare-static-variables" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Static variables can not be changed once defined in a script. Example usage:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>readonly password_file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/etc/passwd&#34;</span>
+</span></span></code></pre></div><h3 id="check-your-scripts-with-shell-check-tool">Check Your Scripts With Shell Check Tool<a href="#check-your-scripts-with-shell-check-tool" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Use <a href="https://www.tecmint.com/shellcheck-shell-script-code-analyzer-for-linux/">ShellCheck tool</a> to find warnings and suggestions concerning bad code in bash/sh shell scripts.</p>
+<h3 id="always-surround-your-variables-with-quotation-marks">Always Surround Your Variables With Quotation Marks<a href="#always-surround-your-variables-with-quotation-marks" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Surround your variables with quotation mark to ensure that variables are referenced correctly. This is especially important if your variable has several words separated with spaces. Without the quotation marks, Bash will interpret the next word as the beginning of the next command.</p>
+<p>A variable in single quotes <code>'</code> is treated as a literal string, and not as a variable. Variables in quotation marks <code>&quot;</code>  are treated as variables.</p>
+<h3 id="break-up-scripts-into-multiple-files">Break Up Scripts Into Multiple Files<a href="#break-up-scripts-into-multiple-files" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>You can import variables and functions defined in another files with <code>source</code> command. E.g.:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>source ~/.bash_aliases
+</span></span></code></pre></div><p>This specific line can often be seen in <code>~/.bashrc</code> files, because people who have many aliases like to write them into <code>~/.bash_aliases</code>. Some people also create a separate file for their functions (<code>~/.bash_functions</code>).</p>
+<p>When you source, all lines of code will be executed (including creation of aliases), so keep that in mind.</p>
+<h3 id="environment-variables">Environment Variables<a href="#environment-variables" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>There are various special, pre-defined environment variables, which you can use:</p>
+<ul>
+<li><code>$#</code> - Returns the number of parameters passed to the script</li>
+<li><code>$@</code> - List of all the command line parameters passed to the script</li>
+<li><code>$?</code> - Returns the exit status of the last process to run</li>
+<li><code>$$</code> - The process ID (PID) of the current script</li>
+<li><code>$USER</code> - The username of the user who is currently logged in</li>
+<li><code>$HOSTNAME</code> - The host name of the computer you are using</li>
+<li><code>$PWD</code> - The current working directory</li>
+<li><code>$HOME</code> - The home folder of the current user</li>
+<li><code>$SECONDS</code> - Number of seconds the script has been running for</li>
+<li><code>$RANDOM</code> - Returns a random number</li>
+<li><code>$LINENO</code> - Returns the current line number of the script</li>
+</ul>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>We looked at various tips and tricks that will help you use Bash interactively or for scripting.</p>
+
+			</div>
+
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="http://localhost:1313/blog/en/posts/emoji/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Github Markdown Emoji Reference</span>
+			</a>
+			<a class="prev-post" href="http://localhost:1313/blog/en/posts/creating-a-blog-with-hugo/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Creating a blog with Hugo</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"></div>
+	</main>
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+	<p>
+		&copy; 2024 <a href="http://localhost:1313/blog/">Marek Semjan</a>
+		&#183; Copyright © 2024 Marek Semjan. All Rights Reserved.
+		&#183; Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+		&#183; Theme <a href="https://github.com/1bl4z3r/hermit-V2" target="_blank" rel="noopener">Hermit-V2</a></p>
+
+</footer>
+<script async src="http://localhost:1313/blog/js/bundle.min.c7c384e4d29d192bbac6811ae4660bb01767194a5bea56baca77e8260f93ea16.js" integrity="sha256-x8OE5NKdGSu6xoEa5GYLsBdnGUpb6la6ynfoJg+T6hY=" crossorigin="anonymous"></script><script async src="http://localhost:1313/blog/js/link-share.min.24409a4f6e5537d70ffc55ec8f9192208d718678cb8638585342423020b37f39.js" integrity="sha256-JECaT25VN9cP/FXsj5GSII1xhnjLhjhYU0JCMCCzfzk=" crossorigin="anonymous"></script>
+</body>
+
+</html>

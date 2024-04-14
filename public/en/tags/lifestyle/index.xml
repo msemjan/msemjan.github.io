@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lifestyle on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
+    <link>http://localhost:1313/blog/en/tags/lifestyle/</link>
+    <description>Recent content in Lifestyle on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 01 Apr 2023 12:39:47 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/blog/en/tags/lifestyle/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Optimize Your brain</title>
+      <link>http://localhost:1313/blog/en/posts/health_optimize_your_brain/</link>
+      <pubDate>Sat, 01 Apr 2023 12:39:47 +0200</pubDate>
+      <guid>http://localhost:1313/blog/en/posts/health_optimize_your_brain/</guid>
+      <description>In this post I summarize various habits and strategies that can improve your brain health.</description>
+    </item>
+  </channel>
+</rss>

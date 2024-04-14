@@ -1,6 +1,11 @@
 ---
 date: "2023-08-18T19:07:26+02:00"
 draft: true
+summary: There are many options for anyone who wants to choose a front-end framework.
+  It may be difficult for a beginner to pick one. Recenly I wanted to learn some framework
+  that would allow me to create beautiful websites without much effort. In this post
+  I'll briefly sum up various choices and what framework would I recommend for anyone
+  who wants to start with front-end development.
 tags:
 - Javascript
 - Typescript
@@ -13,7 +18,6 @@ tags:
 - Fullstack development
 title: What Front End Framework Should You Pick in 2023?
 toc: true
-summary: "There are many options for anyone who wants to choose a front-end framework. It may be difficult for a beginner to pick one. Recenly I wanted to learn some framework that would allow me to create beautiful websites without much effort. In this post I'll briefly sum up various choices and what framework would I recommend for anyone who wants to start with front-end development."
 ---
 ## Introduction
 

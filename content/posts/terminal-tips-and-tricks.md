@@ -10,7 +10,6 @@ tags:
 - Scripting
 - Tips & Tricks
 title: Terminal Tips and Tricks
-type: post
 ---
 # Terminal Tips and Tricks
 

@@ -11,7 +11,6 @@ tags:
 - Technology
 - Tips & Tricks
 title: How to Learn New Technology With Stack Overflow
-type: post
 ---
 # How to Learn New Technology With Stack Overflow
 

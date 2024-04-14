@@ -2,6 +2,7 @@
 author: M. Semjan
 date: "2023-04-01T11:45:03+02:00"
 draft: true
+mathjax: true
 summary: In this post I describe how I've added Math support to my template with MathJax.
 tags:
 - Hugo
@@ -9,7 +10,6 @@ tags:
 - Markdown
 - MathJax
 title: Adding Math Support to Hugo
-type: post
 ---
 # Adding Math Support to Hugo
 
@@ -22,7 +22,7 @@ If you are a scientist who wants to share their research in a form of a blog pos
 You can create a Hugo website with:
 ```
 hugo new site my-blog
-cd my-blog 
+cd my-blog
 git init
 ```
 
@@ -49,7 +49,7 @@ $$
 
 **Einstein Field Equations**
 $$
-R_{\mu\nu} - \frac{D}{2}Rg_{\mu\nu} - \Lambda g_{\mu\nu} = -\kappa T_{\mu\nu} 
+R_{\mu\nu} - \frac{D}{2}Rg_{\mu\nu} - \Lambda g_{\mu\nu} = -\kappa T_{\mu\nu}
 $$
 
 **Schrödinger Equation**
@@ -112,7 +112,7 @@ $$
 
 **Einstein Field Equations**
 $$
-R_{\mu\nu} - \frac{D}{2}Rg_{\mu\nu} - \Lambda g_{\mu\nu} = -\kappa T_{\mu\nu} 
+R_{\mu\nu} - \frac{D}{2}Rg_{\mu\nu} - \Lambda g_{\mu\nu} = -\kappa T_{\mu\nu}
 $$
 
 **Schrödinger Equation**

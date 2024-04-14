@@ -1,0 +1,155 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script><meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="robots" content="index, follow">
+<meta name="revisit-after" content="15 days">
+<link rel="author" href="/blog/humans.txt">
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/site.webmanifest">
+<meta name="msapplication-TileImage" content="/blog/mstile-144x144.png">
+<meta name="theme-color" content="#494f5c">
+<meta name="msapplication-TileColor" content="#494f5c">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#494f5c"><meta name="author" content="M. Semjan">
+<meta itemprop="name" content="Introducing GHAST Stack">
+<meta itemprop="description" content="GHAST stack is a new tech-stack for developing web applications without excessive use of Javascript. In this article I describe why I am suggesting usage of this tech-stack and what technologies it uses."><meta itemprop="datePublished" content="2023-08-11T18:12:17+02:00" />
+<meta itemprop="dateModified" content="2023-08-11T18:12:17+02:00" />
+<meta itemprop="wordCount" content="1253">
+<meta itemprop="keywords" content="Tech-stack,GHAST-Stack,Golang,HTMX,Alpine.js,SQL,Tailwind,Front-end development,Back-end development,Fullstack development,Programming," /><meta property="og:title" content="Introducing GHAST Stack" />
+<meta property="og:description" content="GHAST stack is a new tech-stack for developing web applications without excessive use of Javascript. In this article I describe why I am suggesting usage of this tech-stack and what technologies it uses." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/blog/en/posts/introducing-ghast-stack/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-11T18:12:17+02:00" />
+<meta property="article:modified_time" content="2023-08-11T18:12:17+02:00" /><meta property="og:site_name" content="Marek&#39;s Blog" />
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Introducing GHAST Stack"/>
+<meta name="twitter:description" content="GHAST stack is a new tech-stack for developing web applications without excessive use of Javascript. In this article I describe why I am suggesting usage of this tech-stack and what technologies it uses."/>
+<title>Introducing GHAST Stack</title>
+<link rel="stylesheet dns-prefetch preconnect preload prefetch" as="style" href="http://localhost:1313/blog/css/style.min.345c563a38b4f7575cf28aec1272efcd1e50c614529052cf51ec1ea1eba36fac.css" integrity="sha256-NFxWOji091dc8orsEnLvzR5QxhRSkFLPUeweoeujb6w=" crossorigin="anonymous">
+	</head>
+<body id="page">
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://localhost:1313/blog/">Marek&#39;s Blog (ᵔ◡ᵔ)	</a>
+				</div>
+				<nav class="site-nav hide-in-mobile"><a href="http://localhost:1313/blog/en/posts/">Posts</a><a href="http://localhost:1313/blog/en/about-hugo/">About</a></nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://sk.linkedin.com/in/marek-semjan-12497a26a" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://github.com/msemjan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://www.researchgate.net/profile/Marek-Semjan-2" target="_blank" rel="noopener me" title="Researchgate"><svg xmlns="http://www.w3.org/2000/svg" class="feather feather-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></span><button id="share-btn" class="hdr-btn" title="Share"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></button>
+ 
+<div id="share-links" class="animated fast">
+    
+    
+    
+    
+    <ul>
+        <li>
+            <a href="https://twitter.com/intent/tweet?hashtags=hermit2&amp;url=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fintroducing-ghast-stack%2f&amp;text=Introducing%20GHAST%20Stack" target="_blank" rel="noopener" aria-label="Share on X"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path class="st0" d="m21.3 21.1 -11.4 -18.2h-7.2l11.4 18.2zm-18.6 0 7.2 -6.6m4.2 -5 7.2 -6.6"/></svg></a>
+        </li>
+        <li>
+            <a href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fintroducing-ghast-stack%2f" target="_blank" rel="noopener" aria-label="Share on Facebook"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+        </li>
+        <li>
+            <a href="mailto:?subject=Introducing%20GHAST%20Stack&amp;body=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fintroducing-ghast-stack%2f" target="_self" rel="noopener" aria-label="Share on Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+        </li>
+        <li>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fintroducing-ghast-stack%2f&amp;source=http%3a%2f%2flocalhost%3a1313%2fblog%2f&amp;title=Introducing%20GHAST%20Stack&amp;summary=Introducing%20GHAST%20Stack%2c%20by%20M.%20Semjan%0a%0a%3cnil%3e%0a" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+        </li>
+        <li>
+            <a href="#" onclick="linkShare(&#34;Introducing GHAST Stack&#34;,&#34;http://localhost:1313/blog/en/posts/introducing-ghast-stack/&#34;,&#34;Introducing GHAST Stack, by M. Semjan\n\n\u003cnil\u003e\n&#34;); return false;" target="_self" rel="noopener" aria-label="Copy Link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></a>
+        </li>
+    </ul>
+</div><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://localhost:1313/blog/en/posts/">Posts</a></li>
+			<li><a href="http://localhost:1313/blog/en/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster"><article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 11, 2023</span></div>
+				<h1>Introducing GHAST Stack</h1>
+			</header>
+			<div class="post-info"><p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg><a href="" target="_blank">M. Semjan</a></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://localhost:1313/blog/en/tags/tech-stack">Tech-stack</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/ghast-stack">GHAST-Stack</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/golang">Golang</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/htmx">HTMX</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/alpine.js">Alpine.js</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/sql">SQL</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/tailwind">Tailwind</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/front-end-development">Front-end development</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/back-end-development">Back-end development</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/fullstack-development">Fullstack development</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/programming">Programming</a></span></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1253 Words
+    •
+    
+    
+    
+    5 Minutes, 41 Seconds</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-08-11 18:12 &#43;0200</p></div>
+			<hr class="post-end">
+			<div class="content">
+				<h1 id="introducing-ghast-stack">Introducing GHAST Stack<a href="#introducing-ghast-stack" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>GHAST stack is a new tech-stack for developing web applications without excessive use of Javascript. In this article I describe why I am suggesting usage of this tech-stack and what technologies it uses.</p>
+<h2 id="why-a-new-tech-stack">Why A New Tech-Stack?<a href="#why-a-new-tech-stack" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Modern web app development heavily relies on Javascript libraries, such as <a href="https://react.dev/">React</a>, <a href="https://vuejs.org/">Vue</a>, <a href="https://angular.io/">Angular</a>, <a href="https://svelte.dev/">Svelte</a>, or some other lesser-known emerging players. Moreover, in 2009 Javascript also invaded the back-end world in a form of <a href="https://nodejs.org/">Node.js</a>.</p>
+<p>Over the years the Javascript ecosystem became a hot mess with a large number of packages, modules, libraries, and frameworks, which makes it difficult for the newcomers to navigate. The sheer volume of choices is overwhelming. Last year I&rsquo;ve decided that I&rsquo;ll learn a little bit of front-end, and I found it hard to decide what to learn. If you want to land a job in a front-end position, React is a solid choice, but I didn&rsquo;t like it. I found Vue to be prettier than React, but that means that I still have to write Javascript. The same with Angular, plus in the recent years it was on a steady decline in terms of popularity.</p>
+<p>What are options do you have? If you are a back-end developer, like myself, you will quickly realize that your favorite back-end language is more or less good only for writing APIs or at the best case scenario server-side rendering, which allows you to create dynamic webpages, but if you want to change only a part of the website, the user needs to make a HTTP request that will cause a re-render of the entire web page.</p>
+<p>However, there is a light at the end of the tunnel. It is HTMX, which can be thought of as an extension of HTML, and it gives you an access to AJAX, CSS transitions, WebSockets, and Server Sent Events directly in HTML. With HTMX, you can sprinkle islands of interactivity into your web page, that dynamically change when user interacts with your web page. Since most back-end languages, such as Python, Golang, Ruby, PHP, etc., have a templating engines, you can render parts of the web page, and send them to front-end, where HTMX will swap the original content with your snippet of HTML.</p>
+<p>This means that you can don&rsquo;t have to use Javascript for changing only a small part of the website, and you don&rsquo;t have to re-render the entire web page, when the user interacts with it. Moreover, you can use your favorite back-end language that you are familiar with and don&rsquo;t have to sink countless hours into learning (and relearning, since the Javascript landscape is constantly changing, and what was the hottest thing last year is painfully outdated today) front-end Javascript framework.</p>
+<p><img alt="You&rsquo;re fullstack now" src="https://htmx.org/img/memes/fullstack.jpg"></p>
+<p><em>Source: <a href="https://htmx.org/essays/#memes">HTMX Official Website</a></em></p>
+<h2 id="what-is-ghast-stack">What Is GHAST Stack?<a href="#what-is-ghast-stack" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>GHAST Stack is comprised of five technologies:</p>
+<ul>
+<li><a href="https://go.dev/learn/">Golang</a> programming language</li>
+<li><a href="https://htmx.org/">HTMX</a></li>
+<li><a href="https://alpinejs.dev/">Alpine.js</a></li>
+<li>SQL (e.g. <a href="https://www.postgresql.org/">PostgreSQL</a>, <a href="https://www.mysql.com/">MySQL</a>, <a href="https://www.sqlite.org/index.html">SQLite</a>, &hellip;)</li>
+<li><a href="https://tailwindcss.com/">Tailwind</a></li>
+</ul>
+<p>The core of the GHAST stack is Golang programming language (mostly because I like it at the moment, but also to have a cool acronym 😅). Golang is among younger programming language, but it is growing in popularity. In the <a href="https://survey.stackoverflow.co/2023/">Stack Overflow Developer Survey 2023</a> it ranked 13-th in the most popular programming technology list. It is simple to learn, but has a large standard library that allows you to accomplish most common tasks without a need for third-party dependencies. Additionally, there is a growing community of Golang developers (who call themselves Gophers), who are writing useful libraries and frameworks, which will benefit your future projects. Since it is backed by large companies, such as Google, we can expect that Golang will only become more popular in the coming years.</p>
+<p>As discussed in the previous section, we want to use a back-end programming language and still have some interactivity in our application. Therefore, we will use HTMX to do the heavy lifting. Parts of the website that should change will be swapped with the snippets of HTML generated by our Golang server. This can be easily done with the built-in <a href="https://pkg.go.dev/text/template"><code>template</code></a> package. Since we are working directly with HTML, we can also avoid the need to transform JSON into something that can be displayed on the front-end as is often the case when using Javascript libraries, such as React.</p>
+<p>Alpine.js is another front-end library. It may seem that including it in our stack goes against everything said against the usage of Javascript. However, I think it is okay to use a little bit of Javascript for small things such as animations, transitions, and other small tasks that are not the best fit for the back-end server. Even the official website of HTMX features an <a href="https://htmx.org/essays/hypermedia-friendly-scripting/">essay</a> that argues that some Javascript scripting is HTMX-friendly. It mostly comes down to avoiding changes to the state of your application using Javascript (in HTMX, the state is stored in the HTML). I recommend reading the essay for better understanding of when it is suitable to use Javascript in your application. When using Alpine.js, you probably should also consider using the <a href="https://htmx.org/docs/#included-extensions">alpine-morph extension/plugin</a>.</p>
+<p>I think that the choice of SQL is fairly self-explanatory. Using databases for data-persistence is an industry standard. Since I wanted that cool acronym, I left the specific implementation of SQL free to the user&rsquo;s preference. Use whatever you like and what makes sense in your use-case.</p>
+<p>The last technology used in the GHAST stack is Tailwind, a utility CSS framework that will make styling of our application much easier than using pure CSS. It defines a large set of small, constrained utility classes, which can be combined to achieve the desired look.</p>
+<h2 id="when-to-use-ghast-stack">When To Use GHAST Stack?<a href="#when-to-use-ghast-stack" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>GHAST stack is intended for smaller applications, which don&rsquo;t have very complex front-ends. The interactivity should be contained within well-defined &ldquo;islands&rdquo; of interactivity. It is great for UIs that are mostly text and images. It is also great if you need a good first-render performance. Basically, this stack is mostly limited by the same <a href="https://htmx.org/essays/when-to-use-hypermedia/">things as HTMX</a> itself.</p>
+<h2 id="when-not-to-use-ghast-stack">When Not To Use GHAST Stack?<a href="#when-not-to-use-ghast-stack" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>GHAST is not ideal for applications that have complex UI with dynamic inter-dependencies, where a change in one place causes updates all over the web page. If the interactivity is not localized in smaller blocks, a more standard approach using one of the popular Javascript libraries is more suitable.</p>
+<p>Also, hypermedia approach is not ideal if the state of the application changes very frequently (e.g. in a games), since a lot of syncing between the client and the server is required. You can however, embed a <em>single page application</em> (SPA) component within a larger hypermedia architecture.</p>
+<p>The last reason not to use the GHAST stack is when you need to hire developers (or be hired) to work on a web application, since technologies, such as React, are much more popular there are more developers who can work with them. The same is true, if your existing team isn&rsquo;t on board.</p>
+<h2 id="conclusions">Conclusions<a href="#conclusions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>In this post I&rsquo;ve introduced a new tech-stack, which is built around Golang, HTMX, Alpine.js, SQL, and Tailwind. It is an alternative to the more popular approaches to building web application based on Javascript. GHOST stack is suitable for smaller applications that have smaller interactive parts that don&rsquo;t update very frequently. The majority of the work is done on our Golang server and the generated snippets that return from the Golang app are inserted into our front-end. Alpine.js can be used to enhance our website with small amount of inline Javascript. These tools provide everything necessary to build a well-functioning web application.</p>
+
+			</div>
+
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="http://localhost:1313/blog/en/posts/what-front-end-framework-should-you-pick-in-2023/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>What Front End Framework Should You Pick in 2023?</span>
+			</a>
+			<a class="prev-post" href="http://localhost:1313/blog/en/posts/how-to-learn-new-technology-with-stack-overflow/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>How to Learn New Technology With Stack Overflow</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"></div>
+	</main>
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+	<p>
+		&copy; 2024 <a href="http://localhost:1313/blog/">Marek Semjan</a>
+		&#183; Copyright © 2024 Marek Semjan. All Rights Reserved.
+		&#183; Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+		&#183; Theme <a href="https://github.com/1bl4z3r/hermit-V2" target="_blank" rel="noopener">Hermit-V2</a></p>
+
+</footer>
+<script async src="http://localhost:1313/blog/js/bundle.min.c7c384e4d29d192bbac6811ae4660bb01767194a5bea56baca77e8260f93ea16.js" integrity="sha256-x8OE5NKdGSu6xoEa5GYLsBdnGUpb6la6ynfoJg+T6hY=" crossorigin="anonymous"></script><script async src="http://localhost:1313/blog/js/link-share.min.24409a4f6e5537d70ffc55ec8f9192208d718678cb8638585342423020b37f39.js" integrity="sha256-JECaT25VN9cP/FXsj5GSII1xhnjLhjhYU0JCMCCzfzk=" crossorigin="anonymous"></script>
+</body>
+
+</html>

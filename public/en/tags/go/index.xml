@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
+    <link>http://localhost:1313/blog/en/tags/go/</link>
+    <description>Recent content in Go on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 15 Nov 2023 18:35:15 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/blog/en/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction Into gRPC in Go</title>
+      <link>http://localhost:1313/blog/en/posts/introduction-into-grpc-in-go/</link>
+      <pubDate>Wed, 15 Nov 2023 18:35:15 +0100</pubDate>
+      <guid>http://localhost:1313/blog/en/posts/introduction-into-grpc-in-go/</guid>
+      <description>gRPC is a modern alternative to REST APIs, which uses protocol buffers to encode messages to decrease the size of data that needs to be send over the networ and increase the speed of encoding and decoding messages. Read this post to learn more about gRPC, it&amp;rsquo;s advantages and disadvantages, and how to get started with this technology.</description>
+    </item>
+    <item>
+      <title>Introduction Into Protocol Buffers in Go</title>
+      <link>http://localhost:1313/blog/en/posts/introduction-into-protocol-buffers-in-go/</link>
+      <pubDate>Sat, 26 Aug 2023 09:14:53 +0200</pubDate>
+      <guid>http://localhost:1313/blog/en/posts/introduction-into-protocol-buffers-in-go/</guid>
+      <description>Protocol buffers are a language-agnostic and platform-independent mechanism for serialization of data created by Google. Protocol buffers can be used as a replacement for older formats, such as JSON or XML, but they are designed to be much smaller, faster and simpler.</description>
+    </item>
+  </channel>
+</rss>

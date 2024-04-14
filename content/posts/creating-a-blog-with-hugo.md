@@ -9,7 +9,6 @@ tags:
 - Blog
 - Writing
 title: Creating a blog with Hugo
-type: post
 ---
 # Creating a blog with Hugo
 

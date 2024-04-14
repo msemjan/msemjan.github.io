@@ -12,3 +12,6 @@ update:
 
 yaml:
 	hugo convert toYAML --unsafe --verbose
+
+update-themes:
+	git submodule update --remote

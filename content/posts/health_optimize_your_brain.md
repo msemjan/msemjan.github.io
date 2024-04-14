@@ -10,7 +10,6 @@ tags:
 - Brain health
 - Lifestyle
 title: Optimize Your brain
-type: post
 ---
 # Optimize Your brain
 

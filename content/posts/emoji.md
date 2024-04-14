@@ -10,7 +10,6 @@ tags:
 - Emoji
 - Reference
 title: Github Markdown Emoji Reference
-type: post
 ---
 ## Introduction
 

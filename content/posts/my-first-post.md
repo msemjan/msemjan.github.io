@@ -7,7 +7,6 @@ tags:
 - Introduction
 - Hugo
 title: My First Post
-type: post
 ---
 # Introduction
 

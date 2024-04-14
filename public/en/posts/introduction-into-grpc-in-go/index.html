@@ -1,0 +1,367 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script><meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="robots" content="index, follow">
+<meta name="revisit-after" content="15 days">
+<link rel="author" href="/blog/humans.txt">
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/site.webmanifest">
+<meta name="msapplication-TileImage" content="/blog/mstile-144x144.png">
+<meta name="theme-color" content="#494f5c">
+<meta name="msapplication-TileColor" content="#494f5c">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#494f5c"><meta name="author" content="M. Semjan">
+<meta itemprop="name" content="Introduction Into gRPC in Go">
+<meta itemprop="description" content="gRPC is a modern alternative to REST APIs, which uses protocol buffers to encode messages to decrease the size of data that needs to be send over the networ and increase the speed of encoding and decoding messages. Read this post to learn more about gRPC, it&rsquo;s advantages and disadvantages, and how to get started with this technology."><meta itemprop="datePublished" content="2023-11-15T18:35:15+01:00" />
+<meta itemprop="dateModified" content="2023-11-15T18:35:15+01:00" />
+<meta itemprop="wordCount" content="1719">
+<meta itemprop="keywords" content="gRPC,Protocol Buffers,Golang,Go,Data Serialization," /><meta property="og:title" content="Introduction Into gRPC in Go" />
+<meta property="og:description" content="gRPC is a modern alternative to REST APIs, which uses protocol buffers to encode messages to decrease the size of data that needs to be send over the networ and increase the speed of encoding and decoding messages. Read this post to learn more about gRPC, it&rsquo;s advantages and disadvantages, and how to get started with this technology." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/blog/en/posts/introduction-into-grpc-in-go/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-15T18:35:15+01:00" />
+<meta property="article:modified_time" content="2023-11-15T18:35:15+01:00" /><meta property="og:site_name" content="Marek&#39;s Blog" />
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Introduction Into gRPC in Go"/>
+<meta name="twitter:description" content="gRPC is a modern alternative to REST APIs, which uses protocol buffers to encode messages to decrease the size of data that needs to be send over the networ and increase the speed of encoding and decoding messages. Read this post to learn more about gRPC, it&rsquo;s advantages and disadvantages, and how to get started with this technology."/>
+<title>Introduction Into gRPC in Go</title>
+<link rel="stylesheet dns-prefetch preconnect preload prefetch" as="style" href="http://localhost:1313/blog/css/style.min.345c563a38b4f7575cf28aec1272efcd1e50c614529052cf51ec1ea1eba36fac.css" integrity="sha256-NFxWOji091dc8orsEnLvzR5QxhRSkFLPUeweoeujb6w=" crossorigin="anonymous">
+	</head>
+<body id="page">
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://localhost:1313/blog/">Marek&#39;s Blog (ᵔ◡ᵔ)	</a>
+				</div>
+				<nav class="site-nav hide-in-mobile"><a href="http://localhost:1313/blog/en/posts/">Posts</a><a href="http://localhost:1313/blog/en/about-hugo/">About</a></nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://sk.linkedin.com/in/marek-semjan-12497a26a" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://github.com/msemjan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://www.researchgate.net/profile/Marek-Semjan-2" target="_blank" rel="noopener me" title="Researchgate"><svg xmlns="http://www.w3.org/2000/svg" class="feather feather-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></span><button id="share-btn" class="hdr-btn" title="Share"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></button>
+ 
+<div id="share-links" class="animated fast">
+    
+    
+    
+    
+    <ul>
+        <li>
+            <a href="https://twitter.com/intent/tweet?hashtags=hermit2&amp;url=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fintroduction-into-grpc-in-go%2f&amp;text=Introduction%20Into%20gRPC%20in%20Go" target="_blank" rel="noopener" aria-label="Share on X"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path class="st0" d="m21.3 21.1 -11.4 -18.2h-7.2l11.4 18.2zm-18.6 0 7.2 -6.6m4.2 -5 7.2 -6.6"/></svg></a>
+        </li>
+        <li>
+            <a href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fintroduction-into-grpc-in-go%2f" target="_blank" rel="noopener" aria-label="Share on Facebook"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+        </li>
+        <li>
+            <a href="mailto:?subject=Introduction%20Into%20gRPC%20in%20Go&amp;body=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fintroduction-into-grpc-in-go%2f" target="_self" rel="noopener" aria-label="Share on Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+        </li>
+        <li>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fintroduction-into-grpc-in-go%2f&amp;source=http%3a%2f%2flocalhost%3a1313%2fblog%2f&amp;title=Introduction%20Into%20gRPC%20in%20Go&amp;summary=Introduction%20Into%20gRPC%20in%20Go%2c%20by%20M.%20Semjan%0a%0a%3cnil%3e%0a" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+        </li>
+        <li>
+            <a href="#" onclick="linkShare(&#34;Introduction Into gRPC in Go&#34;,&#34;http://localhost:1313/blog/en/posts/introduction-into-grpc-in-go/&#34;,&#34;Introduction Into gRPC in Go, by M. Semjan\n\n\u003cnil\u003e\n&#34;); return false;" target="_self" rel="noopener" aria-label="Copy Link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></a>
+        </li>
+    </ul>
+</div><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://localhost:1313/blog/en/posts/">Posts</a></li>
+			<li><a href="http://localhost:1313/blog/en/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster"><article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Nov 15, 2023</span></div>
+				<h1>Introduction Into gRPC in Go</h1>
+			</header>
+			<div class="post-info"><p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg><a href="" target="_blank">M. Semjan</a></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://localhost:1313/blog/en/tags/grpc">gRPC</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/protocol-buffers">Protocol Buffers</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/golang">Golang</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/go">Go</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/data-serialization">Data Serialization</a></span></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1719 Words
+    •
+    
+    
+    
+    7 Minutes, 48 Seconds</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-11-15 18:35 &#43;0100</p></div>
+			<hr class="post-end">
+			<div class="content">
+				<h2 id="introduction">Introduction<a href="#introduction" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>gRPC is a modern, cross-platform Remote Procedure Call (RPC) framework created by Google and released in 2016. It is considered to be an alternative to <a href="https://en.wikipedia.org/wiki/REST">REST</a> APIs, and can be used to connect various services. REST uses JSON, which is a plain-text format, while gRPC uses a <a href="../introduction-into-protocol-buffers-in-go">protocol buffers</a>. Protocol buffers are a binary format, which was designed to result in smaller serialized messages, which are simple to use and faster to encode and decode. This leads to a noticeable speedup when compared to REST and JSON.</p>
+<p>Despite all the advantages, you should not immediately start rewriting all your REST services. Let&rsquo;s look at various advantages and disadvantages of gRPC.</p>
+<h2 id="advantages-and-disadvantages">Advantages and disadvantages<a href="#advantages-and-disadvantages" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="advantages">Advantages<a href="#advantages" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>The main benefit that gRPC promises is its speed. Because of a binary format is uses, it should be much faster to encode and decode messages. Moreover, the data that is sent over the network should be smaller, because protocol buffers are more efficient way of encoding data than JSON.</p>
+<p>Unlike REST, which uses HTTP 1.1, gRPC is using HTTP/2, which allows for various new features, such as server-side streaming, client-side streaming, or bi-directional streaming.</p>
+<h3 id="disadvantages">Disadvantages<a href="#disadvantages" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>The biggest disadvantage of gRPC is that it is not supported by any of the modern browsers (all are using HTTP 1.1, no HTTP/2), and therefor it is either necessary to use something like <a href="https://grpc.io/docs/platforms/web/basics/">gRPC-web</a> that lets you access gRPC services built from browsers using an idiomatic API.</p>
+<p>Other disadvantage is that protocol buffers are not human-readable and therefore it is more difficult to work with them. While a simple REST service can easily be tested with a simple request using <code>curl</code> or Postman, you will need an extra step transcode requests.</p>
+<p>That being said, it is still an excellent choice for facilitating communication between various back-end services or when creating mobile apps.</p>
+<h2 id="a-simple-example-in-go">A simple example in Go<a href="#a-simple-example-in-go" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>In this example, I&rsquo;ll create a simple gRPC server and a client in Go. The gRPC server will expose two endpoints to send new notifications and fetch the list of notifications.</p>
+<h3 id="setup">Setup<a href="#setup" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Let&rsquo;s start by creating a new directory for our project, and then running <code>go mod init</code> to create <code>go.mod</code> and <code>go.sum</code> files.</p>
+<p>Before writing gRPC clients and servers, you need to have protocol buffer and gRPC code generator installed.</p>
+<pre tabindex="0"><code>$ go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28
+$ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
+</code></pre><p>Also, don&rsquo;t forget to update your <code>PATH</code> so that your <code>protoc</code> compiler is able to find and use the plugins:</p>
+<pre tabindex="0"><code>$ export PATH=&#34;$PATH:$(go env GOPATH)/bin&#34;
+</code></pre><h3 id="protocol-buffers">Protocol buffers<a href="#protocol-buffers" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>As mentioned above, gRPC uses <a href="../introduction-into-protocol-buffers-in-go">protocol buffers</a>. Before we start writing our Go server, we need to create a file that defines messages and available services. Let&rsquo;s create a folder <code>pb</code> and put in it a <code>message.proto</code> file with the following content:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-proto" data-lang="proto"><span style="display:flex;"><span>syntax <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;proto3&#34;</span>;<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">option</span> go_package <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;./types&#34;</span>;<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">// Type for notifications
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">Notification</span>  {<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">string</span> title  <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">string</span> body   <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">string</span> from   <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">string</span> for    <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">// A list of notifications
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">Notifications</span> {<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">repeated</span> Notification notifications <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">// A return type for sending notifications, the status should be non-zero,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// if there is some issue
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">ServerResponse</span> {<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">int32</span> status <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">// An empty type
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">Empty</span> {}<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">// Define functions that a client can use
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">service</span> NotificationService {<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">rpc</span> SendNotification(Notification) <span style="color:#66d9ef">returns</span> (ServerResponse) {};<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>  <span style="color:#66d9ef">rpc</span> GetNotifications(Empty) <span style="color:#66d9ef">returns</span> (Notifications) {};<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>The first line tells us that we are using version 3 of protocol buffers syntax. The second line specifies Go package. I haven&rsquo;t seen it in some examples online, but without it the compiler generates an error and no Go code, so it is necessary. The <code>message Something {}</code> specifies what the messages look like, that is what fields we can expect and what are their types. The value after the equal sign specifies a unique field number and it specifies a field in the message wire format. In the <code>Notifications</code> message you can a <code>repeated</code> keyword, which specifies that <code>notifications</code> is an array with values of type <code>Notification</code>.</p>
+<p>The messages are similar to Go&rsquo;s <code>struct</code>s. You can learn more about the syntax of protocol buffers in the <a href="https://protobuf.dev/programming-guides/proto3/">protocol buffers documentation</a>, including supported types, enumerations, nested types, and other details.</p>
+<p>Lastly, we define a <code>service</code> that has two remote procedure calls (RPC) - <code>SendNofication</code> and <code>GetNotifications</code>. You can think of these as REST endpoints. As you can see, the definition of these functions includes types of arguments and the return type. Unfortunately, all functions require an argument, and there is no <code>void</code> type for functions that have no arguments, so I had to create an <code>Empty</code> message with no fields to represent <code>void</code>.</p>
+<p>We will use <code>SendNofication</code> and <code>GetNotifications</code> to create new notifications and fetch the excising ones, respectively.</p>
+<p>Now, we need to create a <code>types</code> folder for the generated Go code.</p>
+<p>Once you&rsquo;ve created the <code>pb/message.pb</code> file and created a <code>types</code> folder, you can generate Go code using this command:</p>
+<pre tabindex="0"><code>$ protoc --go_out=types --go_opt=paths=source_relative \
+         --go-grpc_out=. --go-grpc_opt=paths=source_relative \
+         pg/*.proto
+</code></pre><p>If it was successful, you should see two new files in <code>types</code> folder: <code>message_grpc.pb.go</code> and <code>message.pb.go</code>. If you want to, you can check the generated code. It contains <code>struct</code>s that represent our protocol buffers messages and various functions necessary for marshaling an unmarshaling messages.</p>
+<h3 id="server">Server<a href="#server" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Now we are ready to create a gRPC server. Create a <code>server.go</code> file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;log&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;net&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;github.com/msemjan/go-grpc/types&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;google.golang.org/grpc&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Create a TPC connection and listen on port 9000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">lis</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">Listen</span>(<span style="color:#e6db74">&#34;tcp&#34;</span>, <span style="color:#e6db74">&#34;:9000&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;failed to listen: %v&#34;</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Create a gRPC server
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">grpcServer</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">NewServer</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Create a server that defines the SendNotification and GetNotifications
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// functions
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">notificationServer</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">MyGRPCServer</span>{}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Register our service
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">RegisterNotificationServiceServer</span>(<span style="color:#a6e22e">grpcServer</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">notificationServer</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Start a server
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">grpcServer</span>.<span style="color:#a6e22e">Serve</span>(<span style="color:#a6e22e">lis</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;failed to serve: %s&#34;</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We also need to define <code>MyGRPCServer</code>. We will create a <code>types/service.go</code> file, and write the following code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">types</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;context&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;log&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Create our server
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">MyGRPCServer</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Without this, we will be getting an error
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">UnimplementedNotificationServiceServer</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Create fake notifications, this can also be empty. In real-world example,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// this data would come from a database
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">notifications</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Notifications</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Notifications</span>: []<span style="color:#f92672">*</span><span style="color:#a6e22e">Notification</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Notification</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Title</span>: <span style="color:#e6db74">&#34;New message from &#39;Jerry&#39;&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Body</span>: <span style="color:#e6db74">&#34;Hi, how are you doing?&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">From</span>: <span style="color:#e6db74">&#34;Messenger&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">For</span>: <span style="color:#e6db74">&#34;User&#34;</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Notification</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Title</span>: <span style="color:#e6db74">&#34;Low batter&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Body</span>: <span style="color:#e6db74">&#34;Plug in charger as soon as possible&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">From</span>: <span style="color:#e6db74">&#34;System&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">For</span>: <span style="color:#e6db74">&#34;User&#34;</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Notification</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Title</span>: <span style="color:#e6db74">&#34;Alarm&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Body</span>: <span style="color:#e6db74">&#34;Wake up!&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">From</span>: <span style="color:#e6db74">&#34;Alarm&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">For</span>: <span style="color:#e6db74">&#34;User&#34;</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">MyGRPCServer</span>) <span style="color:#a6e22e">SendNotification</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">notification</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Notification</span>,
+</span></span><span style="display:flex;"><span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">ServerResponse</span>, <span style="color:#66d9ef">error</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// When the client sends a new notification, we log it, append it to the list
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// of notifications, and send a status with code 0 for success. Since there
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// probably shouldn&#39;t be any issue, we are not handling any errors. In
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// real-world example, you probably would want to replace this with a database
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// insert.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;New notification: %s&#34;</span>, <span style="color:#a6e22e">notification</span>.<span style="color:#a6e22e">String</span>())
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">notifications</span>.<span style="color:#a6e22e">Notifications</span> = append(<span style="color:#a6e22e">notifications</span>.<span style="color:#a6e22e">Notifications</span>, <span style="color:#a6e22e">notification</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ServerResponse</span>{<span style="color:#a6e22e">Status</span>: <span style="color:#ae81ff">0</span>}, <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">MyGRPCServer</span>) <span style="color:#a6e22e">GetNotifications</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">_</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Empty</span>,
+</span></span><span style="display:flex;"><span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">Notifications</span>, <span style="color:#66d9ef">error</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// If the user requests notifications, we log that there is a request, and
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// then send all the notifications. Again, in a real-world there would be some
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// kind of database search here instead of a slice.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;User is requesting notifications&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">notifications</span>, <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>These two files are enough to create a working gRPC server that allows you to send new notifications and fetch all the notifications. You can test that the code works with <code>go run server.go</code>.</p>
+<h3 id="client">Client<a href="#client" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>To test that our server works correctly, we can create a simple client in <code>client.go</code> file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">ctx</span> <span style="color:#e6db74">&#34;context&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;log&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;golang.org/x/net/context&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;google.golang.org/grpc&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;github.com/msemjan/go-grpc/types&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Create a gRPC connection for our client
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">conn</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">ClientConn</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Create a connection to our server on the port 9000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">conn</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">Dial</span>(<span style="color:#e6db74">&#34;:9000&#34;</span>, <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">WithInsecure</span>())
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;Error while connecting to the server: %s\n&#34;</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">conn</span>.<span style="color:#a6e22e">Close</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Create a gRPC client
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">client</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">NewNotificationServiceClient</span>(<span style="color:#a6e22e">conn</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Use SendNotification remote procedure call. This should send a new
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// notification to our server, and add it to the list of existing notifications.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">SendNotification</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>(),
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">Notification</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Title</span>: <span style="color:#e6db74">&#34;Client notification&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Body</span>: <span style="color:#e6db74">&#34;Hello from the client&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">From</span>: <span style="color:#e6db74">&#34;Client&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">For</span>: <span style="color:#e6db74">&#34;User&#34;</span>},
+</span></span><span style="display:flex;"><span>      )
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;Error when calling SendNotification: %s\n&#34;</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// At this point, the notifications were sent and there was no error.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Notification successfully sent\n&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Use GetNotification remote procedure call. This should return all the
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// notifications from our server.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">notifications</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">GetNotifications</span>( <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Background</span>(),
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">Empty</span>{})
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;Error when calling GetNotifications: %s\n&#34;</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// If there is no error and we receive notifications, we print them out.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Notifications received:&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">notification</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">notifications</span>.<span style="color:#a6e22e">Notifications</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Title: &#39;%s&#39;, Body: &#39;%s&#39;, From: &#39;%s&#39;, For: &#39;%s&#39;\n&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">notification</span>.<span style="color:#a6e22e">Title</span>, <span style="color:#a6e22e">notification</span>.<span style="color:#a6e22e">Body</span>, <span style="color:#a6e22e">notification</span>.<span style="color:#a6e22e">From</span>, <span style="color:#a6e22e">notification</span>.<span style="color:#a6e22e">For</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Now we are ready to test our application. Start server with <code>go run server</code> and then you can run the client with <code>go run client.go</code>. It will quickly send a new notification, fetch all the notifications, and print them out and, then it will exit. In the output you should see something along lines:</p>
+<pre tabindex="0"><code>$ go run client.go
+2023/11/19 16:46:37 Notification successfully sent
+
+2023/11/19 16:46:37 Notifications received:
+2023/11/19 16:46:37 Title: &#39;New message from &#39;Jerry&#39;&#39;, Body: &#39;Hi, how are you
+  doing?&#39;, From: &#39;Messenger&#39;, For: &#39;User&#39;
+2023/11/19 16:46:37 Title: &#39;Low batter&#39;, Body: &#39;Plug in charger as soon as
+  possible&#39;, From: &#39;System&#39;, For: &#39;User&#39;
+2023/11/19 16:46:37 Title: &#39;Alarm&#39;, Body: &#39;Wake up!&#39;, From: &#39;Alarm&#39;, For:
+  &#39;User&#39;
+2023/11/19 16:46:37 Title: &#39;Client notification&#39;, Body: &#39;Hello from the
+  client&#39;, From: &#39;Client&#39;, For: &#39;User&#39;
+</code></pre><h2 id="conclusions">Conclusions<a href="#conclusions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>gRPC is a faster and more efficient alternative to REST APIs that uses protocol buffers as an encoding format. It allows programmers to specify remote procedure calls (RPC) and specific format of the data that these RPC endpoints use. gRPC supports several popular languages, which means that you can have various services written in different programming languages communicate using this technology. It is mostly used on the back-end to send information between various microservices.</p>
+<p>In this post I&rsquo;ve discussed advantages and disadvantages of gRPC and provided an example of a simple gRPC server and a client. You can find the full example on my <a href="https://github.com/msemjan/go-grpc">Github</a>.</p>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/blog/en/posts/introduction-into-protocol-buffers-in-go/">Introduction Into Protocol Buffers in Go</a></li>
+	
+	<li><a href="/blog/en/posts/introducing-ghast-stack/">Introducing GHAST Stack</a></li>
+	
+	</ul>
+</div>
+
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="http://localhost:1313/blog/en/posts/getting-started-with-latex/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Getting Started With Latex</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"></div>
+	</main>
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+	<p>
+		&copy; 2024 <a href="http://localhost:1313/blog/">Marek Semjan</a>
+		&#183; Copyright © 2024 Marek Semjan. All Rights Reserved.
+		&#183; Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+		&#183; Theme <a href="https://github.com/1bl4z3r/hermit-V2" target="_blank" rel="noopener">Hermit-V2</a></p>
+
+</footer>
+<script async src="http://localhost:1313/blog/js/bundle.min.c7c384e4d29d192bbac6811ae4660bb01767194a5bea56baca77e8260f93ea16.js" integrity="sha256-x8OE5NKdGSu6xoEa5GYLsBdnGUpb6la6ynfoJg+T6hY=" crossorigin="anonymous"></script><script async src="http://localhost:1313/blog/js/link-share.min.24409a4f6e5537d70ffc55ec8f9192208d718678cb8638585342423020b37f39.js" integrity="sha256-JECaT25VN9cP/FXsj5GSII1xhnjLhjhYU0JCMCCzfzk=" crossorigin="anonymous"></script>
+</body>
+
+</html>

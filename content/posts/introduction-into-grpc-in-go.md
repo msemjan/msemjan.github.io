@@ -1,15 +1,19 @@
 ---
+author: M. Semjan
 date: "2023-11-15T18:35:15+01:00"
-draft: false 
-title: "Introduction Into gRPC in Go"
-summary: "gRPC is a modern alternative to REST APIs, which uses protocol buffers to encode messages to decrease the size of data that needs to be send over the networ and increase the speed of encoding and decoding messages. Read this post to learn more about gRPC, it's advantages and disadvantages, and how to get started with this technology."
-author: "M. Semjan"
+draft: false
+summary: gRPC is a modern alternative to REST APIs, which uses protocol buffers to
+  encode messages to decrease the size of data that needs to be send over the networ
+  and increase the speed of encoding and decoding messages. Read this post to learn
+  more about gRPC, it's advantages and disadvantages, and how to get started with
+  this technology.
 tags:
 - gRPC
 - Protocol Buffers
 - Golang
 - Go
 - Data Serialization
+title: Introduction Into gRPC in Go
 ---
 ## Introduction
 
