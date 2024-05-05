@@ -1,7 +1,7 @@
 ---
 title: "Create Project Templates With Cookiecutter"
 date: 2024-05-05T16:01:14+02:00
-draft: true
+draft: false 
 toc: false
 images:
 tags:
