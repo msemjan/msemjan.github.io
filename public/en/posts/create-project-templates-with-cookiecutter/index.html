@@ -1,0 +1,247 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script><meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="robots" content="index, follow">
+<meta name="revisit-after" content="15 days">
+<link rel="author" href="/blog/humans.txt">
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/site.webmanifest">
+<meta name="msapplication-TileImage" content="/blog/mstile-144x144.png">
+<meta name="theme-color" content="#494f5c">
+<meta name="msapplication-TileColor" content="#494f5c">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#494f5c"><meta name="author" content="Marek Semjan">
+<meta itemprop="name" content="Create Project Templates With Cookiecutter">
+<meta itemprop="description" content="What Is Cookiecutter And Why You Should Use It? Cookiecutter is a cross-platform CLI application that creates projects from project templates. It is ideal for people who tend to create the same project structure repeatedly and want to save some time. Cookiecutter is not dedicated to a specific programming language (or programming projects in general) and can create a given project structure for any programming, machine learning or any other text-based project."><meta itemprop="datePublished" content="2024-05-05T16:01:14+02:00" />
+<meta itemprop="dateModified" content="2024-05-05T16:01:14+02:00" />
+<meta itemprop="wordCount" content="1321">
+<meta itemprop="keywords" content="Cookiecutter,Projects,Templates,Python," /><meta property="og:title" content="Create Project Templates With Cookiecutter" />
+<meta property="og:description" content="What Is Cookiecutter And Why You Should Use It? Cookiecutter is a cross-platform CLI application that creates projects from project templates. It is ideal for people who tend to create the same project structure repeatedly and want to save some time. Cookiecutter is not dedicated to a specific programming language (or programming projects in general) and can create a given project structure for any programming, machine learning or any other text-based project." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/blog/en/posts/create-project-templates-with-cookiecutter/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-05-05T16:01:14+02:00" />
+<meta property="article:modified_time" content="2024-05-05T16:01:14+02:00" /><meta property="og:site_name" content="Marek&#39;s Blog" />
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Create Project Templates With Cookiecutter"/>
+<meta name="twitter:description" content="What Is Cookiecutter And Why You Should Use It? Cookiecutter is a cross-platform CLI application that creates projects from project templates. It is ideal for people who tend to create the same project structure repeatedly and want to save some time. Cookiecutter is not dedicated to a specific programming language (or programming projects in general) and can create a given project structure for any programming, machine learning or any other text-based project."/>
+<title>Create Project Templates With Cookiecutter</title>
+<link rel="stylesheet dns-prefetch preconnect preload prefetch" as="style" href="http://localhost:1313/blog/css/style.min.345c563a38b4f7575cf28aec1272efcd1e50c614529052cf51ec1ea1eba36fac.css" integrity="sha256-NFxWOji091dc8orsEnLvzR5QxhRSkFLPUeweoeujb6w=" crossorigin="anonymous">
+	</head>
+<body id="page">
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://localhost:1313/blog/">Marek&#39;s Blog (ᵔ◡ᵔ)	</a>
+				</div>
+				<nav class="site-nav hide-in-mobile"><a href="http://localhost:1313/blog/en/posts/">Posts</a><a href="http://localhost:1313/blog/en/about-hugo/">About</a></nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://sk.linkedin.com/in/marek-semjan-12497a26a" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://github.com/msemjan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://www.researchgate.net/profile/Marek-Semjan-2" target="_blank" rel="noopener me" title="Researchgate"><svg xmlns="http://www.w3.org/2000/svg" class="feather feather-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></span><button id="share-btn" class="hdr-btn" title="Share"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></button>
+ 
+<div id="share-links" class="animated fast">
+    
+    
+    
+    
+    <ul>
+        <li>
+            <a href="https://twitter.com/intent/tweet?hashtags=hermit2&amp;url=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fcreate-project-templates-with-cookiecutter%2f&amp;text=Create%20Project%20Templates%20With%20Cookiecutter" target="_blank" rel="noopener" aria-label="Share on X"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path class="st0" d="m21.3 21.1 -11.4 -18.2h-7.2l11.4 18.2zm-18.6 0 7.2 -6.6m4.2 -5 7.2 -6.6"/></svg></a>
+        </li>
+        <li>
+            <a href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fcreate-project-templates-with-cookiecutter%2f" target="_blank" rel="noopener" aria-label="Share on Facebook"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+        </li>
+        <li>
+            <a href="mailto:?subject=Create%20Project%20Templates%20With%20Cookiecutter&amp;body=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fcreate-project-templates-with-cookiecutter%2f" target="_self" rel="noopener" aria-label="Share on Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+        </li>
+        <li>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fcreate-project-templates-with-cookiecutter%2f&amp;source=http%3a%2f%2flocalhost%3a1313%2fblog%2f&amp;title=Create%20Project%20Templates%20With%20Cookiecutter&amp;summary=Create%20Project%20Templates%20With%20Cookiecutter%2c%20by%20Marek%20Semjan%0a%0a%3cnil%3e%0a" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+        </li>
+        <li>
+            <a href="#" onclick="linkShare(&#34;Create Project Templates With Cookiecutter&#34;,&#34;http://localhost:1313/blog/en/posts/create-project-templates-with-cookiecutter/&#34;,&#34;Create Project Templates With Cookiecutter, by Marek Semjan\n\n\u003cnil\u003e\n&#34;); return false;" target="_self" rel="noopener" aria-label="Copy Link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></a>
+        </li>
+    </ul>
+</div><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://localhost:1313/blog/en/posts/">Posts</a></li>
+			<li><a href="http://localhost:1313/blog/en/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster"><article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>May 5, 2024</span></div>
+				<h1>Create Project Templates With Cookiecutter</h1>
+			</header>
+			<div class="post-info"><p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg><a href="" target="_blank">Marek Semjan</a></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://localhost:1313/blog/en/tags/cookiecutter">Cookiecutter</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/projects">Projects</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/templates">Templates</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/python">Python</a></span></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1321 Words
+    •
+    
+    
+    
+    6 Minutes</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2024-05-05 16:01 &#43;0200</p></div>
+			<hr class="post-end">
+			<div class="content">
+				<h2 id="what-is-cookiecutter-and-why-you-should-use-it">What Is Cookiecutter And Why You Should Use It?<a href="#what-is-cookiecutter-and-why-you-should-use-it" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><a href="https://cookiecutter.readthedocs.io/en/stable/index.html">Cookiecutter</a> is a cross-platform CLI application that creates projects from project templates. It is ideal for people who tend to create the same project structure repeatedly and want to save some time. Cookiecutter is not dedicated to a specific programming language (or programming projects in general) and can create a given project structure for any programming, machine learning or any other text-based project.</p>
+<p>Cookiecutter also allows you to use one of the templates created by community (just <a href="https://github.com/search?q=cookiecutter&type=repositories">search for Cookiecutter on Github</a> and pick one you like). In this post I will show how to get started (both with using existing templates and writing your own).</p>
+<h2 id="installation">Installation<a href="#installation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Using <code>pipx</code> is recommended, but you can also install it with <code>pip</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pipx install cookiecutter
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or</span>
+</span></span><span style="display:flex;"><span>python -m pip install --user cookiecutter
+</span></span></code></pre></div><p>When you are done with installation, you can verify that it works using <code>cookiecutter --version</code> command.</p>
+<h2 id="using-an-existing-template">Using An Existing Template<a href="#using-an-existing-template" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>In order to generate a new project, you can use a template that is on your disk, but it works with Git too!</p>
+<p>To generating code with a local folder use the following command (you may need to clone some template if you want to follow along, but we will create a new one later):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cookiecutter path/to/cookiecutter/template
+</span></span></code></pre></div><p>The application will prompt you for any inputs that the template requires. Cookiecutter will generate the project based on the values you&rsquo;ve entered or use the defaults. You may modify the default values by modifying the template&rsquo;s <code>cookiecutter.json</code>, if necessary.</p>
+<p>If you want to use a Git repository instead of a local folder, use an URL instead of path to folder:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cookiecutter https://github.com/john-doe/example-template.git
+</span></span></code></pre></div><p>And if you want a specific branch, you can add <code>--checkout &lt;branch&gt;</code>, e.g. for <code>develop</code> branch:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cookiecutter https://github.com/john-doe/example-template.git --checkout develop
+</span></span></code></pre></div><p>In addition to local files and Git repositories, you can also use templates in ZIP files, templates on private servers, and even Mercurial repositories.</p>
+<h2 id="writing-your-first-project-template">Writing Your First Project Template<a href="#writing-your-first-project-template" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>We will create a folder structure that looks something like this:</p>
+<pre tabindex="0"><code>.
+├── cookiecutter.json
+├── {{ cookiecutter.project_slug }}
+│   ├── Dockerfile
+│   ├── LICENSE
+│   ├── Makefile
+│   ├── README.md
+│   ├── src
+│   │   └── ...
+│   └────── ...
+├── LICENSE
+└── README.md
+</code></pre><p>The first strange thing you will probably notice is this strange file called <code>{{ cookiecutter.project_slug }}</code>. Cookiecutter uses <a href="https://jinja.palletsprojects.com/">Jinja2 templating engine</a>, which is also used in other projects (such as Ansible, SaltStack, and Flask). Basically, Jinja2 will try to substitute everything that is between two curly braces with values of the corresponding variables. The values in the object <code>cookiecutter</code> are specified in the <code>cookiecutter.json</code>.</p>
+<p>When creating a Cookiecutter template, you can add new fields to <code>cookiecutter.json</code> (as long as it is a valid JSON, it&rsquo;s fine) and then use the variables inside the template. Usually there is a <code>project_slug</code> that will then be rendered as a root folder of the generated project. You can also call Python functions to create new fields. Example <code>cookiecutter.json</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;email&#34;</span>: <span style="color:#e6db74">&#34;john.doe@example.com&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;project_name&#34;</span>: <span style="color:#e6db74">&#34;My Amazing Project&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;project_slug&#34;</span>: <span style="color:#e6db74">&#34;{{ cookiecutter.project_name.lower().replace(&#39; &#39;, &#39;-&#39;) }}&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;short_description&#34;</span>: <span style="color:#e6db74">&#34;This is my amazing project&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>As you can see, we are transforming the <code>project_name</code> to create the default value of the <code>project_slug</code> (we are transforming the text to lower case and replacing any spaces with dashes). The values inside <code>cookiecutter.json</code> then can be used in any file inside the <code>{{ cookiecutter.project_slug }}</code> folder (including in the file names, though you may run into issues with some special characters). Several variable types are supported by Jinja2 (and therefore by Cookiecutter): numbers, strings, dictionaries, arrays (the arrays are used for options from which a user can select).</p>
+<p>These values then can be used in files we add into our template. For example we can create a <code>README.md</code> file with the following content:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># {{ cookiecutter.project_name }}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{{ cookiecutter.short_description }}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Report issues
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>If you find any issue, don&#39;t hesitate and send me an email at {{ coookiecutter.email }}.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Contributing
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>We are open to contributions!
+</span></span></code></pre></div><p>In my practice project I&rsquo;ve added a couple more files, including a couple files for a simple server into <code>{{ cookiecutter.project_slug }}/src/</code>. In the <code>main.go</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;net/http&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">HandleFunc</span>(<span style="color:#e6db74">&#34;/index&#34;</span>, <span style="color:#a6e22e">IndexHandler</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ListenAndServe</span>(<span style="color:#e6db74">&#34;:8080&#34;</span>, <span style="color:#66d9ef">nil</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In the <code>handler.go</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;log&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;net/http&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">IndexHandler</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;/index endpoint was hit&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Fprintf</span>(<span style="color:#a6e22e">w</span>, <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;Hello %s&#34;</span>, <span style="color:#e6db74">&#34;{{ cookiecutter.author }}&#34;</span>))
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And a relevant test in <code>handler_test.go</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;net/http&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;net/http/httptest&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;testing&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestIndexHandler</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">NewRequest</span>(<span style="color:#e6db74">&#34;GET&#34;</span>, <span style="color:#e6db74">&#34;/index&#34;</span>, <span style="color:#66d9ef">nil</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">rr</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">httptest</span>.<span style="color:#a6e22e">NewRecorder</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">handler</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">HandlerFunc</span>(<span style="color:#a6e22e">IndexHandler</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">handler</span>.<span style="color:#a6e22e">ServeHTTP</span>(<span style="color:#a6e22e">rr</span>, <span style="color:#a6e22e">req</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">status</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">rr</span>.<span style="color:#a6e22e">Code</span>; <span style="color:#a6e22e">status</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">StatusOK</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;handler returned wrong status code: got %v want %v&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">status</span>, <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">StatusOK</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">expected</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;Hello %s&#34;</span>, <span style="color:#e6db74">&#34;{{ cookiecutter.author }}&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">rr</span>.<span style="color:#a6e22e">Body</span>.<span style="color:#a6e22e">String</span>() <span style="color:#f92672">!=</span> <span style="color:#a6e22e">expected</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;handler returned unexpected body: got %v want %v&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">rr</span>.<span style="color:#a6e22e">Body</span>.<span style="color:#a6e22e">String</span>(), <span style="color:#a6e22e">expected</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Arguably, such code would not be very useful in a template, but you could replace <code>IndexHandler</code> with a more useful health check that would work similarly, and it is enough for demonstration purposes. Of course, you can and probably should write something more useful. As said before, we can use Cookiecutter variables inside the code. Once we generate the project, <code>{{ cookiecutter.author }}</code> will be replaced with an actual value. This may be useful if you want to create functions or variables that have some prefix, e.g.:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> {{ <span style="color:#a6e22e">cookiecutter</span>.<span style="color:#a6e22e">endpoint</span> }}<span style="color:#a6e22e">Handler</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// implementation that uses cookiecutter.endpoint
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>If we specified <code>cookiecutter.endpoint</code> as <code>Post</code>, Cookiecutter would generate <code>PostHandler()</code> function. One of the CLI options, that Cookiecutter has, is <code>--skip-if-file-exists</code>, so you probably (I haven&rsquo;t tested it) could run Cookiecutter repeatedly with the same <code>project_slug</code>, but different <code>endpoint</code> to generate code for several different objects that the API can return, and than tweak the implementations and add correct business logic. Since you can call Python functions, you can capitalize or transform to lower/upper case based on your needs.</p>
+<p>Another feature is that the variables in the <code>cookiecutter.json</code> can be defined as private by prepending an underscore to the variable. The user will not be required to fill the values of private variables. Furthermore the user does not need to see these variables and they will not be rendered. If we user should see the value for some reason, we can prepend a double underscore to show the value. Non-render private variables can be useful for defining constants, or when you want to enforce any naming conventions, e.g. to use the same name for both the project and the package name.</p>
+<p>Text can be rendered conditionally using the <code>if</code> statement:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>{%- if cookiecutter.should_print -%}
+</span></span><span style="display:flex;"><span>This will be printed if should_print is true.
+</span></span><span style="display:flex;"><span>{%- else -%}
+</span></span><span style="display:flex;"><span>This will be printed if should_print is false.
+</span></span><span style="display:flex;"><span>{% endif %}
+</span></span></code></pre></div><p>The variable <code>should_print</code> can be a boolean in the <code>cookiecutter.json</code> or a result of some condition. We can also write the condition inside the Jinja2 template.</p>
+<p>Once you create all the variables and files that you would like in your template, you can generate a new project using <code>cookiecutter path/to/your/template</code>.</p>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>In this blog post I&rsquo;ve introduced the basics of Cookiecutter. An example Cookiecutter project, that was based on this post, can be found <a href="https://github.com/msemjan/cookiecutter-example">on my Github</a> (it is a simple Go Hello World project). Many other examples can be found on Github and used as an inspiration for your new templates. I think that Cookiecutter is an interesting and useful tool that will simplify the start of new projects (especially the ones that require more setup and a lot of boilerplate code). There are some advanced features which were not covered by this article (e.g. hooks, user config, calling Cookiecutter functions from Python, injecting extra context, or template extensions), which allow the template creators to build more complex templates. However, the basics described above are more than enough to get started and write templates for majority of projects.</p>
+
+			</div>
+
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="http://localhost:1313/blog/en/posts/my-experience-with-jsnad/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>My Experience With JSNAD</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"></div>
+	</main>
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+	<p>
+		&copy; 2024 <a href="http://localhost:1313/blog/">Marek Semjan</a>
+		&#183; Copyright © 2024 Marek Semjan. All Rights Reserved.
+		&#183; Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+		&#183; Theme <a href="https://github.com/1bl4z3r/hermit-V2" target="_blank" rel="noopener">Hermit-V2</a>
+		&#183; <a href="http://localhost:1313/blog/en/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></p>
+
+</footer>
+<script async src="http://localhost:1313/blog/js/bundle.min.c7c384e4d29d192bbac6811ae4660bb01767194a5bea56baca77e8260f93ea16.js" integrity="sha256-x8OE5NKdGSu6xoEa5GYLsBdnGUpb6la6ynfoJg+T6hY=" crossorigin="anonymous"></script><script async src="http://localhost:1313/blog/js/link-share.min.24409a4f6e5537d70ffc55ec8f9192208d718678cb8638585342423020b37f39.js" integrity="sha256-JECaT25VN9cP/FXsj5GSII1xhnjLhjhYU0JCMCCzfzk=" crossorigin="anonymous"></script>
+</body>
+
+</html>

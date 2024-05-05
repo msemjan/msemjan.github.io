@@ -2,6 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/blog/en/tags/cookiecutter/</loc>
+    <lastmod>2024-05-05T16:01:14+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/posts/create-project-templates-with-cookiecutter/</loc>
+    <lastmod>2024-05-05T16:01:14+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/</loc>
+    <lastmod>2024-05-05T16:01:14+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/posts/</loc>
+    <lastmod>2024-05-05T16:01:14+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/tags/projects/</loc>
+    <lastmod>2024-05-05T16:01:14+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/tags/python/</loc>
+    <lastmod>2024-05-05T16:01:14+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/tags/</loc>
+    <lastmod>2024-05-05T16:01:14+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/tags/templates/</loc>
+    <lastmod>2024-05-05T16:01:14+02:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/blog/en/tags/certification/</loc>
     <lastmod>2024-04-13T09:55:35+02:00</lastmod>
   </url><url>
@@ -11,22 +35,13 @@
     <loc>http://localhost:1313/blog/en/tags/jsnad/</loc>
     <lastmod>2024-04-13T09:55:35+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/en/</loc>
-    <lastmod>2024-04-13T09:55:35+02:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/blog/en/posts/my-experience-with-jsnad/</loc>
     <lastmod>2024-04-13T09:55:35+02:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/en/tags/node.js/</loc>
     <lastmod>2024-04-13T09:55:35+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/en/posts/</loc>
-    <lastmod>2024-04-13T09:55:35+02:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/blog/en/tags/programming/</loc>
-    <lastmod>2024-04-13T09:55:35+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/en/tags/</loc>
     <lastmod>2024-04-13T09:55:35+02:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/en/tags/data-serialization/</loc>
