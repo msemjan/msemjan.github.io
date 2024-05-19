@@ -5,8 +5,189 @@
 		<description>Recent content in Posts on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
-		<lastBuildDate>Sun, 05 May 2024 16:01:14 +0200</lastBuildDate>
+		<lastBuildDate>Sun, 19 May 2024 15:48:02 +0200</lastBuildDate>
 		<atom:link href="http://localhost:1313/blog/en/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Validation In Go Programming Language</title>
+			<link>http://localhost:1313/blog/en/posts/golang-validation/</link>
+			<pubDate>Sun, 19 May 2024 15:48:02 +0200</pubDate>
+			
+			<guid>http://localhost:1313/blog/en/posts/golang-validation/</guid>
+			<description><![CDATA[%!s(<nil>)]]></description>
+			<content type="html"><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>Validation is an essential step when working with user input. Data validation ensures that the data is correct and the values are within expected constraints and/or have right format. Moreover, validation may help us prevent errors and assure consistency of the stored information. If the data is used in machine learning (or other areas that require accurate data), it is even more important to verify the correctness of data. Otherwise we may get inaccurate results.</p>
+<h2 id="how-to-validate-data-only-using-standard-library">How To Validate Data Only Using Standard Library</h2>
+<p>In theory, you could create a <code>isValid()</code> method for each <code>struct</code> like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Name</span>    <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Surname</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Age</span>     <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Other fields
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">p</span> <span style="color:#a6e22e">Person</span>) <span style="color:#a6e22e">IsValid</span>() <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Name</span>) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">64</span> <span style="color:#f92672">&lt;=</span> len(<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Name</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;Name can not be empty or longer than 64 characters!&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Surname</span>) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">64</span> <span style="color:#f92672">&lt;=</span> len(<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Surname</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;Surname can not be empty or longer than 64 characters!&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Age</span> &lt; <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">120</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Age</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;Age can not be negative or greater than 120!&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Other checks
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>But this is cumbersome and not the idiomatic way of writing Go code. Moreover, you will write a lot of duplicate code. It would be better to write a <code>Validator</code> that will keep track of an error and it will implement functions for validating.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Name</span>    <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Surname</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Age</span>     <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Other fields
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Validator</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">v</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Validator</span>) <span style="color:#a6e22e">MustBeGreaterThan</span>(<span style="color:#a6e22e">label</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">high</span>, <span style="color:#a6e22e">value</span> <span style="color:#66d9ef">int</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Validator</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">v</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">high</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;%s must be greater than %d&#34;</span>, <span style="color:#a6e22e">label</span>, <span style="color:#a6e22e">high</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">v</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">v</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Validator</span>) <span style="color:#a6e22e">MustBeLesserThan</span>(<span style="color:#a6e22e">label</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">low</span>, <span style="color:#a6e22e">value</span> <span style="color:#66d9ef">int</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Validator</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">v</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">low</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">value</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;%s must be lesser than %d&#34;</span>, <span style="color:#a6e22e">label</span>, <span style="color:#a6e22e">low</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">v</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">v</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Validator</span>) <span style="color:#a6e22e">MustNotBeEmpty</span>(<span style="color:#a6e22e">label</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">value</span> <span style="color:#66d9ef">string</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Validator</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">v</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;%s must not be empty&#34;</span>, <span style="color:#a6e22e">label</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">v</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">v</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Validator</span>) <span style="color:#a6e22e">MustNotBeLongerThan</span>(<span style="color:#a6e22e">label</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">length</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">value</span> <span style="color:#66d9ef">string</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Validator</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">v</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">length</span> <span style="color:#f92672">&lt;=</span> len(<span style="color:#a6e22e">value</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;%s must not be longer than %d&#34;</span>, <span style="color:#a6e22e">label</span>, <span style="color:#a6e22e">length</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">v</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">v</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Validator</span>) <span style="color:#a6e22e">MustBeLongerThan</span>(<span style="color:#a6e22e">label</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">length</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">value</span> <span style="color:#66d9ef">string</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Validator</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">v</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">value</span>) <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">length</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;%s must be longer than %d&#34;</span>, <span style="color:#a6e22e">label</span>, <span style="color:#a6e22e">length</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">v</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">v</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Validator</span>) <span style="color:#a6e22e">IsValid</span>() <span style="color:#66d9ef">bool</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">err</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">v</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Validator</span>) <span style="color:#a6e22e">Error</span>() <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The <code>Validator</code> can be used like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">validator</span> <span style="color:#f92672">:=</span> new(<span style="color:#a6e22e">Validator</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">person</span> <span style="color:#f92672">:=</span> new(<span style="color:#a6e22e">Person</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">validator</span>.
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MustBeGreaterThan</span>(<span style="color:#e6db74">&#34;Age&#34;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">Age</span>).
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MustBeLesserThan</span>(<span style="color:#e6db74">&#34;Age&#34;</span>, <span style="color:#ae81ff">120</span>, <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">Age</span>).
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MustNotBeEmpty</span>(<span style="color:#e6db74">&#34;Name&#34;</span>, <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">Name</span>).
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MustNotBeEmpty</span>(<span style="color:#e6db74">&#34;Surname&#34;</span>, <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">Surname</span>).
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MustBeLongerThan</span>(<span style="color:#e6db74">&#34;Name&#34;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">Name</span>).
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MustNotBeLongerThan</span>(<span style="color:#e6db74">&#34;Name&#34;</span>, <span style="color:#ae81ff">64</span>, <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">Name</span>).
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MustBeLongerThan</span>(<span style="color:#e6db74">&#34;Surname&#34;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">Surname</span>).
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MustNotBeLongerThan</span>(<span style="color:#e6db74">&#34;Surname&#34;</span>, <span style="color:#ae81ff">64</span>, <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">Surname</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">validator</span>.<span style="color:#a6e22e">IsValid</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Valid data :)&#34;</span>)
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Invalid data :(&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">validator</span>.<span style="color:#a6e22e">Error</span>())
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>You can play with this code at <a href="https://go.dev/play/p/KQyXU7xqZmP">Go Playground</a>.</p>
+<p>Alternatively, we could also extract the validation into <code>IsValid()</code> function of the <code>Person</code> type:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">person</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Person</span>) <span style="color:#a6e22e">IsValid</span>() (<span style="color:#66d9ef">bool</span>, <span style="color:#66d9ef">error</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">validator</span> <span style="color:#f92672">:=</span> new(<span style="color:#a6e22e">Validator</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">validator</span>.
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MustBeGreaterThan</span>(<span style="color:#e6db74">&#34;Age&#34;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">Age</span>).
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MustBeLesserThan</span>(<span style="color:#e6db74">&#34;Age&#34;</span>, <span style="color:#ae81ff">120</span>, <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">Age</span>).
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MustNotBeEmpty</span>(<span style="color:#e6db74">&#34;Name&#34;</span>, <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">Name</span>).
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MustNotBeEmpty</span>(<span style="color:#e6db74">&#34;Surname&#34;</span>, <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">Surname</span>).
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MustBeLongerThan</span>(<span style="color:#e6db74">&#34;Name&#34;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">Name</span>).
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MustNotBeLongerThan</span>(<span style="color:#e6db74">&#34;Name&#34;</span>, <span style="color:#ae81ff">64</span>, <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">Name</span>).
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MustBeLongerThan</span>(<span style="color:#e6db74">&#34;Surname&#34;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">Surname</span>).
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MustNotBeLongerThan</span>(<span style="color:#e6db74">&#34;Surname&#34;</span>, <span style="color:#ae81ff">64</span>, <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">Surname</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">validator</span>.<span style="color:#a6e22e">IsValid</span>(), <span style="color:#a6e22e">validator</span>.<span style="color:#a6e22e">Error</span>()
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="how-to-validate-data-using-a-library">How To Validate Data Using A Library</h2>
+<p>It seems that Go community is in general reluctant to use third-party libraries (mostly because you can do the majority of common tasks with Standard library and nothing else). However, some gophers have no such restraints and may install a library for whatever reason.</p>
+<p>I will show an example that uses <a href="https://github.com/go-validator/validator">go-validator/validator library</a>, which unlike our example uses Go tags. Why this specific one? Well, I googled for a couple of minutes and found this one first 😁 Of course there are other options. A non-exhaustive list includes:</p>
+<ul>
+<li><a href="https://go-ozzo.github.io/ozzo-validation/">ozzo-validation</a></li>
+<li><a href="https://github.com/go-playground/validator">go-playground/validator</a></li>
+<li><a href="https://github.com/asaskevich/govalidator">asaskevich/govalidator</a></li>
+</ul>
+<p>The last two have similar interface that looks similar to the <a href="https://github.com/go-validator/validator">go-validator/validator library</a> and use <code>struct</code> tags.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;gopkg.in/validator.v2&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Name</span>    <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`validate:&#34;nonzero,min=0,max=64&#34;`</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Surname</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`validate:&#34;nonzero,min=0,max=64&#34;`</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Age</span>     <span style="color:#66d9ef">int</span>    <span style="color:#e6db74">`validate:&#34;nonzero,min=0,max=120&#34;`</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Other fields
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">person</span> <span style="color:#f92672">:=</span> new(<span style="color:#a6e22e">Person</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">validator</span>.<span style="color:#a6e22e">Validate</span>(<span style="color:#a6e22e">person</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Invalid data :(&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Valid data :)&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>You can play with this example <a href="https://go.dev/play/p/SLtVV_zMF8U">here</a>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this post I showed how to validate data in your <code>struct</code> using the standard library and the third-party library. Both approaches have their advantages and disadvantages. Even a simple validation example is fairly verbose and requires 60 lines of code, and we have not covered all the possible cases. For example, it is common to have emails, dates, and arrays. Implementing them would make the code even longer.</p>
+<p>On the other hand, external libraries can have their own limitations and not suit all our needs. Therefor it is necessary to consider all the options and pick the best one.</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Create Project Templates With Cookiecutter</title>

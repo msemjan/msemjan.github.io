@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Express.js on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
+    <link>http://localhost:1313/blog/en/tags/express.js/</link>
+    <description>Recent content in Express.js on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 18 May 2024 11:11:49 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/blog/en/tags/express.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Simple Server With Expressjs</title>
+      <link>http://localhost:1313/blog/en/posts/simple-server-with-expressjs/</link>
+      <pubDate>Sat, 18 May 2024 11:11:49 +0200</pubDate>
+      <guid>http://localhost:1313/blog/en/posts/simple-server-with-expressjs/</guid>
+      <description>Introduction Express.js is a de facto standard for the Node.js back-end development of REST Services and simple servers. It is a simple and fast web framework that allows Javascript developers to write all kinds of applications ranging from simple toy projects to fully-fledged production-ready web services deployed by large companies. Due to its simplicity and flexibility it is suitable for any type of project you may work on. Moreover, it has a thriving ecosystem supported by numerous population of dedicated developers (for example when I search NPM for term express middleware, I received 6000 results).</description>
+    </item>
+  </channel>
+</rss>
