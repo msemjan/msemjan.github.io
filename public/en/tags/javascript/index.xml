@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Javascript on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
-    <link>http://localhost:1313/blog/en/tags/javascript/</link>
+    <link>https://msemjan.github.io/blog/en/tags/javascript/</link>
     <description>Recent content in Javascript on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 13 Apr 2024 09:55:35 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/blog/en/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://msemjan.github.io/blog/en/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>My Experience With JSNAD</title>
-      <link>http://localhost:1313/blog/en/posts/my-experience-with-jsnad/</link>
+      <link>https://msemjan.github.io/blog/en/posts/my-experience-with-jsnad/</link>
       <pubDate>Sat, 13 Apr 2024 09:55:35 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/my-experience-with-jsnad/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/my-experience-with-jsnad/</guid>
       <description>What Is OpenJS Node.js Application Developer (JSNAD)? JSNAD is a certification offered by Linux Foundation that verifies candidate&amp;rsquo;s skill in using Node.js to build applications of any kind. Unlike many other certifications, this is not a quiz in which you pick a correct answer from a given list of options. It is a practical exam in which you connect to a remote computer and write real code to solve various programming problems.</description>
     </item>
     <item>
       <title>What Front End Framework Should You Pick in 2023?</title>
-      <link>http://localhost:1313/blog/en/posts/what-front-end-framework-should-you-pick-in-2023/</link>
+      <link>https://msemjan.github.io/blog/en/posts/what-front-end-framework-should-you-pick-in-2023/</link>
       <pubDate>Fri, 18 Aug 2023 19:07:26 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/what-front-end-framework-should-you-pick-in-2023/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/what-front-end-framework-should-you-pick-in-2023/</guid>
       <description>There are many options for anyone who wants to choose a front-end framework. It may be difficult for a beginner to pick one. Recenly I wanted to learn some framework that would allow me to create beautiful websites without much effort. In this post I&amp;rsquo;ll briefly sum up various choices and what framework would I recommend for anyone who wants to start with front-end development.</description>
     </item>
   </channel>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reverse Proxy on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
+    <link>https://msemjan.github.io/blog/en/tags/reverse-proxy/</link>
+    <description>Recent content in Reverse Proxy on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 26 May 2024 19:52:00 +0200</lastBuildDate>
+    <atom:link href="https://msemjan.github.io/blog/en/tags/reverse-proxy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nginx Reverse Proxy for Apps</title>
+      <link>https://msemjan.github.io/blog/en/posts/nginx-reverse-proxy-for-apps/</link>
+      <pubDate>Sun, 26 May 2024 19:52:00 +0200</pubDate>
+      <guid>https://msemjan.github.io/blog/en/posts/nginx-reverse-proxy-for-apps/</guid>
+      <description>Have you ever found yourself in the following situation: You have a application that is running locally on your computer (e.g. Raspberry Pi) and you want to access it from your other devices. When you make a request on &lt;code&gt;http://localhost:PORT/SOME_ENDPOINT&lt;/code&gt; from the computer on which the application runs, it is successful, but when you use other device, the website can not be found. If yes, than this is an article for you!</description>
+    </item>
+  </channel>
+</rss>

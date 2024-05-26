@@ -1,7 +1,8 @@
 ---
 title: "Create Project Templates With Cookiecutter"
 date: 2024-05-05T16:01:14+02:00
-draft: false 
+summary: Cookiecutter is a cross-platform application that can be used to create projects from templates and save  you some time when you start a new project. Read this to learn how to use it with existing templates and how to create your own one.
+draft: false
 toc: false
 images:
 tags:
