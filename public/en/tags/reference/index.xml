@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Reference on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
-    <link>https://msemjan.github.io/blog/en/tags/reference/</link>
+    <link>http://localhost:1313/blog/en/tags/reference/</link>
     <description>Recent content in Reference on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Tue, 28 Mar 2023 16:54:44 +0100</lastBuildDate>
-    <atom:link href="https://msemjan.github.io/blog/en/tags/reference/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/blog/en/tags/reference/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Github Markdown Emoji Reference</title>
-      <link>https://msemjan.github.io/blog/en/posts/emoji/</link>
+      <link>http://localhost:1313/blog/en/posts/emoji/</link>
       <pubDate>Tue, 28 Mar 2023 16:54:44 +0100</pubDate>
-      <guid>https://msemjan.github.io/blog/en/posts/emoji/</guid>
+      <guid>http://localhost:1313/blog/en/posts/emoji/</guid>
       <description>Introduction You may have noticed that many README files on Github are enhanced with the use of emojis. Github flavor of Markdown adds special shortcodes that let you easily work with emojis in your Markdown documents.&#xA;In general, there are two approaches when it comes to adding emojis:&#xA;Copy-Paste a unicode character for the emoji you want (E.g. from this website) Use Github Markdown shortcode for the emoji Both approaches have their pros and cons.</description>
     </item>
   </channel>

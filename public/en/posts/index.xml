@@ -1,19 +1,115 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Posts on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
-		<link>https://msemjan.github.io/blog/en/posts/</link>
+		<link>http://localhost:1313/blog/en/posts/</link>
 		<description>Recent content in Posts on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
-		<lastBuildDate>Sun, 26 May 2024 19:52:00 +0200</lastBuildDate>
-		<atom:link href="https://msemjan.github.io/blog/en/posts/index.xml" rel="self" type="application/rss+xml" />
+		<lastBuildDate>Sun, 02 Jun 2024 15:44:08 +0200</lastBuildDate>
+		<atom:link href="http://localhost:1313/blog/en/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Docker Compose Watch</title>
+			<link>http://localhost:1313/blog/en/posts/docker-compose-watch/</link>
+			<pubDate>Sun, 02 Jun 2024 15:44:08 +0200</pubDate>
+			
+			<guid>http://localhost:1313/blog/en/posts/docker-compose-watch/</guid>
+			<description><![CDATA[%!s(<nil>)]]></description>
+			<content type="html"><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>The <a href="https://docs.docker.com/compose/">Docker Compose</a> allows you to easily spin up several Docker containers in a reliable and reproducible way. It is useful for every developer who is using Docker containers, especially if more than one is used (e.g. one for database, one for caching with Redis, and one for your applications). By using Docker compose, you can avoid running multiple Docker run commands for each service.</p>
+<p>In the Docker Compose version 2.22.0 was introduced a new feature: the Compose Watch<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, which allows you to automatically update and preview your running the Compose services after you have edited and saved your code changes. This enables a hands-off development workflow once the Compose is running. The services will automatically restart as you save your changes. It is similar to <a href="https://www.npmjs.com/package/nodemon">Nodemon</a> for Node.js, <a href="https://github.com/cosmtrek/air">Air</a> for Go, <a href="https://github.com/reloadware/reloadium">Reloadium</a> for Python, and other similar tools that simplify and streamline development by providing hot reloading functionality.</p>
+<h2 id="example">Example</h2>
+<p>Let&rsquo;s consider a minimal Node.js application with the following project structure:</p>
+<pre tabindex="0"><code>my-nodejs-app/
+├── web/
+│   ├── App.jsx
+│   └── index.js
+├── Dockerfile
+├── compose.yaml
+└── package.json
+</code></pre><p>In the <code>Dockerfile</code> we will have:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Run as a non-privileged user</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> node:18-alpine</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> useradd -ms /bin/sh -u <span style="color:#ae81ff">1001</span> app<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Install dependencies</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> package.json package.lock .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> npm install<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Copy source files into application directory</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> --chown<span style="color:#f92672">=</span>app:app . /app<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>The <code>compose.yaml</code> file will contain the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">web</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">build</span>: <span style="color:#ae81ff">.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">command</span>: <span style="color:#ae81ff">npm start</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">develop</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">watch</span>:                   <span style="color:#75715e"># This part is necessary for each service you want to automatically sync in watch mode</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">action</span>: <span style="color:#ae81ff">sync        </span> <span style="color:#75715e"># Sync action ensures that changes in local files are automatically synced with the container</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./web</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">target</span>: <span style="color:#ae81ff">/src/web</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">ignore</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#ae81ff">node_modules/</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">action</span>: <span style="color:#ae81ff">rebuild     </span> <span style="color:#75715e"># Rebuild action automatically builds a new image if there are any changes to package.json,</span>
+</span></span><span style="display:flex;"><span>	                           <span style="color:#75715e"># this is also ideal options for compiled languages</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">package.json</span>
+</span></span></code></pre></div><p>To use the watch feature, run the Docker Compose with <code>--watch</code> flag:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up --watch
+</span></span></code></pre></div><p>Then a container for the <code>web</code> service will be launched using an image built with the <code>Dockerfile</code> in the project&rsquo;s root folder. The <code>web</code> service will run <code>npm start</code> as a command, which than launches the development version of the application with Hot Module Reload enabled in the bundler (Webpack, Vite, Turbopack, &hellip;).</p>
+<p>The services that will be watched are specified in the <code>watch</code> section in YAML. There are rules that control automatic service updates based on local file changes. Each rule requires a <code>path</code> and an <code>action</code> that will be performed when a change is detected. Some <code>action</code>s may provide or require other fields. Besides the options shown in the example above, there is also &ldquo;sync + restart&rdquo; option that will sync changes with the service containers and then restart it. It is ideal for configuration changes that don&rsquo;t require rebuild of the container, but need a service container restart to take effect, e.g. for database configurations or your <code>nginx.conf</code> file.</p>
+<p>The watch mode uses common executables that must be be present in the image containers, and you should ensure that they are installed:</p>
+<ul>
+<li><code>stat</code></li>
+<li><code>mkdir</code></li>
+<li><code>rmdir</code></li>
+</ul>
+<p>The watch mode also requires that the container&rsquo;s <code>USER</code> has write permissions and can update files. It is common to create a new user before running <code>COPY</code> instruction in Docker. To ensure that the user can modify files, use <code>COPY --chown</code> flag, e.g. in the example above we used:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> useradd -ms /bin/sh -u <span style="color:#ae81ff">1001</span> app<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># (Omitted parts)</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> --chown<span style="color:#f92672">=</span>app:app . /app<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>Specific paths and rules will vary from project to project, but the main idea stays the same. Moreover, you don&rsquo;t need to watch all services, only those you will edit and will need a restart, e.g. only front-end you are working on.</p>
+<p>If any changes are saved, the Docker Compose in the watch mode will trigger a sync and update corresponding files in the <code>/src/web</code> folder inside the container. Once copied, the bundler will update the running application without a need for a restart.</p>
+<p><strong>Note</strong>: While source files can be updated on-fly, the dependencies can not. Whenever you install or remove a package, or update the <code>package.json</code>, the Compose needs to rebuild the image and recreate the <code>web</code> service container.</p>
+<p>This approach can be used for many languages and frameworks, e.g. Python with Flask framework. The source files can be easily synced while a change to <code>requirements.txt</code> triggers a rebuild. In case of compiled languages, the entire container will have to be rebuilt.</p>
+<h2 id="path-rules">Path Rules</h2>
+<p>The Compose Watch follows a couple of path rules:</p>
+<ul>
+<li>All paths are relative to the project root directory</li>
+<li>Directories are watched recursively</li>
+<li>Glob patterns are not supported</li>
+<li>Rules from <code>.dockerignore</code> and <code>ignore</code> option apply</li>
+<li>IDE files are automatically ignored</li>
+<li><code>.git</code> folder is ignored automatically</li>
+</ul>
+<h2 id="what-is-the-difference-between-compose-watch-and-bind-mounts">What Is The Difference Between Compose Watch And Bind Mounts</h2>
+<p>The Compose Watch does not replace the existing support for sharing a host directory inside service containers, but it exists as a complement suited for development inside containers.</p>
+<p>Moreover, the watch mode allows for increased granularity than bind mounts. The rules in the <code>watch</code> section let you watch or ignore specific files or directories within the watched tree. This is useful if you have many small files that would cause high I/O load (e.g. <code>node_modules/</code> in Javascript projects) or if the compiled artifacts can not be shared across different architectures, because they are platform dependent (e.g. Node packages can contain native code).</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The Docker Compose with the new watch mode adds a new functionality to a tried and tested tool. It is amazing for people who want/need to do their development in Docker containers. Despite the fact that such development was possible before with bound mounts, or simply by using <code>docker-compose down &amp;&amp; docker-compose up</code> after each meaningful change, now it is easier than ever.</p>
+<p>Moreover, the watch mode provides an option to exclude files and folders that will be synced with improved granularity, and is general improvement to containerized development. If you use the Docker Compose, consider using the watch mode, since it is very useful and simplifies any workflow.</p>
+<h2 id="sources-">Sources 📚️</h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><em>“Use compose watch.”</em> (2024, May 20). Docker Documentation. https://docs.docker.com/compose/file-watch&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Nginx Reverse Proxy for Apps</title>
-			<link>https://msemjan.github.io/blog/en/posts/nginx-reverse-proxy-for-apps/</link>
+			<link>http://localhost:1313/blog/en/posts/nginx-reverse-proxy-for-apps/</link>
 			<pubDate>Sun, 26 May 2024 19:52:00 +0200</pubDate>
 			
-			<guid>https://msemjan.github.io/blog/en/posts/nginx-reverse-proxy-for-apps/</guid>
+			<guid>http://localhost:1313/blog/en/posts/nginx-reverse-proxy-for-apps/</guid>
 			<description><![CDATA[%!s(<nil>)]]></description>
 			<content type="html"><![CDATA[<h2 id="introduction">Introduction</h2>
 <p>Have you ever found yourself in the following situation: You have a application that is running locally on your computer (e.g. Raspberry Pi) and you want to access it from your other devices. When you make a request on <code>http://localhost:PORT/SOME_ENDPOINT</code> from the computer on which the application runs, it is successful, but when you use other device, the website can not be found.</p>
@@ -129,10 +225,10 @@
 		
 		<item>
 			<title>Validation In Go Programming Language</title>
-			<link>https://msemjan.github.io/blog/en/posts/golang-validation/</link>
+			<link>http://localhost:1313/blog/en/posts/golang-validation/</link>
 			<pubDate>Sun, 19 May 2024 15:48:02 +0200</pubDate>
 			
-			<guid>https://msemjan.github.io/blog/en/posts/golang-validation/</guid>
+			<guid>http://localhost:1313/blog/en/posts/golang-validation/</guid>
 			<description><![CDATA[%!s(<nil>)]]></description>
 			<content type="html"><![CDATA[<h2 id="introduction">Introduction</h2>
 <p>Validation is an essential step when working with user input. Data validation ensures that the data is correct and the values are within expected constraints and/or have right format. Moreover, validation may help us prevent errors and assure consistency of the stored information. If the data is used in machine learning (or other areas that require accurate data), it is even more important to verify the correctness of data. Otherwise we may get inaccurate results.</p>
@@ -309,11 +405,193 @@
 		</item>
 		
 		<item>
+			<title>Simple Server With Expressjs</title>
+			<link>http://localhost:1313/blog/en/posts/simple-server-with-expressjs/</link>
+			<pubDate>Sat, 18 May 2024 11:11:49 +0200</pubDate>
+			
+			<guid>http://localhost:1313/blog/en/posts/simple-server-with-expressjs/</guid>
+			<description><![CDATA[%!s(<nil>)]]></description>
+			<content type="html"><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>Express.js is a <em>de facto</em> standard for the Node.js back-end development of REST Services and simple servers. It is a simple and fast web framework that allows Javascript developers to write all kinds of applications ranging from simple toy projects to fully-fledged production-ready web services deployed by large companies. Due to its simplicity and flexibility it is suitable for any type of project you may work on. Moreover, it has a thriving ecosystem supported by numerous population of dedicated developers (for example when I search NPM for term <code>express middleware</code>, I received <a href="https://www.npmjs.com/search?q=express%20middleware">6000 results</a>).</p>
+<p>In this post I will show the basics of Express.js, including a simple example.</p>
+<h2 id="installation">Installation</h2>
+<p>Installation of Express.js is very simple and can be accomplished with a single command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm i express
+</span></span></code></pre></div><p>Of course, you can install other packages that may help you your application.</p>
+<h2 id="hello-world">Hello World</h2>
+<p>A nicely formatted Hello World application can be written just with 11 lines of code. Create an <code>index.js</code> file in the root of your project and copy-paste the following code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Import the Express.js package
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Create an Express.js object
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Define the port on which the application will run
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">PORT</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3000</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Create a GET / endpoint that will return the message
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#39;Hello World!&#39;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Start the server on PORT
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">PORT</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// It is customary to log on which PORT the application runs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Example app listening on port </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">PORT</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>You can start the application using Node command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>node index.js
+</span></span></code></pre></div><p>You should see <code>Example app listening on port 3000</code> in the terminal. Then you can navigate to <a href="http://localhost:3000">http://localhost:3000</a> and you should see <code>Hello World!</code> in your browser window.</p>
+<h2 id="more-complex-example">More Complex Example</h2>
+<p>In real world we would use a database (e.g. PostgreSQL), but this is not in the scope of this blog post. Instead, we will create a simple in-memory database using arrays as storage. I recommend that you create a new project, install Express.js, and create a <code>src</code> folder in the root of the project.</p>
+<p>Our database will be a class in <code>db.js</code> file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;node:fs&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// The database is a class. Basically, you can think of it as a table in SQL database. This way the data will not mix if we have different data
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Database</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// In constructor, we create an array for our data and lastId that we will use for calculating an ID for the new data
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">constructor</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">lastId</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// insertOne function takes one object and saves it into internal storage (our array), then increments the lastId
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">insertOne</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">element</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">push</span>({
+</span></span><span style="display:flex;"><span>      ...<span style="color:#a6e22e">element</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">lastId</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">lastId</span><span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// I have also created a bulk insert function, which adds more elements
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">insertMultiple</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">elements</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// If the argument is not an array, use insertOne function
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>Array.<span style="color:#a6e22e">isArray</span>(<span style="color:#a6e22e">elements</span>)) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">insertOne</span>(<span style="color:#a6e22e">elements</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Otherwise, insert each element individually
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">push</span>(...<span style="color:#a6e22e">elements</span>);
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Filer out an element with a specific element
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">deleteById</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">id</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">filter</span>((<span style="color:#a6e22e">element</span>) =&gt; <span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">id</span>);
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Just return the data object. Be careful when mutating the data, because this does not return copy, but an actual reference
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">selectAll</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>;
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Select an element by id by filtering data in the database
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">selectById</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">id</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">found</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">filter</span>((<span style="color:#a6e22e">element</span>) =&gt; <span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">id</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">found</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;Element not found&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">found</span>[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// We can update a single record using this function
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">updateById</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">updatedElement</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// We find the index of the element that an user wants to modify
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">findIndex</span>((<span style="color:#a6e22e">element</span>) =&gt; <span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">id</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// If there is no record with a given id, findIndex() will return -1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">index</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;Element not found&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// We do not want users to modify IDs, so we save it
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">thisId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">index</span>].<span style="color:#a6e22e">id</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Here we update the record
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">index</span>] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      ...<span style="color:#a6e22e">updatedElement</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">thisId</span>,
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Without this function our database would have no persistence and the data would be lost as soon as the server shuts down. As name suggests, this function saves data into a file in a form of JSON string
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">saveToFile</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">filename</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">writeFile</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">filename</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>({ <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">lastId</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">lastId</span> }),
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">err</span>) =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">`Failed to save data to &#39;</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">filename</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;`</span>, <span style="color:#a6e22e">err</span>);
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">`Database data successfully saved to &#39;</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">filename</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;`</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Once there is the data was saved, we can load them using loadFromFile
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">loadFromFile</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">filename</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dbData</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">filename</span>));
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dbData</span>.<span style="color:#a6e22e">data</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">lastId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dbData</span>.<span style="color:#a6e22e">lastId</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">err</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">`Unable to read database data from &#39;</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">filename</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#39; file.`</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">err</span>,
+</span></span><span style="display:flex;"><span>      );
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Export the class, so we can use it in other files
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Database</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>As you can see, we have implemented a couple of functions for inserting, selecting, modifying, and deleting data. We will use these for our Express.js application.</p>
+<p><strong>Note</strong>: If you already know how to use SQL (or NoSQL) in Node.js, you can rewrite the implementation of this class to use the real database instead.</p>
+<p>Now we can start writing the actual server. The beginning of the <code>index.js</code> will be the same as before:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
+</span></span></code></pre></div><p>We will also need to import the database we wrote and create an instance:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">Database</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./db.js&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">db</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Database</span>();
+</span></span></code></pre></div><p>Since this is a simple example, I think it is OK to have the database instance as a global variable, but it is not a good practice in general.</p>
+<p>We will also use some middleware that comes with Express.js. Middleware functions are functions that have access to the requests object (<code>req</code>) and response object (<code>res</code>), and they are executed before the request is handled. Middleware functions can perform various tasks, such as:</p>
+<ul>
+<li>Logging requests</li>
+<li>Extracting important data from requests</li>
+<li>Add relevant information into the request object</li>
+<li>Handle errors</li>
+</ul>
+<p>You can use more than one middleware function and when the current one ends it&rsquo;s execution, the next on stack will be called (using <code>next()</code> callback), otherwise, the request will be left hanging.</p>
+<p>Express.js has a couple built-in middleware functions, which we will use:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">express</span>.<span style="color:#a6e22e">urlencoded</span>({ <span style="color:#a6e22e">extended</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> }));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">express</span>.<span style="color:#a6e22e">json</span>());
+</span></span></code></pre></div><p>The first line ensures that URL-encoded payloads are encoded, while the second one parses incoming requests with JSON payloads.</p>
+<h2 id="practice">Practice</h2>
+<p>To improve your skills, you can do the following exercises:</p>
+<ul>
+<li>Modify the database (<code>db.js</code> file) so that every record in the database has <code>dateCreated</code> and <code>dateLastUpdated</code> fields.</li>
+<li>It is pretty common that database operations are represented using <code>async</code> functions. Update the database to use <code>async</code> functions and routes to use <code>await</code> when calling them.</li>
+<li>Replace the database implementation with a real database of your choice (PostgreSQL, SQLite3, MySQL, MongoDB, Reddis, &hellip;).</li>
+<li>Add validation of user input to ensure that user is sending correct information that the server expects. If you used a SQL database, make sure that your service is not vulnerable to SQL injections by using prepared statements or ORM. Alternatively you could try to sanitize the input, but there is a chance that you might miss something and expose your database to SQL injections (in other words, be careful if you decide to use such a bespoke solution in production).</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this blog post I demonstrated how to create a simple web server using Express.js. Since it is a <em>de facto</em> industry standard, it is always good to know this framework. Once you master it, you will be able to create back-end services of any kind, and since REST APIs are everywhere these days you may find it valuable.</p>
+]]></content>
+		</item>
+		
+		<item>
 			<title>Create Project Templates With Cookiecutter</title>
-			<link>https://msemjan.github.io/blog/en/posts/create-project-templates-with-cookiecutter/</link>
+			<link>http://localhost:1313/blog/en/posts/create-project-templates-with-cookiecutter/</link>
 			<pubDate>Sun, 05 May 2024 16:01:14 +0200</pubDate>
 			
-			<guid>https://msemjan.github.io/blog/en/posts/create-project-templates-with-cookiecutter/</guid>
+			<guid>http://localhost:1313/blog/en/posts/create-project-templates-with-cookiecutter/</guid>
 			<description><![CDATA[%!s(<nil>)]]></description>
 			<content type="html"><![CDATA[<h2 id="what-is-cookiecutter-and-why-you-should-use-it">What Is Cookiecutter And Why You Should Use It?</h2>
 <p><a href="https://cookiecutter.readthedocs.io/en/stable/index.html">Cookiecutter</a> is a cross-platform CLI application that creates projects from project templates. It is ideal for people who tend to create the same project structure repeatedly and want to save some time. Cookiecutter is not dedicated to a specific programming language (or programming projects in general) and can create a given project structure for any programming, machine learning or any other text-based project.</p>
@@ -446,10 +724,10 @@
 		
 		<item>
 			<title>My Experience With JSNAD</title>
-			<link>https://msemjan.github.io/blog/en/posts/my-experience-with-jsnad/</link>
+			<link>http://localhost:1313/blog/en/posts/my-experience-with-jsnad/</link>
 			<pubDate>Sat, 13 Apr 2024 09:55:35 +0200</pubDate>
 			
-			<guid>https://msemjan.github.io/blog/en/posts/my-experience-with-jsnad/</guid>
+			<guid>http://localhost:1313/blog/en/posts/my-experience-with-jsnad/</guid>
 			<description><![CDATA[%!s(<nil>)]]></description>
 			<content type="html"><![CDATA[<h2 id="what-is-openjs-nodejs-application-developer-jsnad">What Is OpenJS Node.js Application Developer (JSNAD)?</h2>
 <p><a href="https://training.linuxfoundation.org/certification/jsnad/">JSNAD</a> is a certification offered by <a href="https://www.linuxfoundation.org/">Linux Foundation</a> that verifies candidate&rsquo;s skill in using <a href="https://nodejs.org/en">Node.js</a> to build applications of any kind. Unlike many other certifications, this is not a quiz in which you pick a correct answer from a given list of options. It is a practical exam in which you connect to a remote computer and write real code to solve various programming problems. The company I work for bought a voucher for me, so I had an opportunity to take the exam.</p>
@@ -583,10 +861,10 @@
 		
 		<item>
 			<title>Introduction Into gRPC in Go</title>
-			<link>https://msemjan.github.io/blog/en/posts/introduction-into-grpc-in-go/</link>
+			<link>http://localhost:1313/blog/en/posts/introduction-into-grpc-in-go/</link>
 			<pubDate>Wed, 15 Nov 2023 18:35:15 +0100</pubDate>
 			
-			<guid>https://msemjan.github.io/blog/en/posts/introduction-into-grpc-in-go/</guid>
+			<guid>http://localhost:1313/blog/en/posts/introduction-into-grpc-in-go/</guid>
 			<description><![CDATA[%!s(<nil>)]]></description>
 			<content type="html"><![CDATA[<h2 id="introduction">Introduction</h2>
 <p>gRPC is a modern, cross-platform Remote Procedure Call (RPC) framework created by Google and released in 2016. It is considered to be an alternative to <a href="https://en.wikipedia.org/wiki/REST">REST</a> APIs, and can be used to connect various services. REST uses JSON, which is a plain-text format, while gRPC uses a <a href="../introduction-into-protocol-buffers-in-go">protocol buffers</a>. Protocol buffers are a binary format, which was designed to result in smaller serialized messages, which are simple to use and faster to encode and decode. This leads to a noticeable speedup when compared to REST and JSON.</p>
@@ -829,10 +1107,10 @@ $ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
 		
 		<item>
 			<title>Getting Started With Latex</title>
-			<link>https://msemjan.github.io/blog/en/posts/getting-started-with-latex/</link>
+			<link>http://localhost:1313/blog/en/posts/getting-started-with-latex/</link>
 			<pubDate>Sun, 01 Oct 2023 17:29:22 +0200</pubDate>
 			
-			<guid>https://msemjan.github.io/blog/en/posts/getting-started-with-latex/</guid>
+			<guid>http://localhost:1313/blog/en/posts/getting-started-with-latex/</guid>
 			<description><![CDATA[%!s(<nil>)]]></description>
 			<content type="html"><![CDATA[<h2 id="introduction">Introduction</h2>
 <p>Latex is a typesetting software based on Tex created by Donald Knuth, who was dissatisfied with a quality of his paper. Using Latex is a little bit like programming your documents. Instead of clicking buttons to add styling, like one would do when writing in Microsoft Word, in Latex you use commands to change the appearance of the text. Moreover, you don&rsquo;t need to worry about the aesthetic of your document, since it can easily be changed later, and instead you can focus on the text itself.</p>
@@ -1024,11 +1302,74 @@ $$
 		</item>
 		
 		<item>
+			<title>Writing Simple Webpage With Alpine.js and Tailwind</title>
+			<link>http://localhost:1313/blog/en/posts/writing-simple-webpage-with-alpine.js-and-tailwind/</link>
+			<pubDate>Mon, 04 Sep 2023 21:21:13 +0200</pubDate>
+			
+			<guid>http://localhost:1313/blog/en/posts/writing-simple-webpage-with-alpine.js-and-tailwind/</guid>
+			<description><![CDATA[%!s(<nil>)]]></description>
+			<content type="html"><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>In this post I&rsquo;ll demonstrate how to create a simple website using Alpine.js<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> and Tailwind<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
+<h2 id="installation">Installation</h2>
+<p>We will use CDN to install both Alpine.js and Tailwind to keep things simple. First, create an <code>index.html</code> file with the following boilerplate code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!doctype html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1.0&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!--- Install Tailwind ---&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.tailwindcss.com&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!--- Install Alpine.js ---&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">defer</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!--- Customization of the Tailwind config --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">tailwind</span>.<span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">theme</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">extend</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">colors</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">clifford</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#da373d&#39;</span>,
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!--- The webpage content goes here ---&gt;</span>
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><p>It&rsquo;s also possible to install Alpine.js as a Node.js module<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>. Tailwind also has a couple of alternative ways of installation<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>.</p>
+<p>In production environment, it&rsquo;s recommended to hardcode the latest version of Alpine.js to improve stability. So, instead of <code>3.x.x</code>, you should put there a specific version.</p>
+<h2 id="sources-">Sources 📚️</h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><em>Alpine.js</em>. (n.d.). <a href="https://alpinejs.dev/">https://alpinejs.dev/</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p><em>Tailwind CSS - Rapidly build modern websites without ever leaving your HTML</em>. (n.d.). Tailwind CSS. <a href="https://tailwindcss.com/">https://tailwindcss.com/</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p><em>Installation — Alpine.js</em>. (n.d.). <a href="http://alpinejs.dev/essentials/installation">http://alpinejs.dev/essentials/installation</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p><em>Installation - Tailwind CSS</em>. (n.d.). Tailwind CSS. <a href="https://tailwindcss.com/docs/installation">https://tailwindcss.com/docs/installation</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+]]></content>
+		</item>
+		
+		<item>
 			<title>Introduction Into Protocol Buffers in Go</title>
-			<link>https://msemjan.github.io/blog/en/posts/introduction-into-protocol-buffers-in-go/</link>
+			<link>http://localhost:1313/blog/en/posts/introduction-into-protocol-buffers-in-go/</link>
 			<pubDate>Sat, 26 Aug 2023 09:14:53 +0200</pubDate>
 			
-			<guid>https://msemjan.github.io/blog/en/posts/introduction-into-protocol-buffers-in-go/</guid>
+			<guid>http://localhost:1313/blog/en/posts/introduction-into-protocol-buffers-in-go/</guid>
 			<description><![CDATA[%!s(<nil>)]]></description>
 			<content type="html"><![CDATA[<h2 id="introduction">Introduction</h2>
 <p>Protocol buffers<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> are a language-agnostic and platform-independent mechanism for serialization of data created by Google. Protocol buffers can be used as a replacement for older formats, such as JSON or XML, but they are designed to be much smaller, faster and simpler. The speed is achieved by the fact that protocol buffers encode information into a binary format, which both increases the speed of parsing and reduces the size of the message, which in turn improves the transmission speeds.</p>
@@ -1159,10 +1500,10 @@ Tags:   [protobufs golang serializations]
 		
 		<item>
 			<title>What Front End Framework Should You Pick in 2023?</title>
-			<link>https://msemjan.github.io/blog/en/posts/what-front-end-framework-should-you-pick-in-2023/</link>
+			<link>http://localhost:1313/blog/en/posts/what-front-end-framework-should-you-pick-in-2023/</link>
 			<pubDate>Fri, 18 Aug 2023 19:07:26 +0200</pubDate>
 			
-			<guid>https://msemjan.github.io/blog/en/posts/what-front-end-framework-should-you-pick-in-2023/</guid>
+			<guid>http://localhost:1313/blog/en/posts/what-front-end-framework-should-you-pick-in-2023/</guid>
 			<description><![CDATA[%!s(<nil>)]]></description>
 			<content type="html"><![CDATA[<h2 id="introduction">Introduction</h2>
 <p>As I&rsquo;ve mentioned in one of my previous <a href="../introducing-ghast-stack">posts</a>, some time ago I&rsquo;ve decided to learn a little bit of front-end development. At that time I already knew the basics of Javascript, so the natural question was &ldquo;What front-end framework should I pick?&rdquo;. I&rsquo;ll share the results of my front-end framework investigation in the today&rsquo;s post.</p>
@@ -1246,10 +1587,10 @@ Tags:   [protobufs golang serializations]
 		
 		<item>
 			<title>Introducing GHAST Stack</title>
-			<link>https://msemjan.github.io/blog/en/posts/introducing-ghast-stack/</link>
+			<link>http://localhost:1313/blog/en/posts/introducing-ghast-stack/</link>
 			<pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
 			
-			<guid>https://msemjan.github.io/blog/en/posts/introducing-ghast-stack/</guid>
+			<guid>http://localhost:1313/blog/en/posts/introducing-ghast-stack/</guid>
 			<description><![CDATA[%!s(<nil>)]]></description>
 			<content type="html"><![CDATA[<h1 id="introducing-ghast-stack">Introducing GHAST Stack</h1>
 <p>GHAST stack is a new tech-stack for developing web applications without excessive use of Javascript. In this article I describe why I am suggesting usage of this tech-stack and what technologies it uses.</p>
@@ -1288,10 +1629,10 @@ Tags:   [protobufs golang serializations]
 		
 		<item>
 			<title>How to Learn New Technology With Stack Overflow</title>
-			<link>https://msemjan.github.io/blog/en/posts/how-to-learn-new-technology-with-stack-overflow/</link>
+			<link>http://localhost:1313/blog/en/posts/how-to-learn-new-technology-with-stack-overflow/</link>
 			<pubDate>Fri, 14 Jul 2023 18:07:25 +0200</pubDate>
 			
-			<guid>https://msemjan.github.io/blog/en/posts/how-to-learn-new-technology-with-stack-overflow/</guid>
+			<guid>http://localhost:1313/blog/en/posts/how-to-learn-new-technology-with-stack-overflow/</guid>
 			<description><![CDATA[%!s(<nil>)]]></description>
 			<content type="html"><![CDATA[<h1 id="how-to-learn-new-technology-with-stack-overflow">How to Learn New Technology With Stack Overflow</h1>
 <h2 id="introduction">Introduction</h2>
@@ -1336,11 +1677,179 @@ Tags:   [protobufs golang serializations]
 		</item>
 		
 		<item>
+			<title>Optimize Your brain</title>
+			<link>http://localhost:1313/blog/en/posts/health_optimize_your_brain/</link>
+			<pubDate>Sat, 01 Apr 2023 12:39:47 +0200</pubDate>
+			
+			<guid>http://localhost:1313/blog/en/posts/health_optimize_your_brain/</guid>
+			<description><![CDATA[%!s(<nil>)]]></description>
+			<content type="html"><![CDATA[<h1 id="optimize-your-brain">Optimize Your brain</h1>
+<h2 id="introduction">Introduction</h2>
+<p>People take care of their skin, their appearance and their fitness, but often neglect their brains. Brain health routine should be an important part of your day that can be used to combat cognitive decline with age, improve focus, reduce brain fog, and generally increase your performance. A popular youtuber Ali Abdaal in his video [1] sums up several evidence-based trick and tips that can help your brain, and I&rsquo;ve decided to make notes in a written form as a reference.</p>
+<h2 id="food">Food</h2>
+<p>What we eat has a big impact on our health in general, and when it comes to brain, it&rsquo;s no different. In the average adult human, the brain represents only about 2% of the body weight, but despite its small size it accounts for about 20% of the oxygen and calories consumed by our bodies. Our brains and guts are connected and they constantly communicate. Therefore, the first thing we should do to improve our brain health is to improve our diets.</p>
+<p>What to avoid? The so-called Western diet, which is high in fat and refined sugar, reduced complex carbohydrate and fiber intake is a large and negative shift from older diets, which were high in complex carbohydrates and fiber, and it is basically a poison for our brains - it is detrimental to the brain, impairs cognition, and increases AD pathologies. Moreover it leads to increased risk of cardiovascular diseases and obesity.</p>
+<p>The Mediterranean diet composed of polyunsaturated fatty acids, polyphenols, and antioxydants is considered to be neuroprotective. It is also linked to other health benefits, such as reducing risk of diabetes and cancer, improved memory, lower risk of dementia, and other neurodegenerative issues.</p>
+<p><strong>Things to avoid</strong></p>
+<ul>
+<li>Highly processed food</li>
+<li>Sugars, sugary drinks and sweets</li>
+</ul>
+<p><strong>Things to eat</strong></p>
+<ul>
+<li>Vegetables and leafy greens (especially spinach, kale, beet and turnip tops, chard and collards when in season) - 90% to 100% of diet should be plant-based</li>
+<li>Pickled and dried vegetables (off season) - e.g. beans, greens, sweet potatoes, whole grains, fruit, nuts and seeds</li>
+<li>Olive oil (increases good cholesterol, and lowers bad cholesterol)</li>
+<li>Fish</li>
+<li>Lentils</li>
+<li>Tofu</li>
+<li>Chickpeas</li>
+<li>Eggs</li>
+<li>Oatmeal</li>
+<li>Avocados</li>
+<li>Plant-based foods</li>
+</ul>
+<p><strong>Supplements</strong></p>
+<ul>
+<li>If you can not get all your nutrients from the Mediterranean diet</li>
+<li>Omega 3 Oils</li>
+<li>Key vitamins, such as A, B Complex, C, D, E, etc.</li>
+</ul>
+<h2 id="body">Body</h2>
+<p>Body and brain affect each other in ways which can be surprising. Among humans, regular exercise has a beneficial impact on depression, quality of sleep, and cognitive function. Basically, the exercise positively changes the structure of your brain.</p>
+<p>This happens because of the protein called BDNF (Brain-derived Neurotrophic Factor), which is involved in key brain functions such as learning, memory, and higher thinking. It also modulates pathways responsible for the structure of the brain. Some studies shown increased levels of BDNF and other growth factors, which stimulate neurogenesis, increase resistance to brain insult and improve learning and mental performance.</p>
+<p>The amount of produced BDNF is a function of volume (intensity + duration + frequency of activity). It also turns out that open-skills (such as badminton, football, or other sports) increase BDNF levels more than closed-skills exercises (e.g. running, or some other repetitive exercise), probably because open-skill activities require more attention to face ever-changing situations, and possibly because they are more enjoyable.</p>
+<p>So it is a really good idea to move and exercise.</p>
+<h2 id="sleep">Sleep</h2>
+<p>Continued sleep deprivation leads to various deficiencies. Not only it makes you feel terrible and sluggish, it also increases risk of obesity, diabetes, cardiovascular disease, depressions, and even early death. At a more advanced level, sleep deprivation can over-stimulate parts of the brain and even lead to permanent brain damage and negatively affects your ability to adapt to new situations. Most sleep experts agree that the high quality sleep is the best single thing you can do to improve your performance.</p>
+<h2 id="exercising-the-mind">Exercising the Mind</h2>
+<p>You can (and should) train your mind, just like your body. Especially at older age.</p>
+<p>In case of damage, brain can reorganize and fix itself, even in adulthood. This ability is called &ldquo;neuroplasticity&rdquo; and it is defined as an ability of neuronal networks in the brain to change through the development and organization of neural circuits. In other words, it can rewire itself.</p>
+<p>This can make a difference. The way you can trigger the neuroplasticity at any age is by challenging yourself and your brain. This can be done using brain games, musical training, and learning languages. These activities lead to improved attention, memory, increased neural connectivity, and processing speed. Some studies even claimed the reduced risk of cognitive decline for older adults in the long term.</p>
+<p>Another thing that can decrease risk of dementia and cognitive decline is continuous learning. So, maybe read a book, or work on some project that requires you to learn new things.</p>
+<h2 id="lifestyle">Lifestyle</h2>
+<p>The healthy lifestyle is built on top of morning routines, diets, and healthy habits. You can either do healthy things or avoid unhealthy ones. Of course, you can try to do more activities or habits that have positive benefits, or you can avoid ones that are not good for you. For example, alcohol is a very common substance that is present in the lives of westerners, but nobody questions it&rsquo;s effect on health. A 2018 study found that alcohol use was biggest factor for dementia. Even one drink per day can allegedly shrink your brain. Complete abstinence would be perfect, but you will get the benefits even if you reduce drinking to 1-2 drinks per week.</p>
+<p>However, there is some evidence that suggest positive benefits of red wine (in moderation) on your heart. The substances such as resveratrol, a substance that can be found in red wine, and antioxidants may help prevent coronary artery disease that leads to heart attacks. Red wine is also fairly common in Mediterranean.</p>
+<p>The last thing that seems to be very important are social interactions. Humans are after all social animals, and being social, especially at older age, can reduce the risk of dementia and cognitive decline. Hang out with family, go on a date, party with friends, etc.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Taking care of brain health is important for improving the general quality of life and preventing mental deterioration in later age. In this post I&rsquo;ve summed up general strategies that positively affect brain health. They can be summarized as: eat healthy food (Mediterranean cuisine), perform some physical activity (frequently), sleep well, train your mind, quit/reduce alcohol consumption, and have a healthy lifestyle with a lot of quality social interactions.</p>
+<h2 id="sources-">Sources 📚️</h2>
+<ol>
+<li><a href="https://youtu.be/n2czIPRE0Nc">&ldquo;How to Optimise Your Brain - An Evidence-Based Guide&rdquo; - Ali Abdaal&rsquo;s video</a></li>
+</ol>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Adding Math Support to Hugo</title>
+			<link>http://localhost:1313/blog/en/posts/adding-math-support-to-hugo/</link>
+			<pubDate>Sat, 01 Apr 2023 11:45:03 +0200</pubDate>
+			
+			<guid>http://localhost:1313/blog/en/posts/adding-math-support-to-hugo/</guid>
+			<description><![CDATA[%!s(<nil>)]]></description>
+			<content type="html"><![CDATA[<h1 id="adding-math-support-to-hugo">Adding Math Support to Hugo</h1>
+<h2 id="introduction">Introduction</h2>
+<p>If you are a scientist who wants to share their research in a form of a blog post or a STEM student, who wants to convert their notes with equations into a good looking HTML, you may need to somehow render math blocks on the web page. One of the libraries that can help with this task is <a href="https://www.mathjax.org/">MathJax</a>. In this post I describe how I added Math support to my template with MathJax. Alternative to MathJax, which isn&rsquo;t discussed in this post, is <a href="https://katex.org/docs/autorender.html">KaTeX</a>.</p>
+<h2 id="how-to">How to</h2>
+<p>You can create a Hugo website with:</p>
+<pre tabindex="0"><code>hugo new site my-blog
+cd my-blog
+git init
+</code></pre><p>I recommend to fork the theme as described in this <a href="https://www.mrnice.dev/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/">guide</a>, but it isn&rsquo;t absolutely necessary. Add the theme (the forked one or the original) with:</p>
+<pre tabindex="0"><code>git submodule add https://github.com/&lt;repository&gt;/&lt;theme&gt; themes/&lt;theme&gt;
+echo &#34;theme = &#39;&lt;theme&gt;&#39;&#34; &gt;&gt; config.toml
+</code></pre><p>Create a simple post with equation for testing:</p>
+<pre tabindex="0"><code>hugo new posts/testing-math.md
+</code></pre><p>Open the file and add the math block:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># Testing Math
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Mass–Energy Equivalence**</span>
+</span></span><span style="display:flex;"><span>$$
+</span></span><span style="display:flex;"><span>E = mc^2
+</span></span><span style="display:flex;"><span>$$
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Einstein Field Equations**</span>
+</span></span><span style="display:flex;"><span>$$
+</span></span><span style="display:flex;"><span>R_{\mu\nu} - \frac{D}{2}Rg_{\mu\nu} - \Lambda g_{\mu\nu} = -\kappa T_{\mu\nu}
+</span></span><span style="display:flex;"><span>$$
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Schrödinger Equation**</span>
+</span></span><span style="display:flex;"><span>$$
+</span></span><span style="display:flex;"><span>i \hbar\frac{d}{dt}\ket{\psi(t)} = \hat{H}\ket{\psi(t)}
+</span></span><span style="display:flex;"><span>$$
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Time-dependent Schrödinger Equation**</span>
+</span></span><span style="display:flex;"><span>$$
+</span></span><span style="display:flex;"><span>\hat{H} \psi = E \psi
+</span></span><span style="display:flex;"><span>$$
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Hamiltonian of the Heisenberg Model in an External Magnetic Field**</span>
+</span></span><span style="display:flex;"><span>$$
+</span></span><span style="display:flex;"><span>\hat{H} = \sum_{i,j} \hat{s_i}\hat{s_j} - h\sum_{i}\hat{s_i}
+</span></span><span style="display:flex;"><span>$$
+</span></span></code></pre></div><p>You need to modify the layout and add MathJax script tag. You can add it into <code>themes/&lt;theme&gt;/layouts/_default/baseof.html</code> if you want to enable math for all pages. But you can include JavaScript in other files if you want to (<code>themes/&lt;theme&gt;/layouts/_default/header.html</code>, <code>themes/&lt;theme&gt;/layouts/_default/footer.html</code> or <code>themes/&lt;theme&gt;/layouts/_default/single.html</code>). The code itself goes into the <code>&lt;head&gt;</code> tag, and it is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- This part includes the Javascript file --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;MathJax-script&#34;</span> <span style="color:#a6e22e">async</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- this part configures it --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/x-mathjax-config&#34;</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">MathJax</span>.<span style="color:#a6e22e">Hub</span>.<span style="color:#a6e22e">Config</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tex2jax</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">inlineMath</span><span style="color:#f92672">:</span> [[<span style="color:#e6db74">&#39;\\(&#39;</span>,<span style="color:#e6db74">&#39;\\)&#39;</span>]],
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">displayMath</span><span style="color:#f92672">:</span> [[<span style="color:#e6db74">&#39;$$&#39;</span>,<span style="color:#e6db74">&#39;$$&#39;</span>], [<span style="color:#e6db74">&#39;\[&#39;</span>,<span style="color:#e6db74">&#39;\]&#39;</span>]],
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">processEscapes</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">processEnvironments</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">skipTags</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;script&#39;</span>, <span style="color:#e6db74">&#39;noscript&#39;</span>, <span style="color:#e6db74">&#39;style&#39;</span>, <span style="color:#e6db74">&#39;textarea&#39;</span>, <span style="color:#e6db74">&#39;pre&#39;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">TeX</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">equationNumbers</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">autoNumber</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;AMS&#34;</span> },
+</span></span><span style="display:flex;"><span>         <span style="color:#a6e22e">extensions</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;AMSmath.js&#34;</span>, <span style="color:#e6db74">&#34;AMSsymbols.js&#34;</span>] }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>If you&rsquo;ve forked the theme, you can commit changes, otherwise, it probably isn&rsquo;t the best idea, since the theme is used by other people.</p>
+<h2 id="testing-changes">Testing Changes</h2>
+<p>Now you can test if it works. Start the server:</p>
+<pre tabindex="0"><code>hugo server --buildDrafts
+</code></pre><p>And go to <code>http://localhost:1313/</code> in your browser.</p>
+<p>If you did everything correctly, you should see the equations rendered as:</p>
+<p><strong>Mass–Energy Equivalence</strong>
+</p>
+$$
+E = mc^2
+$$
+<p><strong>Einstein Field Equations</strong>
+</p>
+$$
+R_{\mu\nu} - \frac{D}{2}Rg_{\mu\nu} - \Lambda g_{\mu\nu} = -\kappa T_{\mu\nu}
+$$
+<p><strong>Schrödinger Equation</strong>
+</p>
+$$
+i \hbar\frac{d}{dt}\ket{\psi(t)} = \hat{H}\ket{\psi(t)}
+$$
+<p><strong>Time-dependent Schrödinger Equation</strong>
+</p>
+$$
+\hat{H} \psi = E \psi
+$$
+<p><strong>Hamiltonian of the Heisenberg Model in an External Magnetic Field</strong>
+</p>
+$$
+\hat{H} = \sum_{i,j} \hat{s_i}\hat{s_j} - h\sum_{i}\hat{s_i}
+$$
+<h2 id="conclusion">Conclusion</h2>
+<p>In this post I&rsquo;ve showed you how to add a math support to your Hugo website with MathJax Javascript library.</p>
+]]></content>
+		</item>
+		
+		<item>
 			<title>Github Markdown Emoji Reference</title>
-			<link>https://msemjan.github.io/blog/en/posts/emoji/</link>
+			<link>http://localhost:1313/blog/en/posts/emoji/</link>
 			<pubDate>Tue, 28 Mar 2023 16:54:44 +0100</pubDate>
 			
-			<guid>https://msemjan.github.io/blog/en/posts/emoji/</guid>
+			<guid>http://localhost:1313/blog/en/posts/emoji/</guid>
 			<description><![CDATA[Github flavor of Markdown let's you work with emojis in your Markdown documents easily. In this post you can find a handy reference table with the supported emojis and their shortcodes.]]></description>
 			<content type="html"><![CDATA[<h2 id="introduction">Introduction</h2>
 <p>You may have noticed that many <code>README</code> files on Github are enhanced with the use of emojis. Github flavor of Markdown adds special shortcodes that let you easily work with emojis in your Markdown documents.</p>
@@ -4782,10 +5291,10 @@ Tags:   [protobufs golang serializations]
 		
 		<item>
 			<title>Terminal Tips and Tricks</title>
-			<link>https://msemjan.github.io/blog/en/posts/terminal-tips-and-tricks/</link>
+			<link>http://localhost:1313/blog/en/posts/terminal-tips-and-tricks/</link>
 			<pubDate>Mon, 27 Mar 2023 11:33:22 +0200</pubDate>
 			
-			<guid>https://msemjan.github.io/blog/en/posts/terminal-tips-and-tricks/</guid>
+			<guid>http://localhost:1313/blog/en/posts/terminal-tips-and-tricks/</guid>
 			<description><![CDATA[%!s(<nil>)]]></description>
 			<content type="html"><![CDATA[<h1 id="terminal-tips-and-tricks">Terminal Tips and Tricks</h1>
 <p>This cheat sheet shows you various tips and tricks for working with terminal.</p>
@@ -5080,10 +5589,10 @@ Tags:   [protobufs golang serializations]
 		
 		<item>
 			<title>Creating a blog with Hugo</title>
-			<link>https://msemjan.github.io/blog/en/posts/creating-a-blog-with-hugo/</link>
+			<link>http://localhost:1313/blog/en/posts/creating-a-blog-with-hugo/</link>
 			<pubDate>Sun, 26 Mar 2023 21:58:30 +0200</pubDate>
 			
-			<guid>https://msemjan.github.io/blog/en/posts/creating-a-blog-with-hugo/</guid>
+			<guid>http://localhost:1313/blog/en/posts/creating-a-blog-with-hugo/</guid>
 			<description><![CDATA[%!s(<nil>)]]></description>
 			<content type="html"><![CDATA[<h1 id="creating-a-blog-with-hugo">Creating a blog with Hugo</h1>
 <h2 id="what-is-hugo">What is Hugo?</h2>
@@ -5160,10 +5669,10 @@ Tags:   [protobufs golang serializations]
 		
 		<item>
 			<title>My First Post</title>
-			<link>https://msemjan.github.io/blog/en/posts/my-first-post/</link>
+			<link>http://localhost:1313/blog/en/posts/my-first-post/</link>
 			<pubDate>Sun, 26 Mar 2023 16:34:01 +0200</pubDate>
 			
-			<guid>https://msemjan.github.io/blog/en/posts/my-first-post/</guid>
+			<guid>http://localhost:1313/blog/en/posts/my-first-post/</guid>
 			<description><![CDATA[%!s(<nil>)]]></description>
 			<content type="html"><![CDATA[<h1 id="introduction">Introduction</h1>
 <p>Welcome, dear reader.</p>
@@ -5176,6 +5685,48 @@ Tags:   [protobufs golang serializations]
 <li>As well as a documentation of my journey as a programmer/developer</li>
 </ul>
 <p>I&rsquo;ve been writing before, but those were just personal notes that I haven&rsquo;t shared with other people.</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Linking Vimwiki And Markdown Notes</title>
+			<link>http://localhost:1313/blog/en/posts/first-markdown-note/</link>
+			<pubDate>Sun, 26 Feb 2023 17:03:52 +0200</pubDate>
+			
+			<guid>http://localhost:1313/blog/en/posts/first-markdown-note/</guid>
+			<description><![CDATA[%!s(<nil>)]]></description>
+			<content type="html"><![CDATA[<h1 id="linking-vimwiki-and-markdown-notes">Linking Vimwiki And Markdown Notes</h1>
+<p>Can I successfully link a Markdown note to a Vim Wiki one, and vice-versa?</p>
+<h2 id="troubles-and-attempts-to-solve-them">Troubles And Attempts To Solve Them</h2>
+<h3 id="file-and-local">file: and local:</h3>
+<p>I can go to a Vimwiki note from the Markdown ones, but when I try to go in the other direction, Vim Wiki just appends <code>.wiki</code> to my Markdown note file name.</p>
+<p>One possible solution is to add <code>file:</code> or <code>local:</code>, which allows user to open any file type like this</p>
+<pre tabindex="0"><code class="language-wiki" data-lang="wiki">[[file:note.md|Note]]   - links become absolute paths, when converted to HTML
+[[local:note.md|Note]]  - links become relative paths, when converted to HTML
+</code></pre><p>But this opens a new Vim, or some other program that can open the MIME type of the given file.</p>
+<h3 id="the-vim-way">The Vim Way</h3>
+<p>Other &ldquo;hack&rdquo; is to type <code>gf</code> on your keyboard, while having cursor over the file path, which let&rsquo;s you successfully open the Markdown note, but you have to have your cursor over the path and other parts of the link won&rsquo;t work. This is a built-in way of opening files from Vim, and it is not limited just to Vim Wiki.</p>
+<h2 id="solution">Solution</h2>
+<p>These solutions were not good, so I&rsquo;ve decided to google for a better one. It turns out that more people want to  link plain text files in different formats to their Vim Wiki notes. This was possible in older versions, but when Vim Wiki authors decided to fix a bug with links that contain a dot (<code>.</code>), it got &ldquo;broken&rdquo;.</p>
+<p>As of 26 March possible solutions are being <a href="https://github.com/vimwiki/vimwiki/issues/1271">discussed</a>, but I am impatient, so I&rsquo;ve decided to modify the Vim Wiki link handler, like someone suggested in the linked Github issue.. I don&rsquo;t know Vim Script, so I had to ask ChatGPT to help me, and then modified it&rsquo;s output.</p>
+<p>You can add the following snippet to your <code>.vimrc</code> file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vim" data-lang="vim"><span style="display:flex;"><span><span style="color:#75715e">&#34; Override default vimwiki link handling</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span>! <span style="color:#a6e22e">VimwikiLinkHandler</span>(<span style="color:#a6e22e">link</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">current_file_base_path</span> = <span style="color:#a6e22e">expand</span>(<span style="color:#e6db74">&#39;%:h&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">match</span>(<span style="color:#a6e22e">a</span>:<span style="color:#a6e22e">link</span>, <span style="color:#e6db74">&#39;\.\(md\|wiki\)$&#39;</span>) != <span style="color:#ae81ff">-1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">try</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">execute</span> <span style="color:#e6db74">&#39;:edit &#39;</span> . <span style="color:#a6e22e">current_file_base_path</span> . <span style="color:#e6db74">&#39;/&#39;</span> . <span style="color:#a6e22e">a</span>:<span style="color:#a6e22e">link</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">return</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">catch</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">echo</span> <span style="color:#e6db74">&#34;Failed opening file in vim.&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">endtry</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">endif</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">return</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">endfunction</span>
+</span></span></code></pre></div><p>This will open the links that have <code>.md</code> and <code>.wiki</code> in their names. If you want other formats to be supported, modify the regex to include other extensions. E.g. for Python source files, you can change the appropriate line:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vim" data-lang="vim"><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">match</span>(<span style="color:#a6e22e">a</span>:<span style="color:#a6e22e">link</span>, <span style="color:#e6db74">&#39;\.\(md\|wiki\|py\)$&#39;</span>) != <span style="color:#ae81ff">-1</span>
+</span></span></code></pre></div><h2 id="conclusion">Conclusion</h2>
+<p>In the current version of Vim Wiki, you can not link Markdown files in your notes written with the default Vim Wiki syntax (provided, you use Vim wiki syntax), because Vim Wiki automatically appends <code>.wiki</code> to the file name. In this article I&rsquo;ve described what I&rsquo;ve tried to fix it, and a possible work around that fixes the issue.</p>
 ]]></content>
 		</item>
 		

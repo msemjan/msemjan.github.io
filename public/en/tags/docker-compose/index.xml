@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker Compose on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
+    <link>http://localhost:1313/blog/en/tags/docker-compose/</link>
+    <description>Recent content in Docker Compose on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 02 Jun 2024 15:44:08 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/blog/en/tags/docker-compose/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker Compose Watch</title>
+      <link>http://localhost:1313/blog/en/posts/docker-compose-watch/</link>
+      <pubDate>Sun, 02 Jun 2024 15:44:08 +0200</pubDate>
+      <guid>http://localhost:1313/blog/en/posts/docker-compose-watch/</guid>
+      <description>In version 2.22.0 Docker Compose introduced Compose Watch feature, which allows Docker Compose users to automatically update and preview services running as soon as the work is saved.</description>
+    </item>
+  </channel>
+</rss>
