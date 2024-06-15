@@ -1,7 +1,7 @@
 ---
 title: "Using NGINX As A Load Balancer"
 date: 2024-06-15T11:09:40+02:00
-draft: false 
+draft: false
 toc: false
 summary: "Load balancing is a process of distributing a set of tasks to multiple resources (e.g. processing units or servers) with a goal of increasing efficiency of processing, maximizing throughput, reducing latency, and ensuring fault tolerant configuration. In this post we will take a look at how to configure load balancing with NGINX server."
 tags:

@@ -13,7 +13,7 @@
       <link>http://localhost:1313/blog/en/posts/nginx-load-balancer/</link>
       <pubDate>Sat, 15 Jun 2024 11:09:40 +0200</pubDate>
       <guid>http://localhost:1313/blog/en/posts/nginx-load-balancer/</guid>
-      <description>TBD</description>
+      <description>Load balancing is a process of distributing a set of tasks to multiple resources (e.g. processing units or servers) with a goal of increasing efficiency of processing, maximizing throughput, reducing latency, and ensuring fault tolerant configuration. In this post we will take a look at how to configure load balancing with NGINX server.</description>
     </item>
     <item>
       <title>Nginx Reverse Proxy for Apps</title>
