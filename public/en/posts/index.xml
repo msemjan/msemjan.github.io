@@ -5,8 +5,143 @@
 		<description>Recent content in Posts on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
-		<lastBuildDate>Sun, 02 Jun 2024 15:44:08 +0200</lastBuildDate>
+		<lastBuildDate>Sat, 15 Jun 2024 11:09:40 +0200</lastBuildDate>
 		<atom:link href="http://localhost:1313/blog/en/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Using NGINX As A Load Balancer</title>
+			<link>http://localhost:1313/blog/en/posts/nginx-load-balancer/</link>
+			<pubDate>Sat, 15 Jun 2024 11:09:40 +0200</pubDate>
+			
+			<guid>http://localhost:1313/blog/en/posts/nginx-load-balancer/</guid>
+			<description><![CDATA[%!s(<nil>)]]></description>
+			<content type="html"><![CDATA[<h2 id="what-is-a-load-balancer-and-why-do-i-need-it">What Is A Load Balancer And Why Do I need It?</h2>
+<p>Load balancing is a process of distributing a set of tasks across multiple resources (processing units on a single computer or several separate servers) with a goal of increasing efficiency of processing, maximizing throughput, reducing latency, and ensuring fault tolerant configuration.</p>
+<p>In this post I will show you how to configure a NGINX server as a load balancer. I also have a guide on how to <a href="/blog/en/posts/nginx-reverse-proxy-for-apps/">configure NGINX as a reverse proxy</a>, that includes steps on how to install NGINX server on Raspberry Pi.</p>
+<h2 id="load-balancing-methods">Load Balancing Methods</h2>
+<p>There are three common load balancing methods supported by NGINX server:</p>
+<ul>
+<li><strong>Round-Robin</strong>: All requests are evenly distributed across the application servers in a round Robin fashion.</li>
+<li><strong>Least Connected</strong>: An in-comming request is forwarded to the server with the least number of active connections.</li>
+<li><strong>IP Hash</strong>: The server to which the requests go is determined with a hash-function of the client&rsquo;s IP address.</li>
+</ul>
+<h2 id="simple-load-balancer-configuration">Simple Load Balancer Configuration</h2>
+<p>The simplest configuration of load balancing in NGINX would look something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#66d9ef">http</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">upstream</span> <span style="color:#e6db74">my-app</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">server</span> <span style="color:#e6db74">server1.com</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">server</span> <span style="color:#e6db74">server2.com</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">server</span> <span style="color:#e6db74">server3.com</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">listen</span> <span style="color:#ae81ff">80</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://my-app</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In this example there are three instances running on <code>server1.com</code>, <code>server2.com</code>, and <code>server3.com</code>. Since the load balancing method was not specified, the load balancer defaults to round-robin, which distributes the requests to all the servers evenly. The requests are proxied to the server group <code>my-app</code> and NGINX applies HTTP load balancing to distribute the requests.</p>
+<p>Load balancing can be applied to HTTPS instead of HTTP if you specify <code>https</code> as the protocol.</p>
+<blockquote>
+<p><strong>Note</strong>: The servers can be multiple instances of some application running on a single computer, e.g. when we are running multiple instances of a Node.js application on a single server. This way we can overcome the single-threaded nature of Node.js. The instances would be differentiated by ports:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#66d9ef">http</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">upstream</span> <span style="color:#e6db74">my-app</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">server</span> <span style="color:#e6db74">http://localhost:8000</span>;
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">server</span> <span style="color:#e6db74">http://localhost:8001</span>;
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">server</span> <span style="color:#e6db74">http://localhost:8002</span>;
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">server</span> <span style="color:#e6db74">http://localhost:8003</span>;
+</span></span><span style="display:flex;"><span>     }
+</span></span><span style="display:flex;"><span>     <span style="color:#75715e"># Rest of the configuration
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div></blockquote>
+<h2 id="least-connected-load-balancer">Least Connected Load Balancer</h2>
+<p>The configuration above is not ideal in all situations, e.g. some requests may take longer to finish than others. In such case it is better to use the least-connected method. With this option, NGINX will not send requests to the busy servers, which could overload them. Instead the least busy server is selected.</p>
+<p>If you want to use the least-connected method, simply add <code>least_conn</code> directive in the server group configuration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#66d9ef">http</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">upstream</span> <span style="color:#e6db74">my-app</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">least_conn</span>; <span style="color:#75715e"># &lt;=== This was added
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">server</span> <span style="color:#e6db74">server1.com</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">server</span> <span style="color:#e6db74">server2.com</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">server</span> <span style="color:#e6db74">server3.com</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">listen</span> <span style="color:#ae81ff">80</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://my-app</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="session-persistence">Session Persistence</h2>
+<p>There is no guarantee, either with the round-robin, or with the least-connected method, that all the requests from the same client will be forwarded to the same server. This may pose a significant problem to some applications, but it is easy to mitigate the issue by using the IP hash method. Since the hash function is deterministic, hashing a given IP address will result in the requests being forwarded to the same server.</p>
+<p>To configure the IP hash method, add <code>ip_hash</code> directive into the server group configuration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#66d9ef">http</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">upstream</span> <span style="color:#e6db74">my-app</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ip_hash</span>; <span style="color:#75715e"># &lt;=== This was added
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">server</span> <span style="color:#e6db74">server1.com</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">server</span> <span style="color:#e6db74">server2.com</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">server</span> <span style="color:#e6db74">server3.com</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">listen</span> <span style="color:#ae81ff">80</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://my-app</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="weighted-load-balancing">Weighted Load Balancing</h2>
+<p>In addition to the configurations above, it is also possible to further influence load balancing by adding server weights to the configuration. When no weights are specified, it means that all servers are treated equally. When the round-robin is used, all requests are distributed (more or less) uniformly to all servers.</p>
+<p>However, we may want to change the distribution and send more requests to some of the servers.</p>
+<p>In the example below we increased the weight of the <code>server1.com</code>. With this configuration for every five requests, three will go to the <code>server1.com</code>, one to the <code>server2.com</code> and one to the <code>server3.com</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#66d9ef">http</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">upstream</span> <span style="color:#e6db74">my-app</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">server</span> <span style="color:#e6db74">server1.com</span> <span style="color:#e6db74">weight=3</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">server</span> <span style="color:#e6db74">server2.com</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">server</span> <span style="color:#e6db74">server3.com</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">listen</span> <span style="color:#ae81ff">80</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://my-app</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In the recent versions of NGINX weights can be used with the least-connected and the IP hash as well.</p>
+<h2 id="health-checking-and-other-settings">Health Checking And Other Settings</h2>
+<p>Reverse proxy implementation in NGINX includes health checks. If a server fails with an error, NGINX will consider this server as failed and avoid sending subsequent requests to this server.</p>
+<p>This behavior can be tailored to your specific needs with the following directives:</p>
+<ul>
+<li><a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server"><code>max_fails</code></a> - Specifies a number of unsuccessful requests that should happen during a <code>fail_timeout</code>. The default value is <code>1</code>. When set to <code>0</code>, the health checks will be disabled for this server.</li>
+<li><a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server"><code>fail_timeout</code></a> - Specifies for how long will the server be marked as failed. After this period, NGINX will probe the server with the live client&rsquo;s requests. If the requests are successful, the server is marked as a live one.</li>
+</ul>
+<p>In addition to the directives above, there are other directives and parameters that can modify and control load balancing in NGINX. For example, you may want to look at:</p>
+<ul>
+<li><a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream"><code>proxy_next_upstream</code></a> - Specifies in which cases the requests should be passed to the next server.</li>
+<li><a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server"><code>backup</code></a> - Marks the server as a backup server. The requests will be passed to this server, when the primary servers become unavailable.</li>
+<li><a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server"><code>down</code></a> - Marks the server as permanently unavailable.</li>
+<li><a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive"><code>keepalive</code></a> - Activates a cache for the connections to upstream servers.</li>
+</ul>
+<p>If you need more information take a look at NGINX documentation<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this post I showed how to configure load balancing with NGINX server. It is more important than ever to know how to use load balancers. Modern applications have to process large amounts of text, videos, images and other traffic in a fast and reliable manner. To handle such volume of data, several instances of applications are running and requested data is distributed by load balancers that sit between the internet and the applications.</p>
+<h2 id="references">References</h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><em>nginx documentation</em>. (n.d.). <a href="https://nginx.org/en/docs/">https://nginx.org/en/docs/</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Docker Compose Watch</title>

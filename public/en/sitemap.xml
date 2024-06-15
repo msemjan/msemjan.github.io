@@ -2,34 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/blog/en/tags/containerization/</loc>
-    <lastmod>2024-06-02T14:59:08+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/en/tags/devops/</loc>
-    <lastmod>2024-06-02T14:59:08+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/en/tags/docker/</loc>
-    <lastmod>2024-06-02T14:59:08+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/en/posts/docker-compose-watch/</loc>
-    <lastmod>2024-06-02T14:59:08+02:00</lastmod>
+    <loc>http://localhost:1313/blog/en/tags/load-balancer-application-load-balancer/</loc>
+    <lastmod>2024-06-15T11:09:40+02:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/en/</loc>
-    <lastmod>2024-06-02T14:59:08+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/en/posts/</loc>
-    <lastmod>2024-06-02T14:59:08+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/en/tags/</loc>
-    <lastmod>2024-06-02T14:59:08+02:00</lastmod>
+    <lastmod>2024-06-15T11:09:40+02:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/en/tags/nginx/</loc>
-    <lastmod>2024-05-26T19:52:00+02:00</lastmod>
+    <lastmod>2024-06-15T11:09:40+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/en/posts/nginx-reverse-proxy-for-apps/</loc>
-    <lastmod>2024-05-26T19:52:00+02:00</lastmod>
+    <loc>http://localhost:1313/blog/en/posts/</loc>
+    <lastmod>2024-06-15T11:09:40+02:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/en/tags/rest-api/</loc>
+    <lastmod>2024-06-15T11:09:40+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/tags/</loc>
+    <lastmod>2024-06-15T11:09:40+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/posts/nginx-load-balancer/</loc>
+    <lastmod>2024-06-15T11:09:40+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/tags/containerization/</loc>
+    <lastmod>2024-06-02T15:44:08+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/tags/devops/</loc>
+    <lastmod>2024-06-02T15:44:08+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/tags/docker/</loc>
+    <lastmod>2024-06-02T15:44:08+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/tags/docker-compose/</loc>
+    <lastmod>2024-06-02T15:44:08+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/posts/docker-compose-watch/</loc>
+    <lastmod>2024-06-02T15:44:08+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/posts/nginx-reverse-proxy-for-apps/</loc>
     <lastmod>2024-05-26T19:52:00+02:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/en/tags/reverse-proxy/</loc>
