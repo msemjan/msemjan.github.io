@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Certification on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
-    <link>http://localhost:1313/blog/en/tags/certification/</link>
+    <link>https://msemjan.github.io/blog/en/tags/certification/</link>
     <description>Recent content in Certification on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 13 Apr 2024 09:55:35 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/blog/en/tags/certification/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://msemjan.github.io/blog/en/tags/certification/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>My Experience With JSNAD</title>
-      <link>http://localhost:1313/blog/en/posts/my-experience-with-jsnad/</link>
+      <link>https://msemjan.github.io/blog/en/posts/my-experience-with-jsnad/</link>
       <pubDate>Sat, 13 Apr 2024 09:55:35 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/my-experience-with-jsnad/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/my-experience-with-jsnad/</guid>
       <description>What Is OpenJS Node.js Application Developer (JSNAD)? JSNAD is a certification offered by Linux Foundation that verifies candidate&amp;rsquo;s skill in using Node.js to build applications of any kind. Unlike many other certifications, this is not a quiz in which you pick a correct answer from a given list of options. It is a practical exam in which you connect to a remote computer and write real code to solve various programming problems.</description>
     </item>
   </channel>

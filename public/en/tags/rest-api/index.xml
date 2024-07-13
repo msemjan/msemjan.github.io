@@ -2,32 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>REST API on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
-    <link>http://localhost:1313/blog/en/tags/rest-api/</link>
+    <link>https://msemjan.github.io/blog/en/tags/rest-api/</link>
     <description>Recent content in REST API on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 15 Jun 2024 11:09:40 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/blog/en/tags/rest-api/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://msemjan.github.io/blog/en/tags/rest-api/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Using NGINX As A Load Balancer</title>
-      <link>http://localhost:1313/blog/en/posts/nginx-load-balancer/</link>
+      <link>https://msemjan.github.io/blog/en/posts/nginx-load-balancer/</link>
       <pubDate>Sat, 15 Jun 2024 11:09:40 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/nginx-load-balancer/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/nginx-load-balancer/</guid>
       <description>Load balancing is a process of distributing a set of tasks to multiple resources (e.g. processing units or servers) with a goal of increasing efficiency of processing, maximizing throughput, reducing latency, and ensuring fault tolerant configuration. In this post we will take a look at how to configure load balancing with NGINX server.</description>
     </item>
     <item>
       <title>Nginx Reverse Proxy for Apps</title>
-      <link>http://localhost:1313/blog/en/posts/nginx-reverse-proxy-for-apps/</link>
+      <link>https://msemjan.github.io/blog/en/posts/nginx-reverse-proxy-for-apps/</link>
       <pubDate>Sun, 26 May 2024 19:52:00 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/nginx-reverse-proxy-for-apps/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/nginx-reverse-proxy-for-apps/</guid>
       <description>Have you ever found yourself in the following situation: You have a application that is running locally on your computer (e.g. Raspberry Pi) and you want to access it from your other devices. When you make a request on &lt;code&gt;http://localhost:PORT/SOME_ENDPOINT&lt;/code&gt; from the computer on which the application runs, it is successful, but when you use other device, the website can not be found. If yes, than this is an article for you!</description>
-    </item>
-    <item>
-      <title>Simple Server With Expressjs</title>
-      <link>http://localhost:1313/blog/en/posts/simple-server-with-expressjs/</link>
-      <pubDate>Sat, 18 May 2024 11:11:49 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/simple-server-with-expressjs/</guid>
-      <description>Introduction Express.js is a de facto standard for the Node.js back-end development of REST Services and simple servers. It is a simple and fast web framework that allows Javascript developers to write all kinds of applications ranging from simple toy projects to fully-fledged production-ready web services deployed by large companies. Due to its simplicity and flexibility it is suitable for any type of project you may work on. Moreover, it has a thriving ecosystem supported by numerous population of dedicated developers (for example when I search NPM for term express middleware, I received 6000 results).</description>
     </item>
   </channel>
 </rss>

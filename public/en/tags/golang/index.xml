@@ -2,39 +2,46 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Golang on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
-    <link>http://localhost:1313/blog/en/tags/golang/</link>
+    <link>https://msemjan.github.io/blog/en/tags/golang/</link>
     <description>Recent content in Golang on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sun, 19 May 2024 15:48:02 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/blog/en/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://msemjan.github.io/blog/en/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Validation In Go Programming Language</title>
-      <link>http://localhost:1313/blog/en/posts/golang-validation/</link>
+      <link>https://msemjan.github.io/blog/en/posts/golang-validation/</link>
       <pubDate>Sun, 19 May 2024 15:48:02 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/golang-validation/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/golang-validation/</guid>
       <description>In this post I show how to validate data in Go &lt;code&gt;struct&lt;/code&gt; using two approaches: with the help of standard library only and with a third-party library.</description>
     </item>
     <item>
       <title>Introduction Into gRPC in Go</title>
-      <link>http://localhost:1313/blog/en/posts/introduction-into-grpc-in-go/</link>
+      <link>https://msemjan.github.io/blog/en/posts/introduction-into-grpc-in-go/</link>
       <pubDate>Wed, 15 Nov 2023 18:35:15 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/introduction-into-grpc-in-go/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/introduction-into-grpc-in-go/</guid>
       <description>gRPC is a modern alternative to REST APIs, which uses protocol buffers to encode messages to decrease the size of data that needs to be send over the networ and increase the speed of encoding and decoding messages. Read this post to learn more about gRPC, it&amp;rsquo;s advantages and disadvantages, and how to get started with this technology.</description>
     </item>
     <item>
       <title>Introduction Into Protocol Buffers in Go</title>
-      <link>http://localhost:1313/blog/en/posts/introduction-into-protocol-buffers-in-go/</link>
+      <link>https://msemjan.github.io/blog/en/posts/introduction-into-protocol-buffers-in-go/</link>
       <pubDate>Sat, 26 Aug 2023 09:14:53 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/introduction-into-protocol-buffers-in-go/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/introduction-into-protocol-buffers-in-go/</guid>
       <description>Protocol buffers are a language-agnostic and platform-independent mechanism for serialization of data created by Google. Protocol buffers can be used as a replacement for older formats, such as JSON or XML, but they are designed to be much smaller, faster and simpler.</description>
     </item>
     <item>
       <title>Introducing GHAST Stack</title>
-      <link>http://localhost:1313/blog/en/posts/introducing-ghast-stack/</link>
+      <link>https://msemjan.github.io/blog/en/posts/introducing-ghast-stack/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/introducing-ghast-stack/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/introducing-ghast-stack/</guid>
       <description>GHAST stack is a new tech-stack for developing web applications without excessive use of Javascript. In this article I describe why I am suggesting usage of this tech-stack and what technologies it uses.</description>
+    </item>
+    <item>
+      <title>Sql Migrations With Goose</title>
+      <link>https://msemjan.github.io/blog/en/posts/sql-migrations-with-goose/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://msemjan.github.io/blog/en/posts/sql-migrations-with-goose/</guid>
+      <description>Goose is a database migration tool that will help you manage your database schemas</description>
     </item>
   </channel>
 </rss>
