@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script><meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="robots" content="index, follow">
+<meta name="revisit-after" content="15 days">
+<link rel="author" href="/blog/humans.txt">
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/site.webmanifest">
+<meta name="msapplication-TileImage" content="/blog/mstile-144x144.png">
+<meta name="theme-color" content="#494f5c">
+<meta name="msapplication-TileColor" content="#494f5c">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#494f5c"><meta name="author" content="Marek Semjan">
+
+  <meta itemprop="name" content="Sql Migrations With Goose">
+  <meta itemprop="description" content="Goose is a database migration tool that will help you manage your database schemas">
+  <meta itemprop="datePublished" content="2024-07-10T16:56:29+02:00">
+  <meta itemprop="dateModified" content="2024-07-10T16:56:29+02:00">
+  <meta itemprop="wordCount" content="1299">
+  <meta itemprop="keywords" content="SQL,Migrations,Goose,Go,Golang"><meta property="og:url" content="http://localhost:1313/blog/en/posts/sql-migrations-with-goose/">
+  <meta property="og:site_name" content="Marek&#39;s Blog (ᵔ◡ᵔ)	">
+  <meta property="og:title" content="Sql Migrations With Goose">
+  <meta property="og:description" content="Goose is a database migration tool that will help you manage your database schemas">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-07-10T16:56:29+02:00">
+    <meta property="article:modified_time" content="2024-07-10T16:56:29+02:00">
+    <meta property="article:tag" content="SQL">
+    <meta property="article:tag" content="Migrations">
+    <meta property="article:tag" content="Goose">
+    <meta property="article:tag" content="Go">
+    <meta property="article:tag" content="Golang">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Sql Migrations With Goose">
+  <meta name="twitter:description" content="Goose is a database migration tool that will help you manage your database schemas">
+<title>Sql Migrations With Goose</title>
+<link rel="stylesheet dns-prefetch preconnect preload prefetch" as="style" href="http://localhost:1313/blog/css/style.min.345c563a38b4f7575cf28aec1272efcd1e50c614529052cf51ec1ea1eba36fac.css" integrity="sha256-NFxWOji091dc8orsEnLvzR5QxhRSkFLPUeweoeujb6w=" crossorigin="anonymous">
+	</head>
+<body id="page">
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://localhost:1313/blog/">Marek&#39;s Blog (ᵔ◡ᵔ)	</a>
+				</div>
+				<nav class="site-nav hide-in-mobile"><a href="http://localhost:1313/blog/en/posts/">Posts</a><a href="http://localhost:1313/blog/en/about-hugo/">About</a></nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://sk.linkedin.com/in/marek-semjan-12497a26a" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://github.com/msemjan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://www.researchgate.net/profile/Marek-Semjan-2" target="_blank" rel="noopener me" title="Researchgate"><svg xmlns="http://www.w3.org/2000/svg" class="feather feather-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></span><button id="share-btn" class="hdr-btn" title="Share"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></button>
+ 
+<div id="share-links" class="animated fast">
+    
+    
+    
+    
+    <ul>
+        <li>
+            <a href="https://twitter.com/intent/tweet?hashtags=hermit2&amp;url=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fsql-migrations-with-goose%2f&amp;text=Sql%20Migrations%20With%20Goose" target="_blank" rel="noopener" aria-label="Share on X"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path class="st0" d="m21.3 21.1 -11.4 -18.2h-7.2l11.4 18.2zm-18.6 0 7.2 -6.6m4.2 -5 7.2 -6.6"/></svg></a>
+        </li>
+        <li>
+            <a href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fsql-migrations-with-goose%2f" target="_blank" rel="noopener" aria-label="Share on Facebook"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+        </li>
+        <li>
+            <a href="mailto:?subject=Sql%20Migrations%20With%20Goose&amp;body=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fsql-migrations-with-goose%2f" target="_self" rel="noopener" aria-label="Share on Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+        </li>
+        <li>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fblog%2fen%2fposts%2fsql-migrations-with-goose%2f&amp;source=http%3a%2f%2flocalhost%3a1313%2fblog%2f&amp;title=Sql%20Migrations%20With%20Goose&amp;summary=Sql%20Migrations%20With%20Goose%2c%20by%20Marek%20Semjan%0a%0a%3cnil%3e%0a" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+        </li>
+        <li>
+            <a href="#" onclick="linkShare(&#34;Sql Migrations With Goose&#34;,&#34;http://localhost:1313/blog/en/posts/sql-migrations-with-goose/&#34;,&#34;Sql Migrations With Goose, by Marek Semjan\n\n\u003cnil\u003e\n&#34;); return false;" target="_self" rel="noopener" aria-label="Copy Link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></a>
+        </li>
+    </ul>
+</div><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://localhost:1313/blog/en/posts/">Posts</a></li>
+			<li><a href="http://localhost:1313/blog/en/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster"><article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jul 10, 2024</span></div>
+				<h1>Sql Migrations With Goose</h1>
+			</header>
+			<div class="post-info"><p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg><a href="" target="_blank">Marek Semjan</a></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://localhost:1313/blog/en/tags/sql">SQL</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/migrations">Migrations</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/goose">Goose</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/go">Go</a></span><span class="tag"><a href="http://localhost:1313/blog/en/tags/golang">Golang</a></span></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1299 Words
+    •
+    
+    
+    
+    5 Minutes, 54 Seconds</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2024-07-10 16:56 &#43;0200</p></div>
+			<hr class="post-end">
+			<div class="content">
+				<h2 id="what-is-goose">What Is Goose?<a href="#what-is-goose" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><a href="https://pressly.github.io/goose/">Goose</a> is a database migration tool that will help you manage your database schemas. In this blog post I will teach you the basics of this useful tool.</p>
+<h2 id="installation">Installation<a href="#installation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>If you have Go installed, you can use <code>go install</code> command to install Goose:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>go install github.com/pressly/goose/v3/cmd/goose@latest
+</span></span></code></pre></div><p>Then you can verify that the tool was installed correctly by running:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose -h
+</span></span></code></pre></div><h2 id="initialization-of-goose">Initialization Of Goose<a href="#initialization-of-goose" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>First, let&rsquo;s create initialize the database. We will do so by running the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose DRIVER DBSTRING create init sql
+</span></span></code></pre></div><p>Don&rsquo;t run it yet. First, you will need to replace <code>DRIVER</code> with one of the supported drivers: <code>clickhouse</code>, <code>mssql</code>, <code>mysql</code>, <code>postgres</code>, <code>sqlite3</code>, <code>turso</code>, <code>vertica</code>, and <code>ydb</code>. Secondly, you need a <code>DBSTRING</code> (the database connection string), which will differ depending on the specific database. Here is a non-exhaustive list of examples:</p>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th>Corresponding <code>init</code> command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PostgreSQL</td>
+<td><code>goose postgres &quot;user=postgres password=postgres dbname=postgres sslmode=disable&quot; init</code></td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td><code>goose mysql &quot;user:password@/dbname?parseTime=true&quot; init</code></td>
+</tr>
+<tr>
+<td>Amazon Redshift</td>
+<td><code>goose redshift &quot;postgres://user:password@qwerty.us-east-1.redshift.amazonaws.com:5439/db&quot; init</code></td>
+</tr>
+<tr>
+<td>TiDB</td>
+<td><code>goose tidb &quot;user:password@/dbname?parseTime=true&quot; init</code></td>
+</tr>
+<tr>
+<td>MS SQL</td>
+<td><code>goose mssql &quot;sqlserver://user:password@dbname:1433?database=master&quot; init</code></td>
+</tr>
+<tr>
+<td>ClickHouse</td>
+<td><code>goose clickhouse &quot;tcp://127.0.0.1:9000&quot; init</code></td>
+</tr>
+<tr>
+<td>Vertica</td>
+<td><code>goose vertica &quot;vertica://user:password@localhost:5433/dbname?connection_load_balance=1&quot; init</code></td>
+</tr>
+</tbody>
+</table>
+<p>For simplicity, I will use Sqlite3 from now on. The database can be initiated with the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db create init sql
+</span></span></code></pre></div><h2 id="goose-annotations-and-writing-first-migration">Goose Annotations And Writing First Migration<a href="#goose-annotations-and-writing-first-migration" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Let&rsquo;s create the first migration. There is a useful <code>goose create</code> command to create template for a migration file in a consistent way:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db create first sql
+</span></span></code></pre></div><p>This will create a file in the current working directory (the <code>first</code> will be prefixed by a timestamp). Every migration is a SQL file (with <code>.sql</code> extension). Alternatively, we can omit the trailing <code>sql</code> in the command and we will get a template file for our migration in Go programming language. However, more developers know SQL than Go, so we will stick to it.</p>
+<p>The file names of the migrations should start with a timestamp or a sequential number. When you open the file in your favorite editor, you should see:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- +goose Up
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementBegin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;up SQL query&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementEnd
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose Down
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementBegin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;down SQL query&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementEnd
+</span></span></span></code></pre></div><p>Goose uses several annotations. At the time of writing, there were seven annotations:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- +goose up
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose down
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose statementbegin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose statementend
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose no transaction
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose envsub on
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose envsub off
+</span></span></span></code></pre></div><p>The annotations are case insensitive, they should be placed on their own line with no leading whitespace, and when writing migrations, don&rsquo;t forget to include the <code>-- +goose</code> prefix. Only the <code>-- +goose up</code> is mandatory. Each SQL statement should be terminated by semicolon (<code>;</code>), otherwise they will not be properly recognized by Goose.</p>
+<p>More complex statements that contain semicolons must be wrapped within the <code>-- +goose statementbegin</code> and <code>-- +goose statementend</code> block. This pair of annotations will tell Goose to treat them as a larger unit instead of several separate statements. Comments, empty lines, and semicolons within such block will be preserved.</p>
+<p>Moreover, the <code>-- +goose statementbegin</code> and <code>-- +goose statementend</code> annotations can be used to send multiple statements as a single query instead of executing them individually. This can be useful e.g. when we are populating a table with test data using a large number of <code>INSERT</code> SQL statements. The use of these annotations also has performance implications, since inserting multiple rows in the same transaction is much faster than executing queries on one-by-one basis.</p>
+<p>However, let&rsquo;s return for a while to our first migration. It is common to create tables at the beginning of programming projects. In the example below, I wrote an example of creating a <code>users</code> table. Notice that in <code>-- +goose Down</code> part I have a <code>DROP TABLE</code> command. It is optional, only <code>-- +goose up</code> is necessary, but it may help when you need to revert the changes.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- +goose Up
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementBegin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> users (
+</span></span><span style="display:flex;"><span>  id         INT <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>  first_name VARCHAR(<span style="color:#ae81ff">255</span>),
+</span></span><span style="display:flex;"><span>  last_name  VARCHAR(<span style="color:#ae81ff">255</span>),
+</span></span><span style="display:flex;"><span>  email      VARCHAR(<span style="color:#ae81ff">255</span>)
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementEnd
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose Down
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementBegin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> users;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementEnd
+</span></span></span></code></pre></div><p>The change still was not applied, and we can check the state of the database with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db status
+</span></span></code></pre></div><p>The output may potentially look like this:</p>
+<pre tabindex="0"><code>2024/07/12 18:32:41     Applied At                  Migration
+2024/07/12 18:32:41     =======================================
+2024/07/12 18:32:41     Pending      -- 20240710181543_init.sql
+</code></pre><p>To apply pending migrations we can use use the command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db up
+</span></span></code></pre></div><p>The output of the command should look something like this:</p>
+<pre tabindex="0"><code>2024/07/12 18:32:41     Applied At                  Migration
+2024/07/12 18:32:41     =======================================
+2024/07/12 18:32:41     Fri Jul 12 16:44:03 2024 -- 20240710181543_init.sql
+</code></pre><p>When the requirements change and new changes need to be done, we can create new migrations (preferably with the <code>goose sqlite3 ./database.db create descriptive_name_of_migration sql</code> command), and then rerun <code>goose sqlite3 ./database.db up</code> to apply it. In case there is any issue and we&rsquo;ve implemented the <code>-- +goose down</code>, we can revert the latest migration with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db down
+</span></span></code></pre></div><h2 id="other-goose-commands">Other Goose Commands<a href="#other-goose-commands" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Besides the <code>create</code>, <code>up</code>, <code>down</code>, and <code>status</code> commands there are a few more that might be useful</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>up-by-one</code></td>
+<td>Migrate the DB up by 1</td>
+</tr>
+<tr>
+<td><code>up-to VERSION</code></td>
+<td>Migrate the DB to a specific VERSION</td>
+</tr>
+<tr>
+<td><code>down-to VERSION</code></td>
+<td>Roll back to a specific VERSION</td>
+</tr>
+<tr>
+<td><code>redo</code></td>
+<td>Re-run the latest migration</td>
+</tr>
+<tr>
+<td><code>reset</code></td>
+<td>Roll back all migrations</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>Print the current version of the database</td>
+</tr>
+<tr>
+<td><code>fix</code></td>
+<td>Apply sequential ordering to migrations</td>
+</tr>
+<tr>
+<td><code>validate</code></td>
+<td>Check migration files without running them</td>
+</tr>
+</tbody>
+</table>
+<h2 id="no-transactions">No Transactions<a href="#no-transactions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Goose runs all the statements in a migration file within a single transaction. However, this will not work for some statements, e.g. <code>CREATE DATABASE</code> or <code>CREATE INDEX CURRENTLY</code> that can not be run inside a transaction. In such cases we can add <code>-- +goose no transaction</code> annotation to the top of the file, and Goose will run all statements within the marked file outside a transaction.</p>
+<h2 id="substitution-of-environment-variables">Substitution Of Environment Variables<a href="#substitution-of-environment-variables" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>In case we don&rsquo;t know some value at the time of writing of a migration, we can use the environment variable substitution feature of Goose. The substitution is disabled by default, and can be enabled by including the <code>-- +goose envsub on</code> annotation. If we need to use the substitution only in a small subsection of the file, we can disable it again with <code>-- +goose envsub off</code>, otherwise Goose will attempt to substitute environment variable until the end of the file.</p>
+<p>Supported expansions use <a href="https://github.com/mfridman/interpolate?tab=readme-ov-file#supported-expansions">mfridman/interpolate</a> package:</p>
+<ul>
+<li><code>${parameter}</code> or <code>$parameter</code> - Uses the value if the <code>parameter</code> is set, otherwise it will be left blank</li>
+<li><code>${parameter:-[word]}</code> - If the <code>parameter</code> is unset or null, the expansion of the <code>word</code> will be substituted</li>
+<li><code>${parameter-[word]</code> - If the parameter is unset, the expansion of the <code>word</code> is used</li>
+<li><code>${parameter:[offset]}</code> - Use the substring of the <code>parameter</code> after the <code>offset</code></li>
+<li><code>${parameter:[offset]:[length]}</code> - Use the substring of the <code>parameter</code> after the <code>offset</code> of the given <code>length</code></li>
+<li><code>${parameter?[word]}</code> - Indicate error if null</li>
+<li><code>${parameter:?[word]}</code> - Indicate error if null or unset</li>
+</ul>
+<p>Example of an environment variable substitution is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- +goose envsub on
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose up
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> regions <span style="color:#66d9ef">WHERE</span> name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;${REGION}&#39;</span>;
+</span></span></code></pre></div><h2 id="conclusions">Conclusions<a href="#conclusions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Hopefully, I&rsquo;ve shown in this blog post that Goose is a useful tool that will help you write your migrations in an organized fashion instead of executing random SQL statements ad hoc. Such approach is hard to reproduce and possibly erroneous. Moreover, when you systematically save the SQL files into the same directory and put it into your version control system, you can easily reproduce, rollout, or revert the changes.</p>
+<p>I also see a potential in running automated tests that first create a SQL tables and populate the database with expected data. If SQLite3 is used, it is also easy to clean up, since the  entire database is stored in a single file. Alternatively, Goose could be used to easily create development environment that has the same (or very similar) setup as the production database.</p>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/blog/en/posts/golang-validation/">Validation In Go Programming Language</a></li>
+	
+	<li><a href="/blog/en/posts/introduction-into-grpc-in-go/">Introduction Into gRPC in Go</a></li>
+	
+	<li><a href="/blog/en/posts/introduction-into-protocol-buffers-in-go/">Introduction Into Protocol Buffers in Go</a></li>
+	
+	<li><a href="/blog/en/posts/introducing-ghast-stack/">Introducing GHAST Stack</a></li>
+	
+	</ul>
+</div>
+
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="http://localhost:1313/blog/en/posts/nginx-load-balancer/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Using NGINX As A Load Balancer</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"></div>
+	</main>
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+	<p>
+		&copy; 2024 <a href="http://localhost:1313/blog/">Marek Semjan</a>
+		&#183; Copyright © 2024 Marek Semjan. All Rights Reserved.
+		&#183; Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+		&#183; Theme <a href="https://github.com/1bl4z3r/hermit-V2" target="_blank" rel="noopener">Hermit-V2</a></p>
+
+</footer>
+<script async src="http://localhost:1313/blog/js/bundle.min.c7c384e4d29d192bbac6811ae4660bb01767194a5bea56baca77e8260f93ea16.js" integrity="sha256-x8OE5NKdGSu6xoEa5GYLsBdnGUpb6la6ynfoJg+T6hY=" crossorigin="anonymous"></script><script async src="http://localhost:1313/blog/js/link-share.min.24409a4f6e5537d70ffc55ec8f9192208d718678cb8638585342423020b37f39.js" integrity="sha256-JECaT25VN9cP/FXsj5GSII1xhnjLhjhYU0JCMCCzfzk=" crossorigin="anonymous"></script>
+</body>
+
+</html>

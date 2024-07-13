@@ -5,8 +5,189 @@
 		<description>Recent content in Posts on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
-		<lastBuildDate>Sat, 15 Jun 2024 11:09:40 +0200</lastBuildDate>
+		<lastBuildDate>Wed, 10 Jul 2024 16:56:29 +0200</lastBuildDate>
 		<atom:link href="http://localhost:1313/blog/en/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Sql Migrations With Goose</title>
+			<link>http://localhost:1313/blog/en/posts/sql-migrations-with-goose/</link>
+			<pubDate>Wed, 10 Jul 2024 16:56:29 +0200</pubDate>
+			
+			<guid>http://localhost:1313/blog/en/posts/sql-migrations-with-goose/</guid>
+			<description><![CDATA[%!s(<nil>)]]></description>
+			<content type="html"><![CDATA[<h2 id="what-is-goose">What Is Goose?</h2>
+<p><a href="https://pressly.github.io/goose/">Goose</a> is a database migration tool that will help you manage your database schemas. In this blog post I will teach you the basics of this useful tool.</p>
+<h2 id="installation">Installation</h2>
+<p>If you have Go installed, you can use <code>go install</code> command to install Goose:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>go install github.com/pressly/goose/v3/cmd/goose@latest
+</span></span></code></pre></div><p>Then you can verify that the tool was installed correctly by running:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose -h
+</span></span></code></pre></div><h2 id="initialization-of-goose">Initialization Of Goose</h2>
+<p>First, let&rsquo;s create initialize the database. We will do so by running the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose DRIVER DBSTRING create init sql
+</span></span></code></pre></div><p>Don&rsquo;t run it yet. First, you will need to replace <code>DRIVER</code> with one of the supported drivers: <code>clickhouse</code>, <code>mssql</code>, <code>mysql</code>, <code>postgres</code>, <code>sqlite3</code>, <code>turso</code>, <code>vertica</code>, and <code>ydb</code>. Secondly, you need a <code>DBSTRING</code> (the database connection string), which will differ depending on the specific database. Here is a non-exhaustive list of examples:</p>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th>Corresponding <code>init</code> command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PostgreSQL</td>
+<td><code>goose postgres &quot;user=postgres password=postgres dbname=postgres sslmode=disable&quot; init</code></td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td><code>goose mysql &quot;user:password@/dbname?parseTime=true&quot; init</code></td>
+</tr>
+<tr>
+<td>Amazon Redshift</td>
+<td><code>goose redshift &quot;postgres://user:password@qwerty.us-east-1.redshift.amazonaws.com:5439/db&quot; init</code></td>
+</tr>
+<tr>
+<td>TiDB</td>
+<td><code>goose tidb &quot;user:password@/dbname?parseTime=true&quot; init</code></td>
+</tr>
+<tr>
+<td>MS SQL</td>
+<td><code>goose mssql &quot;sqlserver://user:password@dbname:1433?database=master&quot; init</code></td>
+</tr>
+<tr>
+<td>ClickHouse</td>
+<td><code>goose clickhouse &quot;tcp://127.0.0.1:9000&quot; init</code></td>
+</tr>
+<tr>
+<td>Vertica</td>
+<td><code>goose vertica &quot;vertica://user:password@localhost:5433/dbname?connection_load_balance=1&quot; init</code></td>
+</tr>
+</tbody>
+</table>
+<p>For simplicity, I will use Sqlite3 from now on. The database can be initiated with the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db create init sql
+</span></span></code></pre></div><h2 id="goose-annotations-and-writing-first-migration">Goose Annotations And Writing First Migration</h2>
+<p>Let&rsquo;s create the first migration. There is a useful <code>goose create</code> command to create template for a migration file in a consistent way:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db create first sql
+</span></span></code></pre></div><p>This will create a file in the current working directory (the <code>first</code> will be prefixed by a timestamp). Every migration is a SQL file (with <code>.sql</code> extension). Alternatively, we can omit the trailing <code>sql</code> in the command and we will get a template file for our migration in Go programming language. However, more developers know SQL than Go, so we will stick to it.</p>
+<p>The file names of the migrations should start with a timestamp or a sequential number. When you open the file in your favorite editor, you should see:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- +goose Up
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementBegin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;up SQL query&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementEnd
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose Down
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementBegin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;down SQL query&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementEnd
+</span></span></span></code></pre></div><p>Goose uses several annotations. At the time of writing, there were seven annotations:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- +goose up
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose down
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose statementbegin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose statementend
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose no transaction
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose envsub on
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose envsub off
+</span></span></span></code></pre></div><p>The annotations are case insensitive, they should be placed on their own line with no leading whitespace, and when writing migrations, don&rsquo;t forget to include the <code>-- +goose</code> prefix. Only the <code>-- +goose up</code> is mandatory. Each SQL statement should be terminated by semicolon (<code>;</code>), otherwise they will not be properly recognized by Goose.</p>
+<p>More complex statements that contain semicolons must be wrapped within the <code>-- +goose statementbegin</code> and <code>-- +goose statementend</code> block. This pair of annotations will tell Goose to treat them as a larger unit instead of several separate statements. Comments, empty lines, and semicolons within such block will be preserved.</p>
+<p>Moreover, the <code>-- +goose statementbegin</code> and <code>-- +goose statementend</code> annotations can be used to send multiple statements as a single query instead of executing them individually. This can be useful e.g. when we are populating a table with test data using a large number of <code>INSERT</code> SQL statements. The use of these annotations also has performance implications, since inserting multiple rows in the same transaction is much faster than executing queries on one-by-one basis.</p>
+<p>However, let&rsquo;s return for a while to our first migration. It is common to create tables at the beginning of programming projects. In the example below, I wrote an example of creating a <code>users</code> table. Notice that in <code>-- +goose Down</code> part I have a <code>DROP TABLE</code> command. It is optional, only <code>-- +goose up</code> is necessary, but it may help when you need to revert the changes.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- +goose Up
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementBegin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> users (
+</span></span><span style="display:flex;"><span>  id         INT <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>  first_name VARCHAR(<span style="color:#ae81ff">255</span>),
+</span></span><span style="display:flex;"><span>  last_name  VARCHAR(<span style="color:#ae81ff">255</span>),
+</span></span><span style="display:flex;"><span>  email      VARCHAR(<span style="color:#ae81ff">255</span>)
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementEnd
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose Down
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementBegin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> users;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementEnd
+</span></span></span></code></pre></div><p>The change still was not applied, and we can check the state of the database with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db status
+</span></span></code></pre></div><p>The output may potentially look like this:</p>
+<pre tabindex="0"><code>2024/07/12 18:32:41     Applied At                  Migration
+2024/07/12 18:32:41     =======================================
+2024/07/12 18:32:41     Pending      -- 20240710181543_init.sql
+</code></pre><p>To apply pending migrations we can use use the command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db up
+</span></span></code></pre></div><p>The output of the command should look something like this:</p>
+<pre tabindex="0"><code>2024/07/12 18:32:41     Applied At                  Migration
+2024/07/12 18:32:41     =======================================
+2024/07/12 18:32:41     Fri Jul 12 16:44:03 2024 -- 20240710181543_init.sql
+</code></pre><p>When the requirements change and new changes need to be done, we can create new migrations (preferably with the <code>goose sqlite3 ./database.db create descriptive_name_of_migration sql</code> command), and then rerun <code>goose sqlite3 ./database.db up</code> to apply it. In case there is any issue and we&rsquo;ve implemented the <code>-- +goose down</code>, we can revert the latest migration with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db down
+</span></span></code></pre></div><h2 id="other-goose-commands">Other Goose Commands</h2>
+<p>Besides the <code>create</code>, <code>up</code>, <code>down</code>, and <code>status</code> commands there are a few more that might be useful</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>up-by-one</code></td>
+<td>Migrate the DB up by 1</td>
+</tr>
+<tr>
+<td><code>up-to VERSION</code></td>
+<td>Migrate the DB to a specific VERSION</td>
+</tr>
+<tr>
+<td><code>down-to VERSION</code></td>
+<td>Roll back to a specific VERSION</td>
+</tr>
+<tr>
+<td><code>redo</code></td>
+<td>Re-run the latest migration</td>
+</tr>
+<tr>
+<td><code>reset</code></td>
+<td>Roll back all migrations</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>Print the current version of the database</td>
+</tr>
+<tr>
+<td><code>fix</code></td>
+<td>Apply sequential ordering to migrations</td>
+</tr>
+<tr>
+<td><code>validate</code></td>
+<td>Check migration files without running them</td>
+</tr>
+</tbody>
+</table>
+<h2 id="no-transactions">No Transactions</h2>
+<p>Goose runs all the statements in a migration file within a single transaction. However, this will not work for some statements, e.g. <code>CREATE DATABASE</code> or <code>CREATE INDEX CURRENTLY</code> that can not be run inside a transaction. In such cases we can add <code>-- +goose no transaction</code> annotation to the top of the file, and Goose will run all statements within the marked file outside a transaction.</p>
+<h2 id="substitution-of-environment-variables">Substitution Of Environment Variables</h2>
+<p>In case we don&rsquo;t know some value at the time of writing of a migration, we can use the environment variable substitution feature of Goose. The substitution is disabled by default, and can be enabled by including the <code>-- +goose envsub on</code> annotation. If we need to use the substitution only in a small subsection of the file, we can disable it again with <code>-- +goose envsub off</code>, otherwise Goose will attempt to substitute environment variable until the end of the file.</p>
+<p>Supported expansions use <a href="https://github.com/mfridman/interpolate?tab=readme-ov-file#supported-expansions">mfridman/interpolate</a> package:</p>
+<ul>
+<li><code>${parameter}</code> or <code>$parameter</code> - Uses the value if the <code>parameter</code> is set, otherwise it will be left blank</li>
+<li><code>${parameter:-[word]}</code> - If the <code>parameter</code> is unset or null, the expansion of the <code>word</code> will be substituted</li>
+<li><code>${parameter-[word]</code> - If the parameter is unset, the expansion of the <code>word</code> is used</li>
+<li><code>${parameter:[offset]}</code> - Use the substring of the <code>parameter</code> after the <code>offset</code></li>
+<li><code>${parameter:[offset]:[length]}</code> - Use the substring of the <code>parameter</code> after the <code>offset</code> of the given <code>length</code></li>
+<li><code>${parameter?[word]}</code> - Indicate error if null</li>
+<li><code>${parameter:?[word]}</code> - Indicate error if null or unset</li>
+</ul>
+<p>Example of an environment variable substitution is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- +goose envsub on
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose up
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> regions <span style="color:#66d9ef">WHERE</span> name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;${REGION}&#39;</span>;
+</span></span></code></pre></div><h2 id="conclusions">Conclusions</h2>
+<p>Hopefully, I&rsquo;ve shown in this blog post that Goose is a useful tool that will help you write your migrations in an organized fashion instead of executing random SQL statements ad hoc. Such approach is hard to reproduce and possibly erroneous. Moreover, when you systematically save the SQL files into the same directory and put it into your version control system, you can easily reproduce, rollout, or revert the changes.</p>
+<p>I also see a potential in running automated tests that first create a SQL tables and populate the database with expected data. If SQLite3 is used, it is also easy to clean up, since the  entire database is stored in a single file. Alternatively, Goose could be used to easily create development environment that has the same (or very similar) setup as the production database.</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Using NGINX As A Load Balancer</title>

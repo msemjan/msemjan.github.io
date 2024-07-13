@@ -6,8 +6,29 @@
     <description>Recent content in Tags on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 15 Jun 2024 11:09:40 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jul 2024 16:56:29 +0200</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Goose</title>
+      <link>http://localhost:1313/blog/en/tags/goose/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/en/tags/goose/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Migrations</title>
+      <link>http://localhost:1313/blog/en/tags/migrations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/en/tags/migrations/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SQL</title>
+      <link>http://localhost:1313/blog/en/tags/sql/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/en/tags/sql/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Application Load Balancer</title>
       <link>http://localhost:1313/blog/en/tags/application-load-balancer/</link>
@@ -335,13 +356,6 @@
       <link>http://localhost:1313/blog/en/tags/htmx/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/blog/en/tags/htmx/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>SQL</title>
-      <link>http://localhost:1313/blog/en/tags/sql/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/sql/</guid>
       <description></description>
     </item>
     <item>
