@@ -1,6 +1,6 @@
 ---
 title: "Introduction Into FZF"
-date: 2024-07-20T11:57:02+02:00
+date: 2024-08-03T16:40:02+02:00
 draft: false
 toc: true
 images:
