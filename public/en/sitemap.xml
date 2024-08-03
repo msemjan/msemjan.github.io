@@ -2,6 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://msemjan.github.io/blog/en/tags/cli/</loc>
+    <lastmod>2024-07-20T11:57:02+02:00</lastmod>
+  </url><url>
+    <loc>https://msemjan.github.io/blog/en/tags/fuzzy-finder/</loc>
+    <lastmod>2024-07-20T11:57:02+02:00</lastmod>
+  </url><url>
+    <loc>https://msemjan.github.io/blog/en/tags/fzf/</loc>
+    <lastmod>2024-07-20T11:57:02+02:00</lastmod>
+  </url><url>
+    <loc>https://msemjan.github.io/blog/en/posts/introduction-into-fzf/</loc>
+    <lastmod>2024-07-20T11:57:02+02:00</lastmod>
+  </url><url>
+    <loc>https://msemjan.github.io/blog/en/</loc>
+    <lastmod>2024-07-20T11:57:02+02:00</lastmod>
+  </url><url>
+    <loc>https://msemjan.github.io/blog/en/posts/</loc>
+    <lastmod>2024-07-20T11:57:02+02:00</lastmod>
+  </url><url>
+    <loc>https://msemjan.github.io/blog/en/tags/</loc>
+    <lastmod>2024-07-20T11:57:02+02:00</lastmod>
+  </url><url>
+    <loc>https://msemjan.github.io/blog/en/tags/terminal/</loc>
+    <lastmod>2024-07-20T11:57:02+02:00</lastmod>
+  </url><url>
+    <loc>https://msemjan.github.io/blog/en/tags/go/</loc>
+    <lastmod>2024-07-13T15:45:24+02:00</lastmod>
+  </url><url>
+    <loc>https://msemjan.github.io/blog/en/tags/golang/</loc>
+    <lastmod>2024-07-13T15:45:24+02:00</lastmod>
+  </url><url>
+    <loc>https://msemjan.github.io/blog/en/tags/goose/</loc>
+    <lastmod>2024-07-13T15:45:24+02:00</lastmod>
+  </url><url>
+    <loc>https://msemjan.github.io/blog/en/tags/migrations/</loc>
+    <lastmod>2024-07-13T15:45:24+02:00</lastmod>
+  </url><url>
+    <loc>https://msemjan.github.io/blog/en/tags/sql/</loc>
+    <lastmod>2024-07-13T15:45:24+02:00</lastmod>
+  </url><url>
+    <loc>https://msemjan.github.io/blog/en/posts/sql-migrations-with-goose/</loc>
+    <lastmod>2024-07-13T15:45:24+02:00</lastmod>
+  </url><url>
     <loc>https://msemjan.github.io/blog/en/tags/application-load-balancer/</loc>
     <lastmod>2024-06-15T11:09:40+02:00</lastmod>
   </url><url>
@@ -14,22 +56,13 @@
     <loc>https://msemjan.github.io/blog/en/tags/load-balancer/</loc>
     <lastmod>2024-06-15T11:09:40+02:00</lastmod>
   </url><url>
-    <loc>https://msemjan.github.io/blog/en/</loc>
-    <lastmod>2024-06-15T11:09:40+02:00</lastmod>
-  </url><url>
     <loc>https://msemjan.github.io/blog/en/tags/nginx/</loc>
-    <lastmod>2024-06-15T11:09:40+02:00</lastmod>
-  </url><url>
-    <loc>https://msemjan.github.io/blog/en/posts/</loc>
     <lastmod>2024-06-15T11:09:40+02:00</lastmod>
   </url><url>
     <loc>https://msemjan.github.io/blog/en/tags/rest-api/</loc>
     <lastmod>2024-06-15T11:09:40+02:00</lastmod>
   </url><url>
     <loc>https://msemjan.github.io/blog/en/tags/round-robin/</loc>
-    <lastmod>2024-06-15T11:09:40+02:00</lastmod>
-  </url><url>
-    <loc>https://msemjan.github.io/blog/en/tags/</loc>
     <lastmod>2024-06-15T11:09:40+02:00</lastmod>
   </url><url>
     <loc>https://msemjan.github.io/blog/en/posts/nginx-load-balancer/</loc>
@@ -55,12 +88,6 @@
   </url><url>
     <loc>https://msemjan.github.io/blog/en/tags/reverse-proxy/</loc>
     <lastmod>2024-05-26T19:52:00+02:00</lastmod>
-  </url><url>
-    <loc>https://msemjan.github.io/blog/en/tags/go/</loc>
-    <lastmod>2024-05-19T15:48:02+02:00</lastmod>
-  </url><url>
-    <loc>https://msemjan.github.io/blog/en/tags/golang/</loc>
-    <lastmod>2024-05-19T15:48:02+02:00</lastmod>
   </url><url>
     <loc>https://msemjan.github.io/blog/en/tags/validation/</loc>
     <lastmod>2024-05-19T15:48:02+02:00</lastmod>
@@ -176,9 +203,6 @@
     <loc>https://msemjan.github.io/blog/en/posts/introducing-ghast-stack/</loc>
     <lastmod>2023-08-11T18:12:17+02:00</lastmod>
   </url><url>
-    <loc>https://msemjan.github.io/blog/en/tags/sql/</loc>
-    <lastmod>2023-08-11T18:12:17+02:00</lastmod>
-  </url><url>
     <loc>https://msemjan.github.io/blog/en/tags/tailwind/</loc>
     <lastmod>2023-08-11T18:12:17+02:00</lastmod>
   </url><url>
@@ -221,9 +245,6 @@
     <loc>https://msemjan.github.io/blog/en/tags/scripting/</loc>
     <lastmod>2023-03-27T11:33:22+02:00</lastmod>
   </url><url>
-    <loc>https://msemjan.github.io/blog/en/tags/terminal/</loc>
-    <lastmod>2023-03-27T11:33:22+02:00</lastmod>
-  </url><url>
     <loc>https://msemjan.github.io/blog/en/posts/terminal-tips-and-tricks/</loc>
     <lastmod>2023-03-27T11:33:22+02:00</lastmod>
   </url><url>
@@ -244,11 +265,5 @@
   </url><url>
     <loc>https://msemjan.github.io/blog/en/posts/my-first-post/</loc>
     <lastmod>2023-03-26T16:34:01+02:00</lastmod>
-  </url><url>
-    <loc>https://msemjan.github.io/blog/en/tags/goose/</loc>
-  </url><url>
-    <loc>https://msemjan.github.io/blog/en/tags/migrations/</loc>
-  </url><url>
-    <loc>https://msemjan.github.io/blog/en/posts/sql-migrations-with-goose/</loc>
   </url>
 </urlset>

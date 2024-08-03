@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fzf on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
+    <link>https://msemjan.github.io/blog/en/tags/fzf/</link>
+    <description>Recent content in Fzf on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 20 Jul 2024 11:57:02 +0200</lastBuildDate>
+    <atom:link href="https://msemjan.github.io/blog/en/tags/fzf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction Into FZF</title>
+      <link>https://msemjan.github.io/blog/en/posts/introduction-into-fzf/</link>
+      <pubDate>Sat, 20 Jul 2024 11:57:02 +0200</pubDate>
+      <guid>https://msemjan.github.io/blog/en/posts/introduction-into-fzf/</guid>
+      <description>What Is fzf? The fzf is a general purpose fuzzy finder that can interactively filter any kind of list, command line history, processes, host names, bookmarks, git commits, or anything else. Ever since I&amp;rsquo;ve installed in on my computer, it completely changed the way I interact with my terminal. If you are a fan of command line tools, the fzf might be perfect thing for you as well.&#xA;Installation The fzf is in the repositories of most popular distributions and can be easily installed with a single command:</description>
+    </item>
+  </channel>
+</rss>

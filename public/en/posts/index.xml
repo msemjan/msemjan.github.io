@@ -5,8 +5,522 @@
 		<description>Recent content in Posts on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
-		<lastBuildDate>Sat, 15 Jun 2024 11:09:40 +0200</lastBuildDate>
+		<lastBuildDate>Sat, 20 Jul 2024 11:57:02 +0200</lastBuildDate>
 		<atom:link href="https://msemjan.github.io/blog/en/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Introduction Into FZF</title>
+			<link>https://msemjan.github.io/blog/en/posts/introduction-into-fzf/</link>
+			<pubDate>Sat, 20 Jul 2024 11:57:02 +0200</pubDate>
+			
+			<guid>https://msemjan.github.io/blog/en/posts/introduction-into-fzf/</guid>
+			<description><![CDATA[%!s(<nil>)]]></description>
+			<content type="html"><![CDATA[<h2 id="what-is-fzf">What Is <code>fzf</code>?</h2>
+<p>The <a href="https://github.com/junegunn/fzf">fzf</a> is a general purpose fuzzy finder that can interactively filter any kind of list, command line history, processes, host names, bookmarks, git commits, or anything else. Ever since I&rsquo;ve installed in on my computer, it completely changed the way I interact with my terminal. If you are a fan of command line tools, the fzf might be perfect thing for you as well.</p>
+<h2 id="installation">Installation</h2>
+<p>The fzf is in the repositories of most popular distributions and can be easily installed with a single command:</p>
+<table>
+<thead>
+<tr>
+<th>Package Manager</th>
+<th>Linux Distribution</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>APK</td>
+<td>Alpine Linux</td>
+<td><code>sudo apk add fzf</code></td>
+</tr>
+<tr>
+<td>APT</td>
+<td>Debian 9+/Ubuntu 19.10+</td>
+<td><code>sudo apt install fzf</code></td>
+</tr>
+<tr>
+<td>Conda</td>
+<td></td>
+<td><code>conda install -c conda-forge fzf</code></td>
+</tr>
+<tr>
+<td>DNF</td>
+<td>Fedora</td>
+<td><code>sudo dnf install fzf</code></td>
+</tr>
+<tr>
+<td>Nix</td>
+<td>NixOS, etc.</td>
+<td><code>nix-env -iA nixpkgs.fzf</code></td>
+</tr>
+<tr>
+<td>Pacman</td>
+<td>Arch Linux</td>
+<td><code>sudo pacman -S fzf</code></td>
+</tr>
+<tr>
+<td>pkg</td>
+<td>FreeBSD</td>
+<td><code>pkg install fzf</code></td>
+</tr>
+<tr>
+<td>pkgin</td>
+<td>NetBSD</td>
+<td><code>pkgin install fzf</code></td>
+</tr>
+<tr>
+<td>pkg_add</td>
+<td>OpenBSD</td>
+<td><code>pkg_add fzf</code></td>
+</tr>
+<tr>
+<td>Portage</td>
+<td>Gentoo</td>
+<td><code>emerge --ask app-shells/fzf</code></td>
+</tr>
+<tr>
+<td>Spack</td>
+<td></td>
+<td><code>spack install fzf</code></td>
+</tr>
+<tr>
+<td>XBPS</td>
+<td>Void Linux</td>
+<td><code>sudo xbps-install -S fzf</code></td>
+</tr>
+<tr>
+<td>Zypper</td>
+<td>openSUSE</td>
+<td><code>sudo zypper install fzf</code></td>
+</tr>
+</tbody>
+</table>
+<p>Alternatively, you can <a href="https://github.com/junegunn/fzf#using-git">build it</a> from the source code.</p>
+<p>Once everything is installed, you can try running the fzf for the first time by executing command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>fzf
+</span></span></code></pre></div><p>By default the fzf without any arguments will search for all files inside the current directory. Once you start typing the fzf will dynamically match any search terms. Since it uses a fuzzy search algorithm, you don&rsquo;t have to type the name of the file exactly. The fzf can still find it.</p>
+<p>Additionally, you can setup integration with your shell:</p>
+<ul>
+<li>bash
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>eval <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>fzf --bash<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div></li>
+<li>zsh
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>source &lt;<span style="color:#f92672">(</span>fzf --zsh<span style="color:#f92672">)</span>
+</span></span></code></pre></div></li>
+<li>fish
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fish" data-lang="fish"><span style="display:flex;"><span><span style="color:#a6e22e">fzf</span> <span style="color:#a6e22e">--fish</span> <span style="color:#f92672">|</span> source
+</span></span></code></pre></div></li>
+</ul>
+<p>This will add the fzf key bindings and fuzzy completions. The new keybindings will be:</p>
+<ul>
+<li><code>Ctrl+t</code> - list files and folders in current directory (e.g. you can use it like this: type <code>git add</code>, then press <code>Ctrl+t</code>, select a few files using <code>TAB</code>, finally <code>ENTER</code>. Git will add the selected files.)</li>
+<li><code>Ctrl+r</code> - search history of shell commands</li>
+<li><code>Alt+c</code> - fuzzy change directory</li>
+</ul>
+<p>These key bindings can be <a href="https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings">modified further</a> by user.</p>
+<p>There is also a <a href="https://github.com/junegunn/fzf">fzf plugin for Vim</a>, which can be installed by adding these two lines into your <code>~/.vimrc</code> file (assuming that you are using <a href="https://github.com/junegunn/vim-plug">vim-plug</a> package manager):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vim" data-lang="vim"><span style="display:flex;"><span><span style="color:#a6e22e">Plug</span> <span style="color:#e6db74">&#39;junegunn/fzf&#39;</span>, { <span style="color:#e6db74">&#39;do&#39;</span>: { -&gt; <span style="color:#a6e22e">fzf</span>#<span style="color:#a6e22e">install</span>() } }
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Plug</span> <span style="color:#e6db74">&#39;junegunn/fzf.vim&#39;</span>
+</span></span></code></pre></div><h2 id="search-syntax">Search Syntax</h2>
+<p>Unless otherwise specified, fzf starts in &ldquo;extended-search mode&rdquo; where you can type in multiple search terms delimited by spaces. e.g. <code>^music .mp3$ sbtrkt !fire</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Match type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sbtrkt</code></td>
+<td>fuzzy-match</td>
+<td>Items that match <code>sbtrkt</code></td>
+</tr>
+<tr>
+<td><code>'wild</code></td>
+<td>exact-match (quoted)</td>
+<td>Items that include <code>wild</code></td>
+</tr>
+<tr>
+<td><code>^music</code></td>
+<td>prefix-exact-match</td>
+<td>Items that start with <code>music</code></td>
+</tr>
+<tr>
+<td><code>.mp3$</code></td>
+<td>suffix-exact-match</td>
+<td>Items that end with <code>.mp3</code></td>
+</tr>
+<tr>
+<td><code>!fire</code></td>
+<td>inverse-exact-match</td>
+<td>Items that do not include <code>fire</code></td>
+</tr>
+<tr>
+<td><code>!^music</code></td>
+<td>inverse-prefix-exact-match</td>
+<td>Items that do not start with <code>music</code></td>
+</tr>
+<tr>
+<td><code>!.mp3$</code></td>
+<td>inverse-suffix-exact-match</td>
+<td>Items that do not end with <code>.mp3</code></td>
+</tr>
+</tbody>
+</table>
+<p>If you wish to search for an exact word or phrase, start fzf with <code>-e</code> or <code>--exact</code> option.</p>
+<p><strong>Note</strong>: When <code>--exact</code> is set, <code>'</code>-prefix &ldquo;unquotes&rdquo; the term.</p>
+<p>A single bar character term acts as an OR operator. For example, the following query matches entries that start with <code>core</code> and end with either <code>go</code>, <code>rb</code>, or <code>py</code>.</p>
+<pre tabindex="0"><code>^core go$ | rb$ | py$
+</code></pre><h2 id="using-fzf-in-your-scripts">Using <code>fzf</code> In Your Scripts</h2>
+<p>The true power of the fzf can be shown when we use it for various scripts.</p>
+<h3 id="basic-idea">Basic Idea</h3>
+<p>All of your scripts will be based on a single simple principle. We can pipe data into the fzf and then search in it using the fzf interface. The fzf will then output the selected text. For example, we can make a simple yes-no selector like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/sh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>selected<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo -e <span style="color:#e6db74">&#34;Yes\nNo&#34;</span> | fzf --prompt <span style="color:#e6db74">&#34;Select one of the options&#34;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;User selected </span>$selected<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p>The <code>--prompt</code> flag adds a message for the user. By the way, <code>-e</code> flag seems to be necessary in <code>echo</code>. I&rsquo;ve tried without, but the text was on a single line, and therefore we would have gotten only a single option. Once executed, we will be prompted to select one of the two options:</p>
+<pre tabindex="0"><code>╭────────────────────────────────────╮
+│ Select one of the options          │
+│   2/2 ──────────────────────────── │
+│ ▌ Yes                              │
+│   No                               │
+╰────────────────────────────────────╯
+</code></pre><p>Then the selected answer will be printed by using <code>echo</code>. This may seem simple, but it gives us wide possibilities. Below are a couple of simple examples to inspire you to write your own.</p>
+<h3 id="example---integration-with-tmux">Example - Integration With Tmux</h3>
+<p>If you are using Tmux, it may be interesting for you to use the fzf-tmux command instead of the plain fzf. It works well with Tmux and with a <code>p</code> flag the selection will display floating above the panes, and I find it more readable compared to launching fzf in a smaller pane.</p>
+<p>If you are not using Tmux at the moment, the fzf-tmux will run the normal fzf. The fzf-tmux has the same options as the normal fzf.</p>
+<h3 id="example---setting-size-of-fzf-window">Example - Setting Size Of Fzf Window</h3>
+<p>The width and height of the frame around the fzf selector can be adjusted according to the one&rsquo;s preferences with <code>--weigth</code>/<code>-w</code> (for width) and <code>--heigth</code>/<code>-h</code> (for heigth) flags:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>fzf -w 60% -h 30%
+</span></span></code></pre></div><p>This will make the fzf&rsquo;s 60% of the window&rsquo;s width and 30% of the window&rsquo;s height.</p>
+<h3 id="example---preview">Example - Preview</h3>
+<p>It is possible to add a preview of the currently selected file. The preview is set using the <code>--preview</code> flag followed by a command that is used to create the preview. For example, you can be satisfied by using a simple <code>cat</code> command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls note | fzf --preview <span style="color:#e6db74">&#34;cat ~/notes/{}&#34;</span>
+</span></span></code></pre></div><p>The <code>{}</code> is replaced with the name of the selected file. The full path is necessary, because otherwise the <code>cat</code> will fail to find the file, unless you are in <code>notes</code> folder.</p>
+<p>Since I actually have some notes at <code>~/notes</code>, here is an example:</p>
+<pre tabindex="0"><code>╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ &gt;                                          ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮ │
+│   931/931 ──────────────────────────────── │ ---                                                                                                                      │ │
+│   AWS_dynamodb.md                         ││ title: &#34;Amazon Fargate&#34;                                                                                                  │ │
+│   AWS_elastic_block_storage_ebs.md         │ author: &#34;Marek S.&#34;                                                                                                       │ │
+│   AWS_elastic_cloud_compute_ec2.md         │ summary: &#34;Amazon Fargate is a fully-managed serverless service for running containerized applications on AWS.&#34;           │ │
+│   AWS_elastic_container_registry_ecr.md    │ date: 2023-07-11T15:21:21Z+0200                                                                                          │ │
+│   AWS_elastic_container_service_ecs.md     │ type: note                                                                                                               │ │
+│   AWS_elastic_file_system_efs.md           │ draft: true                                                                                                              │ │
+│   AWS_elastic_kubernetes_service_eks.md    │ tags:                                                                                                                    │ │
+│   AWS_elastic_load_balancer_elb.md         │   - &#34;Containers&#34;                                                                                                         │ │
+│ ▌ AWS_fargate.md                           │   - &#34;Container-Orchestration&#34;                                                                                            │ │
+│   AWS_index.md                             │                                                                                                                          │ │
+│   AWS_lambda.md                            │                                                                                                                          │ │
+│   AWS_list_of_services_with_descriptions.m │                                                                                                                          │ │
+│   AWS_mq.md                                ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯ │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+</code></pre><p>The position, size, and text wrapping of the preview window can be changed, by using <code>--preview-window</code> with <code>right</code>, <code>left</code>, <code>top</code>, and <code>bottom</code> options, followed by <code>:</code> and size in percents, another <code>:</code> separator, and the last is either <code>wrap</code> or <code>nowrap</code>. E.g.:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls note | fzf --preview-window<span style="color:#f92672">=</span>top:80%:nowrap --preview <span style="color:#e6db74">&#34;cat ~/notes/{}&#34;</span>
+</span></span></code></pre></div><h3 id="example---default-settings">Example - Default Settings</h3>
+<p>Writing the same setting such as the width and height will quickly get old. If you always want the same setting, you can export the settings into the <code>FZF_DEFAULT_OPTS</code> environment variable, and fzf will use it.</p>
+<p>In my <code>.bashrc</code> file I have the following export:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export FZF_DEFAULT_OPTS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--height 40% --layout=reverse --border --preview-window=right:70%:wrap&#39;</span>
+</span></span></code></pre></div><p>It sets the default height of the fzf window to 40% (default is 100%, which I didn&rsquo;t like), <code>--layout=reverse</code> puts the prompt at the top instead of the default bottom, <code>--border</code> adds the border, and <code>--preview-window</code> sets the size of the window, puts it on the right side and sets the text wrapping.</p>
+<p>All the options and their values can be found on the <a href="https://github.com/junegunn/fzf">fzf&rsquo;s Github page</a></p>
+<h3 id="example---searching-notes">Example - Searching Notes</h3>
+<p>In the following example we have a fuzzy search for notes in our notes folder. If no matching note is found, a new one is conditionally created based on the user input.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/sh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e"># Location of the notes</span>
+</span></span><span style="display:flex;"><span>NOTES_FOLDER<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$HOME<span style="color:#e6db74">/notes/&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The extension/suffix that I want for my notes (my notes are in Markdown)</span>
+</span></span><span style="display:flex;"><span>SUFFIX<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;.md&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Select a file from the notes folder</span>
+</span></span><span style="display:flex;"><span>selection<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>ls $NOTES_FOLDER | fzf-tmux $FZF_DEFAULT_OPTS <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>            --prompt <span style="color:#e6db74">&#34;Select a note&#34;</span> -h 80% -w 80% <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>            --preview <span style="color:#e6db74">&#34;cat </span>$NOTES_FOLDER<span style="color:#e6db74">{}&#34;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -z <span style="color:#e6db74">&#34;</span>$selection<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># If there isn&#39;t such a note ask user if the note should be created</span>
+</span></span><span style="display:flex;"><span>  selection<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>              printf <span style="color:#e6db74">&#34;Yes\nNo&#34;</span> | fzf-tmux $FZF_DEFAULT_OPTS -h 80% -w 80% <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>              --prompt <span style="color:#e6db74">&#34;There is no such entry. Create a new one?&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>             <span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;</span>$selection<span style="color:#e6db74">&#34;</span> in
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># The user wants the new note</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Yes&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Prompt for the name of the new note</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;Name of the new article? (without </span>$SUFFIX<span style="color:#e6db74"> suffix)&#34;</span>
+</span></span><span style="display:flex;"><span>      read name
+</span></span><span style="display:flex;"><span>      header<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;# </span>$name<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Remove spaces and convert the name to lower case</span>
+</span></span><span style="display:flex;"><span>      selection<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>echo $name | sed -e <span style="color:#e6db74">&#39;s/\(.*\)/\L\1/&#39;</span> | sed <span style="color:#e6db74">&#39;s/\ /_/g&#39;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">.wiki&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Create the new wiki file</span>
+</span></span><span style="display:flex;"><span>      touch <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Insert the title</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;</span>$header<span style="color:#e6db74">&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Insert the skeleton outline</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;## Introduction&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;## Main Idea&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;## Conclusions&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;## Sources&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>      ;;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># The users selects no + default: Exit</span>
+</span></span><span style="display:flex;"><span>    *<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;Ok, ok ... I am quitting then.\n&#34;</span>
+</span></span><span style="display:flex;"><span>      exit
+</span></span><span style="display:flex;"><span>      ;;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">esac</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># If the note exists or was just created, open it in the default browser (you</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># should have EDITOR variable defined)</span>
+</span></span><span style="display:flex;"><span>$EDITOR <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><h3 id="example---emoji-selector">Example - Emoji Selector</h3>
+<p>In this example we create a simple emoji picker.</p>
+<p>First download the <a href="https://gist.github.com/keidarcy/128141ff30a8c3f9ddc0d6c3ecb5b334">emoji.txt</a> file from Github. You can use <code>wget</code> or do it using your favorite browser:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget https://gist.githubusercontent.com/keidarcy/128141ff30a8c3f9ddc0d6c3ecb5b334/raw/8fc6b9efe6b72e8a876639e239043d492e857746/emoji.txt
+</span></span></code></pre></div><p>The content of the file looks something like this:</p>
+<pre tabindex="0"><code>😌 :relieved:
+😆 :satisfied:
+😁 :grin:
+😉 :wink:
+😜 :stuck_out_tongue_winking_eye:
+😝 :stuck_out_tongue_closed_eyes:
+😀 :grinning:
+😗 :kissing:
+😙 :kissing_smiling_eyes:
+😛 :stuck_out_tongue:
+😴 :sleeping:
+😟 :worried:
+😦 :frowning:
+</code></pre><p>Each line consists of an emoji and an emoji name separated by a single space. The script that selects an emoji, and removes the name is a trivial one-liner:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/sh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>cat emoji.txt | fzf |  cut -d <span style="color:#e6db74">&#39; &#39;</span> -f <span style="color:#ae81ff">1</span> | xsel -ib
+</span></span></code></pre></div><p>The <code>cut -d ' ' -f 1</code> cuts the input into two columns divided by a single space, then returns the value from the first column. The <code>xsel -ib</code> will copy the emoji into the clipboard. You can remove this part, or replace it with something else.</p>
+<p><strong>Note</strong>: Some emojies are missing in the file. I don&rsquo;t know why, it is not my file.</p>
+<h3 id="example---select-songs-in-cmus-using-fzf">Example - Select Songs In Cmus Using FZF</h3>
+<p><a href="https://cmus.github.io/">Cmus</a> is a small, fast CLI music player for Unix-like systems. This snippet shows a simple script that picks a song from a give folder. Than queues the song. Entire folders can be selected as well.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Folder where is your music</span>
+</span></span><span style="display:flex;"><span>music_folder<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/path/to/Music/&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Select desired music using fzf</span>
+</span></span><span style="display:flex;"><span>selection<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>find <span style="color:#e6db74">&#34;</span>$music_folder<span style="color:#e6db74">&#34;</span> | fzf-tmux --prompt <span style="color:#e6db74">&#34;Select a song:&#34;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Quit if nothing was selected</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $selection -ef $HOME <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span> exit; <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add the selected music to the queue using Cmus&#39; CLI</span>
+</span></span><span style="display:flex;"><span>cmus-remote -l <span style="color:#e6db74">&#34;</span>$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># If a specific music file was selected, play it immediately</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>   <span style="color:#f92672">[</span> -f <span style="color:#e6db74">&#34;</span>$selection<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span> cmus-remote -f <span style="color:#e6db74">&#34;</span>$selection<span style="color:#e6db74">&#34;</span>; <span style="color:#66d9ef">fi</span>
+</span></span></code></pre></div><h3 id="example---multiple-selections">Example - Multiple Selections</h3>
+<p>It is possible to select more than one entry with <code>-m</code>/<code>--multi</code> flag. I don&rsquo;t use this feature very often, but I have a nice example that might be useful: That is a simple one-liner files, which lets you select the files that should be staged using <code>git add</code> command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git add <span style="color:#66d9ef">$(</span>fzf --multi<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><p>You can select several options by pressing <code>TAB</code> key. This will select/unselect the current line and then move down. To select the entry and move the pointer down, press <code>Shift+TAB</code>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this blog post I&rsquo;ve showed you how to install the fuzzy finder and added several examples to help you get started. Ever since I&rsquo;ve installed the fzf on my computer, the way I interact with terminal changed. The fzf is extremely useful tool that I would recommend to everyone who likes/needs to work with terminal everyday.</p>
+<p>The possibility of using the fzf in scripts greatly extends its usefulness. I use it all the time to create simple CLI interfaces for selecting files or even simple Yes/No questions. Moreover there are many examples of scripts online. People use it for all sorts of things, including selecting browser bookmarks, simplifying interactions with Git, selecting panes in Tmux, selecting <a href="https://github.com/jrnl-org/jrnl">jrnl</a> entries from a particular day, <a href="https://github.com/AndreaOrru/fzf-mopidy-spotify.vim">selecting  Spotify songs</a>, and so much more! There are many example on <a href="https://github.com/junegunn/fzf/wiki/Examples">fzf&rsquo;s Github wiki</a>.</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Sql Migrations With Goose</title>
+			<link>https://msemjan.github.io/blog/en/posts/sql-migrations-with-goose/</link>
+			<pubDate>Sat, 13 Jul 2024 15:45:24 +0200</pubDate>
+			
+			<guid>https://msemjan.github.io/blog/en/posts/sql-migrations-with-goose/</guid>
+			<description><![CDATA[%!s(<nil>)]]></description>
+			<content type="html"><![CDATA[<h2 id="what-is-goose">What Is Goose?</h2>
+<p><a href="https://pressly.github.io/goose/">Goose</a> is a database migration tool that will help you manage your database schemas. In this blog post I will teach you the basics of this useful tool.</p>
+<h2 id="installation">Installation</h2>
+<p>If you have Go installed, you can use <code>go install</code> command to install Goose:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>go install github.com/pressly/goose/v3/cmd/goose@latest
+</span></span></code></pre></div><p>Then you can verify that the tool was installed correctly by running:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose -h
+</span></span></code></pre></div><h2 id="initialization-of-goose">Initialization Of Goose</h2>
+<p>First, let&rsquo;s create initialize the database. We will do so by running the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose DRIVER DBSTRING create init sql
+</span></span></code></pre></div><p>Don&rsquo;t run it yet. First, you will need to replace <code>DRIVER</code> with one of the supported drivers: <code>clickhouse</code>, <code>mssql</code>, <code>mysql</code>, <code>postgres</code>, <code>sqlite3</code>, <code>turso</code>, <code>vertica</code>, and <code>ydb</code>. Secondly, you need a <code>DBSTRING</code> (the database connection string), which will differ depending on the specific database. Here is a non-exhaustive list of examples:</p>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th>Corresponding <code>init</code> command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PostgreSQL</td>
+<td><code>goose postgres &quot;user=postgres password=postgres dbname=postgres sslmode=disable&quot; init</code></td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td><code>goose mysql &quot;user:password@/dbname?parseTime=true&quot; init</code></td>
+</tr>
+<tr>
+<td>Amazon Redshift</td>
+<td><code>goose redshift &quot;postgres://user:password@qwerty.us-east-1.redshift.amazonaws.com:5439/db&quot; init</code></td>
+</tr>
+<tr>
+<td>TiDB</td>
+<td><code>goose tidb &quot;user:password@/dbname?parseTime=true&quot; init</code></td>
+</tr>
+<tr>
+<td>MS SQL</td>
+<td><code>goose mssql &quot;sqlserver://user:password@dbname:1433?database=master&quot; init</code></td>
+</tr>
+<tr>
+<td>ClickHouse</td>
+<td><code>goose clickhouse &quot;tcp://127.0.0.1:9000&quot; init</code></td>
+</tr>
+<tr>
+<td>Vertica</td>
+<td><code>goose vertica &quot;vertica://user:password@localhost:5433/dbname?connection_load_balance=1&quot; init</code></td>
+</tr>
+</tbody>
+</table>
+<p>For simplicity, I will use Sqlite3 from now on. The database can be initiated with the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db create init sql
+</span></span></code></pre></div><h2 id="goose-annotations-and-writing-first-migration">Goose Annotations And Writing First Migration</h2>
+<p>Let&rsquo;s create the first migration. There is a useful <code>goose create</code> command to create template for a migration file in a consistent way:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db create first sql
+</span></span></code></pre></div><p>This will create a file in the current working directory (the <code>first</code> will be prefixed by a timestamp). Every migration is a SQL file (with <code>.sql</code> extension). Alternatively, we can omit the trailing <code>sql</code> in the command and we will get a template file for our migration in Go programming language. However, more developers know SQL than Go, so we will stick to it.</p>
+<p>The file names of the migrations should start with a timestamp or a sequential number. When you open the file in your favorite editor, you should see:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- +goose Up
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementBegin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;up SQL query&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementEnd
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose Down
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementBegin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;down SQL query&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementEnd
+</span></span></span></code></pre></div><p>Goose uses several annotations. At the time of writing, there were seven annotations:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- +goose up
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose down
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose statementbegin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose statementend
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose no transaction
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose envsub on
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose envsub off
+</span></span></span></code></pre></div><p>The annotations are case insensitive, they should be placed on their own line with no leading whitespace, and when writing migrations, don&rsquo;t forget to include the <code>-- +goose</code> prefix. Only the <code>-- +goose up</code> is mandatory. Each SQL statement should be terminated by semicolon (<code>;</code>), otherwise they will not be properly recognized by Goose.</p>
+<p>More complex statements that contain semicolons must be wrapped within the <code>-- +goose statementbegin</code> and <code>-- +goose statementend</code> block. This pair of annotations will tell Goose to treat them as a larger unit instead of several separate statements. Comments, empty lines, and semicolons within such block will be preserved.</p>
+<p>Moreover, the <code>-- +goose statementbegin</code> and <code>-- +goose statementend</code> annotations can be used to send multiple statements as a single query instead of executing them individually. This can be useful e.g. when we are populating a table with test data using a large number of <code>INSERT</code> SQL statements. The use of these annotations also has performance implications, since inserting multiple rows in the same transaction is much faster than executing queries on one-by-one basis.</p>
+<p>However, let&rsquo;s return for a while to our first migration. It is common to create tables at the beginning of programming projects. In the example below, I wrote an example of creating a <code>users</code> table. Notice that in <code>-- +goose Down</code> part I have a <code>DROP TABLE</code> command. It is optional, only <code>-- +goose up</code> is necessary, but it may help when you need to revert the changes.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- +goose Up
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementBegin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> users (
+</span></span><span style="display:flex;"><span>  id         INT <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>  first_name VARCHAR(<span style="color:#ae81ff">255</span>),
+</span></span><span style="display:flex;"><span>  last_name  VARCHAR(<span style="color:#ae81ff">255</span>),
+</span></span><span style="display:flex;"><span>  email      VARCHAR(<span style="color:#ae81ff">255</span>)
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementEnd
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose Down
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementBegin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> users;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementEnd
+</span></span></span></code></pre></div><p>The change still was not applied, and we can check the state of the database with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db status
+</span></span></code></pre></div><p>The output may potentially look like this:</p>
+<pre tabindex="0"><code>2024/07/12 18:32:41     Applied At                  Migration
+2024/07/12 18:32:41     =======================================
+2024/07/12 18:32:41     Pending      -- 20240710181543_init.sql
+</code></pre><p>To apply pending migrations we can use use the command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db up
+</span></span></code></pre></div><p>The output of the command should look something like this:</p>
+<pre tabindex="0"><code>2024/07/12 18:32:41     Applied At                  Migration
+2024/07/12 18:32:41     =======================================
+2024/07/12 18:32:41     Fri Jul 12 16:44:03 2024 -- 20240710181543_init.sql
+</code></pre><p>When the requirements change and new changes need to be done, we can create new migrations (preferably with the <code>goose sqlite3 ./database.db create descriptive_name_of_migration sql</code> command), and then rerun <code>goose sqlite3 ./database.db up</code> to apply it. In case there is any issue and we&rsquo;ve implemented the <code>-- +goose down</code>, we can revert the latest migration with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db down
+</span></span></code></pre></div><h2 id="other-goose-commands">Other Goose Commands</h2>
+<p>Besides the <code>create</code>, <code>up</code>, <code>down</code>, and <code>status</code> commands there are a few more that might be useful</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>up-by-one</code></td>
+<td>Migrate the DB up by 1</td>
+</tr>
+<tr>
+<td><code>up-to VERSION</code></td>
+<td>Migrate the DB to a specific VERSION</td>
+</tr>
+<tr>
+<td><code>down-to VERSION</code></td>
+<td>Roll back to a specific VERSION</td>
+</tr>
+<tr>
+<td><code>redo</code></td>
+<td>Re-run the latest migration</td>
+</tr>
+<tr>
+<td><code>reset</code></td>
+<td>Roll back all migrations</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>Print the current version of the database</td>
+</tr>
+<tr>
+<td><code>fix</code></td>
+<td>Apply sequential ordering to migrations</td>
+</tr>
+<tr>
+<td><code>validate</code></td>
+<td>Check migration files without running them</td>
+</tr>
+</tbody>
+</table>
+<h2 id="no-transactions">No Transactions</h2>
+<p>Goose runs all the statements in a migration file within a single transaction. However, this will not work for some statements, e.g. <code>CREATE DATABASE</code> or <code>CREATE INDEX CURRENTLY</code> that can not be run inside a transaction. In such cases we can add <code>-- +goose no transaction</code> annotation to the top of the file, and Goose will run all statements within the marked file outside a transaction.</p>
+<h2 id="substitution-of-environment-variables">Substitution Of Environment Variables</h2>
+<p>In case we don&rsquo;t know some value at the time of writing of a migration, we can use the environment variable substitution feature of Goose. The substitution is disabled by default, and can be enabled by including the <code>-- +goose envsub on</code> annotation. If we need to use the substitution only in a small subsection of the file, we can disable it again with <code>-- +goose envsub off</code>, otherwise Goose will attempt to substitute environment variable until the end of the file.</p>
+<p>Supported expansions use <a href="https://github.com/mfridman/interpolate?tab=readme-ov-file#supported-expansions">mfridman/interpolate</a> package:</p>
+<ul>
+<li><code>${parameter}</code> or <code>$parameter</code> - Uses the value if the <code>parameter</code> is set, otherwise it will be left blank</li>
+<li><code>${parameter:-[word]}</code> - If the <code>parameter</code> is unset or null, the expansion of the <code>word</code> will be substituted</li>
+<li><code>${parameter-[word]</code> - If the parameter is unset, the expansion of the <code>word</code> is used</li>
+<li><code>${parameter:[offset]}</code> - Use the substring of the <code>parameter</code> after the <code>offset</code></li>
+<li><code>${parameter:[offset]:[length]}</code> - Use the substring of the <code>parameter</code> after the <code>offset</code> of the given <code>length</code></li>
+<li><code>${parameter?[word]}</code> - Indicate error if null</li>
+<li><code>${parameter:?[word]}</code> - Indicate error if null or unset</li>
+</ul>
+<p>Example of an environment variable substitution is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- +goose envsub on
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose up
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> regions <span style="color:#66d9ef">WHERE</span> name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;${REGION}&#39;</span>;
+</span></span></code></pre></div><h2 id="conclusions">Conclusions</h2>
+<p>Hopefully, I&rsquo;ve shown in this blog post that Goose is a useful tool that will help you write your migrations in an organized fashion instead of executing random SQL statements ad hoc. Such approach is hard to reproduce and possibly erroneous. Moreover, when you systematically save the SQL files into the same directory and put it into your version control system, you can easily reproduce, rollout, or revert the changes.</p>
+<p>I also see a potential in running automated tests that first create a SQL tables and populate the database with expected data. If SQLite3 is used, it is also easy to clean up, since the  entire database is stored in a single file. Alternatively, Goose could be used to easily create development environment that has the same (or very similar) setup as the production database.</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Using NGINX As A Load Balancer</title>
@@ -5407,187 +5921,6 @@ Tags:   [protobufs golang serializations]
 <li>As well as a documentation of my journey as a programmer/developer</li>
 </ul>
 <p>I&rsquo;ve been writing before, but those were just personal notes that I haven&rsquo;t shared with other people.</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>Sql Migrations With Goose</title>
-			<link>https://msemjan.github.io/blog/en/posts/sql-migrations-with-goose/</link>
-			<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-			
-			<guid>https://msemjan.github.io/blog/en/posts/sql-migrations-with-goose/</guid>
-			<description><![CDATA[%!s(<nil>)]]></description>
-			<content type="html"><![CDATA[<h2 id="what-is-goose">What Is Goose?</h2>
-<p><a href="https://pressly.github.io/goose/">Goose</a> is a database migration tool that will help you manage your database schemas. In this blog post I will teach you the basics of this useful tool.</p>
-<h2 id="installation">Installation</h2>
-<p>If you have Go installed, you can use <code>go install</code> command to install Goose:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>go install github.com/pressly/goose/v3/cmd/goose@latest
-</span></span></code></pre></div><p>Then you can verify that the tool was installed correctly by running:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose -h
-</span></span></code></pre></div><h2 id="initialization-of-goose">Initialization Of Goose</h2>
-<p>First, let&rsquo;s create initialize the database. We will do so by running the following command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose DRIVER DBSTRING create init sql
-</span></span></code></pre></div><p>Don&rsquo;t run it yet. First, you will need to replace <code>DRIVER</code> with one of the supported drivers: <code>clickhouse</code>, <code>mssql</code>, <code>mysql</code>, <code>postgres</code>, <code>sqlite3</code>, <code>turso</code>, <code>vertica</code>, and <code>ydb</code>. Secondly, you need a <code>DBSTRING</code> (the database connection string), which will differ depending on the specific database. Here is a non-exhaustive list of examples:</p>
-<table>
-<thead>
-<tr>
-<th>Database</th>
-<th>Corresponding <code>init</code> command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PostgreSQL</td>
-<td><code>goose postgres &quot;user=postgres password=postgres dbname=postgres sslmode=disable&quot; init</code></td>
-</tr>
-<tr>
-<td>MySQL</td>
-<td><code>goose mysql &quot;user:password@/dbname?parseTime=true&quot; init</code></td>
-</tr>
-<tr>
-<td>Amazon Redshift</td>
-<td><code>goose redshift &quot;postgres://user:password@qwerty.us-east-1.redshift.amazonaws.com:5439/db&quot; init</code></td>
-</tr>
-<tr>
-<td>TiDB</td>
-<td><code>goose tidb &quot;user:password@/dbname?parseTime=true&quot; init</code></td>
-</tr>
-<tr>
-<td>MS SQL</td>
-<td><code>goose mssql &quot;sqlserver://user:password@dbname:1433?database=master&quot; init</code></td>
-</tr>
-<tr>
-<td>ClickHouse</td>
-<td><code>goose clickhouse &quot;tcp://127.0.0.1:9000&quot; init</code></td>
-</tr>
-<tr>
-<td>Vertica</td>
-<td><code>goose vertica &quot;vertica://user:password@localhost:5433/dbname?connection_load_balance=1&quot; init</code></td>
-</tr>
-</tbody>
-</table>
-<p>For simplicity, I will use Sqlite3 from now on. The database can be initiated with the following command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db create init sql
-</span></span></code></pre></div><h2 id="goose-annotations-and-writing-first-migration">Goose Annotations And Writing First Migration</h2>
-<p>Let&rsquo;s create the first migration. There is a useful <code>goose create</code> command to create template for a migration file in a consistent way:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db create first sql
-</span></span></code></pre></div><p>This will create a file in the current working directory (the <code>first</code> will be prefixed by a timestamp). Every migration is a SQL file (with <code>.sql</code> extension). Alternatively, we can omit the trailing <code>sql</code> in the command and we will get a template file for our migration in Go programming language. However, more developers know SQL than Go, so we will stick to it.</p>
-<p>The file names of the migrations should start with a timestamp or a sequential number. When you open the file in your favorite editor, you should see:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- +goose Up
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementBegin
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;up SQL query&#39;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementEnd
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose Down
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementBegin
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;down SQL query&#39;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementEnd
-</span></span></span></code></pre></div><p>Goose uses several annotations. At the time of writing, there were seven annotations:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- +goose up
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose down
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose statementbegin
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose statementend
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose no transaction
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose envsub on
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose envsub off
-</span></span></span></code></pre></div><p>The annotations are case insensitive, they should be placed on their own line with no leading whitespace, and when writing migrations, don&rsquo;t forget to include the <code>-- +goose</code> prefix. Only the <code>-- +goose up</code> is mandatory. Each SQL statement should be terminated by semicolon (<code>;</code>), otherwise they will not be properly recognized by Goose.</p>
-<p>More complex statements that contain semicolons must be wrapped within the <code>-- +goose statementbegin</code> and <code>-- +goose statementend</code> block. This pair of annotations will tell Goose to treat them as a larger unit instead of several separate statements. Comments, empty lines, and semicolons within such block will be preserved.</p>
-<p>Moreover, the <code>-- +goose statementbegin</code> and <code>-- +goose statementend</code> annotations can be used to send multiple statements as a single query instead of executing them individually. This can be useful e.g. when we are populating a table with test data using a large number of <code>INSERT</code> SQL statements. The use of these annotations also has performance implications, since inserting multiple rows in the same transaction is much faster than executing queries on one-by-one basis.</p>
-<p>However, let&rsquo;s return for a while to our first migration. It is common to create tables at the beginning of programming projects. In the example below, I wrote an example of creating a <code>users</code> table. Notice that in <code>-- +goose Down</code> part I have a <code>DROP TABLE</code> command. It is optional, only <code>-- +goose up</code> is necessary, but it may help when you need to revert the changes.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- +goose Up
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementBegin
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> users (
-</span></span><span style="display:flex;"><span>  id         INT <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-</span></span><span style="display:flex;"><span>  first_name VARCHAR(<span style="color:#ae81ff">255</span>),
-</span></span><span style="display:flex;"><span>  last_name  VARCHAR(<span style="color:#ae81ff">255</span>),
-</span></span><span style="display:flex;"><span>  email      VARCHAR(<span style="color:#ae81ff">255</span>)
-</span></span><span style="display:flex;"><span>);
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementEnd
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose Down
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementBegin
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> users;
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose StatementEnd
-</span></span></span></code></pre></div><p>The change still was not applied, and we can check the state of the database with:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db status
-</span></span></code></pre></div><p>The output may potentially look like this:</p>
-<pre tabindex="0"><code>2024/07/12 18:32:41     Applied At                  Migration
-2024/07/12 18:32:41     =======================================
-2024/07/12 18:32:41     Pending      -- 20240710181543_init.sql
-</code></pre><p>To apply pending migrations we can use use the command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db up
-</span></span></code></pre></div><p>The output of the command should look something like this:</p>
-<pre tabindex="0"><code>2024/07/12 18:32:41     Applied At                  Migration
-2024/07/12 18:32:41     =======================================
-2024/07/12 18:32:41     Fri Jul 12 16:44:03 2024 -- 20240710181543_init.sql
-</code></pre><p>When the requirements change and new changes need to be done, we can create new migrations (preferably with the <code>goose sqlite3 ./database.db create descriptive_name_of_migration sql</code> command), and then rerun <code>goose sqlite3 ./database.db up</code> to apply it. In case there is any issue and we&rsquo;ve implemented the <code>-- +goose down</code>, we can revert the latest migration with:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>goose sqlite3 ./database.db down
-</span></span></code></pre></div><h2 id="other-goose-commands">Other Goose Commands</h2>
-<p>Besides the <code>create</code>, <code>up</code>, <code>down</code>, and <code>status</code> commands there are a few more that might be useful</p>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>up-by-one</code></td>
-<td>Migrate the DB up by 1</td>
-</tr>
-<tr>
-<td><code>up-to VERSION</code></td>
-<td>Migrate the DB to a specific VERSION</td>
-</tr>
-<tr>
-<td><code>down-to VERSION</code></td>
-<td>Roll back to a specific VERSION</td>
-</tr>
-<tr>
-<td><code>redo</code></td>
-<td>Re-run the latest migration</td>
-</tr>
-<tr>
-<td><code>reset</code></td>
-<td>Roll back all migrations</td>
-</tr>
-<tr>
-<td><code>version</code></td>
-<td>Print the current version of the database</td>
-</tr>
-<tr>
-<td><code>fix</code></td>
-<td>Apply sequential ordering to migrations</td>
-</tr>
-<tr>
-<td><code>validate</code></td>
-<td>Check migration files without running them</td>
-</tr>
-</tbody>
-</table>
-<h2 id="no-transactions">No Transactions</h2>
-<p>Goose runs all the statements in a migration file within a single transaction. However, this will not work for some statements, e.g. <code>CREATE DATABASE</code> or <code>CREATE INDEX CURRENTLY</code> that can not be run inside a transaction. In such cases we can add <code>-- +goose no transaction</code> annotation to the top of the file, and Goose will run all statements within the marked file outside a transaction.</p>
-<h2 id="substitution-of-environment-variables">Substitution Of Environment Variables</h2>
-<p>In case we don&rsquo;t know some value at the time of writing of a migration, we can use the environment variable substitution feature of Goose. The substitution is disabled by default, and can be enabled by including the <code>-- +goose envsub on</code> annotation. If we need to use the substitution only in a small subsection of the file, we can disable it again with <code>-- +goose envsub off</code>, otherwise Goose will attempt to substitute environment variable until the end of the file.</p>
-<p>Supported expansions use <a href="https://github.com/mfridman/interpolate?tab=readme-ov-file#supported-expansions">mfridman/interpolate</a> package:</p>
-<ul>
-<li><code>${parameter}</code> or <code>$parameter</code> - Uses the value if the <code>parameter</code> is set, otherwise it will be left blank</li>
-<li><code>${parameter:-[word]}</code> - If the <code>parameter</code> is unset or null, the expansion of the <code>word</code> will be substituted</li>
-<li><code>${parameter-[word]</code> - If the parameter is unset, the expansion of the <code>word</code> is used</li>
-<li><code>${parameter:[offset]}</code> - Use the substring of the <code>parameter</code> after the <code>offset</code></li>
-<li><code>${parameter:[offset]:[length]}</code> - Use the substring of the <code>parameter</code> after the <code>offset</code> of the given <code>length</code></li>
-<li><code>${parameter?[word]}</code> - Indicate error if null</li>
-<li><code>${parameter:?[word]}</code> - Indicate error if null or unset</li>
-</ul>
-<p>Example of an environment variable substitution is:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- +goose envsub on
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- +goose up
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> regions <span style="color:#66d9ef">WHERE</span> name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;${REGION}&#39;</span>;
-</span></span></code></pre></div><h2 id="conclusions">Conclusions</h2>
-<p>Hopefully, I&rsquo;ve shown in this blog post that Goose is a useful tool that will help you write your migrations in an organized fashion instead of executing random SQL statements ad hoc. Such approach is hard to reproduce and possibly erroneous. Moreover, when you systematically save the SQL files into the same directory and put it into your version control system, you can easily reproduce, rollout, or revert the changes.</p>
-<p>I also see a potential in running automated tests that first create a SQL tables and populate the database with expected data. If SQLite3 is used, it is also easy to clean up, since the  entire database is stored in a single file. Alternatively, Goose could be used to easily create development environment that has the same (or very similar) setup as the production database.</p>
 ]]></content>
 		</item>
 		

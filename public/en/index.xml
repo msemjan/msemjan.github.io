@@ -6,8 +6,22 @@
     <description>Recent content on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 15 Jun 2024 11:09:40 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jul 2024 11:57:02 +0200</lastBuildDate>
     <atom:link href="https://msemjan.github.io/blog/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction Into FZF</title>
+      <link>https://msemjan.github.io/blog/en/posts/introduction-into-fzf/</link>
+      <pubDate>Sat, 20 Jul 2024 11:57:02 +0200</pubDate>
+      <guid>https://msemjan.github.io/blog/en/posts/introduction-into-fzf/</guid>
+      <description>What Is fzf? The fzf is a general purpose fuzzy finder that can interactively filter any kind of list, command line history, processes, host names, bookmarks, git commits, or anything else. Ever since I&amp;rsquo;ve installed in on my computer, it completely changed the way I interact with my terminal. If you are a fan of command line tools, the fzf might be perfect thing for you as well.&#xA;Installation The fzf is in the repositories of most popular distributions and can be easily installed with a single command:</description>
+    </item>
+    <item>
+      <title>Sql Migrations With Goose</title>
+      <link>https://msemjan.github.io/blog/en/posts/sql-migrations-with-goose/</link>
+      <pubDate>Sat, 13 Jul 2024 15:45:24 +0200</pubDate>
+      <guid>https://msemjan.github.io/blog/en/posts/sql-migrations-with-goose/</guid>
+      <description>Goose is a database migration tool that will help you manage your database schemas</description>
+    </item>
     <item>
       <title>Using NGINX As A Load Balancer</title>
       <link>https://msemjan.github.io/blog/en/posts/nginx-load-balancer/</link>
@@ -126,13 +140,6 @@
       <pubDate>Sun, 26 Mar 2023 16:34:01 +0200</pubDate>
       <guid>https://msemjan.github.io/blog/en/posts/my-first-post/</guid>
       <description>So&amp;hellip; I&amp;rsquo;ve started a blog.</description>
-    </item>
-    <item>
-      <title>Sql Migrations With Goose</title>
-      <link>https://msemjan.github.io/blog/en/posts/sql-migrations-with-goose/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://msemjan.github.io/blog/en/posts/sql-migrations-with-goose/</guid>
-      <description>Goose is a database migration tool that will help you manage your database schemas</description>
     </item>
   </channel>
 </rss>

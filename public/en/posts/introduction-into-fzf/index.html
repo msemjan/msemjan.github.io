@@ -1,0 +1,490 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="robots" content="index, follow">
+<meta name="revisit-after" content="15 days">
+<link rel="author" href="/blog/humans.txt">
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/site.webmanifest">
+<meta name="msapplication-TileImage" content="/blog/mstile-144x144.png">
+<meta name="theme-color" content="#494f5c">
+<meta name="msapplication-TileColor" content="#494f5c">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#494f5c"><meta name="author" content="Marek Semjan">
+
+  <meta itemprop="name" content="Introduction Into FZF">
+  <meta itemprop="description" content="What Is fzf? The fzf is a general purpose fuzzy finder that can interactively filter any kind of list, command line history, processes, host names, bookmarks, git commits, or anything else. Ever since I’ve installed in on my computer, it completely changed the way I interact with my terminal. If you are a fan of command line tools, the fzf might be perfect thing for you as well.
+Installation The fzf is in the repositories of most popular distributions and can be easily installed with a single command:">
+  <meta itemprop="datePublished" content="2024-07-20T11:57:02+02:00">
+  <meta itemprop="dateModified" content="2024-07-20T11:57:02+02:00">
+  <meta itemprop="wordCount" content="2046">
+  <meta itemprop="keywords" content="Fzf,Fuzzy Finder,Terminal,CLI"><meta property="og:url" content="https://msemjan.github.io/blog/en/posts/introduction-into-fzf/">
+  <meta property="og:site_name" content="Marek&#39;s Blog (ᵔ◡ᵔ)	">
+  <meta property="og:title" content="Introduction Into FZF">
+  <meta property="og:description" content="What Is fzf? The fzf is a general purpose fuzzy finder that can interactively filter any kind of list, command line history, processes, host names, bookmarks, git commits, or anything else. Ever since I’ve installed in on my computer, it completely changed the way I interact with my terminal. If you are a fan of command line tools, the fzf might be perfect thing for you as well.
+Installation The fzf is in the repositories of most popular distributions and can be easily installed with a single command:">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-07-20T11:57:02+02:00">
+    <meta property="article:modified_time" content="2024-07-20T11:57:02+02:00">
+    <meta property="article:tag" content="Fzf">
+    <meta property="article:tag" content="Fuzzy Finder">
+    <meta property="article:tag" content="Terminal">
+    <meta property="article:tag" content="CLI">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Introduction Into FZF">
+  <meta name="twitter:description" content="What Is fzf? The fzf is a general purpose fuzzy finder that can interactively filter any kind of list, command line history, processes, host names, bookmarks, git commits, or anything else. Ever since I’ve installed in on my computer, it completely changed the way I interact with my terminal. If you are a fan of command line tools, the fzf might be perfect thing for you as well.
+Installation The fzf is in the repositories of most popular distributions and can be easily installed with a single command:">
+<title>Introduction Into FZF</title>
+<link rel="stylesheet dns-prefetch preconnect preload prefetch" as="style" href="https://msemjan.github.io/blog/css/style.min.345c563a38b4f7575cf28aec1272efcd1e50c614529052cf51ec1ea1eba36fac.css" integrity="sha256-NFxWOji091dc8orsEnLvzR5QxhRSkFLPUeweoeujb6w=" crossorigin="anonymous">
+	</head>
+<body id="page">
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://msemjan.github.io/blog/">Marek&#39;s Blog (ᵔ◡ᵔ)	</a>
+				</div>
+				<nav class="site-nav hide-in-mobile"><a href="https://msemjan.github.io/blog/en/posts/">Posts</a><a href="https://msemjan.github.io/blog/en/about-hugo/">About</a></nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="Table of Contents"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://sk.linkedin.com/in/marek-semjan-12497a26a" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://github.com/msemjan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://www.researchgate.net/profile/Marek-Semjan-2" target="_blank" rel="noopener me" title="Researchgate"><svg xmlns="http://www.w3.org/2000/svg" class="feather feather-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></span><button id="share-btn" class="hdr-btn" title="Share"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></button>
+ 
+<div id="share-links" class="animated fast">
+    
+    
+    
+    
+    <ul>
+        <li>
+            <a href="https://twitter.com/intent/tweet?hashtags=hermit2&amp;url=https%3a%2f%2fmsemjan.github.io%2fblog%2fen%2fposts%2fintroduction-into-fzf%2f&amp;text=Introduction%20Into%20FZF" target="_blank" rel="noopener" aria-label="Share on X"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path class="st0" d="m21.3 21.1 -11.4 -18.2h-7.2l11.4 18.2zm-18.6 0 7.2 -6.6m4.2 -5 7.2 -6.6"/></svg></a>
+        </li>
+        <li>
+            <a href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fmsemjan.github.io%2fblog%2fen%2fposts%2fintroduction-into-fzf%2f" target="_blank" rel="noopener" aria-label="Share on Facebook"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+        </li>
+        <li>
+            <a href="mailto:?subject=Introduction%20Into%20FZF&amp;body=https%3a%2f%2fmsemjan.github.io%2fblog%2fen%2fposts%2fintroduction-into-fzf%2f" target="_self" rel="noopener" aria-label="Share on Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+        </li>
+        <li>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fmsemjan.github.io%2fblog%2fen%2fposts%2fintroduction-into-fzf%2f&amp;source=https%3a%2f%2fmsemjan.github.io%2fblog%2f&amp;title=Introduction%20Into%20FZF&amp;summary=Introduction%20Into%20FZF%2c%20by%20Marek%20Semjan%0a%0a%3cnil%3e%0a" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+        </li>
+        <li>
+            <a href="#" onclick="linkShare(&#34;Introduction Into FZF&#34;,&#34;https://msemjan.github.io/blog/en/posts/introduction-into-fzf/&#34;,&#34;Introduction Into FZF, by Marek Semjan\n\n\u003cnil\u003e\n&#34;); return false;" target="_self" rel="noopener" aria-label="Copy Link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></a>
+        </li>
+    </ul>
+</div><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://msemjan.github.io/blog/en/posts/">Posts</a></li>
+			<li><a href="https://msemjan.github.io/blog/en/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster"><article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jul 20, 2024</span></div>
+				<h1>Introduction Into FZF</h1>
+			</header>
+			<div class="post-info"><p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg><a href="" target="_blank">Marek Semjan</a></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://msemjan.github.io/blog/en/tags/fzf">fzf</a></span><span class="tag"><a href="https://msemjan.github.io/blog/en/tags/fuzzy-finder">Fuzzy finder</a></span><span class="tag"><a href="https://msemjan.github.io/blog/en/tags/terminal">Terminal</a></span><span class="tag"><a href="https://msemjan.github.io/blog/en/tags/cli">CLI</a></span></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2046 Words
+    •
+    
+    
+    
+    9 Minutes, 18 Seconds</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2024-07-20 11:57 &#43;0200</p></div>
+			<hr class="post-end">
+			<div class="content">
+				<h2 id="what-is-fzf">What Is <code>fzf</code>?<a href="#what-is-fzf" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>The <a href="https://github.com/junegunn/fzf">fzf</a> is a general purpose fuzzy finder that can interactively filter any kind of list, command line history, processes, host names, bookmarks, git commits, or anything else. Ever since I&rsquo;ve installed in on my computer, it completely changed the way I interact with my terminal. If you are a fan of command line tools, the fzf might be perfect thing for you as well.</p>
+<h2 id="installation">Installation<a href="#installation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>The fzf is in the repositories of most popular distributions and can be easily installed with a single command:</p>
+<table>
+<thead>
+<tr>
+<th>Package Manager</th>
+<th>Linux Distribution</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>APK</td>
+<td>Alpine Linux</td>
+<td><code>sudo apk add fzf</code></td>
+</tr>
+<tr>
+<td>APT</td>
+<td>Debian 9+/Ubuntu 19.10+</td>
+<td><code>sudo apt install fzf</code></td>
+</tr>
+<tr>
+<td>Conda</td>
+<td></td>
+<td><code>conda install -c conda-forge fzf</code></td>
+</tr>
+<tr>
+<td>DNF</td>
+<td>Fedora</td>
+<td><code>sudo dnf install fzf</code></td>
+</tr>
+<tr>
+<td>Nix</td>
+<td>NixOS, etc.</td>
+<td><code>nix-env -iA nixpkgs.fzf</code></td>
+</tr>
+<tr>
+<td>Pacman</td>
+<td>Arch Linux</td>
+<td><code>sudo pacman -S fzf</code></td>
+</tr>
+<tr>
+<td>pkg</td>
+<td>FreeBSD</td>
+<td><code>pkg install fzf</code></td>
+</tr>
+<tr>
+<td>pkgin</td>
+<td>NetBSD</td>
+<td><code>pkgin install fzf</code></td>
+</tr>
+<tr>
+<td>pkg_add</td>
+<td>OpenBSD</td>
+<td><code>pkg_add fzf</code></td>
+</tr>
+<tr>
+<td>Portage</td>
+<td>Gentoo</td>
+<td><code>emerge --ask app-shells/fzf</code></td>
+</tr>
+<tr>
+<td>Spack</td>
+<td></td>
+<td><code>spack install fzf</code></td>
+</tr>
+<tr>
+<td>XBPS</td>
+<td>Void Linux</td>
+<td><code>sudo xbps-install -S fzf</code></td>
+</tr>
+<tr>
+<td>Zypper</td>
+<td>openSUSE</td>
+<td><code>sudo zypper install fzf</code></td>
+</tr>
+</tbody>
+</table>
+<p>Alternatively, you can <a href="https://github.com/junegunn/fzf#using-git">build it</a> from the source code.</p>
+<p>Once everything is installed, you can try running the fzf for the first time by executing command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>fzf
+</span></span></code></pre></div><p>By default the fzf without any arguments will search for all files inside the current directory. Once you start typing the fzf will dynamically match any search terms. Since it uses a fuzzy search algorithm, you don&rsquo;t have to type the name of the file exactly. The fzf can still find it.</p>
+<p>Additionally, you can setup integration with your shell:</p>
+<ul>
+<li>bash
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>eval <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>fzf --bash<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div></li>
+<li>zsh
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>source &lt;<span style="color:#f92672">(</span>fzf --zsh<span style="color:#f92672">)</span>
+</span></span></code></pre></div></li>
+<li>fish
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fish" data-lang="fish"><span style="display:flex;"><span><span style="color:#a6e22e">fzf</span> <span style="color:#a6e22e">--fish</span> <span style="color:#f92672">|</span> source
+</span></span></code></pre></div></li>
+</ul>
+<p>This will add the fzf key bindings and fuzzy completions. The new keybindings will be:</p>
+<ul>
+<li><code>Ctrl+t</code> - list files and folders in current directory (e.g. you can use it like this: type <code>git add</code>, then press <code>Ctrl+t</code>, select a few files using <code>TAB</code>, finally <code>ENTER</code>. Git will add the selected files.)</li>
+<li><code>Ctrl+r</code> - search history of shell commands</li>
+<li><code>Alt+c</code> - fuzzy change directory</li>
+</ul>
+<p>These key bindings can be <a href="https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings">modified further</a> by user.</p>
+<p>There is also a <a href="https://github.com/junegunn/fzf">fzf plugin for Vim</a>, which can be installed by adding these two lines into your <code>~/.vimrc</code> file (assuming that you are using <a href="https://github.com/junegunn/vim-plug">vim-plug</a> package manager):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vim" data-lang="vim"><span style="display:flex;"><span><span style="color:#a6e22e">Plug</span> <span style="color:#e6db74">&#39;junegunn/fzf&#39;</span>, { <span style="color:#e6db74">&#39;do&#39;</span>: { -&gt; <span style="color:#a6e22e">fzf</span>#<span style="color:#a6e22e">install</span>() } }
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Plug</span> <span style="color:#e6db74">&#39;junegunn/fzf.vim&#39;</span>
+</span></span></code></pre></div><h2 id="search-syntax">Search Syntax<a href="#search-syntax" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Unless otherwise specified, fzf starts in &ldquo;extended-search mode&rdquo; where you can type in multiple search terms delimited by spaces. e.g. <code>^music .mp3$ sbtrkt !fire</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Match type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sbtrkt</code></td>
+<td>fuzzy-match</td>
+<td>Items that match <code>sbtrkt</code></td>
+</tr>
+<tr>
+<td><code>'wild</code></td>
+<td>exact-match (quoted)</td>
+<td>Items that include <code>wild</code></td>
+</tr>
+<tr>
+<td><code>^music</code></td>
+<td>prefix-exact-match</td>
+<td>Items that start with <code>music</code></td>
+</tr>
+<tr>
+<td><code>.mp3$</code></td>
+<td>suffix-exact-match</td>
+<td>Items that end with <code>.mp3</code></td>
+</tr>
+<tr>
+<td><code>!fire</code></td>
+<td>inverse-exact-match</td>
+<td>Items that do not include <code>fire</code></td>
+</tr>
+<tr>
+<td><code>!^music</code></td>
+<td>inverse-prefix-exact-match</td>
+<td>Items that do not start with <code>music</code></td>
+</tr>
+<tr>
+<td><code>!.mp3$</code></td>
+<td>inverse-suffix-exact-match</td>
+<td>Items that do not end with <code>.mp3</code></td>
+</tr>
+</tbody>
+</table>
+<p>If you wish to search for an exact word or phrase, start fzf with <code>-e</code> or <code>--exact</code> option.</p>
+<p><strong>Note</strong>: When <code>--exact</code> is set, <code>'</code>-prefix &ldquo;unquotes&rdquo; the term.</p>
+<p>A single bar character term acts as an OR operator. For example, the following query matches entries that start with <code>core</code> and end with either <code>go</code>, <code>rb</code>, or <code>py</code>.</p>
+<pre tabindex="0"><code>^core go$ | rb$ | py$
+</code></pre><h2 id="using-fzf-in-your-scripts">Using <code>fzf</code> In Your Scripts<a href="#using-fzf-in-your-scripts" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>The true power of the fzf can be shown when we use it for various scripts.</p>
+<h3 id="basic-idea">Basic Idea<a href="#basic-idea" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>All of your scripts will be based on a single simple principle. We can pipe data into the fzf and then search in it using the fzf interface. The fzf will then output the selected text. For example, we can make a simple yes-no selector like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/sh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>selected<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo -e <span style="color:#e6db74">&#34;Yes\nNo&#34;</span> | fzf --prompt <span style="color:#e6db74">&#34;Select one of the options&#34;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;User selected </span>$selected<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p>The <code>--prompt</code> flag adds a message for the user. By the way, <code>-e</code> flag seems to be necessary in <code>echo</code>. I&rsquo;ve tried without, but the text was on a single line, and therefore we would have gotten only a single option. Once executed, we will be prompted to select one of the two options:</p>
+<pre tabindex="0"><code>╭────────────────────────────────────╮
+│ Select one of the options          │
+│   2/2 ──────────────────────────── │
+│ ▌ Yes                              │
+│   No                               │
+╰────────────────────────────────────╯
+</code></pre><p>Then the selected answer will be printed by using <code>echo</code>. This may seem simple, but it gives us wide possibilities. Below are a couple of simple examples to inspire you to write your own.</p>
+<h3 id="example---integration-with-tmux">Example - Integration With Tmux<a href="#example---integration-with-tmux" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>If you are using Tmux, it may be interesting for you to use the fzf-tmux command instead of the plain fzf. It works well with Tmux and with a <code>p</code> flag the selection will display floating above the panes, and I find it more readable compared to launching fzf in a smaller pane.</p>
+<p>If you are not using Tmux at the moment, the fzf-tmux will run the normal fzf. The fzf-tmux has the same options as the normal fzf.</p>
+<h3 id="example---setting-size-of-fzf-window">Example - Setting Size Of Fzf Window<a href="#example---setting-size-of-fzf-window" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>The width and height of the frame around the fzf selector can be adjusted according to the one&rsquo;s preferences with <code>--weigth</code>/<code>-w</code> (for width) and <code>--heigth</code>/<code>-h</code> (for heigth) flags:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>fzf -w 60% -h 30%
+</span></span></code></pre></div><p>This will make the fzf&rsquo;s 60% of the window&rsquo;s width and 30% of the window&rsquo;s height.</p>
+<h3 id="example---preview">Example - Preview<a href="#example---preview" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>It is possible to add a preview of the currently selected file. The preview is set using the <code>--preview</code> flag followed by a command that is used to create the preview. For example, you can be satisfied by using a simple <code>cat</code> command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls note | fzf --preview <span style="color:#e6db74">&#34;cat ~/notes/{}&#34;</span>
+</span></span></code></pre></div><p>The <code>{}</code> is replaced with the name of the selected file. The full path is necessary, because otherwise the <code>cat</code> will fail to find the file, unless you are in <code>notes</code> folder.</p>
+<p>Since I actually have some notes at <code>~/notes</code>, here is an example:</p>
+<pre tabindex="0"><code>╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ &gt;                                          ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮ │
+│   931/931 ──────────────────────────────── │ ---                                                                                                                      │ │
+│   AWS_dynamodb.md                         ││ title: &#34;Amazon Fargate&#34;                                                                                                  │ │
+│   AWS_elastic_block_storage_ebs.md         │ author: &#34;Marek S.&#34;                                                                                                       │ │
+│   AWS_elastic_cloud_compute_ec2.md         │ summary: &#34;Amazon Fargate is a fully-managed serverless service for running containerized applications on AWS.&#34;           │ │
+│   AWS_elastic_container_registry_ecr.md    │ date: 2023-07-11T15:21:21Z+0200                                                                                          │ │
+│   AWS_elastic_container_service_ecs.md     │ type: note                                                                                                               │ │
+│   AWS_elastic_file_system_efs.md           │ draft: true                                                                                                              │ │
+│   AWS_elastic_kubernetes_service_eks.md    │ tags:                                                                                                                    │ │
+│   AWS_elastic_load_balancer_elb.md         │   - &#34;Containers&#34;                                                                                                         │ │
+│ ▌ AWS_fargate.md                           │   - &#34;Container-Orchestration&#34;                                                                                            │ │
+│   AWS_index.md                             │                                                                                                                          │ │
+│   AWS_lambda.md                            │                                                                                                                          │ │
+│   AWS_list_of_services_with_descriptions.m │                                                                                                                          │ │
+│   AWS_mq.md                                ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯ │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+</code></pre><p>The position, size, and text wrapping of the preview window can be changed, by using <code>--preview-window</code> with <code>right</code>, <code>left</code>, <code>top</code>, and <code>bottom</code> options, followed by <code>:</code> and size in percents, another <code>:</code> separator, and the last is either <code>wrap</code> or <code>nowrap</code>. E.g.:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls note | fzf --preview-window<span style="color:#f92672">=</span>top:80%:nowrap --preview <span style="color:#e6db74">&#34;cat ~/notes/{}&#34;</span>
+</span></span></code></pre></div><h3 id="example---default-settings">Example - Default Settings<a href="#example---default-settings" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Writing the same setting such as the width and height will quickly get old. If you always want the same setting, you can export the settings into the <code>FZF_DEFAULT_OPTS</code> environment variable, and fzf will use it.</p>
+<p>In my <code>.bashrc</code> file I have the following export:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export FZF_DEFAULT_OPTS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--height 40% --layout=reverse --border --preview-window=right:70%:wrap&#39;</span>
+</span></span></code></pre></div><p>It sets the default height of the fzf window to 40% (default is 100%, which I didn&rsquo;t like), <code>--layout=reverse</code> puts the prompt at the top instead of the default bottom, <code>--border</code> adds the border, and <code>--preview-window</code> sets the size of the window, puts it on the right side and sets the text wrapping.</p>
+<p>All the options and their values can be found on the <a href="https://github.com/junegunn/fzf">fzf&rsquo;s Github page</a></p>
+<h3 id="example---searching-notes">Example - Searching Notes<a href="#example---searching-notes" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>In the following example we have a fuzzy search for notes in our notes folder. If no matching note is found, a new one is conditionally created based on the user input.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/sh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e"># Location of the notes</span>
+</span></span><span style="display:flex;"><span>NOTES_FOLDER<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$HOME<span style="color:#e6db74">/notes/&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The extension/suffix that I want for my notes (my notes are in Markdown)</span>
+</span></span><span style="display:flex;"><span>SUFFIX<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;.md&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Select a file from the notes folder</span>
+</span></span><span style="display:flex;"><span>selection<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>ls $NOTES_FOLDER | fzf-tmux $FZF_DEFAULT_OPTS <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>            --prompt <span style="color:#e6db74">&#34;Select a note&#34;</span> -h 80% -w 80% <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>            --preview <span style="color:#e6db74">&#34;cat </span>$NOTES_FOLDER<span style="color:#e6db74">{}&#34;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -z <span style="color:#e6db74">&#34;</span>$selection<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># If there isn&#39;t such a note ask user if the note should be created</span>
+</span></span><span style="display:flex;"><span>  selection<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>              printf <span style="color:#e6db74">&#34;Yes\nNo&#34;</span> | fzf-tmux $FZF_DEFAULT_OPTS -h 80% -w 80% <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>              --prompt <span style="color:#e6db74">&#34;There is no such entry. Create a new one?&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>             <span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;</span>$selection<span style="color:#e6db74">&#34;</span> in
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># The user wants the new note</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Yes&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Prompt for the name of the new note</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;Name of the new article? (without </span>$SUFFIX<span style="color:#e6db74"> suffix)&#34;</span>
+</span></span><span style="display:flex;"><span>      read name
+</span></span><span style="display:flex;"><span>      header<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;# </span>$name<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Remove spaces and convert the name to lower case</span>
+</span></span><span style="display:flex;"><span>      selection<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>echo $name | sed -e <span style="color:#e6db74">&#39;s/\(.*\)/\L\1/&#39;</span> | sed <span style="color:#e6db74">&#39;s/\ /_/g&#39;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">.wiki&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Create the new wiki file</span>
+</span></span><span style="display:flex;"><span>      touch <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Insert the title</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;</span>$header<span style="color:#e6db74">&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Insert the skeleton outline</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;## Introduction&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;## Main Idea&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;## Conclusions&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;## Sources&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;&#34;</span> &gt;&gt; <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>      ;;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># The users selects no + default: Exit</span>
+</span></span><span style="display:flex;"><span>    *<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;Ok, ok ... I am quitting then.\n&#34;</span>
+</span></span><span style="display:flex;"><span>      exit
+</span></span><span style="display:flex;"><span>      ;;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">esac</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># If the note exists or was just created, open it in the default browser (you</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># should have EDITOR variable defined)</span>
+</span></span><span style="display:flex;"><span>$EDITOR <span style="color:#e6db74">&#34;</span>$NOTES_FOLDER$selection<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><h3 id="example---emoji-selector">Example - Emoji Selector<a href="#example---emoji-selector" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>In this example we create a simple emoji picker.</p>
+<p>First download the <a href="https://gist.github.com/keidarcy/128141ff30a8c3f9ddc0d6c3ecb5b334">emoji.txt</a> file from Github. You can use <code>wget</code> or do it using your favorite browser:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget https://gist.githubusercontent.com/keidarcy/128141ff30a8c3f9ddc0d6c3ecb5b334/raw/8fc6b9efe6b72e8a876639e239043d492e857746/emoji.txt
+</span></span></code></pre></div><p>The content of the file looks something like this:</p>
+<pre tabindex="0"><code>😌 :relieved:
+😆 :satisfied:
+😁 :grin:
+😉 :wink:
+😜 :stuck_out_tongue_winking_eye:
+😝 :stuck_out_tongue_closed_eyes:
+😀 :grinning:
+😗 :kissing:
+😙 :kissing_smiling_eyes:
+😛 :stuck_out_tongue:
+😴 :sleeping:
+😟 :worried:
+😦 :frowning:
+</code></pre><p>Each line consists of an emoji and an emoji name separated by a single space. The script that selects an emoji, and removes the name is a trivial one-liner:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/sh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>cat emoji.txt | fzf |  cut -d <span style="color:#e6db74">&#39; &#39;</span> -f <span style="color:#ae81ff">1</span> | xsel -ib
+</span></span></code></pre></div><p>The <code>cut -d ' ' -f 1</code> cuts the input into two columns divided by a single space, then returns the value from the first column. The <code>xsel -ib</code> will copy the emoji into the clipboard. You can remove this part, or replace it with something else.</p>
+<p><strong>Note</strong>: Some emojies are missing in the file. I don&rsquo;t know why, it is not my file.</p>
+<h3 id="example---select-songs-in-cmus-using-fzf">Example - Select Songs In Cmus Using FZF<a href="#example---select-songs-in-cmus-using-fzf" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><a href="https://cmus.github.io/">Cmus</a> is a small, fast CLI music player for Unix-like systems. This snippet shows a simple script that picks a song from a give folder. Than queues the song. Entire folders can be selected as well.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Folder where is your music</span>
+</span></span><span style="display:flex;"><span>music_folder<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/path/to/Music/&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Select desired music using fzf</span>
+</span></span><span style="display:flex;"><span>selection<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>find <span style="color:#e6db74">&#34;</span>$music_folder<span style="color:#e6db74">&#34;</span> | fzf-tmux --prompt <span style="color:#e6db74">&#34;Select a song:&#34;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Quit if nothing was selected</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $selection -ef $HOME <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span> exit; <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add the selected music to the queue using Cmus&#39; CLI</span>
+</span></span><span style="display:flex;"><span>cmus-remote -l <span style="color:#e6db74">&#34;</span>$selection<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># If a specific music file was selected, play it immediately</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>   <span style="color:#f92672">[</span> -f <span style="color:#e6db74">&#34;</span>$selection<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span> cmus-remote -f <span style="color:#e6db74">&#34;</span>$selection<span style="color:#e6db74">&#34;</span>; <span style="color:#66d9ef">fi</span>
+</span></span></code></pre></div><h3 id="example---multiple-selections">Example - Multiple Selections<a href="#example---multiple-selections" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>It is possible to select more than one entry with <code>-m</code>/<code>--multi</code> flag. I don&rsquo;t use this feature very often, but I have a nice example that might be useful: That is a simple one-liner files, which lets you select the files that should be staged using <code>git add</code> command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git add <span style="color:#66d9ef">$(</span>fzf --multi<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><p>You can select several options by pressing <code>TAB</code> key. This will select/unselect the current line and then move down. To select the entry and move the pointer down, press <code>Shift+TAB</code>.</p>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>In this blog post I&rsquo;ve showed you how to install the fuzzy finder and added several examples to help you get started. Ever since I&rsquo;ve installed the fzf on my computer, the way I interact with terminal changed. The fzf is extremely useful tool that I would recommend to everyone who likes/needs to work with terminal everyday.</p>
+<p>The possibility of using the fzf in scripts greatly extends its usefulness. I use it all the time to create simple CLI interfaces for selecting files or even simple Yes/No questions. Moreover there are many examples of scripts online. People use it for all sorts of things, including selecting browser bookmarks, simplifying interactions with Git, selecting panes in Tmux, selecting <a href="https://github.com/jrnl-org/jrnl">jrnl</a> entries from a particular day, <a href="https://github.com/AndreaOrru/fzf-mopidy-spotify.vim">selecting  Spotify songs</a>, and so much more! There are many example on <a href="https://github.com/junegunn/fzf/wiki/Examples">fzf&rsquo;s Github wiki</a>.</p>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/blog/en/posts/terminal-tips-and-tricks/">Terminal Tips and Tricks</a></li>
+	
+	</ul>
+</div>
+
+		</article>
+		<aside id="toc">
+			<div class="toc-title">Table of Contents</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-fzf">What Is <code>fzf</code>?</a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#search-syntax">Search Syntax</a></li>
+    <li><a href="#using-fzf-in-your-scripts">Using <code>fzf</code> In Your Scripts</a>
+      <ul>
+        <li><a href="#basic-idea">Basic Idea</a></li>
+        <li><a href="#example---integration-with-tmux">Example - Integration With Tmux</a></li>
+        <li><a href="#example---setting-size-of-fzf-window">Example - Setting Size Of Fzf Window</a></li>
+        <li><a href="#example---preview">Example - Preview</a></li>
+        <li><a href="#example---default-settings">Example - Default Settings</a></li>
+        <li><a href="#example---searching-notes">Example - Searching Notes</a></li>
+        <li><a href="#example---emoji-selector">Example - Emoji Selector</a></li>
+        <li><a href="#example---select-songs-in-cmus-using-fzf">Example - Select Songs In Cmus Using FZF</a></li>
+        <li><a href="#example---multiple-selections">Example - Multiple Selections</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://msemjan.github.io/blog/en/posts/sql-migrations-with-goose/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Sql Migrations With Goose</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"></div>
+	</main>
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+	<p>
+		&copy; 2024 <a href="https://msemjan.github.io/blog/">Marek Semjan</a>
+		&#183; Copyright © 2024 Marek Semjan. All Rights Reserved.
+		&#183; Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+		&#183; Theme <a href="https://github.com/1bl4z3r/hermit-V2" target="_blank" rel="noopener">Hermit-V2</a>
+		&#183; <a href="https://msemjan.github.io/blog/en/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></p>
+
+</footer>
+<script async src="https://msemjan.github.io/blog/js/bundle.min.c7c384e4d29d192bbac6811ae4660bb01767194a5bea56baca77e8260f93ea16.js" integrity="sha256-x8OE5NKdGSu6xoEa5GYLsBdnGUpb6la6ynfoJg+T6hY=" crossorigin="anonymous"></script><script async src="https://msemjan.github.io/blog/js/link-share.min.24409a4f6e5537d70ffc55ec8f9192208d718678cb8638585342423020b37f39.js" integrity="sha256-JECaT25VN9cP/FXsj5GSII1xhnjLhjhYU0JCMCCzfzk=" crossorigin="anonymous"></script>
+</body>
+
+</html>
