@@ -6,12 +6,19 @@
     <description>Recent content on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 20 Jul 2024 11:57:02 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 24 Aug 2024 13:57:16 +0200</lastBuildDate>
     <atom:link href="https://msemjan.github.io/blog/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deploying Machine Learning Models With FastAPI</title>
+      <link>https://msemjan.github.io/blog/en/posts/deploying-machine-learning-models-with-fast-api/</link>
+      <pubDate>Sat, 24 Aug 2024 13:57:16 +0200</pubDate>
+      <guid>https://msemjan.github.io/blog/en/posts/deploying-machine-learning-models-with-fast-api/</guid>
+      <description>Introduction If you&amp;rsquo;ve started with machine learning just recently and created your first model, you might be wondering what to do with it next? Sharing Python scripts is doable, but it might be difficult for non-technical people to setup a Python project. One of the better possibilities is to create a REST API that would make the model accessible via internet.&#xA;In this blog post I will show you how to create such REST API with the help of FastAPI web framework.</description>
+    </item>
     <item>
       <title>Introduction Into FZF</title>
       <link>https://msemjan.github.io/blog/en/posts/introduction-into-fzf/</link>
-      <pubDate>Sat, 20 Jul 2024 11:57:02 +0200</pubDate>
+      <pubDate>Sat, 03 Aug 2024 16:40:02 +0200</pubDate>
       <guid>https://msemjan.github.io/blog/en/posts/introduction-into-fzf/</guid>
       <description>What Is fzf? The fzf is a general purpose fuzzy finder that can interactively filter any kind of list, command line history, processes, host names, bookmarks, git commits, or anything else. Ever since I&amp;rsquo;ve installed in on my computer, it completely changed the way I interact with my terminal. If you are a fan of command line tools, the fzf might be perfect thing for you as well.&#xA;Installation The fzf is in the repositories of most popular distributions and can be easily installed with a single command:</description>
     </item>
@@ -97,7 +104,7 @@
       <link>https://msemjan.github.io/blog/en/about-hugo/</link>
       <pubDate>Fri, 11 Aug 2023 21:36:44 +0200</pubDate>
       <guid>https://msemjan.github.io/blog/en/about-hugo/</guid>
-      <description>I am Marek, a software developer from Slovakia 🇸🇰&#xA;Programming and quantum mechanics are closest we can get to magic in real world. I was always drawn to the magical side of the nature, and because of this I&amp;rsquo;ve decided to study these subjects. For a quiet some time I was contemplating whether I should choose computer science, software engineering or natural sciences. When I was approximately nine, I&amp;rsquo;ve decided to study (computer) physics, because it allowed me to combine the two interests.</description>
+      <description>Hi, my name is Marek. I live in a small country in the heart of Europe, Slovakia 🇸🇰, where I work as a software engineering company.&#xA;Ever since I was a child, I&amp;rsquo;ve found computers and technology fascinating and they naturally attracted me. The first language I came into contact with was Lua. At the time I was 14 or so, and I was playing the World of Warcraft (WoW) with my friends.</description>
     </item>
     <item>
       <title>Introducing GHAST Stack</title>

@@ -5,13 +5,277 @@
 		<description>Recent content in Posts on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
-		<lastBuildDate>Sat, 20 Jul 2024 11:57:02 +0200</lastBuildDate>
+		<lastBuildDate>Sat, 24 Aug 2024 13:57:16 +0200</lastBuildDate>
 		<atom:link href="https://msemjan.github.io/blog/en/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Deploying Machine Learning Models With FastAPI</title>
+			<link>https://msemjan.github.io/blog/en/posts/deploying-machine-learning-models-with-fast-api/</link>
+			<pubDate>Sat, 24 Aug 2024 13:57:16 +0200</pubDate>
+			
+			<guid>https://msemjan.github.io/blog/en/posts/deploying-machine-learning-models-with-fast-api/</guid>
+			<description><![CDATA[%!s(<nil>)]]></description>
+			<content type="html"><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>If you&rsquo;ve started with machine learning just recently and created your first model, you might be wondering what to do with it next? Sharing Python scripts is doable, but it might be difficult for non-technical people to setup a Python project. One of the better possibilities is to create a REST API that would make the model accessible via internet.</p>
+<p>In this blog post I will show you how to create such REST API with the help of FastAPI web framework. I prefer this framework because it is fast (on par with NodeJS), easy to use, and quick to setup.</p>
+<h2 id="setup">Setup</h2>
+<p>First, let&rsquo;s create a new directory. You may want to use virtual environments, which are considered to be a good practice, and may help you prevent conflicts of versions of various packages. On Linux you would create and activate a virtual environment with the following commands:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python -m venv path/to/venv
+</span></span><span style="display:flex;"><span>source path/to/venv
+</span></span></code></pre></div><p>If you plan on using the virtual environment only for this project, you can set <code>path/to/venv</code> to <code>./venv</code>, but the same virtual environment may be used for several projects with the same dependencies.</p>
+<p>With the virtual envioronment, we can install the <code>scikit-learn</code>, <code>numpy</code> and <code>fastapi[standard]</code> packages using <code>pip</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install numpy scikit-learn <span style="color:#e6db74">&#34;fastapi[standard]&#34;</span>
+</span></span></code></pre></div><h2 id="model">Model</h2>
+<p>Creating a good machine learning model is beyond the scope of this blog post. For simplicity we will use synthetic data and Support Vector Machines classifier. I used a simple example for a pipeline (shamelessly stolen) from <a href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html#pipeline">scikit-learn documentation</a> to generate data, and added a part for saving the model using the <a href="https://docs.python.org/3/library/pickle.html"><code>pickle</code> library</a>, which is a part of all standard installation of Python:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> pickle
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.svm <span style="color:#f92672">import</span> SVC
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.preprocessing <span style="color:#f92672">import</span> StandardScaler
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.datasets <span style="color:#f92672">import</span> make_classification
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> train_test_split
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.pipeline <span style="color:#f92672">import</span> Pipeline
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate random dataset with four features</span>
+</span></span><span style="display:flex;"><span>X, y <span style="color:#f92672">=</span> make_classification(random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, n_features<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Split data into training &amp; testing subsets</span>
+</span></span><span style="display:flex;"><span>X_train, X_test, y_train, y_test <span style="color:#f92672">=</span> train_test_split(X, y, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a pipeline</span>
+</span></span><span style="display:flex;"><span>pipe <span style="color:#f92672">=</span> Pipeline([(<span style="color:#e6db74">&#34;scaler&#34;</span>, StandardScaler()), (<span style="color:#e6db74">&#34;svc&#34;</span>, SVC())])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The sklearn pipelines can be used as any other estimators, so we can call fit()</span>
+</span></span><span style="display:flex;"><span>pipe<span style="color:#f92672">.</span>fit(X_train, y_train)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Calculate and print score</span>
+</span></span><span style="display:flex;"><span>score <span style="color:#f92672">=</span> pipe<span style="color:#f92672">.</span>score(X_test, y_test)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;The model score is </span><span style="color:#e6db74">{</span>score<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Save the model</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#34;model.pkl&#34;</span>, <span style="color:#e6db74">&#34;wb&#34;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>    pickle<span style="color:#f92672">.</span>dump(pipe, f)
+</span></span></code></pre></div><blockquote>
+<p><strong>⚠️ Note</strong>:
+Do not use <code>pickle</code> to de-serialize data from untrusted sources. As the documentation states, the module is not secure. An attacker could use it to execute any malicious code during unpickling.</p>
+</blockquote>
+<p>After running the script above, you should find a <code>model.pkl</code> file in the root directory of the project. We will use this folder to load the model in the REST API.</p>
+<blockquote>
+<p><strong>Note</strong>:
+In case you already have some suitable model, you can try to modify the code in the following sections.</p>
+</blockquote>
+<h2 id="fastapi-server---minimal-example">FastAPI Server - Minimal Example</h2>
+<p>Creating a minimal example of a server with FastAPI is very simple as can be seen from a snippet below (only 14 lines of code are necessary):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> fastapi <span style="color:#f92672">import</span> FastAPI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> FastAPI()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.get</span>(<span style="color:#e6db74">&#34;/&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">greet</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> { <span style="color:#e6db74">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Hello&#34;</span> }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Run app</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">from</span> uvicorn <span style="color:#f92672">import</span> run
+</span></span><span style="display:flex;"><span>    run(app, host<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;0.0.0.0&#39;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">8000</span>)
+</span></span></code></pre></div><p>You can run the example with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python server.py
+</span></span></code></pre></div><p>This will start the server running at <a href="http://localhost:8000"><code>http://localhost:8000/</code></a>.</p>
+<p>Alternatively, it can be further simplified by removing the <code>if</code> statement at the end, and then you would run the server with the following <code>fastapi</code> command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>fastapi dev server.py
+</span></span></code></pre></div><p>Once the server is running, you can open a browser and navigate to <a href="http://localhost:8000"><code>http://localhost:8000/</code></a> and you should see <code>{&quot;message&quot;: &quot;Hello&quot;}</code> in the browser window. Another feature of FastAPI I love is that it automatically generates an interactive documentation provided by <a href="https://github.com/swagger-api/swagger-ui">Swagger UI</a> that can be accessed in the web browser at <a href="http://localhost:8000/docs"><code>http://localhost:8000/docs</code></a>. All available endpoints will be shown there with examples of arguments, parameters, possible errors, and even <code>curl</code> commands for testing.</p>
+<h2 id="adding-an-endpoint-for-model-predictions">Adding An Endpoint For Model Predictions</h2>
+<p>If we want to serve our model using REST API, we will need a couple of additional features. First we will need to be able to read the model we saved, we will need a new endpoint where users can make requests, then we will need to parse data that were sent by the user, and at the end we will need to be able to return a prediction from our model. Fortunately, it is relatively easy.</p>
+<p>First we will add a global variable with a path to our model at the beginning of the file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>MODEL_FILE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;model.pkl&#34;</span>
+</span></span></code></pre></div><p>And I&rsquo;ve also added a logger using the Python&rsquo;s <a href="https://docs.python.org/3/library/logging.html"><code>logging</code> library</a>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>logger <span style="color:#f92672">=</span> logging<span style="color:#f92672">.</span>getLogger(__name__)
+</span></span><span style="display:flex;"><span>logging<span style="color:#f92672">.</span>basicConfig(level<span style="color:#f92672">=</span>logging<span style="color:#f92672">.</span>DEBUG)
+</span></span></code></pre></div><p>The logging level can stay <code>logging.DEBUG</code> for now, but it is common to set it to <code>logging.INFO</code> on a production environment.</p>
+<p>We will also need to add a couple of new imports:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sys <span style="color:#f92672">import</span> exit
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pickle
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> logging
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Union
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> numpy <span style="color:#f92672">import</span> array
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> fastapi <span style="color:#f92672">import</span> FastAPI, Body
+</span></span></code></pre></div><p>The data that the user sends using POST request will be of type <code>DataPoint</code>, which will be defined like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DataPoint</span>(BaseModel):
+</span></span><span style="display:flex;"><span>    x: list[float]
+</span></span></code></pre></div><p>The <code>pydantic</code> library will do some validation for us for free (well, there is a runtime cost, but we don&rsquo;t need to write any validation code ourselves). If you are using your own model, the expected input format might be different, and you will need to modify this class. You may also want to add some other fields, that are not related to the machine learning model, but are necessary for the API (such as API keys, or login information).</p>
+<p>Now we are ready do add an endpoint for processing the user requests. A code below creates a REST API endpoint, that accepts POST requests, but doesn&rsquo;t do anything except logging that a request occurred:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@app.post</span>(<span style="color:#e6db74">&#34;/&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">model</span>(datapoint: DataPoint <span style="color:#f92672">=</span> Body(<span style="color:#66d9ef">None</span>, example<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;x&#34;</span>: [<span style="color:#ae81ff">1.3</span>, <span style="color:#ae81ff">2.7</span>, <span style="color:#ae81ff">3.14</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.84</span>]})):
+</span></span><span style="display:flex;"><span>    logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;A new requests on POST /&#34;</span>)
+</span></span></code></pre></div><p>As you can see, I&rsquo;ve also added one argument that is of type <code>DataPoint</code> and the specified example will be used in the auto-generated documentation.</p>
+<p>This is, however, not very useful, so we will need to implement some business logic. Since the <code>datapoint</code> is parsed by FastAPI and validated by <code>pydantic</code> (it checks if the received JSON has  a <code>x</code> field that is an array of <code>floats</code>, and if the JSON does not conform to a specifies schema, <code>pydantic</code> will throw a runtime exception 422 Unprocessable Entity error code for the user), we can just check if the array has correct length (it should be of 4, same as the number of features):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@app.post</span>(<span style="color:#e6db74">&#34;/&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">model</span>(datapoint: DataPoint <span style="color:#f92672">=</span> Body(<span style="color:#66d9ef">None</span>, example<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;x&#34;</span>: [<span style="color:#ae81ff">1.3</span>, <span style="color:#ae81ff">2.7</span>, <span style="color:#ae81ff">3.14</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.84</span>]})):
+</span></span><span style="display:flex;"><span>    logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;A new requests on POST /&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> len(datapoint<span style="color:#f92672">.</span>x) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">4</span>:
+</span></span><span style="display:flex;"><span>        logger<span style="color:#f92672">.</span>error(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;User error, the data point must have 4 elements. Got &#39;</span><span style="color:#e6db74">{</span>datapoint<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;The input should have 4 elements!&#34;</span>}
+</span></span></code></pre></div><p>If the user sent incorrect data, we will return an error message in a form of a JSON.</p>
+<p>Now we will load the model using <code>pickle</code> and use it to generate a prediction (we will also add error checking). The POST handler will in the end look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@app.post</span>(<span style="color:#e6db74">&#34;/&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">model</span>(datapoint: DataPoint <span style="color:#f92672">=</span> Body(<span style="color:#66d9ef">None</span>, example<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;x&#34;</span>: [<span style="color:#ae81ff">1.3</span>, <span style="color:#ae81ff">2.7</span>, <span style="color:#ae81ff">3.14</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.84</span>]})):
+</span></span><span style="display:flex;"><span>    logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;A new requests on POST /&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> len(datapoint<span style="color:#f92672">.</span>x) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">4</span>:
+</span></span><span style="display:flex;"><span>        logger<span style="color:#f92672">.</span>error(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;User error, the data point must have 4 elements. Got &#39;</span><span style="color:#e6db74">{</span>datapoint<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;The input should have 4 elements!&#34;</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Open a file with the model</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">with</span> open(MODEL_FILE, <span style="color:#e6db74">&#34;rb&#34;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Unpickle the model</span>
+</span></span><span style="display:flex;"><span>            clf <span style="color:#f92672">=</span> pickle<span style="color:#f92672">.</span>load(f)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Make a prediction - Data is reshaped into correct form</span>
+</span></span><span style="display:flex;"><span>            prediction <span style="color:#f92672">=</span> clfí<span style="color:#f92672">.</span>predict(array(datapoint<span style="color:#f92672">.</span>x)<span style="color:#f92672">.</span>reshape([<span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]))[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># A debug log for testing</span>
+</span></span><span style="display:flex;"><span>            logger<span style="color:#f92672">.</span>debug(
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;A prediction was successfully made for x=&#39;</span><span style="color:#e6db74">{</span>datapoint<span style="color:#f92672">.</span>x<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;, prediction=&#39;</span><span style="color:#e6db74">{</span>prediction<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Return the result</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;prediction&#34;</span>: prediction}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">FileNotFoundError</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Just in case someone deleted the model</span>
+</span></span><span style="display:flex;"><span>        logger<span style="color:#f92672">.</span>error(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Model not found. Error: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;Internal server error&#34;</span>}
+</span></span></code></pre></div><p>The data also needs to be reshaped and I extracted the first element of the list, which contains the prediction. The result is then returned in a form of a JSON. In our case the value will be either 0 or 1, depending on the input, because we only have two classes (this can be changed during the generation of the synthetic data, by adding a <code>n_classes</code> parameter into <code>make_classification()</code> function, and setting it to a non-default value; the default is 2).</p>
+<blockquote>
+<p><strong>Note</strong>:
+In the example, I am loading the model each time a request is performed. This is advantageous if we want to change the model during the run (e.g. after it was retrained on a new dataset, but the model has still the same number and shape of inputs), but it may not be the best idea if the model is large or does not change very often.</p>
+<p>In such a case it would be better to load the model only once, and use it repeatedly. A change of the model would require a reload of the server, but that is not necessary an issue. The classifier object could be either a global variable (some people don&rsquo;t like to use them, but I think it is OK in small applications), or you could utilize FastAPI&rsquo;s <a href="https://fastapi.tiangolo.com/tutorial/dependencies/">dependency injection</a> feature.</p>
+</blockquote>
+<p>The final change that I&rsquo;ve added is an additional check that is performed before running the server:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Check if the file with the model does exits, if not, it does not make sense to continue</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(MODEL_FILE):
+</span></span><span style="display:flex;"><span>        logger<span style="color:#f92672">.</span>fatal(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Model does not exists! Make sure that $</span><span style="color:#e6db74">{</span>MODEL_FILE<span style="color:#e6db74">}</span><span style="color:#e6db74"> exits&#34;</span>)
+</span></span><span style="display:flex;"><span>        exit(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Run app</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">from</span> uvicorn <span style="color:#f92672">import</span> run
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    run(app, host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0.0.0.0&#34;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">8000</span>)
+</span></span></code></pre></div><p>It is not strictly necessary, but if you forgot to create a model, you will find out immediately, not after the first request.</p>
+<h2 id="complete-example">Complete Example</h2>
+<p>The complete example of the code we wrote can be found below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sys <span style="color:#f92672">import</span> exit
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pickle
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> logging
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Union
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> numpy <span style="color:#f92672">import</span> array
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> fastapi <span style="color:#f92672">import</span> FastAPI, Body
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>logger <span style="color:#f92672">=</span> logging<span style="color:#f92672">.</span>getLogger(__name__)
+</span></span><span style="display:flex;"><span>logging<span style="color:#f92672">.</span>basicConfig(level<span style="color:#f92672">=</span>logging<span style="color:#f92672">.</span>WARNING)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>MODEL_FILE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;model.pkl&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DataPoint</span>(BaseModel):
+</span></span><span style="display:flex;"><span>    x: list[float]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> FastAPI()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.get</span>(<span style="color:#e6db74">&#34;/&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">greet</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Hello&#34;</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.post</span>(<span style="color:#e6db74">&#34;/&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">model</span>(datapoint: DataPoint <span style="color:#f92672">=</span> Body(<span style="color:#66d9ef">None</span>, example<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;x&#34;</span>: [<span style="color:#ae81ff">1.3</span>, <span style="color:#ae81ff">2.7</span>, <span style="color:#ae81ff">3.14</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.84</span>]})):
+</span></span><span style="display:flex;"><span>    logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;A new requests on POST /&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> len(datapoint<span style="color:#f92672">.</span>x) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">4</span>:
+</span></span><span style="display:flex;"><span>        logger<span style="color:#f92672">.</span>error(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;User error, the data point must have 4 elements. Got &#39;</span><span style="color:#e6db74">{</span>datapoint<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;The input should have 4 elements!&#34;</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Load model &amp; return calculated prediction</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">with</span> open(MODEL_FILE, <span style="color:#e6db74">&#34;rb&#34;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>            clf <span style="color:#f92672">=</span> pickle<span style="color:#f92672">.</span>load(f)
+</span></span><span style="display:flex;"><span>            prediction <span style="color:#f92672">=</span> int(clf<span style="color:#f92672">.</span>predict(array(datapoint<span style="color:#f92672">.</span>x)<span style="color:#f92672">.</span>reshape([<span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]))[<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            logger<span style="color:#f92672">.</span>debug(
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;A prediction was successfully made for x=&#39;</span><span style="color:#e6db74">{</span>datapoint<span style="color:#f92672">.</span>x<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;, prediction=&#39;</span><span style="color:#e6db74">{</span>prediction<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;prediction&#34;</span>: prediction}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ValueError</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        logger<span style="color:#f92672">.</span>error(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Failed to parse body. Error: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;Invalid datapoint&#34;</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">FileNotFoundError</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        logger<span style="color:#f92672">.</span>error(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Model not found. Error: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;Internal server error&#34;</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Check if the file with the model does exits, if not, it does not make sense to continue</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(MODEL_FILE):
+</span></span><span style="display:flex;"><span>        logger<span style="color:#f92672">.</span>fatal(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Model does not exists! Make sure that $</span><span style="color:#e6db74">{</span>MODEL_FILE<span style="color:#e6db74">}</span><span style="color:#e6db74"> exits&#34;</span>)
+</span></span><span style="display:flex;"><span>        exit(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Run app</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">from</span> uvicorn <span style="color:#f92672">import</span> run
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    run(app, host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0.0.0.0&#34;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">8000</span>)
+</span></span></code></pre></div><p>For testing, you can use a <code>curl</code> command (or something else, e.g. Postman):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -X <span style="color:#e6db74">&#39;POST&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#39;http://localhost:8000/&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#39;accept: application/json&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#39;Content-Type: application/json&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;x&#34;: [
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      -1, 2, -1.3, 3.14
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    ]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
+</span></span></code></pre></div><p>As mentioned before, all the commands can be found (and tested!) at <code>http://localhost:8000/docs</code>.</p>
+<h2 id="conclusions">Conclusions</h2>
+<p>In this post I&rsquo;ve shown you how to create a simple REST API server for serving your machine learning project. The same ideas can be used if you have multiple models (just add more endpoints) or if the model uses a different input format (update/replace the <code>DataPoint</code> class). Replacing the <code>scikit-learn</code> with something else is also possible, e.g. with TensorFlow and Keras, which offer a better way of <a href="https://www.tensorflow.org/tutorials/keras/save_and_load">saving/loading models</a> than <code>pickle</code>, which is insecure and may introduce a vulnerability if the model comes from a untrusted source.</p>
+<p>Using REST API will allow your users to consume the API either in some kind of a frontend application, or from other servers or applications that may further process the results. Moreover, FastAPI may be used for endpoints that don&rsquo;t return a result from a machine learning/AI model.</p>
+<p>There are also a couple of things that you may want to do (as a practice):</p>
+<ul>
+<li>Definitely use some more useful machine learning model trained on a meaningful dataset</li>
+<li>Update the API so it can do several predictions in a batch, not on a single data point</li>
+<li>Try to improve logging</li>
+<li>The error handling could be improved (there is a page about <a href="https://fastapi.tiangolo.com/tutorial/handling-errors/#add-custom-headers">error handling</a> in FastAPI documentation)</li>
+<li>Automate retraining of the model on the newest data periodically (maybe with cronjob?), and based on some metrics conditionally replace the used model (I guess that this makes sense only if you are also automatically collecting new data)</li>
+<li>Maybe add database (although, I am not sure what for?)</li>
+<li>Authentication (e.g. using <a href="https://fastapi.tiangolo.com/tutorial/middleware/">FastAPI Middleware</a>)</li>
+<li>Change loading of the model so the file is read only once in the beginning (you may want to look into <a href="https://fastapi.tiangolo.com/tutorial/dependencies/">dependency injection</a>)</li>
+<li><a href="https://www.docker.com/blog/how-to-dockerize-your-python-applications/">Dockerize your application</a> (this would be great both for making your application more production-ready, but also improve reproduciblity and security of the API)</li>
+<li>If the API is used in a combination with some frontend to display the data from model, you may want to look into generating <a href="https://plotly.com/python/interactive-html-export/">interactive HTML exports with Plotly</a> (which also works well with <a href="/blog/en/posts/introducing-ghast-stack/">HTMX</a>, and add an endpoint that returns an HTML snippet that contains a chart, which could be simply displayed</li>
+<li>Making your REST API available on your local network using <a href="/blog/en/posts/nginx-reverse-proxy-for-apps/">NGINX as a reverse proxy</a></li>
+<li>Try to make a simple app that consumes the API (you can use <a href="https://pypi.org/project/requests/"><code>request</code> library</a> for making HTTP requests in Python)</li>
+</ul>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Introduction Into FZF</title>
 			<link>https://msemjan.github.io/blog/en/posts/introduction-into-fzf/</link>
-			<pubDate>Sat, 20 Jul 2024 11:57:02 +0200</pubDate>
+			<pubDate>Sat, 03 Aug 2024 16:40:02 +0200</pubDate>
 			
 			<guid>https://msemjan.github.io/blog/en/posts/introduction-into-fzf/</guid>
 			<description><![CDATA[%!s(<nil>)]]></description>
