@@ -1,5 +1,5 @@
 ---
-author: Marek Semjan
+author: M. Semjan
 date: "2023-02-26T17:03:52+02:00"
 draft: true
 summary: Can you link notes written in Markdown and Vimwiki syntax? If yes, how? This

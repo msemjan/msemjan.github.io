@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Round Robin on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
-    <link>https://msemjan.github.io/blog/en/tags/round-robin/</link>
+    <link>http://localhost:1313/blog/en/tags/round-robin/</link>
     <description>Recent content in Round Robin on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 15 Jun 2024 11:09:40 +0200</lastBuildDate>
-    <atom:link href="https://msemjan.github.io/blog/en/tags/round-robin/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/blog/en/tags/round-robin/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Using NGINX As A Load Balancer</title>
-      <link>https://msemjan.github.io/blog/en/posts/nginx-load-balancer/</link>
+      <link>http://localhost:1313/blog/en/posts/nginx-load-balancer/</link>
       <pubDate>Sat, 15 Jun 2024 11:09:40 +0200</pubDate>
-      <guid>https://msemjan.github.io/blog/en/posts/nginx-load-balancer/</guid>
+      <guid>http://localhost:1313/blog/en/posts/nginx-load-balancer/</guid>
       <description>Load balancing is a process of distributing a set of tasks to multiple resources (e.g. processing units or servers) with a goal of increasing efficiency of processing, maximizing throughput, reducing latency, and ensuring fault tolerant configuration. In this post we will take a look at how to configure load balancing with NGINX server.</description>
     </item>
   </channel>

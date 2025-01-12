@@ -1,7 +1,7 @@
 ---
 title: "Sql Migrations With Goose"
 date: "2024-07-13T15:45:24+02:00"
-author: "Marek Semjan"
+author: "M. Semjan"
 draft: false
 summary: "Goose is a database migration tool that will help you manage your database schemas"
 toc: false

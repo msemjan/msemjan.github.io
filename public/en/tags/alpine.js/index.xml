@@ -2,17 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Alpine.js on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
-    <link>https://msemjan.github.io/blog/en/tags/alpine.js/</link>
+    <link>http://localhost:1313/blog/en/tags/alpine.js/</link>
     <description>Recent content in Alpine.js on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 11 Aug 2023 18:12:17 +0200</lastBuildDate>
-    <atom:link href="https://msemjan.github.io/blog/en/tags/alpine.js/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Sep 2023 21:21:13 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/blog/en/tags/alpine.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Writing Simple Webpage With Alpine.js and Tailwind</title>
+      <link>http://localhost:1313/blog/en/posts/writing-simple-webpage-with-alpine.js-and-tailwind/</link>
+      <pubDate>Mon, 04 Sep 2023 21:21:13 +0200</pubDate>
+      <guid>http://localhost:1313/blog/en/posts/writing-simple-webpage-with-alpine.js-and-tailwind/</guid>
+      <description>Alpine.js is a lightweight Javscript framework that was designed to be a minimal tool for composing behavior directly in your markup. In this post I&amp;rsquo;ll show you how to create a simple website with Alpine.js.</description>
+    </item>
     <item>
       <title>Introducing GHAST Stack</title>
-      <link>https://msemjan.github.io/blog/en/posts/introducing-ghast-stack/</link>
+      <link>http://localhost:1313/blog/en/posts/introducing-ghast-stack/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
-      <guid>https://msemjan.github.io/blog/en/posts/introducing-ghast-stack/</guid>
+      <guid>http://localhost:1313/blog/en/posts/introducing-ghast-stack/</guid>
       <description>GHAST stack is a new tech-stack for developing web applications without excessive use of Javascript. In this article I describe why I am suggesting usage of this tech-stack and what technologies it uses.</description>
     </item>
   </channel>
