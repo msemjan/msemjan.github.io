@@ -1,10 +1,10 @@
 ---
-title: "Replacing Nginx With Caddy"
+title: "Replacing NGINX With Caddy"
 date: 2025-02-08T14:27:02+01:00
 draft: true
 toc: false
 images:
-tags: 
+tags:
   - Caddy
   - HTTP Server
   - NGINX
@@ -38,7 +38,7 @@ Both Caddy and NGINX are HTTP servers with various features. Both have their adv
 ### Caddy
 
 **Advantages**:
-- A built-in support for automatic SSL/TLS 
+- A built-in support for automatic SSL/TLS
 - Easier to setup
 - Can be extended using various plugins
 
@@ -52,11 +52,11 @@ I would recommend Caddy for startups, smaller companies, and tech enthusiasts wh
 
 However, if you need the raw performance for handling thousands of concurrent requests in an enterprise-level applications, then NGINX is clearly a better choice. Moreover, it provides better support for microservices and containerized environments.
 
-## Installation 
+## Installation
 
 To install Caddy follow the [guide](https://caddyserver.com/docs/install) for your OS.
 
-## Caddyfile 
+## Caddyfile
 
 Caddy is configured using a `Caddyfile`, which can be found in `/etc/caddy/Caddyfile`. To test things, we can configure Caddy as a simple file server with the following code:
 
@@ -153,7 +153,7 @@ In some cases, round-robin is undesirable. For example, our service may require 
 	admin "unix//run/caddy/admin.socket"
 }
 
-example.com { 
+example.com {
     reverse_proxy {
         lb_policy ip_hash
         to localhost:8080 localhost:8081 localhost:8082
@@ -179,7 +179,7 @@ Moreover, we can easily setup health checks to ensure that unhealthy servers are
 	admin "unix//run/caddy/admin.socket"
 }
 
-example.com { 
+example.com {
     reverse_proxy {
         lb_policy least_requests    # The server with least connections will be used
         to localhost:8080 localhost:8081 localhost:8082
@@ -198,7 +198,7 @@ With this setup Caddy will:
 
 ## Conclusions
 
-The goal of this was to showcase capabilities of Caddy. We looked at the basics in an attempt to reproduce the setup that I have for NGINX (see posts about setting up [load balancer](./nginx-load-balancer.md) and [reverse proxy](./nginx-reverse-proxy-for-apps.md) with NGINX). 
+The goal of this was to showcase capabilities of Caddy. We looked at the basics in an attempt to reproduce the setup that I have for NGINX (see posts about setting up [load balancer](./nginx-load-balancer.md) and [reverse proxy](./nginx-reverse-proxy-for-apps.md) with NGINX).
 
 I think I managed to demonstrate that we can configure the same functionality as for NGINX. The format of Caddyfile is easier to read and write than the one that the NGINX uses. We haven't gone into depth, and there are still various [Caddyfile directives](https://caddyserver.com/docs/caddyfile/directives) that you can use in your configuration.
 
