@@ -4,11 +4,246 @@
 		<title>Posts on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
 		<link>http://localhost:1313/blog/en/posts/</link>
 		<description>Recent content in Posts on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
-		<generator>Hugo -- 0.139.3</generator>
+		<generator>Hugo -- 0.142.0</generator>
 		<language>en</language>
-		<lastBuildDate>Sun, 12 Jan 2025 10:29:49 +0100</lastBuildDate>
+		<lastBuildDate>Sat, 08 Feb 2025 14:27:02 +0100</lastBuildDate>
 		<atom:link href="http://localhost:1313/blog/en/posts/index.xml" rel="self" type="application/rss+xml" />
 		
+		
+		<item>
+			<title>Replacing Nginx With Caddy</title>
+			<link>http://localhost:1313/blog/en/posts/replacing-nginx-with-caddy/</link>
+			<pubDate>Sat, 08 Feb 2025 14:27:02 +0100</pubDate><author>Marek Semjan</author><guid>http://localhost:1313/blog/en/posts/replacing-nginx-with-caddy/</guid>
+			<description><![CDATA[&lt;no value&gt;]]></description><content type="text/html" mode="escaped"><![CDATA[<h2 id="introduction">Introduction<a href="#introduction" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path>
+      <line x1="8" y1="12" x2="16" y2="12"></line>
+   </svg></a></h2>
+<p>Last year I wrote guides on how to setup <a href="/blog/en/posts/nginx-load-balancer/">load balancer</a> and <a href="/blog/en/posts/nginx-reverse-proxy-for-apps/">reverse proxy</a> using NGINX server. As I announced in <a href="/blog/en/posts/my-plans-for-2025/">the recent post about my plans for this year</a>, I&rsquo;ve decided to try Caddy<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> as a replacement for NGINX.</p>
+<h2 id="caddy-vs-nginx">Caddy VS NGINX<a href="#caddy-vs-nginx" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path>
+      <line x1="8" y1="12" x2="16" y2="12"></line>
+   </svg></a></h2>
+<p>Both Caddy and NGINX are HTTP servers with various features. Both have their advantages and disadvantages. In this section we will compare these two applications.</p>
+<h3 id="nginx">NGINX<a href="#nginx" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path>
+      <line x1="8" y1="12" x2="16" y2="12"></line>
+   </svg></a></h3>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>It&rsquo;s an industry standard</li>
+<li>Highly efficient - Can handle thousands of concurrent connections</li>
+<li>Integrates well with DevOps tools like Docker and Kubernetes</li>
+<li>Highly customizable for various use cases - Can be used as a simple file server, reverse proxy, or load balancer</li>
+</ul>
+<p><strong>Disadvantages</strong>:</p>
+<ul>
+<li>Has a steeper learning curve</li>
+<li>Setting up HTTPS is a bit more involved process</li>
+</ul>
+<h3 id="caddy">Caddy<a href="#caddy" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path>
+      <line x1="8" y1="12" x2="16" y2="12"></line>
+   </svg></a></h3>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>A built-in support for automatic SSL/TLS</li>
+<li>Easier to setup</li>
+<li>Can be extended using various plugins</li>
+</ul>
+<p><strong>Disadvantages</strong>:</p>
+<ul>
+<li>Smaller community and support</li>
+<li>NGINX has better performance</li>
+</ul>
+<h3 id="which-one-is-for-you">Which One Is For You?<a href="#which-one-is-for-you" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path>
+      <line x1="8" y1="12" x2="16" y2="12"></line>
+   </svg></a></h3>
+<p>I would recommend Caddy for startups, smaller companies, and tech enthusiasts who want HTTPS support without any hassles. Caddy definitely beats NGINX in simplicity and ease of setup.</p>
+<p>However, if you need the raw performance for handling thousands of concurrent requests in an enterprise-level applications, then NGINX is clearly a better choice. Moreover, it provides better support for microservices and containerized environments.</p>
+<h2 id="installation">Installation<a href="#installation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path>
+      <line x1="8" y1="12" x2="16" y2="12"></line>
+   </svg></a></h2>
+<p>To install Caddy follow the <a href="https://caddyserver.com/docs/install">guide</a> for your OS.</p>
+<h2 id="caddyfile">Caddyfile<a href="#caddyfile" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path>
+      <line x1="8" y1="12" x2="16" y2="12"></line>
+   </svg></a></h2>
+<p>Caddy is configured using a <code>Caddyfile</code>, which can be found in <code>/etc/caddy/Caddyfile</code>. To test things, we can configure Caddy as a simple file server with the following code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Caddyfile" data-lang="Caddyfile"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">admin</span> <span style="color:#e6db74">&#34;unix//run/caddy/admin.socket&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>example.com {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">root</span> <span style="color:#a6e22e">*</span> <span style="color:#e6db74">/var/www</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">file_server</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The first block restricts the access to admin interface to a local unix file socket whose directory is restricted to <code>caddy:caddy</code>. By default the TPC socket allows arbitrary modification for any process and that has access to the local interface. Don&rsquo;t leave admin over TCP turned on unless you understands all the implications.</p>
+<p>The second block that we specify is for <code>example.com</code> website. You can replace this with <code>localhost</code> or the IP address of your computer. Everything between curly braces is a block that contains configuration. If there is only a single block (that is without the global settings for <code>admin</code>), we can omit the curly braces.</p>
+<p>The <code>root</code> directive specifies the path to the root of the site (in this case we have a wildcard <code>*</code> that matches everything, but we can specify a concrete path, such as <code>/index.html</code>), and <code>/var/www</code> is the path to the folder with the website files. Finally, <code>file_server</code> directive<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> instructs Caddy to function as a file server.</p>
+<h2 id="setting-up-reverse-proxy">Setting Up Reverse Proxy<a href="#setting-up-reverse-proxy" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path>
+      <line x1="8" y1="12" x2="16" y2="12"></line>
+   </svg></a></h2>
+<p>Setting up the reverse proxy with Caddy is extremely simple. All you need is to include the following block with <code>reverse_proxy</code> directive<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Caddyfile" data-lang="Caddyfile"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">admin</span> <span style="color:#e6db74">&#34;unix//run/caddy/admin.socket&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>example.com {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">reverse_proxy</span> localhost:<span style="color:#ae81ff">8080</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>After restarting Caddy with <code>sudo systemctl restart caddy</code>, it should forward requests to the website running on <code>localhost:8080</code>.</p>
+<p>If we want to setup the reverse proxy <a href="/blog/en/posts/nginx-reverse-proxy-for-apps/">the same way</a> as we did with our NGINX server (that is, we want to forward only request to <code>example.com/api/*</code>, and strip <code>/api</code> prefix), we need to modify the <code>Caddyfile</code> only slightly:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Caddyfile" data-lang="Caddyfile"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">admin</span> <span style="color:#e6db74">&#34;unix//run/caddy/admin.socket&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>example.com {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">handle_path</span> <span style="color:#a6e22e">/api/*</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">reverse_proxy</span> localhost:<span style="color:#ae81ff">8080</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The <code>handle_path</code> directive<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> will match requests starting with <code>/api</code>, and strip the <code>/api</code> prefix from the path.</p>
+<p>We can additionally add configuration to add various headers (if required):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Caddyfile" data-lang="Caddyfile"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">admin</span> <span style="color:#e6db74">&#34;unix//run/caddy/admin.socket&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>example.com {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">handle_path</span> <span style="color:#a6e22e">/api/*</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">reverse_proxy</span> localhost:<span style="color:#ae81ff">8080</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">header_up</span> <span style="color:#e6db74">Host</span> <span style="color:#ae81ff">{host}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">header_up</span> <span style="color:#e6db74">X-Real-IP</span> <span style="color:#ae81ff">{remote_host}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">header_up</span> <span style="color:#e6db74">X-Forwarded-For</span> <span style="color:#ae81ff">{remote_host}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">header_up</span> <span style="color:#e6db74">X-Forwarded-Proto</span> <span style="color:#ae81ff">{scheme}</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In this example, Caddy will add <code>Host</code>, <code>X-Real-IP</code>, <code>X-Forwarded-For</code>, and <code>X-Forwarded-Proto</code> to the requests forwarded to our service.</p>
+<h2 id="setting-up-load-balancer">Setting Up Load Balancer<a href="#setting-up-load-balancer" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path>
+      <line x1="8" y1="12" x2="16" y2="12"></line>
+   </svg></a></h2>
+<p>Setting up a load balancer is just as easy as setting up the reverse proxy. In fact, it is done with the <code>reverse_proxy</code> directive:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Caddyfile" data-lang="Caddyfile"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">admin</span> <span style="color:#e6db74">&#34;unix//run/caddy/admin.socket&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>example.com {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">reverse_proxy</span> localhost:<span style="color:#ae81ff">8080</span> localhost:<span style="color:#ae81ff">8081</span> localhost:<span style="color:#ae81ff">8082</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The requests to <code>example.com</code> will be load-balanced across <code>localhost:8080</code>, <code>localhost:8081</code>, and <code>localhost:8082</code>. By default, round-robin is used. If one of these services becomes unavailable, Caddy will automatically retry the next available one.</p>
+<p>In some cases, round-robin is undesirable. For example, our service may require sticky sessions to work properly (e.g. because of caching or sessions). If we need a different load balancing method, we can specify it with <code>lb_policy</code> directive. Example for using IP hashes to select the server to forward the request to based on client&rsquo;s IP address:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Caddyfile" data-lang="Caddyfile"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">admin</span> <span style="color:#e6db74">&#34;unix//run/caddy/admin.socket&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>example.com { 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">reverse_proxy</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">lb_policy</span> <span style="color:#e6db74">ip_hash</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">to</span> localhost:<span style="color:#ae81ff">8080</span> localhost:<span style="color:#ae81ff">8081</span> localhost:<span style="color:#ae81ff">8082</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The available options for <code>lb_policy</code> are summed up in the following table:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Policy</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>round_robin</code></td>
+          <td>Default method, distributes requests evenly across all servers</td>
+      </tr>
+      <tr>
+          <td><code>random</code></td>
+          <td>Selects a random server for each request</td>
+      </tr>
+      <tr>
+          <td><code>least_requests</code></td>
+          <td>Routes traffic to the server with the fewest active connections (similar to NGINX&rsquo;s <code>least_conn</code>)</td>
+      </tr>
+      <tr>
+          <td><code>first</code></td>
+          <td>Always picks the first server in the list (useful for failover scenarios, when we want the primary server to handle all traffic unless it fails)</td>
+      </tr>
+      <tr>
+          <td><code>ip_hash</code></td>
+          <td>Assigns a server based on the client&rsquo;s IP address, ensuring sticky sessions</td>
+      </tr>
+      <tr>
+          <td><code>uri_hash</code></td>
+          <td>Assigns a server based on the request URI, ensuring consistent routing for the same resource</td>
+      </tr>
+  </tbody>
+</table>
+<p>Moreover, we can easily setup health checks to ensure that unhealthy servers are not used. Example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Caddyfile" data-lang="Caddyfile"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">admin</span> <span style="color:#e6db74">&#34;unix//run/caddy/admin.socket&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>example.com { 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">reverse_proxy</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">lb_policy</span> <span style="color:#e6db74">least_requests</span><span style="color:#75715e">    # The server with least connections will be used
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">to</span> localhost:<span style="color:#ae81ff">8080</span> localhost:<span style="color:#ae81ff">8081</span> localhost:<span style="color:#ae81ff">8082</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">health_uri</span> <span style="color:#e6db74">/health</span><span style="color:#75715e">          # Check `/health` endpoint
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">health_interval</span> <span style="color:#ae81ff">10s</span><span style="color:#75715e">         # Check every 10 seconds
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">health_timeout</span> <span style="color:#ae81ff">2s</span><span style="color:#75715e">           # Fail check if there is no response in 2 seconds
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>With this setup Caddy will:</p>
+<ul>
+<li>Send traffic to the server with the least active connections</li>
+<li>Automatically remove unhealthy servers from the pool</li>
+<li>Retry failed requests on anther server</li>
+</ul>
+<h2 id="conclusions">Conclusions<a href="#conclusions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path>
+      <line x1="8" y1="12" x2="16" y2="12"></line>
+   </svg></a></h2>
+<p>The goal of this was to showcase capabilities of Caddy. We looked at the basics in an attempt to reproduce the setup that I have for NGINX (see posts about setting up <a href="/blog/en/posts/nginx-load-balancer/">load balancer</a> and <a href="/blog/en/posts/nginx-reverse-proxy-for-apps/">reverse proxy</a> with NGINX).</p>
+<p>I think I managed to demonstrate that we can configure the same functionality as for NGINX. The format of Caddyfile is easier to read and write than the one that the NGINX uses. We haven&rsquo;t gone into depth, and there are still various <a href="https://caddyserver.com/docs/caddyfile/directives">Caddyfile directives</a> that you can use in your configuration.</p>
+<p>Other interesting features to mention are support for <a href="https://caddyserver.com/docs/caddyfile/directives/metrics">Prometheus metrics</a>, automatic <a href="https://caddyserver.com/docs/quick-starts/https">HTTPS</a>, <a href="https://caddyserver.com/docs/caddyfile/directives/templates">templates</a>, or <a href="https://caddyserver.com/docs/caddyfile/directives/php_fastcgi">PHP FastCGI</a>, but these are out of scope of this post.</p>
+<p>If you are looking for a simple HTTPS server for your home lab, give Caddy a shot. It&rsquo;s not as popular as NGINX, but it&rsquo;s easy to setup. The only disadvantage is that the community is much smaller and in case of issues it will be more difficult to find help or a guide with a fix.</p>
+<h2 id="sources">Sources<a href="#sources" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path>
+      <line x1="8" y1="12" x2="16" y2="12"></line>
+   </svg></a></h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Server, C. W. (n.d.). Caddy - <em>The Ultimate Server with Automatic HTTPS</em>. Caddy Web Server. <a href="https://caddyserver.com/">https://caddyserver.com/</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Server, C. W. (n.d.-b). <em>file_server (Caddyfile directive) - Caddy Documentation</em>. <a href="https://caddyserver.com/docs/caddyfile/directives/file_server">https://caddyserver.com/docs/caddyfile/directives/file_server</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Server, C. W. (n.d.-c). <em>reverse_proxy (Caddyfile directive) - Caddy Documentation</em>. <a href="https://caddyserver.com/docs/caddyfile/directives/reverse_proxy">https://caddyserver.com/docs/caddyfile/directives/reverse_proxy</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>Server, C. W. (n.d.-c). <em>handle_path (Caddyfile directive) - Caddy Documentation</em>. <a href="https://caddyserver.com/docs/caddyfile/directives/handle_path">https://caddyserver.com/docs/caddyfile/directives/handle_path</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+]]></content>
+		</item>
 		
 		<item>
 			<title>My Plans For 2025</title>
@@ -32,7 +267,7 @@
 <li>Deploying Graphana and Prometheus using Docker and Kubernetes</li>
 <li>How to integrate Go applications with Prometheus</li>
 <li>Sending data from Prometheus into Graphana</li>
-<li>Plotting the data</li>
+<li>Creating charts with data in Graphana</li>
 </ul>
 </li>
 <li><strong>Caddy</strong> (HTTPS Server):
@@ -49,8 +284,8 @@
 </ul>
 </li>
 </ul>
-<p>I hope you are as excited for the upcoming blog posts as I am. I would also like to write about my random experiments, and even things that I&rsquo;ll learn for work this year. Since my career kind of changed trajectory, you can expect that I&rsquo;ll write more about DevOps and various AWS services.</p>
-<p>And that&rsquo;s all for today.</p>
+<p>Moreover, I would also like to write about my random experiments, and even things that I&rsquo;ll learn for work this year. Since my career kind of changed trajectory, you can expect that I&rsquo;ll write more about DevOps and various AWS services. I hope you are as excited for the upcoming blog posts as I am.</p>
+<p>And that&rsquo;s all I&rsquo;ve got for today.</p>
 <p>Thanks for reading, I wish you a wonderful day, and see you in the next one! 🙂</p>
 ]]></content>
 		</item>
@@ -1381,8 +1616,8 @@ In the example, I am loading the model each time a request is performed. This is
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Name</span>    <span style="color:#66d9ef">string</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Surname</span> <span style="color:#66d9ef">string</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Age</span>     <span style="color:#66d9ef">int</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Other fields
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Other fields</span>
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">p</span> <span style="color:#a6e22e">Person</span>) <span style="color:#a6e22e">IsValid</span>() <span style="color:#66d9ef">error</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Name</span>) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">64</span> <span style="color:#f92672">&lt;=</span> len(<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Name</span>) {
@@ -1397,8 +1632,8 @@ In the example, I am loading the model each time a request is performed. This is
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;Age can not be negative or greater than 120!&#34;</span>)
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Other checks
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Other checks</span>
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>But this is cumbersome and not the idiomatic way of writing Go code. Moreover, you will write a lot of duplicate code. It would be better to write a <code>Validator</code> that will keep track of an error and it will implement functions for validating.</p>
@@ -1406,8 +1641,8 @@ In the example, I am loading the model each time a request is performed. This is
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Name</span>    <span style="color:#66d9ef">string</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Surname</span> <span style="color:#66d9ef">string</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Age</span>     <span style="color:#66d9ef">int</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Other fields
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Other fields</span>
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Validator</span> <span style="color:#66d9ef">struct</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>
@@ -1531,8 +1766,8 @@ In the example, I am loading the model each time a request is performed. This is
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Name</span>    <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`validate:&#34;nonzero,min=0,max=64&#34;`</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Surname</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`validate:&#34;nonzero,min=0,max=64&#34;`</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Age</span>     <span style="color:#66d9ef">int</span>    <span style="color:#e6db74">`validate:&#34;nonzero,min=0,max=120&#34;`</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Other fields
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Other fields</span>
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">person</span> <span style="color:#f92672">:=</span> new(<span style="color:#a6e22e">Person</span>)
@@ -1768,7 +2003,7 @@ In the example, I am loading the model each time a request is performed. This is
       <line x1="8" y1="12" x2="16" y2="12"></line>
    </svg></a></h2>
 <p><a href="https://cookiecutter.readthedocs.io/en/stable/index.html">Cookiecutter</a> is a cross-platform CLI application that creates projects from project templates. It is ideal for people who tend to create the same project structure repeatedly and want to save some time. Cookiecutter is not dedicated to a specific programming language (or programming projects in general) and can create a given project structure for any programming, machine learning or any other text-based project.</p>
-<p>Cookiecutter also allows you to use one of the templates created by community (just <a href="https://github.com/search?q=cookiecutter&type=repositories">search for Cookiecutter on Github</a> and pick one you like). In this post I will show how to get started (both with using existing templates and writing your own).</p>
+<p>Cookiecutter also allows you to use one of the templates created by community (just <a href="https://github.com/search?q=cookiecutter&amp;type=repositories">search for Cookiecutter on Github</a> and pick one you like). In this post I will show how to get started (both with using existing templates and writing your own).</p>
 <h2 id="installation">Installation<a href="#installation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
       stroke-linecap="round" stroke-linejoin="round">
       <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path>
@@ -1890,8 +2125,8 @@ In the example, I am loading the model each time a request is performed. This is
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Arguably, such code would not be very useful in a template, but you could replace <code>IndexHandler</code> with a more useful health check that would work similarly, and it is enough for demonstration purposes. Of course, you can and probably should write something more useful. As said before, we can use Cookiecutter variables inside the code. Once we generate the project, <code>{{ cookiecutter.author }}</code> will be replaced with an actual value. This may be useful if you want to create functions or variables that have some prefix, e.g.:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> {{ <span style="color:#a6e22e">cookiecutter</span>.<span style="color:#a6e22e">endpoint</span> }}<span style="color:#a6e22e">Handler</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>) {
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// implementation that uses cookiecutter.endpoint
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// implementation that uses cookiecutter.endpoint</span>
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>If we specified <code>cookiecutter.endpoint</code> as <code>Post</code>, Cookiecutter would generate <code>PostHandler()</code> function. One of the CLI options, that Cookiecutter has, is <code>--skip-if-file-exists</code>, so you probably (I haven&rsquo;t tested it) could run Cookiecutter repeatedly with the same <code>project_slug</code>, but different <code>endpoint</code> to generate code for several different objects that the API can return, and than tweak the implementations and add correct business logic. Since you can call Python functions, you can capitalize or transform to lower/upper case based on your needs.</p>
 <p>Another feature is that the variables in the <code>cookiecutter.json</code> can be defined as private by prepending an underscore to the variable. The user will not be required to fill the values of private variables. Furthermore the user does not need to see these variables and they will not be rendered. If we user should see the value for some reason, we can prepend a double underscore to show the value. Non-render private variables can be useful for defining constants, or when you want to enforce any naming conventions, e.g. to use the same name for both the project and the package name.</p>
 <p>Text can be rendered conditionally using the <code>if</code> statement:</p>
@@ -2180,24 +2415,24 @@ $ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Create a TPC connection and listen on port 9000
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">lis</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">Listen</span>(<span style="color:#e6db74">&#34;tcp&#34;</span>, <span style="color:#e6db74">&#34;:9000&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Create a TPC connection and listen on port 9000</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">lis</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">Listen</span>(<span style="color:#e6db74">&#34;tcp&#34;</span>, <span style="color:#e6db74">&#34;:9000&#34;</span>)
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;failed to listen: %v&#34;</span>, <span style="color:#a6e22e">err</span>)
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Create a gRPC server
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">grpcServer</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">NewServer</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Create a gRPC server</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">grpcServer</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">NewServer</span>()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Create a server that defines the SendNotification and GetNotifications
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// functions
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">notificationServer</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">MyGRPCServer</span>{}
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Create a server that defines the SendNotification and GetNotifications</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// functions</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">notificationServer</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">MyGRPCServer</span>{}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Register our service
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">RegisterNotificationServiceServer</span>(<span style="color:#a6e22e">grpcServer</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">notificationServer</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Register our service</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">RegisterNotificationServiceServer</span>(<span style="color:#a6e22e">grpcServer</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">notificationServer</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Start a server
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">grpcServer</span>.<span style="color:#a6e22e">Serve</span>(<span style="color:#a6e22e">lis</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Start a server</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">grpcServer</span>.<span style="color:#a6e22e">Serve</span>(<span style="color:#a6e22e">lis</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;failed to serve: %s&#34;</span>, <span style="color:#a6e22e">err</span>)
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>}
@@ -2209,15 +2444,15 @@ $ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
 </span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;log&#34;</span>
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Create our server
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">MyGRPCServer</span> <span style="color:#66d9ef">struct</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Without this, we will be getting an error
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">UnimplementedNotificationServiceServer</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Create our server</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">MyGRPCServer</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Without this, we will be getting an error</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">UnimplementedNotificationServiceServer</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Create fake notifications, this can also be empty. In real-world example,
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// this data would come from a database
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">notifications</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Notifications</span>{
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Create fake notifications, this can also be empty. In real-world example,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// this data would come from a database</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">notifications</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Notifications</span>{
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Notifications</span>: []<span style="color:#f92672">*</span><span style="color:#a6e22e">Notification</span>{
 </span></span><span style="display:flex;"><span>		<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Notification</span>{
 </span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Title</span>: <span style="color:#e6db74">&#34;New message from &#39;Jerry&#39;&#34;</span>,
@@ -2244,12 +2479,12 @@ $ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">notification</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Notification</span>,
 </span></span><span style="display:flex;"><span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">ServerResponse</span>, <span style="color:#66d9ef">error</span>) {
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// When the client sends a new notification, we log it, append it to the list
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// of notifications, and send a status with code 0 for success. Since there
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// probably shouldn&#39;t be any issue, we are not handling any errors. In
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// real-world example, you probably would want to replace this with a database
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// insert.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;New notification: %s&#34;</span>, <span style="color:#a6e22e">notification</span>.<span style="color:#a6e22e">String</span>())
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// When the client sends a new notification, we log it, append it to the list</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// of notifications, and send a status with code 0 for success. Since there</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// probably shouldn&#39;t be any issue, we are not handling any errors. In</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// real-world example, you probably would want to replace this with a database</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// insert.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;New notification: %s&#34;</span>, <span style="color:#a6e22e">notification</span>.<span style="color:#a6e22e">String</span>())
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">notifications</span>.<span style="color:#a6e22e">Notifications</span> = append(<span style="color:#a6e22e">notifications</span>.<span style="color:#a6e22e">Notifications</span>, <span style="color:#a6e22e">notification</span>)
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ServerResponse</span>{<span style="color:#a6e22e">Status</span>: <span style="color:#ae81ff">0</span>}, <span style="color:#66d9ef">nil</span>
 </span></span><span style="display:flex;"><span>}
@@ -2258,10 +2493,10 @@ $ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">_</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Empty</span>,
 </span></span><span style="display:flex;"><span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">Notifications</span>, <span style="color:#66d9ef">error</span>) {
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// If the user requests notifications, we log that there is a request, and
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// then send all the notifications. Again, in a real-world there would be some
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// kind of database search here instead of a slice.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;User is requesting notifications&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// If the user requests notifications, we log that there is a request, and</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// then send all the notifications. Again, in a real-world there would be some</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// kind of database search here instead of a slice.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;User is requesting notifications&#34;</span>)
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">notifications</span>, <span style="color:#66d9ef">nil</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>These two files are enough to create a working gRPC server that allows you to send new notifications and fetch all the notifications. You can test that the code works with <code>go run server.go</code>.</p>
@@ -2284,22 +2519,22 @@ $ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Create a gRPC connection for our client
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">conn</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">ClientConn</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Create a gRPC connection for our client</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">conn</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">ClientConn</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Create a connection to our server on the port 9000
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">conn</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">Dial</span>(<span style="color:#e6db74">&#34;:9000&#34;</span>, <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">WithInsecure</span>())
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Create a connection to our server on the port 9000</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">conn</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">Dial</span>(<span style="color:#e6db74">&#34;:9000&#34;</span>, <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">WithInsecure</span>())
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;Error while connecting to the server: %s\n&#34;</span>, <span style="color:#a6e22e">err</span>)
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">conn</span>.<span style="color:#a6e22e">Close</span>()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Create a gRPC client
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">client</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">NewNotificationServiceClient</span>(<span style="color:#a6e22e">conn</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Create a gRPC client</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">client</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">NewNotificationServiceClient</span>(<span style="color:#a6e22e">conn</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Use SendNotification remote procedure call. This should send a new
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// notification to our server, and add it to the list of existing notifications.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">SendNotification</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Use SendNotification remote procedure call. This should send a new</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// notification to our server, and add it to the list of existing notifications.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">SendNotification</span>(
 </span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>(),
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">Notification</span>{
 </span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Title</span>: <span style="color:#e6db74">&#34;Client notification&#34;</span>,
@@ -2311,19 +2546,19 @@ $ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;Error when calling SendNotification: %s\n&#34;</span>, <span style="color:#a6e22e">err</span>)
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// At this point, the notifications were sent and there was no error.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Notification successfully sent\n&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// At this point, the notifications were sent and there was no error.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Notification successfully sent\n&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Use GetNotification remote procedure call. This should return all the
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// notifications from our server.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">notifications</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">GetNotifications</span>( <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Background</span>(),
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Use GetNotification remote procedure call. This should return all the</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// notifications from our server.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">notifications</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">GetNotifications</span>( <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Background</span>(),
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">Empty</span>{})
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;Error when calling GetNotifications: %s\n&#34;</span>, <span style="color:#a6e22e">err</span>)
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// If there is no error and we receive notifications, we print them out.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Notifications received:&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// If there is no error and we receive notifications, we print them out.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Notifications received:&#34;</span>)
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">notification</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">notifications</span>.<span style="color:#a6e22e">Notifications</span> {
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Title: &#39;%s&#39;, Body: &#39;%s&#39;, From: &#39;%s&#39;, For: &#39;%s&#39;\n&#34;</span>,
 </span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">notification</span>.<span style="color:#a6e22e">Title</span>, <span style="color:#a6e22e">notification</span>.<span style="color:#a6e22e">Body</span>, <span style="color:#a6e22e">notification</span>.<span style="color:#a6e22e">From</span>, <span style="color:#a6e22e">notification</span>.<span style="color:#a6e22e">For</span>)
@@ -2752,8 +2987,8 @@ $$<p>We will not discuss mathematics in Latex deeper, since I want to keep this 
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">filename</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;posts.data&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Create a post - this is a standard Go structure
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">post</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">pb</span>.<span style="color:#a6e22e">Post</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Create a post - this is a standard Go structure</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">post</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">pb</span>.<span style="color:#a6e22e">Post</span>{
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Id</span>:     <span style="color:#ae81ff">1234</span>,
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Author</span>: <span style="color:#e6db74">&#34;Jon Doe&#34;</span>,
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Title</span>:  <span style="color:#e6db74">&#34;Protobufs&#34;</span>,
@@ -2761,25 +2996,25 @@ $$<p>We will not discuss mathematics in Latex deeper, since I want to keep this 
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Tags</span>:   []<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;protobufs&#34;</span>, <span style="color:#e6db74">&#34;golang&#34;</span>, <span style="color:#e6db74">&#34;data&#34;</span>, <span style="color:#e6db74">&#34;serialization&#34;</span>},
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Marshaling the data
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">marshaledPost</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">proto</span>.<span style="color:#a6e22e">Marshal</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">post</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Marshaling the data</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">marshaledPost</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">proto</span>.<span style="color:#a6e22e">Marshal</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">post</span>)
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalln</span>(<span style="color:#e6db74">&#34;Failed to marshal the post: &#34;</span>, <span style="color:#a6e22e">err</span>)
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Writing the data into a file
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">WriteFile</span>(<span style="color:#a6e22e">filename</span>, <span style="color:#a6e22e">marshaledPost</span>, <span style="color:#ae81ff">0644</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Writing the data into a file</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">WriteFile</span>(<span style="color:#a6e22e">filename</span>, <span style="color:#a6e22e">marshaledPost</span>, <span style="color:#ae81ff">0644</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalln</span>(<span style="color:#e6db74">&#34;Failed to write the post into a file:&#34;</span>, <span style="color:#a6e22e">err</span>)
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Reading the data from a file
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">ReadFile</span>(<span style="color:#a6e22e">filename</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Reading the data from a file</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">ReadFile</span>(<span style="color:#a6e22e">filename</span>)
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalln</span>(<span style="color:#e6db74">&#34;Failed to read the post into a file:&#34;</span>, <span style="color:#a6e22e">err</span>)
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Unmarshaling the data
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">readPost</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">pb</span>.<span style="color:#a6e22e">Post</span>{}
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Unmarshaling the data</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">readPost</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">pb</span>.<span style="color:#a6e22e">Post</span>{}
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">proto</span>.<span style="color:#a6e22e">Unmarshal</span>(<span style="color:#a6e22e">data</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">readPost</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalln</span>(<span style="color:#e6db74">&#34;Failed to unmarshal the post: &#34;</span>, <span style="color:#a6e22e">err</span>)
 </span></span><span style="display:flex;"><span>	}
@@ -2989,7 +3224,7 @@ Tags:   [protobufs golang serializations]
 <p>What are options do you have? If you are a back-end developer, like myself, you will quickly realize that your favorite back-end language is more or less good only for writing APIs or at the best case scenario server-side rendering, which allows you to create dynamic webpages, but if you want to change only a part of the website, the user needs to make a HTTP request that will cause a re-render of the entire web page.</p>
 <p>However, there is a light at the end of the tunnel. It is HTMX, which can be thought of as an extension of HTML, and it gives you an access to AJAX, CSS transitions, WebSockets, and Server Sent Events directly in HTML. With HTMX, you can sprinkle islands of interactivity into your web page, that dynamically change when user interacts with your web page. Since most back-end languages, such as Python, Golang, Ruby, PHP, etc., have a templating engines, you can render parts of the web page, and send them to front-end, where HTMX will swap the original content with your snippet of HTML.</p>
 <p>This means that you can don&rsquo;t have to use Javascript for changing only a small part of the website, and you don&rsquo;t have to re-render the entire web page, when the user interacts with it. Moreover, you can use your favorite back-end language that you are familiar with and don&rsquo;t have to sink countless hours into learning (and relearning, since the Javascript landscape is constantly changing, and what was the hottest thing last year is painfully outdated today) front-end Javascript framework.</p>
-<p><img alt="You&rsquo;re fullstack now" src="https://htmx.org/img/memes/fullstack.jpg"></p>
+<p><img src="https://htmx.org/img/memes/fullstack.jpg" alt="You’re fullstack now"></p>
 <p><em>Source: <a href="https://htmx.org/essays/#memes">HTMX Official Website</a></em></p>
 <h2 id="what-is-ghast-stack">What Is GHAST Stack?<a href="#what-is-ghast-stack" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
       stroke-linecap="round" stroke-linejoin="round">

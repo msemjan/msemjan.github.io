@@ -1,18 +1,18 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script><meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="robots" content="index, follow"><link rel="author" href="/blog/humans.txt">
+<meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="robots" content="index, follow"><meta name="author" content="M. Semjan">
+<meta name="description" content="">
+<link rel="author" type="text/plain" href="/blog/humans.txt">
 <link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
 <link rel="manifest" href="/blog/site.webmanifest">
 <meta name="msapplication-TileImage" content="/blog/mstile-144x144.png">
 <meta name="theme-color" content="#494f5c">
 <meta name="msapplication-TileColor" content="#494f5c">
-<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#494f5c"><meta name="author" content="M. Semjan">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#494f5c">
 
   <meta itemprop="name" content="Introducing GHAST Stack">
   <meta itemprop="description" content="GHAST stack is a new tech-stack for developing web applications without excessive use of Javascript. In this article I describe why I am suggesting usage of this tech-stack and what technologies it uses.">
@@ -70,7 +70,7 @@
     }
 }
 </script><title>Introducing GHAST Stack</title>
-<link rel="stylesheet dns-prefetch preconnect preload prefetch" as="style" href="http://localhost:1313/blog/css/style.min.6536797c21482849dde41c10d93f2f60ac6a880f6ed3aa404c8194306624c12f.css" integrity="sha256-ZTZ5fCFIKEnd5BwQ2T8vYKxqiA9u06pATIGUMGYkwS8=" crossorigin="anonymous">
+<link rel="stylesheet dns-prefetch preconnect preload prefetch" as="style" href="http://localhost:1313/blog/css/style.min.a54a53f19c233221bcec03887020c1853562d9aadbd7035a472f72d09453a585.css" integrity="sha256-pUpT8ZwjMiG87AOIcCDBhTVi2arb1wNaRy9y0JRTpYU=" crossorigin="anonymous">
 	</head>
 <body id="page">
 	<header id="site-header">
@@ -173,7 +173,7 @@
    <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
    <line x1="16" y1="8" x2="2" y2="22"></line>
    <line x1="17.5" y1="15" x2="9" y2="15"></line>
-</svg>Marek Semjan</p>
+</svg>M. Semjan</p>
 <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
       <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
@@ -186,19 +186,15 @@
       <line x1="16" y1="13" x2="8" y2="13"></line>
       <line x1="16" y1="17" x2="8" y2="17"></line>
       <polyline points="10 9 9 9 8 9"></polyline>
-   </svg>1253 
-    •
-    
-    
-    
-    5 Minutes, 41 Seconds</p>
+   </svg>1253&nbsp  •5 Minutes, 41 Seconds</p>
 <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
       <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
       <line x1="16" y1="2" x2="16" y2="6"></line>
       <line x1="8" y1="2" x2="8" y2="6"></line>
       <line x1="3" y1="10" x2="21" y2="10"></line>
-   </svg>2023-08-11 18:12 &#43;0200</p></div>
+   </svg>2023-08-11 18:12 &#43;0200
+</p></div>
 			<hr class="post-end">
 			<div class="content">
 				 <h1 id="introducing-ghast-stack">Introducing GHAST Stack<a href="#introducing-ghast-stack" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -217,7 +213,7 @@
 <p>What are options do you have? If you are a back-end developer, like myself, you will quickly realize that your favorite back-end language is more or less good only for writing APIs or at the best case scenario server-side rendering, which allows you to create dynamic webpages, but if you want to change only a part of the website, the user needs to make a HTTP request that will cause a re-render of the entire web page.</p>
 <p>However, there is a light at the end of the tunnel. It is HTMX, which can be thought of as an extension of HTML, and it gives you an access to AJAX, CSS transitions, WebSockets, and Server Sent Events directly in HTML. With HTMX, you can sprinkle islands of interactivity into your web page, that dynamically change when user interacts with your web page. Since most back-end languages, such as Python, Golang, Ruby, PHP, etc., have a templating engines, you can render parts of the web page, and send them to front-end, where HTMX will swap the original content with your snippet of HTML.</p>
 <p>This means that you can don&rsquo;t have to use Javascript for changing only a small part of the website, and you don&rsquo;t have to re-render the entire web page, when the user interacts with it. Moreover, you can use your favorite back-end language that you are familiar with and don&rsquo;t have to sink countless hours into learning (and relearning, since the Javascript landscape is constantly changing, and what was the hottest thing last year is painfully outdated today) front-end Javascript framework.</p>
-<p><img alt="You&rsquo;re fullstack now" src="https://htmx.org/img/memes/fullstack.jpg"></p>
+<p><img src="https://htmx.org/img/memes/fullstack.jpg" alt="You’re fullstack now"></p>
 <p><em>Source: <a href="https://htmx.org/essays/#memes">HTMX Official Website</a></em></p>
 <h2 id="what-is-ghast-stack">What Is GHAST Stack?<a href="#what-is-ghast-stack" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
       stroke-linecap="round" stroke-linejoin="round">
@@ -280,15 +276,11 @@
 		</div>
 		<div id="comments" class="thin"></div>
 	</main>
-
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-	<p>
-		&copy; 2025 <a href="http://localhost:1313/blog/">Marek Semjan</a>
-		&#183; Copyright © 2024 Marek Semjan. All Rights Reserved.&#183; Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
-			&#183; Theme <a href="https://github.com/1bl4z3r/hermit-V2" target="_blank" rel="noopener">Hermit-V2</a></p>
-
-</footer>
+<p>
+	&copy; 2025 <a href="http://localhost:1313/blog/">Marek&#39;s Blog (ᵔ◡ᵔ)	</a>
+	&#183; Copyright © 2024 Marek Semjan. All Rights Reserved.&#183; Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+	&#183; Theme <a href="https://github.com/1bl4z3r/hermit-V2" target="_blank" rel="noopener">Hermit-V2</a></p></footer>
 <script async src="http://localhost:1313/blog/js/bundle.min.c7c384e4d29d192bbac6811ae4660bb01767194a5bea56baca77e8260f93ea16.js" integrity="sha256-x8OE5NKdGSu6xoEa5GYLsBdnGUpb6la6ynfoJg+T6hY=" crossorigin="anonymous"></script><script async src="http://localhost:1313/blog/js/link-share.min.24409a4f6e5537d70ffc55ec8f9192208d718678cb8638585342423020b37f39.js" integrity="sha256-JECaT25VN9cP/FXsj5GSII1xhnjLhjhYU0JCMCCzfzk=" crossorigin="anonymous"></script>
 </body>
-
 </html>

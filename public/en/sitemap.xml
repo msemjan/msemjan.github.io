@@ -2,16 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/blog/en/tags/application-load-balancer/</loc>
+    <lastmod>2025-02-08T14:27:02+01:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/blog/en/tags/caddy/</loc>
-    <lastmod>2025-01-12T10:29:49+01:00</lastmod>
+    <lastmod>2025-02-08T14:27:02+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/tags/http-server/</loc>
+    <lastmod>2025-02-08T14:27:02+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/tags/ip-hash/</loc>
+    <lastmod>2025-02-08T14:27:02+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/tags/least-connected/</loc>
+    <lastmod>2025-02-08T14:27:02+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/tags/load-balancer/</loc>
+    <lastmod>2025-02-08T14:27:02+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/</loc>
+    <lastmod>2025-02-08T14:27:02+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/tags/nginx/</loc>
+    <lastmod>2025-02-08T14:27:02+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/posts/</loc>
+    <lastmod>2025-02-08T14:27:02+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/posts/replacing-nginx-with-caddy/</loc>
+    <lastmod>2025-02-08T14:27:02+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/tags/rest-api/</loc>
+    <lastmod>2025-02-08T14:27:02+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/tags/round-robin/</loc>
+    <lastmod>2025-02-08T14:27:02+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/en/tags/</loc>
+    <lastmod>2025-02-08T14:27:02+01:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/en/tags/graphana/</loc>
     <lastmod>2025-01-12T10:29:49+01:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/en/tags/kubernetes/</loc>
-    <lastmod>2025-01-12T10:29:49+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/en/</loc>
     <lastmod>2025-01-12T10:29:49+01:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/en/posts/my-plans-for-2025/</loc>
@@ -20,16 +53,10 @@
     <loc>http://localhost:1313/blog/en/tags/plans/</loc>
     <lastmod>2025-01-12T10:29:49+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/en/posts/</loc>
-    <lastmod>2025-01-12T10:29:49+01:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/blog/en/tags/prometheus/</loc>
     <lastmod>2025-01-12T10:29:49+01:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/en/tags/rust/</loc>
-    <lastmod>2025-01-12T10:29:49+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/en/tags/</loc>
     <lastmod>2025-01-12T10:29:49+01:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/en/posts/deploying-machine-learning-models-with-fast-api/</loc>
@@ -79,27 +106,6 @@
   </url><url>
     <loc>http://localhost:1313/blog/en/posts/sql-migrations-with-goose/</loc>
     <lastmod>2024-07-13T15:45:24+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/en/tags/application-load-balancer/</loc>
-    <lastmod>2024-06-15T11:09:40+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/en/tags/ip-hash/</loc>
-    <lastmod>2024-06-15T11:09:40+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/en/tags/least-connected/</loc>
-    <lastmod>2024-06-15T11:09:40+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/en/tags/load-balancer/</loc>
-    <lastmod>2024-06-15T11:09:40+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/en/tags/nginx/</loc>
-    <lastmod>2024-06-15T11:09:40+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/en/tags/rest-api/</loc>
-    <lastmod>2024-06-15T11:09:40+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/en/tags/round-robin/</loc>
-    <lastmod>2024-06-15T11:09:40+02:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/en/posts/nginx-load-balancer/</loc>
     <lastmod>2024-06-15T11:09:40+02:00</lastmod>

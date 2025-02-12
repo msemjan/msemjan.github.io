@@ -6,8 +6,15 @@
     <description>Recent content on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 12 Jan 2025 10:29:49 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 08 Feb 2025 14:27:02 +0100</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Replacing Nginx With Caddy</title>
+      <link>http://localhost:1313/blog/en/posts/replacing-nginx-with-caddy/</link>
+      <pubDate>Sat, 08 Feb 2025 14:27:02 +0100</pubDate>
+      <guid>http://localhost:1313/blog/en/posts/replacing-nginx-with-caddy/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;a href=&#34;#introduction&#34; class=&#34;anchor&#34; aria-hidden=&#34;true&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;&#xA;      stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&#xA;      &lt;path d=&#34;M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3&#34;&gt;&lt;/path&gt;&#xA;      &lt;line x1=&#34;8&#34; y1=&#34;12&#34; x2=&#34;16&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&#xA;   &lt;/svg&gt;&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;Last year I wrote guides on how to setup &lt;a href=&#34;http://localhost:1313/blog/blog/en/posts/nginx-load-balancer/&#34;&gt;load balancer&lt;/a&gt; and &lt;a href=&#34;http://localhost:1313/blog/blog/en/posts/nginx-reverse-proxy-for-apps/&#34;&gt;reverse proxy&lt;/a&gt; using NGINX server. As I announced in &lt;a href=&#34;http://localhost:1313/blog/blog/en/posts/my-plans-for-2025/&#34;&gt;the recent post about my plans for this year&lt;/a&gt;, I&amp;rsquo;ve decided to try Caddy&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; as a replacement for NGINX.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>My Plans For 2025</title>
       <link>http://localhost:1313/blog/en/posts/my-plans-for-2025/</link>
@@ -125,7 +132,7 @@
       <link>http://localhost:1313/blog/en/about-hugo/</link>
       <pubDate>Fri, 11 Aug 2023 21:36:44 +0200</pubDate>
       <guid>http://localhost:1313/blog/en/about-hugo/</guid>
-      <description>&lt;p&gt;&lt;img alt=&#34;Hello there&#34; src=&#34;https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3hmamN2bm45Znl1eTV1bGUyamJmc2h3ODVjaDExejJiOWM3d2ZxZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xTiIzJSKB4l7xTouE8/giphy.gif&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Hi, my name is Marek. I live in a small country in the heart of Europe, Slovakia 🇸🇰, where I work as a software engineering company.&lt;/p&gt;&#xA;&lt;p&gt;Ever since I was a child, I&amp;rsquo;ve found computers and technology fascinating and they naturally attracted me. The first language I came into contact with was Lua. At the time I was 14 or so, and I was playing the World of Warcraft (WoW) with my friends. I wanted to learn how the mods work in this game, and even write my own. They were written in Lua, so I&amp;rsquo;ve wanted to properly learn it, but I&amp;rsquo;ve never found time for it, and my knowledge never reached beyond the simplest things such as simple macros for selecting a random mount.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;img src=&#34;https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3hmamN2bm45Znl1eTV1bGUyamJmc2h3ODVjaDExejJiOWM3d2ZxZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xTiIzJSKB4l7xTouE8/giphy.gif&#34; alt=&#34;Hello there&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Hi, my name is Marek. I live in a small country in the heart of Europe, Slovakia 🇸🇰, where I work as a software engineering company.&lt;/p&gt;&#xA;&lt;p&gt;Ever since I was a child, I&amp;rsquo;ve found computers and technology fascinating and they naturally attracted me. The first language I came into contact with was Lua. At the time I was 14 or so, and I was playing the World of Warcraft (WoW) with my friends. I wanted to learn how the mods work in this game, and even write my own. They were written in Lua, so I&amp;rsquo;ve wanted to properly learn it, but I&amp;rsquo;ve never found time for it, and my knowledge never reached beyond the simplest things such as simple macros for selecting a random mount.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Introducing GHAST Stack</title>

@@ -1,18 +1,18 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script><meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="robots" content="index, follow"><link rel="author" href="/blog/humans.txt">
+<meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="robots" content="index, follow"><meta name="author" content="Marek Semjan">
+<meta name="description" content="">
+<link rel="author" type="text/plain" href="/blog/humans.txt">
 <link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
 <link rel="manifest" href="/blog/site.webmanifest">
 <meta name="msapplication-TileImage" content="/blog/mstile-144x144.png">
 <meta name="theme-color" content="#494f5c">
 <meta name="msapplication-TileColor" content="#494f5c">
-<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#494f5c"><meta name="author" content="Marek Semjan">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#494f5c">
 
   <meta itemprop="name" content="Create Project Templates With Cookiecutter">
   <meta itemprop="description" content="Cookiecutter is a cross-platform application that can be used to create projects from templates and save  you some time when you start a new project. Read this to learn how to use it with existing templates and how to create your own one.">
@@ -68,7 +68,7 @@
     }
 }
 </script><title>Create Project Templates With Cookiecutter</title>
-<link rel="stylesheet dns-prefetch preconnect preload prefetch" as="style" href="http://localhost:1313/blog/css/style.min.6536797c21482849dde41c10d93f2f60ac6a880f6ed3aa404c8194306624c12f.css" integrity="sha256-ZTZ5fCFIKEnd5BwQ2T8vYKxqiA9u06pATIGUMGYkwS8=" crossorigin="anonymous">
+<link rel="stylesheet dns-prefetch preconnect preload prefetch" as="style" href="http://localhost:1313/blog/css/style.min.a54a53f19c233221bcec03887020c1853562d9aadbd7035a472f72d09453a585.css" integrity="sha256-pUpT8ZwjMiG87AOIcCDBhTVi2arb1wNaRy9y0JRTpYU=" crossorigin="anonymous">
 	</head>
 <body id="page">
 	<header id="site-header">
@@ -184,19 +184,15 @@
       <line x1="16" y1="13" x2="8" y2="13"></line>
       <line x1="16" y1="17" x2="8" y2="17"></line>
       <polyline points="10 9 9 9 8 9"></polyline>
-   </svg>1321 
-    •
-    
-    
-    
-    6 Minutes</p>
+   </svg>1321&nbsp  •6 Minutes</p>
 <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
       <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
       <line x1="16" y1="2" x2="16" y2="6"></line>
       <line x1="8" y1="2" x2="8" y2="6"></line>
       <line x1="3" y1="10" x2="21" y2="10"></line>
-   </svg>2024-05-05 16:01 &#43;0200</p></div>
+   </svg>2024-05-05 16:01 &#43;0200
+</p></div>
 			<hr class="post-end">
 			<div class="content">
 				 <h2 id="what-is-cookiecutter-and-why-you-should-use-it">What Is Cookiecutter And Why You Should Use It?<a href="#what-is-cookiecutter-and-why-you-should-use-it" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -205,7 +201,7 @@
       <line x1="8" y1="12" x2="16" y2="12"></line>
    </svg></a></h2>
 <p><a href="https://cookiecutter.readthedocs.io/en/stable/index.html">Cookiecutter</a> is a cross-platform CLI application that creates projects from project templates. It is ideal for people who tend to create the same project structure repeatedly and want to save some time. Cookiecutter is not dedicated to a specific programming language (or programming projects in general) and can create a given project structure for any programming, machine learning or any other text-based project.</p>
-<p>Cookiecutter also allows you to use one of the templates created by community (just <a href="https://github.com/search?q=cookiecutter&type=repositories">search for Cookiecutter on Github</a> and pick one you like). In this post I will show how to get started (both with using existing templates and writing your own).</p>
+<p>Cookiecutter also allows you to use one of the templates created by community (just <a href="https://github.com/search?q=cookiecutter&amp;type=repositories">search for Cookiecutter on Github</a> and pick one you like). In this post I will show how to get started (both with using existing templates and writing your own).</p>
 <h2 id="installation">Installation<a href="#installation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
       stroke-linecap="round" stroke-linejoin="round">
       <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path>
@@ -327,8 +323,8 @@
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Arguably, such code would not be very useful in a template, but you could replace <code>IndexHandler</code> with a more useful health check that would work similarly, and it is enough for demonstration purposes. Of course, you can and probably should write something more useful. As said before, we can use Cookiecutter variables inside the code. Once we generate the project, <code>{{ cookiecutter.author }}</code> will be replaced with an actual value. This may be useful if you want to create functions or variables that have some prefix, e.g.:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> {{ <span style="color:#a6e22e">cookiecutter</span>.<span style="color:#a6e22e">endpoint</span> }}<span style="color:#a6e22e">Handler</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>) {
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// implementation that uses cookiecutter.endpoint
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// implementation that uses cookiecutter.endpoint</span>
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>If we specified <code>cookiecutter.endpoint</code> as <code>Post</code>, Cookiecutter would generate <code>PostHandler()</code> function. One of the CLI options, that Cookiecutter has, is <code>--skip-if-file-exists</code>, so you probably (I haven&rsquo;t tested it) could run Cookiecutter repeatedly with the same <code>project_slug</code>, but different <code>endpoint</code> to generate code for several different objects that the API can return, and than tweak the implementations and add correct business logic. Since you can call Python functions, you can capitalize or transform to lower/upper case based on your needs.</p>
 <p>Another feature is that the variables in the <code>cookiecutter.json</code> can be defined as private by prepending an underscore to the variable. The user will not be required to fill the values of private variables. Furthermore the user does not need to see these variables and they will not be rendered. If we user should see the value for some reason, we can prepend a double underscore to show the value. Non-render private variables can be useful for defining constants, or when you want to enforce any naming conventions, e.g. to use the same name for both the project and the package name.</p>
 <p>Text can be rendered conditionally using the <code>if</code> statement:</p>
@@ -368,15 +364,11 @@
 		</div>
 		<div id="comments" class="thin"></div>
 	</main>
-
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-	<p>
-		&copy; 2025 <a href="http://localhost:1313/blog/">Marek Semjan</a>
-		&#183; Copyright © 2024 Marek Semjan. All Rights Reserved.&#183; Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
-			&#183; Theme <a href="https://github.com/1bl4z3r/hermit-V2" target="_blank" rel="noopener">Hermit-V2</a></p>
-
-</footer>
+<p>
+	&copy; 2025 <a href="http://localhost:1313/blog/">Marek&#39;s Blog (ᵔ◡ᵔ)	</a>
+	&#183; Copyright © 2024 Marek Semjan. All Rights Reserved.&#183; Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+	&#183; Theme <a href="https://github.com/1bl4z3r/hermit-V2" target="_blank" rel="noopener">Hermit-V2</a></p></footer>
 <script async src="http://localhost:1313/blog/js/bundle.min.c7c384e4d29d192bbac6811ae4660bb01767194a5bea56baca77e8260f93ea16.js" integrity="sha256-x8OE5NKdGSu6xoEa5GYLsBdnGUpb6la6ynfoJg+T6hY=" crossorigin="anonymous"></script><script async src="http://localhost:1313/blog/js/link-share.min.24409a4f6e5537d70ffc55ec8f9192208d718678cb8638585342423020b37f39.js" integrity="sha256-JECaT25VN9cP/FXsj5GSII1xhnjLhjhYU0JCMCCzfzk=" crossorigin="anonymous"></script>
 </body>
-
 </html>
