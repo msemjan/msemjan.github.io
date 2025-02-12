@@ -1,7 +1,7 @@
 ---
 title: "Replacing NGINX With Caddy"
 date: 2025-02-08T14:27:02+01:00
-draft: true
+draft: false 
 toc: false
 images:
 tags:
