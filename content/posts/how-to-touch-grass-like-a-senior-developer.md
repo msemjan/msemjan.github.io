@@ -1,6 +1,6 @@
 ---
 title: "How To Touch Grass Like A Senior Developer?"
-date: 2025-04-01T09:33:12+02:00
+date: "2025-04-01T09:33:12+02:00"
 summary: "You might have encountered annoying and unpleasant people online who told you to touch grass. This might have left you confused and that is why you are here. What did they mean? And how is one supposed to touch grass anyway? In this helpful article, I will teach you how to touch grass like a true senior developer."
 draft: true 
 toc: false
