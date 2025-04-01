@@ -4,14 +4,14 @@
 		<title>Posts on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
 		<link>http://localhost:1313/blog/en/posts/</link>
 		<description>Recent content in Posts on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
-		<generator>Hugo -- 0.142.0</generator>
+		<generator>Hugo -- 0.145.0</generator>
 		<language>en</language>
-		<lastBuildDate>Sat, 08 Feb 2025 14:27:02 +0100</lastBuildDate>
+		<lastBuildDate>Tue, 01 Apr 2025 17:29:12 +0200</lastBuildDate>
 		<atom:link href="http://localhost:1313/blog/en/posts/index.xml" rel="self" type="application/rss+xml" />
 		
 		
 		<item>
-			<title>Replacing Nginx With Caddy</title>
+			<title>Replacing NGINX With Caddy</title>
 			<link>http://localhost:1313/blog/en/posts/replacing-nginx-with-caddy/</link>
 			<pubDate>Sat, 08 Feb 2025 14:27:02 +0100</pubDate><author>Marek Semjan</author><guid>http://localhost:1313/blog/en/posts/replacing-nginx-with-caddy/</guid>
 			<description><![CDATA[&lt;no value&gt;]]></description><content type="text/html" mode="escaped"><![CDATA[<h2 id="introduction">Introduction<a href="#introduction" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -149,7 +149,7 @@
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">admin</span> <span style="color:#e6db74">&#34;unix//run/caddy/admin.socket&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>example.com { 
+</span></span><span style="display:flex;"><span>example.com {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">reverse_proxy</span> {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">lb_policy</span> <span style="color:#e6db74">ip_hash</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">to</span> localhost:<span style="color:#ae81ff">8080</span> localhost:<span style="color:#ae81ff">8081</span> localhost:<span style="color:#ae81ff">8082</span>
@@ -195,7 +195,7 @@
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">admin</span> <span style="color:#e6db74">&#34;unix//run/caddy/admin.socket&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>example.com { 
+</span></span><span style="display:flex;"><span>example.com {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">reverse_proxy</span> {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">lb_policy</span> <span style="color:#e6db74">least_requests</span><span style="color:#75715e">    # The server with least connections will be used
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">to</span> localhost:<span style="color:#ae81ff">8080</span> localhost:<span style="color:#ae81ff">8081</span> localhost:<span style="color:#ae81ff">8082</span>
@@ -347,13 +347,11 @@
 </span></span><span style="display:flex;"><span>    pickle<span style="color:#f92672">.</span>dump(pipe, f)
 </span></span></code></pre></div><blockquote>
 <p><strong>⚠️ Note</strong>:
-Do not use <code>pickle</code> to de-serialize data from untrusted sources. As the documentation states, the module is not secure. An attacker could use it to execute any malicious code during unpickling.</p>
-</blockquote>
+Do not use <code>pickle</code> to de-serialize data from untrusted sources. As the documentation states, the module is not secure. An attacker could use it to execute any malicious code during unpickling.</p></blockquote>
 <p>After running the script above, you should find a <code>model.pkl</code> file in the root directory of the project. We will use this folder to load the model in the REST API.</p>
 <blockquote>
 <p><strong>Note</strong>:
-In case you already have some suitable model, you can try to modify the code in the following sections.</p>
-</blockquote>
+In case you already have some suitable model, you can try to modify the code in the following sections.</p></blockquote>
 <h2 id="fastapi-server---minimal-example">FastAPI Server - Minimal Example<a href="#fastapi-server---minimal-example" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
       stroke-linecap="round" stroke-linejoin="round">
       <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path>
@@ -454,8 +452,7 @@ In case you already have some suitable model, you can try to modify the code in 
 <blockquote>
 <p><strong>Note</strong>:
 In the example, I am loading the model each time a request is performed. This is advantageous if we want to change the model during the run (e.g. after it was retrained on a new dataset, but the model has still the same number and shape of inputs), but it may not be the best idea if the model is large or does not change very often.</p>
-<p>In such a case it would be better to load the model only once, and use it repeatedly. A change of the model would require a reload of the server, but that is not necessary an issue. The classifier object could be either a global variable (some people don&rsquo;t like to use them, but I think it is OK in small applications), or you could utilize FastAPI&rsquo;s <a href="https://fastapi.tiangolo.com/tutorial/dependencies/">dependency injection</a> feature.</p>
-</blockquote>
+<p>In such a case it would be better to load the model only once, and use it repeatedly. A change of the model would require a reload of the server, but that is not necessary an issue. The classifier object could be either a global variable (some people don&rsquo;t like to use them, but I think it is OK in small applications), or you could utilize FastAPI&rsquo;s <a href="https://fastapi.tiangolo.com/tutorial/dependencies/">dependency injection</a> feature.</p></blockquote>
 <p>The final change that I&rsquo;ve added is an additional check that is performed before running the server:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Check if the file with the model does exits, if not, it does not make sense to continue</span>
@@ -3093,8 +3090,7 @@ Tags:   [protobufs golang serializations]
 <p>I&rsquo;ll write a brief description of each of the frameworks, mention some of its features, and when to use it.</p>
 <blockquote>
 <p><strong>⚠️ Quick disclaimer</strong></p>
-<p>I am definitely not an expert on front-end and I haven&rsquo;t used all of the frameworks on this list, so take this post with a grain of salt. This is mostly my opinion based on the information I&rsquo;ve gathered, while trying to pick a front-end framework myself.</p>
-</blockquote>
+<p>I am definitely not an expert on front-end and I haven&rsquo;t used all of the frameworks on this list, so take this post with a grain of salt. This is mostly my opinion based on the information I&rsquo;ve gathered, while trying to pick a front-end framework myself.</p></blockquote>
 <h2 id="react">React<a href="#react" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
       stroke-linecap="round" stroke-linejoin="round">
       <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path>
