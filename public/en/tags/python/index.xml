@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
-    <link>http://localhost:1313/blog/en/tags/python/</link>
+    <link>https://msemjan.github.io/blog/en/tags/python/</link>
     <description>Recent content in Python on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 24 Aug 2024 13:57:16 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/blog/en/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://msemjan.github.io/blog/en/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Deploying Machine Learning Models With FastAPI</title>
-      <link>http://localhost:1313/blog/en/posts/deploying-machine-learning-models-with-fast-api/</link>
+      <link>https://msemjan.github.io/blog/en/posts/deploying-machine-learning-models-with-fast-api/</link>
       <pubDate>Sat, 24 Aug 2024 13:57:16 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/deploying-machine-learning-models-with-fast-api/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/deploying-machine-learning-models-with-fast-api/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;a href=&#34;#introduction&#34; class=&#34;anchor&#34; aria-hidden=&#34;true&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;&#xA;      stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&#xA;      &lt;path d=&#34;M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3&#34;&gt;&lt;/path&gt;&#xA;      &lt;line x1=&#34;8&#34; y1=&#34;12&#34; x2=&#34;16&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&#xA;   &lt;/svg&gt;&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;If you&amp;rsquo;ve started with machine learning just recently and created your first model, you might be wondering what to do with it next? Sharing Python scripts is doable, but it might be difficult for non-technical people to setup a Python project. One of the better possibilities is to create a REST API that would make the model accessible via internet.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Create Project Templates With Cookiecutter</title>
-      <link>http://localhost:1313/blog/en/posts/create-project-templates-with-cookiecutter/</link>
+      <link>https://msemjan.github.io/blog/en/posts/create-project-templates-with-cookiecutter/</link>
       <pubDate>Sun, 05 May 2024 16:01:14 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/create-project-templates-with-cookiecutter/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/create-project-templates-with-cookiecutter/</guid>
       <description>Cookiecutter is a cross-platform application that can be used to create projects from templates and save  you some time when you start a new project. Read this to learn how to use it with existing templates and how to create your own one.</description>
     </item>
   </channel>

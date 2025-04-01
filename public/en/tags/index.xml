@@ -2,626 +2,542 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
-    <link>http://localhost:1313/blog/en/tags/</link>
+    <link>https://msemjan.github.io/blog/en/tags/</link>
     <description>Recent content in Tags on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 08 Feb 2025 14:27:02 +0100</lastBuildDate>
-    <atom:link href="http://localhost:1313/blog/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://msemjan.github.io/blog/en/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Application Load Balancer</title>
-      <link>http://localhost:1313/blog/en/tags/application-load-balancer/</link>
+      <link>https://msemjan.github.io/blog/en/tags/application-load-balancer/</link>
       <pubDate>Sat, 08 Feb 2025 14:27:02 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/application-load-balancer/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/application-load-balancer/</guid>
       <description></description>
     </item>
     <item>
       <title>Caddy</title>
-      <link>http://localhost:1313/blog/en/tags/caddy/</link>
+      <link>https://msemjan.github.io/blog/en/tags/caddy/</link>
       <pubDate>Sat, 08 Feb 2025 14:27:02 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/caddy/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/caddy/</guid>
       <description></description>
     </item>
     <item>
       <title>HTTP Server</title>
-      <link>http://localhost:1313/blog/en/tags/http-server/</link>
+      <link>https://msemjan.github.io/blog/en/tags/http-server/</link>
       <pubDate>Sat, 08 Feb 2025 14:27:02 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/http-server/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/http-server/</guid>
       <description></description>
     </item>
     <item>
       <title>IP Hash</title>
-      <link>http://localhost:1313/blog/en/tags/ip-hash/</link>
+      <link>https://msemjan.github.io/blog/en/tags/ip-hash/</link>
       <pubDate>Sat, 08 Feb 2025 14:27:02 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/ip-hash/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/ip-hash/</guid>
       <description></description>
     </item>
     <item>
       <title>Least Connected</title>
-      <link>http://localhost:1313/blog/en/tags/least-connected/</link>
+      <link>https://msemjan.github.io/blog/en/tags/least-connected/</link>
       <pubDate>Sat, 08 Feb 2025 14:27:02 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/least-connected/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/least-connected/</guid>
       <description></description>
     </item>
     <item>
       <title>Load Balancer</title>
-      <link>http://localhost:1313/blog/en/tags/load-balancer/</link>
+      <link>https://msemjan.github.io/blog/en/tags/load-balancer/</link>
       <pubDate>Sat, 08 Feb 2025 14:27:02 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/load-balancer/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/load-balancer/</guid>
       <description></description>
     </item>
     <item>
       <title>NGINX</title>
-      <link>http://localhost:1313/blog/en/tags/nginx/</link>
+      <link>https://msemjan.github.io/blog/en/tags/nginx/</link>
       <pubDate>Sat, 08 Feb 2025 14:27:02 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/nginx/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/nginx/</guid>
       <description></description>
     </item>
     <item>
       <title>REST API</title>
-      <link>http://localhost:1313/blog/en/tags/rest-api/</link>
+      <link>https://msemjan.github.io/blog/en/tags/rest-api/</link>
       <pubDate>Sat, 08 Feb 2025 14:27:02 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/rest-api/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/rest-api/</guid>
       <description></description>
     </item>
     <item>
       <title>Round Robin</title>
-      <link>http://localhost:1313/blog/en/tags/round-robin/</link>
+      <link>https://msemjan.github.io/blog/en/tags/round-robin/</link>
       <pubDate>Sat, 08 Feb 2025 14:27:02 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/round-robin/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/round-robin/</guid>
       <description></description>
     </item>
     <item>
       <title>Graphana</title>
-      <link>http://localhost:1313/blog/en/tags/graphana/</link>
+      <link>https://msemjan.github.io/blog/en/tags/graphana/</link>
       <pubDate>Sun, 12 Jan 2025 10:29:49 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/graphana/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/graphana/</guid>
       <description></description>
     </item>
     <item>
       <title>Kubernetes</title>
-      <link>http://localhost:1313/blog/en/tags/kubernetes/</link>
+      <link>https://msemjan.github.io/blog/en/tags/kubernetes/</link>
       <pubDate>Sun, 12 Jan 2025 10:29:49 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/kubernetes/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/kubernetes/</guid>
       <description></description>
     </item>
     <item>
       <title>Plans</title>
-      <link>http://localhost:1313/blog/en/tags/plans/</link>
+      <link>https://msemjan.github.io/blog/en/tags/plans/</link>
       <pubDate>Sun, 12 Jan 2025 10:29:49 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/plans/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/plans/</guid>
       <description></description>
     </item>
     <item>
       <title>Prometheus</title>
-      <link>http://localhost:1313/blog/en/tags/prometheus/</link>
+      <link>https://msemjan.github.io/blog/en/tags/prometheus/</link>
       <pubDate>Sun, 12 Jan 2025 10:29:49 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/prometheus/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/prometheus/</guid>
       <description></description>
     </item>
     <item>
       <title>Rust</title>
-      <link>http://localhost:1313/blog/en/tags/rust/</link>
+      <link>https://msemjan.github.io/blog/en/tags/rust/</link>
       <pubDate>Sun, 12 Jan 2025 10:29:49 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/rust/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/rust/</guid>
       <description></description>
     </item>
     <item>
       <title>FastAPI</title>
-      <link>http://localhost:1313/blog/en/tags/fastapi/</link>
+      <link>https://msemjan.github.io/blog/en/tags/fastapi/</link>
       <pubDate>Sat, 24 Aug 2024 13:57:16 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/fastapi/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/fastapi/</guid>
       <description></description>
     </item>
     <item>
       <title>Machine Learning</title>
-      <link>http://localhost:1313/blog/en/tags/machine-learning/</link>
+      <link>https://msemjan.github.io/blog/en/tags/machine-learning/</link>
       <pubDate>Sat, 24 Aug 2024 13:57:16 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/machine-learning/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/machine-learning/</guid>
       <description></description>
     </item>
     <item>
       <title>Python</title>
-      <link>http://localhost:1313/blog/en/tags/python/</link>
+      <link>https://msemjan.github.io/blog/en/tags/python/</link>
       <pubDate>Sat, 24 Aug 2024 13:57:16 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/python/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/python/</guid>
       <description></description>
     </item>
     <item>
       <title>Scikit-Learn</title>
-      <link>http://localhost:1313/blog/en/tags/scikit-learn/</link>
+      <link>https://msemjan.github.io/blog/en/tags/scikit-learn/</link>
       <pubDate>Sat, 24 Aug 2024 13:57:16 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/scikit-learn/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/scikit-learn/</guid>
       <description></description>
     </item>
     <item>
       <title>CLI</title>
-      <link>http://localhost:1313/blog/en/tags/cli/</link>
+      <link>https://msemjan.github.io/blog/en/tags/cli/</link>
       <pubDate>Sat, 03 Aug 2024 16:40:02 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/cli/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/cli/</guid>
       <description></description>
     </item>
     <item>
       <title>Fuzzy Finder</title>
-      <link>http://localhost:1313/blog/en/tags/fuzzy-finder/</link>
+      <link>https://msemjan.github.io/blog/en/tags/fuzzy-finder/</link>
       <pubDate>Sat, 03 Aug 2024 16:40:02 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/fuzzy-finder/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/fuzzy-finder/</guid>
       <description></description>
     </item>
     <item>
       <title>Fzf</title>
-      <link>http://localhost:1313/blog/en/tags/fzf/</link>
+      <link>https://msemjan.github.io/blog/en/tags/fzf/</link>
       <pubDate>Sat, 03 Aug 2024 16:40:02 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/fzf/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/fzf/</guid>
       <description></description>
     </item>
     <item>
       <title>Terminal</title>
-      <link>http://localhost:1313/blog/en/tags/terminal/</link>
+      <link>https://msemjan.github.io/blog/en/tags/terminal/</link>
       <pubDate>Sat, 03 Aug 2024 16:40:02 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/terminal/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/terminal/</guid>
       <description></description>
     </item>
     <item>
       <title>Go</title>
-      <link>http://localhost:1313/blog/en/tags/go/</link>
+      <link>https://msemjan.github.io/blog/en/tags/go/</link>
       <pubDate>Sat, 13 Jul 2024 15:45:24 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/go/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/go/</guid>
       <description></description>
     </item>
     <item>
       <title>Golang</title>
-      <link>http://localhost:1313/blog/en/tags/golang/</link>
+      <link>https://msemjan.github.io/blog/en/tags/golang/</link>
       <pubDate>Sat, 13 Jul 2024 15:45:24 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/golang/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/golang/</guid>
       <description></description>
     </item>
     <item>
       <title>Goose</title>
-      <link>http://localhost:1313/blog/en/tags/goose/</link>
+      <link>https://msemjan.github.io/blog/en/tags/goose/</link>
       <pubDate>Sat, 13 Jul 2024 15:45:24 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/goose/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/goose/</guid>
       <description></description>
     </item>
     <item>
       <title>Migrations</title>
-      <link>http://localhost:1313/blog/en/tags/migrations/</link>
+      <link>https://msemjan.github.io/blog/en/tags/migrations/</link>
       <pubDate>Sat, 13 Jul 2024 15:45:24 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/migrations/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/migrations/</guid>
       <description></description>
     </item>
     <item>
       <title>SQL</title>
-      <link>http://localhost:1313/blog/en/tags/sql/</link>
+      <link>https://msemjan.github.io/blog/en/tags/sql/</link>
       <pubDate>Sat, 13 Jul 2024 15:45:24 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/sql/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/sql/</guid>
       <description></description>
     </item>
     <item>
       <title>Containerization</title>
-      <link>http://localhost:1313/blog/en/tags/containerization/</link>
+      <link>https://msemjan.github.io/blog/en/tags/containerization/</link>
       <pubDate>Sun, 02 Jun 2024 15:44:08 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/containerization/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/containerization/</guid>
       <description></description>
     </item>
     <item>
       <title>DevOps</title>
-      <link>http://localhost:1313/blog/en/tags/devops/</link>
+      <link>https://msemjan.github.io/blog/en/tags/devops/</link>
       <pubDate>Sun, 02 Jun 2024 15:44:08 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/devops/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/devops/</guid>
       <description></description>
     </item>
     <item>
       <title>Docker</title>
-      <link>http://localhost:1313/blog/en/tags/docker/</link>
+      <link>https://msemjan.github.io/blog/en/tags/docker/</link>
       <pubDate>Sun, 02 Jun 2024 15:44:08 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/docker/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/docker/</guid>
       <description></description>
     </item>
     <item>
       <title>Docker Compose</title>
-      <link>http://localhost:1313/blog/en/tags/docker-compose/</link>
+      <link>https://msemjan.github.io/blog/en/tags/docker-compose/</link>
       <pubDate>Sun, 02 Jun 2024 15:44:08 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/docker-compose/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/docker-compose/</guid>
       <description></description>
     </item>
     <item>
       <title>Reverse Proxy</title>
-      <link>http://localhost:1313/blog/en/tags/reverse-proxy/</link>
+      <link>https://msemjan.github.io/blog/en/tags/reverse-proxy/</link>
       <pubDate>Sun, 26 May 2024 19:52:00 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/reverse-proxy/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/reverse-proxy/</guid>
       <description></description>
     </item>
     <item>
       <title>Validation</title>
-      <link>http://localhost:1313/blog/en/tags/validation/</link>
+      <link>https://msemjan.github.io/blog/en/tags/validation/</link>
       <pubDate>Sun, 19 May 2024 15:48:02 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/validation/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Express.js</title>
-      <link>http://localhost:1313/blog/en/tags/express.js/</link>
-      <pubDate>Sat, 18 May 2024 11:11:49 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/express.js/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Javascript</title>
-      <link>http://localhost:1313/blog/en/tags/javascript/</link>
-      <pubDate>Sat, 18 May 2024 11:11:49 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/javascript/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Node.js</title>
-      <link>http://localhost:1313/blog/en/tags/node.js/</link>
-      <pubDate>Sat, 18 May 2024 11:11:49 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/node.js/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Server</title>
-      <link>http://localhost:1313/blog/en/tags/server/</link>
-      <pubDate>Sat, 18 May 2024 11:11:49 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/server/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/validation/</guid>
       <description></description>
     </item>
     <item>
       <title>Cookiecutter</title>
-      <link>http://localhost:1313/blog/en/tags/cookiecutter/</link>
+      <link>https://msemjan.github.io/blog/en/tags/cookiecutter/</link>
       <pubDate>Sun, 05 May 2024 16:01:14 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/cookiecutter/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/cookiecutter/</guid>
       <description></description>
     </item>
     <item>
       <title>Projects</title>
-      <link>http://localhost:1313/blog/en/tags/projects/</link>
+      <link>https://msemjan.github.io/blog/en/tags/projects/</link>
       <pubDate>Sun, 05 May 2024 16:01:14 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/projects/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/projects/</guid>
       <description></description>
     </item>
     <item>
       <title>Templates</title>
-      <link>http://localhost:1313/blog/en/tags/templates/</link>
+      <link>https://msemjan.github.io/blog/en/tags/templates/</link>
       <pubDate>Sun, 05 May 2024 16:01:14 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/templates/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/templates/</guid>
       <description></description>
     </item>
     <item>
       <title>Certification</title>
-      <link>http://localhost:1313/blog/en/tags/certification/</link>
+      <link>https://msemjan.github.io/blog/en/tags/certification/</link>
       <pubDate>Sat, 13 Apr 2024 09:55:35 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/certification/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/certification/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Javascript</title>
+      <link>https://msemjan.github.io/blog/en/tags/javascript/</link>
+      <pubDate>Sat, 13 Apr 2024 09:55:35 +0200</pubDate>
+      <guid>https://msemjan.github.io/blog/en/tags/javascript/</guid>
       <description></description>
     </item>
     <item>
       <title>JSNAD</title>
-      <link>http://localhost:1313/blog/en/tags/jsnad/</link>
+      <link>https://msemjan.github.io/blog/en/tags/jsnad/</link>
       <pubDate>Sat, 13 Apr 2024 09:55:35 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/jsnad/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/jsnad/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Node.js</title>
+      <link>https://msemjan.github.io/blog/en/tags/node.js/</link>
+      <pubDate>Sat, 13 Apr 2024 09:55:35 +0200</pubDate>
+      <guid>https://msemjan.github.io/blog/en/tags/node.js/</guid>
       <description></description>
     </item>
     <item>
       <title>Programming</title>
-      <link>http://localhost:1313/blog/en/tags/programming/</link>
+      <link>https://msemjan.github.io/blog/en/tags/programming/</link>
       <pubDate>Sat, 13 Apr 2024 09:55:35 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/programming/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/programming/</guid>
       <description></description>
     </item>
     <item>
       <title>Data Serialization</title>
-      <link>http://localhost:1313/blog/en/tags/data-serialization/</link>
+      <link>https://msemjan.github.io/blog/en/tags/data-serialization/</link>
       <pubDate>Wed, 15 Nov 2023 18:35:15 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/data-serialization/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/data-serialization/</guid>
       <description></description>
     </item>
     <item>
       <title>GRPC</title>
-      <link>http://localhost:1313/blog/en/tags/grpc/</link>
+      <link>https://msemjan.github.io/blog/en/tags/grpc/</link>
       <pubDate>Wed, 15 Nov 2023 18:35:15 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/grpc/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/grpc/</guid>
       <description></description>
     </item>
     <item>
       <title>Protocol Buffers</title>
-      <link>http://localhost:1313/blog/en/tags/protocol-buffers/</link>
+      <link>https://msemjan.github.io/blog/en/tags/protocol-buffers/</link>
       <pubDate>Wed, 15 Nov 2023 18:35:15 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/protocol-buffers/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/protocol-buffers/</guid>
       <description></description>
     </item>
     <item>
       <title>Academic Writing</title>
-      <link>http://localhost:1313/blog/en/tags/academic-writing/</link>
+      <link>https://msemjan.github.io/blog/en/tags/academic-writing/</link>
       <pubDate>Sun, 01 Oct 2023 17:29:22 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/academic-writing/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/academic-writing/</guid>
       <description></description>
     </item>
     <item>
       <title>Latex</title>
-      <link>http://localhost:1313/blog/en/tags/latex/</link>
+      <link>https://msemjan.github.io/blog/en/tags/latex/</link>
       <pubDate>Sun, 01 Oct 2023 17:29:22 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/latex/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/latex/</guid>
       <description></description>
     </item>
     <item>
       <title>Typesetting</title>
-      <link>http://localhost:1313/blog/en/tags/typesetting/</link>
+      <link>https://msemjan.github.io/blog/en/tags/typesetting/</link>
       <pubDate>Sun, 01 Oct 2023 17:29:22 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/typesetting/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Alpine.js</title>
-      <link>http://localhost:1313/blog/en/tags/alpine.js/</link>
-      <pubDate>Mon, 04 Sep 2023 21:21:13 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/alpine.js/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Frontend</title>
-      <link>http://localhost:1313/blog/en/tags/frontend/</link>
-      <pubDate>Mon, 04 Sep 2023 21:21:13 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/frontend/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Tailwind</title>
-      <link>http://localhost:1313/blog/en/tags/tailwind/</link>
-      <pubDate>Mon, 04 Sep 2023 21:21:13 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/tailwind/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/typesetting/</guid>
       <description></description>
     </item>
     <item>
       <title>Angular</title>
-      <link>http://localhost:1313/blog/en/tags/angular/</link>
+      <link>https://msemjan.github.io/blog/en/tags/angular/</link>
       <pubDate>Fri, 18 Aug 2023 19:07:26 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/angular/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/angular/</guid>
       <description></description>
     </item>
     <item>
       <title>Frameworks</title>
-      <link>http://localhost:1313/blog/en/tags/frameworks/</link>
+      <link>https://msemjan.github.io/blog/en/tags/frameworks/</link>
       <pubDate>Fri, 18 Aug 2023 19:07:26 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/frameworks/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/frameworks/</guid>
       <description></description>
     </item>
     <item>
       <title>Front-End Development</title>
-      <link>http://localhost:1313/blog/en/tags/front-end-development/</link>
+      <link>https://msemjan.github.io/blog/en/tags/front-end-development/</link>
       <pubDate>Fri, 18 Aug 2023 19:07:26 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/front-end-development/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/front-end-development/</guid>
       <description></description>
     </item>
     <item>
       <title>Fullstack Development</title>
-      <link>http://localhost:1313/blog/en/tags/fullstack-development/</link>
+      <link>https://msemjan.github.io/blog/en/tags/fullstack-development/</link>
       <pubDate>Fri, 18 Aug 2023 19:07:26 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/fullstack-development/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/fullstack-development/</guid>
       <description></description>
     </item>
     <item>
       <title>React</title>
-      <link>http://localhost:1313/blog/en/tags/react/</link>
+      <link>https://msemjan.github.io/blog/en/tags/react/</link>
       <pubDate>Fri, 18 Aug 2023 19:07:26 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/react/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/react/</guid>
       <description></description>
     </item>
     <item>
       <title>Svelte</title>
-      <link>http://localhost:1313/blog/en/tags/svelte/</link>
+      <link>https://msemjan.github.io/blog/en/tags/svelte/</link>
       <pubDate>Fri, 18 Aug 2023 19:07:26 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/svelte/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/svelte/</guid>
       <description></description>
     </item>
     <item>
       <title>Typescript</title>
-      <link>http://localhost:1313/blog/en/tags/typescript/</link>
+      <link>https://msemjan.github.io/blog/en/tags/typescript/</link>
       <pubDate>Fri, 18 Aug 2023 19:07:26 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/typescript/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/typescript/</guid>
       <description></description>
     </item>
     <item>
       <title>Vue</title>
-      <link>http://localhost:1313/blog/en/tags/vue/</link>
+      <link>https://msemjan.github.io/blog/en/tags/vue/</link>
       <pubDate>Fri, 18 Aug 2023 19:07:26 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/vue/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/vue/</guid>
       <description></description>
     </item>
     <item>
       <title>About</title>
-      <link>http://localhost:1313/blog/en/tags/about/</link>
+      <link>https://msemjan.github.io/blog/en/tags/about/</link>
       <pubDate>Fri, 11 Aug 2023 21:36:44 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/about/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/about/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Alpine.js</title>
+      <link>https://msemjan.github.io/blog/en/tags/alpine.js/</link>
+      <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
+      <guid>https://msemjan.github.io/blog/en/tags/alpine.js/</guid>
       <description></description>
     </item>
     <item>
       <title>Back-End Development</title>
-      <link>http://localhost:1313/blog/en/tags/back-end-development/</link>
+      <link>https://msemjan.github.io/blog/en/tags/back-end-development/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/back-end-development/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/back-end-development/</guid>
       <description></description>
     </item>
     <item>
       <title>GHAST-Stack</title>
-      <link>http://localhost:1313/blog/en/tags/ghast-stack/</link>
+      <link>https://msemjan.github.io/blog/en/tags/ghast-stack/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/ghast-stack/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/ghast-stack/</guid>
       <description></description>
     </item>
     <item>
       <title>HTMX</title>
-      <link>http://localhost:1313/blog/en/tags/htmx/</link>
+      <link>https://msemjan.github.io/blog/en/tags/htmx/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/htmx/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/htmx/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tailwind</title>
+      <link>https://msemjan.github.io/blog/en/tags/tailwind/</link>
+      <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
+      <guid>https://msemjan.github.io/blog/en/tags/tailwind/</guid>
       <description></description>
     </item>
     <item>
       <title>Tech-Stack</title>
-      <link>http://localhost:1313/blog/en/tags/tech-stack/</link>
+      <link>https://msemjan.github.io/blog/en/tags/tech-stack/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/tech-stack/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/tech-stack/</guid>
       <description></description>
     </item>
     <item>
       <title>Learning</title>
-      <link>http://localhost:1313/blog/en/tags/learning/</link>
+      <link>https://msemjan.github.io/blog/en/tags/learning/</link>
       <pubDate>Fri, 14 Jul 2023 18:07:25 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/learning/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/learning/</guid>
       <description></description>
     </item>
     <item>
       <title>Studying</title>
-      <link>http://localhost:1313/blog/en/tags/studying/</link>
+      <link>https://msemjan.github.io/blog/en/tags/studying/</link>
       <pubDate>Fri, 14 Jul 2023 18:07:25 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/studying/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/studying/</guid>
       <description></description>
     </item>
     <item>
       <title>Technology</title>
-      <link>http://localhost:1313/blog/en/tags/technology/</link>
+      <link>https://msemjan.github.io/blog/en/tags/technology/</link>
       <pubDate>Fri, 14 Jul 2023 18:07:25 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/technology/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/technology/</guid>
       <description></description>
     </item>
     <item>
       <title>Tips &amp; Tricks</title>
-      <link>http://localhost:1313/blog/en/tags/tips--tricks/</link>
+      <link>https://msemjan.github.io/blog/en/tags/tips--tricks/</link>
       <pubDate>Fri, 14 Jul 2023 18:07:25 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/tips--tricks/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Brain Health</title>
-      <link>http://localhost:1313/blog/en/tags/brain-health/</link>
-      <pubDate>Sat, 01 Apr 2023 12:39:47 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/brain-health/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Health</title>
-      <link>http://localhost:1313/blog/en/tags/health/</link>
-      <pubDate>Sat, 01 Apr 2023 12:39:47 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/health/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Lifestyle</title>
-      <link>http://localhost:1313/blog/en/tags/lifestyle/</link>
-      <pubDate>Sat, 01 Apr 2023 12:39:47 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/lifestyle/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Optimization</title>
-      <link>http://localhost:1313/blog/en/tags/optimization/</link>
-      <pubDate>Sat, 01 Apr 2023 12:39:47 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/optimization/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Hugo</title>
-      <link>http://localhost:1313/blog/en/tags/hugo/</link>
-      <pubDate>Sat, 01 Apr 2023 11:45:03 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/hugo/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Markdown</title>
-      <link>http://localhost:1313/blog/en/tags/markdown/</link>
-      <pubDate>Sat, 01 Apr 2023 11:45:03 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/markdown/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Math Support</title>
-      <link>http://localhost:1313/blog/en/tags/math-support/</link>
-      <pubDate>Sat, 01 Apr 2023 11:45:03 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/math-support/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>MathJax</title>
-      <link>http://localhost:1313/blog/en/tags/mathjax/</link>
-      <pubDate>Sat, 01 Apr 2023 11:45:03 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/mathjax/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/tips--tricks/</guid>
       <description></description>
     </item>
     <item>
       <title>Emoji</title>
-      <link>http://localhost:1313/blog/en/tags/emoji/</link>
+      <link>https://msemjan.github.io/blog/en/tags/emoji/</link>
       <pubDate>Tue, 28 Mar 2023 16:54:44 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/emoji/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/emoji/</guid>
       <description></description>
     </item>
     <item>
       <title>Github Markdown</title>
-      <link>http://localhost:1313/blog/en/tags/github-markdown/</link>
+      <link>https://msemjan.github.io/blog/en/tags/github-markdown/</link>
       <pubDate>Tue, 28 Mar 2023 16:54:44 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/github-markdown/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/github-markdown/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Markdown</title>
+      <link>https://msemjan.github.io/blog/en/tags/markdown/</link>
+      <pubDate>Tue, 28 Mar 2023 16:54:44 +0100</pubDate>
+      <guid>https://msemjan.github.io/blog/en/tags/markdown/</guid>
       <description></description>
     </item>
     <item>
       <title>Reference</title>
-      <link>http://localhost:1313/blog/en/tags/reference/</link>
+      <link>https://msemjan.github.io/blog/en/tags/reference/</link>
       <pubDate>Tue, 28 Mar 2023 16:54:44 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/reference/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/reference/</guid>
       <description></description>
     </item>
     <item>
       <title>Bash</title>
-      <link>http://localhost:1313/blog/en/tags/bash/</link>
+      <link>https://msemjan.github.io/blog/en/tags/bash/</link>
       <pubDate>Mon, 27 Mar 2023 11:33:22 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/bash/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/bash/</guid>
       <description></description>
     </item>
     <item>
       <title>Scripting</title>
-      <link>http://localhost:1313/blog/en/tags/scripting/</link>
+      <link>https://msemjan.github.io/blog/en/tags/scripting/</link>
       <pubDate>Mon, 27 Mar 2023 11:33:22 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/scripting/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/scripting/</guid>
       <description></description>
     </item>
     <item>
       <title>Blog</title>
-      <link>http://localhost:1313/blog/en/tags/blog/</link>
+      <link>https://msemjan.github.io/blog/en/tags/blog/</link>
       <pubDate>Sun, 26 Mar 2023 21:58:30 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/blog/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/blog/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hugo</title>
+      <link>https://msemjan.github.io/blog/en/tags/hugo/</link>
+      <pubDate>Sun, 26 Mar 2023 21:58:30 +0200</pubDate>
+      <guid>https://msemjan.github.io/blog/en/tags/hugo/</guid>
       <description></description>
     </item>
     <item>
       <title>Writing</title>
-      <link>http://localhost:1313/blog/en/tags/writing/</link>
+      <link>https://msemjan.github.io/blog/en/tags/writing/</link>
       <pubDate>Sun, 26 Mar 2023 21:58:30 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/writing/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/writing/</guid>
       <description></description>
     </item>
     <item>
       <title>Introduction</title>
-      <link>http://localhost:1313/blog/en/tags/introduction/</link>
+      <link>https://msemjan.github.io/blog/en/tags/introduction/</link>
       <pubDate>Sun, 26 Mar 2023 16:34:01 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/introduction/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>ChatGPT</title>
-      <link>http://localhost:1313/blog/en/tags/chatgpt/</link>
-      <pubDate>Sun, 26 Feb 2023 17:03:52 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/chatgpt/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Note</title>
-      <link>http://localhost:1313/blog/en/tags/note/</link>
-      <pubDate>Sun, 26 Feb 2023 17:03:52 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/note/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Vimwiki</title>
-      <link>http://localhost:1313/blog/en/tags/vimwiki/</link>
-      <pubDate>Sun, 26 Feb 2023 17:03:52 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/tags/vimwiki/</guid>
+      <guid>https://msemjan.github.io/blog/en/tags/introduction/</guid>
       <description></description>
     </item>
   </channel>
