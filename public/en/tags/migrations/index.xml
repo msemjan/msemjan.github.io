@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Migrations on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
-    <link>https://msemjan.github.io/blog/en/tags/migrations/</link>
+    <link>http://localhost:1313/blog/en/tags/migrations/</link>
     <description>Recent content in Migrations on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 13 Jul 2024 15:45:24 +0200</lastBuildDate>
-    <atom:link href="https://msemjan.github.io/blog/en/tags/migrations/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/blog/en/tags/migrations/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Sql Migrations With Goose</title>
-      <link>https://msemjan.github.io/blog/en/posts/sql-migrations-with-goose/</link>
+      <link>http://localhost:1313/blog/en/posts/sql-migrations-with-goose/</link>
       <pubDate>Sat, 13 Jul 2024 15:45:24 +0200</pubDate>
-      <guid>https://msemjan.github.io/blog/en/posts/sql-migrations-with-goose/</guid>
+      <guid>http://localhost:1313/blog/en/posts/sql-migrations-with-goose/</guid>
       <description>Goose is a database migration tool that will help you manage your database schemas</description>
     </item>
   </channel>

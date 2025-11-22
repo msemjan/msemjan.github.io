@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Projects on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
-    <link>https://msemjan.github.io/blog/en/tags/projects/</link>
+    <link>http://localhost:1313/blog/en/tags/projects/</link>
     <description>Recent content in Projects on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sun, 05 May 2024 16:01:14 +0200</lastBuildDate>
-    <atom:link href="https://msemjan.github.io/blog/en/tags/projects/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/blog/en/tags/projects/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Create Project Templates With Cookiecutter</title>
-      <link>https://msemjan.github.io/blog/en/posts/create-project-templates-with-cookiecutter/</link>
+      <link>http://localhost:1313/blog/en/posts/create-project-templates-with-cookiecutter/</link>
       <pubDate>Sun, 05 May 2024 16:01:14 +0200</pubDate>
-      <guid>https://msemjan.github.io/blog/en/posts/create-project-templates-with-cookiecutter/</guid>
+      <guid>http://localhost:1313/blog/en/posts/create-project-templates-with-cookiecutter/</guid>
       <description>Cookiecutter is a cross-platform application that can be used to create projects from templates and save  you some time when you start a new project. Read this to learn how to use it with existing templates and how to create your own one.</description>
     </item>
   </channel>

@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Fullstack Development on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
-    <link>https://msemjan.github.io/blog/en/tags/fullstack-development/</link>
+    <link>http://localhost:1313/blog/en/tags/fullstack-development/</link>
     <description>Recent content in Fullstack Development on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Fri, 18 Aug 2023 19:07:26 +0200</lastBuildDate>
-    <atom:link href="https://msemjan.github.io/blog/en/tags/fullstack-development/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/blog/en/tags/fullstack-development/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>What Front End Framework Should You Pick in 2023?</title>
-      <link>https://msemjan.github.io/blog/en/posts/what-front-end-framework-should-you-pick-in-2023/</link>
+      <link>http://localhost:1313/blog/en/posts/what-front-end-framework-should-you-pick-in-2023/</link>
       <pubDate>Fri, 18 Aug 2023 19:07:26 +0200</pubDate>
-      <guid>https://msemjan.github.io/blog/en/posts/what-front-end-framework-should-you-pick-in-2023/</guid>
+      <guid>http://localhost:1313/blog/en/posts/what-front-end-framework-should-you-pick-in-2023/</guid>
       <description>There are many options for anyone who wants to choose a front-end framework. It may be difficult for a beginner to pick one. Recenly I wanted to learn some framework that would allow me to create beautiful websites without much effort. In this post I&amp;rsquo;ll briefly sum up various choices and what framework would I recommend for anyone who wants to start with front-end development.</description>
     </item>
     <item>
       <title>Introducing GHAST Stack</title>
-      <link>https://msemjan.github.io/blog/en/posts/introducing-ghast-stack/</link>
+      <link>http://localhost:1313/blog/en/posts/introducing-ghast-stack/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
-      <guid>https://msemjan.github.io/blog/en/posts/introducing-ghast-stack/</guid>
+      <guid>http://localhost:1313/blog/en/posts/introducing-ghast-stack/</guid>
       <description>GHAST stack is a new tech-stack for developing web applications without excessive use of Javascript. In this article I describe why I am suggesting usage of this tech-stack and what technologies it uses.</description>
     </item>
   </channel>

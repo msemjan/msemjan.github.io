@@ -18,7 +18,7 @@
   <meta itemprop="description" content="In this post I describe how I’ve added Math support to my template with MathJax.">
   <meta itemprop="datePublished" content="2023-04-01T11:45:03+02:00">
   <meta itemprop="dateModified" content="2023-04-01T11:45:03+02:00">
-  <meta itemprop="wordCount" content="442">
+  <meta itemprop="wordCount" content="462">
   <meta itemprop="keywords" content="Hugo,Math Support,Markdown,MathJax"><meta property="og:url" content="http://localhost:1313/blog/en/posts/adding-math-support-to-hugo/">
   <meta property="og:site_name" content="Marek&#39;s Blog (ᵔ◡ᵔ)	">
   <meta property="og:title" content="Adding Math Support to Hugo">
@@ -45,8 +45,8 @@
     "name": "Adding Math Support to Hugo",
     "description": "In this post I describe how I\u0026rsquo;ve added Math support to my template with MathJax.",
     "keywords": ["Hugo", "Math support", "Markdown", "MathJax"],
-    "articleBody": "Adding Math Support to Hugo Introduction If you are a scientist who wants to share their research in a form of a blog post or a STEM student, who wants to convert their notes with equations into a good looking HTML, you may need to somehow render math blocks on the web page. One of the libraries that can help with this task is MathJax. In this post I describe how I added Math support to my template with MathJax. Alternative to MathJax, which isn’t discussed in this post, is KaTeX.\nHow to You can create a Hugo website with:\nhugo new site my-blog cd my-blog git init I recommend to fork the theme as described in this guide, but it isn’t absolutely necessary. Add the theme (the forked one or the original) with:\ngit submodule add https://github.com// themes/ echo \"theme = ''\" \u003e\u003e config.toml Create a simple post with equation for testing:\nhugo new posts/testing-math.md Open the file and add the math block:\n# Testing Math **Mass–Energy Equivalence** $$ E = mc^2 $$ **Einstein Field Equations** $$ R_{\\mu\\nu} - \\frac{D}{2}Rg_{\\mu\\nu} - \\Lambda g_{\\mu\\nu} = -\\kappa T_{\\mu\\nu} $$ **Schrödinger Equation** $$ i \\hbar\\frac{d}{dt}\\ket{\\psi(t)} = \\hat{H}\\ket{\\psi(t)} $$ **Time-dependent Schrödinger Equation** $$ \\hat{H} \\psi = E \\psi $$ **Hamiltonian of the Heisenberg Model in an External Magnetic Field** $$ \\hat{H} = \\sum_{i,j} \\hat{s_i}\\hat{s_j} - h\\sum_{i}\\hat{s_i} $$ You need to modify the layout and add MathJax script tag. You can add it into themes//layouts/_default/baseof.html if you want to enable math for all pages. But you can include JavaScript in other files if you want to (themes//layouts/_default/header.html, themes//layouts/_default/footer.html or themes//layouts/_default/single.html). The code itself goes into the tag, and it is:\n\u003cscript type=\"text/javascript\" id=\"MathJax-script\" async src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js\"\u003e \u003c/script\u003e \u003cscript type=\"text/x-mathjax-config\"\u003e MathJax.Hub.Config({ tex2jax: { inlineMath: [['\\\\(','\\\\)']], displayMath: [['$$','$$'], ['\\[','\\]']], processEscapes: true, processEnvironments: true, skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'], TeX: { equationNumbers: { autoNumber: \"AMS\" }, extensions: [\"AMSmath.js\", \"AMSsymbols.js\"] } } }); \u003c/script\u003e If you’ve forked the theme, you can commit changes, otherwise, it probably isn’t the best idea, since the theme is used by other people.\nTesting Changes Now you can test if it works. Start the server:\nhugo server --buildDrafts And go to http://localhost:1313/ in your browser.\nIf you did everything correctly, you should see the equations rendered as:\n$$ E = mc^2 $$$$ R_{\\mu\\nu} - \\frac{D}{2}Rg_{\\mu\\nu} - \\Lambda g_{\\mu\\nu} = -\\kappa T_{\\mu\\nu} $$$$ i \\hbar\\frac{d}{dt}\\ket{\\psi(t)} = \\hat{H}\\ket{\\psi(t)} $$$$ \\hat{H} \\psi = E \\psi $$$$ \\hat{H} = \\sum_{i,j} \\hat{s_i}\\hat{s_j} - h\\sum_{i}\\hat{s_i} $$Conclusion In this post I’ve showed you how to add a math support to your Hugo website with MathJax Javascript library.\n",
-    "wordCount" : "442",
+    "articleBody": "Adding Math Support to Hugo Introduction If you are a scientist who wants to share their research in a form of a blog post or a STEM student, who wants to convert their notes with equations into a good looking HTML, you may need to somehow render math blocks on the web page. One of the libraries that can help with this task is MathJax. In this post I describe how I added Math support to my template with MathJax. Alternative to MathJax, which isn’t discussed in this post, is KaTeX.\nHow to You can create a Hugo website with:\nhugo new site my-blog cd my-blog git init I recommend to fork the theme as described in this guide, but it isn’t absolutely necessary. Add the theme (the forked one or the original) with:\ngit submodule add https://github.com// themes/ echo \"theme = ''\" \u003e\u003e config.toml Create a simple post with equation for testing:\nhugo new posts/testing-math.md Open the file and add the math block:\n# Testing Math **Mass–Energy Equivalence** $$ E = mc^2 $$ **Einstein Field Equations** $$ R_{\\mu\\nu} - \\frac{D}{2}Rg_{\\mu\\nu} - \\Lambda g_{\\mu\\nu} = -\\kappa T_{\\mu\\nu} $$ **Schrödinger Equation** $$ i \\hbar\\frac{d}{dt}\\ket{\\psi(t)} = \\hat{H}\\ket{\\psi(t)} $$ **Time-dependent Schrödinger Equation** $$ \\hat{H} \\psi = E \\psi $$ **Hamiltonian of the Heisenberg Model in an External Magnetic Field** $$ \\hat{H} = \\sum_{i,j} \\hat{s_i}\\hat{s_j} - h\\sum_{i}\\hat{s_i} $$ You need to modify the layout and add MathJax script tag. You can add it into themes//layouts/_default/baseof.html if you want to enable math for all pages. But you can include JavaScript in other files if you want to (themes//layouts/_default/header.html, themes//layouts/_default/footer.html or themes//layouts/_default/single.html). The code itself goes into the tag, and it is:\n\u003cscript type=\"text/javascript\" id=\"MathJax-script\" async src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js\"\u003e \u003c/script\u003e \u003cscript type=\"text/x-mathjax-config\"\u003e MathJax.Hub.Config({ tex2jax: { inlineMath: [['\\\\(','\\\\)']], displayMath: [['$$','$$'], ['\\[','\\]']], processEscapes: true, processEnvironments: true, skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'], TeX: { equationNumbers: { autoNumber: \"AMS\" }, extensions: [\"AMSmath.js\", \"AMSsymbols.js\"] } } }); \u003c/script\u003e If you’ve forked the theme, you can commit changes, otherwise, it probably isn’t the best idea, since the theme is used by other people.\nTesting Changes Now you can test if it works. Start the server:\nhugo server --buildDrafts And go to http://localhost:1313/ in your browser.\nIf you did everything correctly, you should see the equations rendered as:\nMass–Energy Equivalence $$ E = mc^2 $$Einstein Field Equations $$ R_{\\mu\\nu} - \\frac{D}{2}Rg_{\\mu\\nu} - \\Lambda g_{\\mu\\nu} = -\\kappa T_{\\mu\\nu} $$Schrödinger Equation $$ i \\hbar\\frac{d}{dt}\\ket{\\psi(t)} = \\hat{H}\\ket{\\psi(t)} $$Time-dependent Schrödinger Equation $$ \\hat{H} \\psi = E \\psi $$Hamiltonian of the Heisenberg Model in an External Magnetic Field $$ \\hat{H} = \\sum_{i,j} \\hat{s_i}\\hat{s_j} - h\\sum_{i}\\hat{s_i} $$Conclusion In this post I’ve showed you how to add a math support to your Hugo website with MathJax Javascript library.\n",
+    "wordCount" : "462",
     "inLanguage": "en",
     "datePublished": "2023-04-01T11:45:03+02:00",
     "dateModified": "2023-04-01T11:45:03+02:00",
@@ -68,7 +68,7 @@
     }
 }
 </script><title>Adding Math Support to Hugo</title>
-<link rel="stylesheet dns-prefetch preconnect preload prefetch" as="style" media="screen" href="http://localhost:1313/blog/css/style.min.79f5321746ef35da811f1eca23ddd5ec79443b5791c00351fdf10459a0d51bb5.css" integrity="sha256-efUyF0bvNdqBHx7KI93V7HlEO1eRwANR/fEEWaDVG7U=" crossorigin="anonymous">
+<link rel="stylesheet dns-prefetch preconnect preload prefetch" as="style" media="screen" href="http://localhost:1313/blog/css/style.min.c30b58bbbef4b9793c10b9a29d883841b6110c1c690dfa83e069b6b60271cf7f.css" integrity="sha256-wwtYu770uXk8ELminYg4QbYRDBxpDfqD4Gm2tgJxz38=" crossorigin="anonymous">
 	</head>
 <body id="page">
 	<header id="site-header">
@@ -184,7 +184,7 @@
       <line x1="16" y1="13" x2="8" y2="13"></line>
       <line x1="16" y1="17" x2="8" y2="17"></line>
       <polyline points="10 9 9 9 8 9"></polyline>
-   </svg>442&nbsp  •2 Minutes</p>
+   </svg>462&nbsp  •2 Minutes, 6 Seconds</p>
 <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
       <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -278,15 +278,25 @@ echo &#34;theme = &#39;&lt;theme&gt;&#39;&#34; &gt;&gt; config.toml
 <pre tabindex="0"><code>hugo server --buildDrafts
 </code></pre><p>And go to <code>http://localhost:1313/</code> in your browser.</p>
 <p>If you did everything correctly, you should see the equations rendered as:</p>
+<p><strong>Mass–Energy Equivalence</strong>
+</p>
 $$
 E = mc^2
-$$$$
+$$<p><strong>Einstein Field Equations</strong>
+</p>
+$$
 R_{\mu\nu} - \frac{D}{2}Rg_{\mu\nu} - \Lambda g_{\mu\nu} = -\kappa T_{\mu\nu}
-$$$$
+$$<p><strong>Schrödinger Equation</strong>
+</p>
+$$
 i \hbar\frac{d}{dt}\ket{\psi(t)} = \hat{H}\ket{\psi(t)}
-$$$$
+$$<p><strong>Time-dependent Schrödinger Equation</strong>
+</p>
+$$
 \hat{H} \psi = E \psi
-$$$$
+$$<p><strong>Hamiltonian of the Heisenberg Model in an External Magnetic Field</strong>
+</p>
+$$
 \hat{H} = \sum_{i,j} \hat{s_i}\hat{s_j} - h\sum_{i}\hat{s_i}
 $$<h2 id="conclusion">Conclusion<a href="#conclusion" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
       stroke-linecap="round" stroke-linejoin="round">
