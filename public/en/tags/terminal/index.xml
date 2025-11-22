@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Terminal on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
-    <link>http://localhost:1313/blog/en/tags/terminal/</link>
+    <link>https://msemjan.github.io/blog/en/tags/terminal/</link>
     <description>Recent content in Terminal on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 03 Aug 2024 16:40:02 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/blog/en/tags/terminal/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://msemjan.github.io/blog/en/tags/terminal/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Introduction Into FZF</title>
-      <link>http://localhost:1313/blog/en/posts/introduction-into-fzf/</link>
+      <link>https://msemjan.github.io/blog/en/posts/introduction-into-fzf/</link>
       <pubDate>Sat, 03 Aug 2024 16:40:02 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/introduction-into-fzf/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/introduction-into-fzf/</guid>
       <description>&lt;h2 id=&#34;what-is-fzf&#34;&gt;What Is &lt;code&gt;fzf&lt;/code&gt;?&lt;a href=&#34;#what-is-fzf&#34; class=&#34;anchor&#34; aria-hidden=&#34;true&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;&#xA;      stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&#xA;      &lt;path d=&#34;M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3&#34;&gt;&lt;/path&gt;&#xA;      &lt;line x1=&#34;8&#34; y1=&#34;12&#34; x2=&#34;16&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&#xA;   &lt;/svg&gt;&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;a href=&#34;https://github.com/junegunn/fzf&#34;&gt;fzf&lt;/a&gt; is a general purpose fuzzy finder that can interactively filter any kind of list, command line history, processes, host names, bookmarks, git commits, or anything else. Ever since I&amp;rsquo;ve installed in on my computer, it completely changed the way I interact with my terminal. If you are a fan of command line tools, the fzf might be perfect thing for you as well.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Terminal Tips and Tricks</title>
-      <link>http://localhost:1313/blog/en/posts/terminal-tips-and-tricks/</link>
+      <link>https://msemjan.github.io/blog/en/posts/terminal-tips-and-tricks/</link>
       <pubDate>Mon, 27 Mar 2023 11:33:22 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/terminal-tips-and-tricks/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/terminal-tips-and-tricks/</guid>
       <description>Learn tips and tricks for effective work with Terminal - useful tricks for both interactive shell usage and scripting are included.</description>
     </item>
   </channel>

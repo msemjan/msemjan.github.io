@@ -2,214 +2,179 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
-    <link>http://localhost:1313/blog/en/</link>
+    <link>https://msemjan.github.io/blog/en/</link>
     <description>Recent content on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 22 Nov 2025 16:57:02 +0100</lastBuildDate>
-    <atom:link href="http://localhost:1313/blog/en/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://msemjan.github.io/blog/en/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Does It Make Sense to Write Tutorials in AI Era?</title>
-      <link>http://localhost:1313/blog/en/posts/does-it-make-sense-to-write-tutorials-in-ai-era/</link>
+      <link>https://msemjan.github.io/blog/en/posts/does-it-make-sense-to-write-tutorials-in-ai-era/</link>
       <pubDate>Sat, 22 Nov 2025 16:57:02 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/does-it-make-sense-to-write-tutorials-in-ai-era/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/does-it-make-sense-to-write-tutorials-in-ai-era/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;a href=&#34;#introduction&#34; class=&#34;anchor&#34; aria-hidden=&#34;true&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;&#xA;      stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&#xA;      &lt;path d=&#34;M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3&#34;&gt;&lt;/path&gt;&#xA;      &lt;line x1=&#34;8&#34; y1=&#34;12&#34; x2=&#34;16&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&#xA;   &lt;/svg&gt;&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;It is 2025, and LLMs, such as ChatGPT, Claud, Gemini, and the AI more in general are nothing new anymore. In the recent years, they quickly became wide-spread and most technical people use them in some capacity. For the new developers, who started programming after the release of the LLMs, it is a indispensable tool and they probably would not be able to function without it. And even for the others who use it much less, it is still a very useful tool that can speed up everything from writing simple boilerplate code, auto-completing functions, and even the full implementations of more routine software. Not only that, but the AI can help with learning new technologies by explaining existing code, providing code examples for whatever technology that you might want to learn, fixing the mistakes, and giving you feedback and doing code reviews for you, or at least offering a structured learning road map with timeline and study projects to strengthen the learned concepts, even if you want to take a more traditional approach and learn from non-AI resources.&lt;/p&gt;</description>
     </item>
     <item>
       <title>How To Touch Grass Like A Senior Developer?</title>
-      <link>http://localhost:1313/blog/en/posts/how-to-touch-grass-like-a-senior-developer/</link>
+      <link>https://msemjan.github.io/blog/en/posts/how-to-touch-grass-like-a-senior-developer/</link>
       <pubDate>Tue, 01 Apr 2025 09:33:12 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/how-to-touch-grass-like-a-senior-developer/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/how-to-touch-grass-like-a-senior-developer/</guid>
       <description>You might have encountered annoying and unpleasant people online who told you to touch grass. This might have left you confused and that is why you are here. What did they mean? And how is one supposed to touch grass anyway? In this helpful article, I will teach you how to touch grass like a true senior developer.</description>
     </item>
     <item>
       <title>Replacing NGINX With Caddy</title>
-      <link>http://localhost:1313/blog/en/posts/replacing-nginx-with-caddy/</link>
+      <link>https://msemjan.github.io/blog/en/posts/replacing-nginx-with-caddy/</link>
       <pubDate>Sat, 08 Feb 2025 14:27:02 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/replacing-nginx-with-caddy/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;a href=&#34;#introduction&#34; class=&#34;anchor&#34; aria-hidden=&#34;true&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;&#xA;      stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&#xA;      &lt;path d=&#34;M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3&#34;&gt;&lt;/path&gt;&#xA;      &lt;line x1=&#34;8&#34; y1=&#34;12&#34; x2=&#34;16&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&#xA;   &lt;/svg&gt;&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;Last year I wrote guides on how to setup &lt;a href=&#34;http://localhost:1313/blog/en/posts/nginx-load-balancer/&#34;&gt;load balancer&lt;/a&gt; and &lt;a href=&#34;http://localhost:1313/blog/en/posts/nginx-reverse-proxy-for-apps/&#34;&gt;reverse proxy&lt;/a&gt; using NGINX server. As I announced in &lt;a href=&#34;http://localhost:1313/blog/en/posts/my-plans-for-2025/&#34;&gt;the recent post about my plans for this year&lt;/a&gt;, I&amp;rsquo;ve decided to try Caddy&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; as a replacement for NGINX.&lt;/p&gt;</description>
+      <guid>https://msemjan.github.io/blog/en/posts/replacing-nginx-with-caddy/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;a href=&#34;#introduction&#34; class=&#34;anchor&#34; aria-hidden=&#34;true&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;&#xA;      stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&#xA;      &lt;path d=&#34;M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3&#34;&gt;&lt;/path&gt;&#xA;      &lt;line x1=&#34;8&#34; y1=&#34;12&#34; x2=&#34;16&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&#xA;   &lt;/svg&gt;&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;Last year I wrote guides on how to setup &lt;a href=&#34;https://msemjan.github.io/blog/en/posts/nginx-load-balancer/&#34;&gt;load balancer&lt;/a&gt; and &lt;a href=&#34;https://msemjan.github.io/blog/en/posts/nginx-reverse-proxy-for-apps/&#34;&gt;reverse proxy&lt;/a&gt; using NGINX server. As I announced in &lt;a href=&#34;https://msemjan.github.io/blog/en/posts/my-plans-for-2025/&#34;&gt;the recent post about my plans for this year&lt;/a&gt;, I&amp;rsquo;ve decided to try Caddy&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; as a replacement for NGINX.&lt;/p&gt;</description>
     </item>
     <item>
       <title>My Plans For 2025</title>
-      <link>http://localhost:1313/blog/en/posts/my-plans-for-2025/</link>
+      <link>https://msemjan.github.io/blog/en/posts/my-plans-for-2025/</link>
       <pubDate>Sun, 12 Jan 2025 10:29:49 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/my-plans-for-2025/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/my-plans-for-2025/</guid>
       <description>&lt;p&gt;Hello, dear readers 🙂&lt;/p&gt;&#xA;&lt;p&gt;Welcome back to my blog and I wish you happy 2025!&lt;/p&gt;&#xA;&lt;p&gt;After a longer break I return, rested, full of energy, and ready to start writing again. I know that I was fairly inconsistent when it comes to the new posts, but I would like to change it in 2025. I already have some plans for this year, and would like to share them with you in this blog post.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Deploying Machine Learning Models With FastAPI</title>
-      <link>http://localhost:1313/blog/en/posts/deploying-machine-learning-models-with-fast-api/</link>
+      <link>https://msemjan.github.io/blog/en/posts/deploying-machine-learning-models-with-fast-api/</link>
       <pubDate>Sat, 24 Aug 2024 13:57:16 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/deploying-machine-learning-models-with-fast-api/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/deploying-machine-learning-models-with-fast-api/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;a href=&#34;#introduction&#34; class=&#34;anchor&#34; aria-hidden=&#34;true&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;&#xA;      stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&#xA;      &lt;path d=&#34;M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3&#34;&gt;&lt;/path&gt;&#xA;      &lt;line x1=&#34;8&#34; y1=&#34;12&#34; x2=&#34;16&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&#xA;   &lt;/svg&gt;&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;If you&amp;rsquo;ve started with machine learning just recently and created your first model, you might be wondering what to do with it next? Sharing Python scripts is doable, but it might be difficult for non-technical people to setup a Python project. One of the better possibilities is to create a REST API that would make the model accessible via internet.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Introduction Into FZF</title>
-      <link>http://localhost:1313/blog/en/posts/introduction-into-fzf/</link>
+      <link>https://msemjan.github.io/blog/en/posts/introduction-into-fzf/</link>
       <pubDate>Sat, 03 Aug 2024 16:40:02 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/introduction-into-fzf/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/introduction-into-fzf/</guid>
       <description>&lt;h2 id=&#34;what-is-fzf&#34;&gt;What Is &lt;code&gt;fzf&lt;/code&gt;?&lt;a href=&#34;#what-is-fzf&#34; class=&#34;anchor&#34; aria-hidden=&#34;true&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;&#xA;      stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&#xA;      &lt;path d=&#34;M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3&#34;&gt;&lt;/path&gt;&#xA;      &lt;line x1=&#34;8&#34; y1=&#34;12&#34; x2=&#34;16&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&#xA;   &lt;/svg&gt;&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;a href=&#34;https://github.com/junegunn/fzf&#34;&gt;fzf&lt;/a&gt; is a general purpose fuzzy finder that can interactively filter any kind of list, command line history, processes, host names, bookmarks, git commits, or anything else. Ever since I&amp;rsquo;ve installed in on my computer, it completely changed the way I interact with my terminal. If you are a fan of command line tools, the fzf might be perfect thing for you as well.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Sql Migrations With Goose</title>
-      <link>http://localhost:1313/blog/en/posts/sql-migrations-with-goose/</link>
+      <link>https://msemjan.github.io/blog/en/posts/sql-migrations-with-goose/</link>
       <pubDate>Sat, 13 Jul 2024 15:45:24 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/sql-migrations-with-goose/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/sql-migrations-with-goose/</guid>
       <description>Goose is a database migration tool that will help you manage your database schemas</description>
     </item>
     <item>
       <title>Using NGINX As A Load Balancer</title>
-      <link>http://localhost:1313/blog/en/posts/nginx-load-balancer/</link>
+      <link>https://msemjan.github.io/blog/en/posts/nginx-load-balancer/</link>
       <pubDate>Sat, 15 Jun 2024 11:09:40 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/nginx-load-balancer/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/nginx-load-balancer/</guid>
       <description>Load balancing is a process of distributing a set of tasks to multiple resources (e.g. processing units or servers) with a goal of increasing efficiency of processing, maximizing throughput, reducing latency, and ensuring fault tolerant configuration. In this post we will take a look at how to configure load balancing with NGINX server.</description>
     </item>
     <item>
       <title>Docker Compose Watch</title>
-      <link>http://localhost:1313/blog/en/posts/docker-compose-watch/</link>
+      <link>https://msemjan.github.io/blog/en/posts/docker-compose-watch/</link>
       <pubDate>Sun, 02 Jun 2024 15:44:08 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/docker-compose-watch/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/docker-compose-watch/</guid>
       <description>In version 2.22.0 Docker Compose introduced Compose Watch feature, which allows Docker Compose users to automatically update and preview services running as soon as the work is saved.</description>
     </item>
     <item>
       <title>Nginx Reverse Proxy for Apps</title>
-      <link>http://localhost:1313/blog/en/posts/nginx-reverse-proxy-for-apps/</link>
+      <link>https://msemjan.github.io/blog/en/posts/nginx-reverse-proxy-for-apps/</link>
       <pubDate>Sun, 26 May 2024 19:52:00 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/nginx-reverse-proxy-for-apps/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/nginx-reverse-proxy-for-apps/</guid>
       <description>Have you ever found yourself in the following situation: You have a application that is running locally on your computer (e.g. Raspberry Pi) and you want to access it from your other devices. When you make a request on &lt;code&gt;http://localhost:PORT/SOME_ENDPOINT&lt;/code&gt; from the computer on which the application runs, it is successful, but when you use other device, the website can not be found. If yes, than this is an article for you!</description>
     </item>
     <item>
       <title>Validation In Go Programming Language</title>
-      <link>http://localhost:1313/blog/en/posts/golang-validation/</link>
+      <link>https://msemjan.github.io/blog/en/posts/golang-validation/</link>
       <pubDate>Sun, 19 May 2024 15:48:02 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/golang-validation/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/golang-validation/</guid>
       <description>In this post I show how to validate data in Go &lt;code&gt;struct&lt;/code&gt; using two approaches: with the help of standard library only and with a third-party library.</description>
     </item>
     <item>
-      <title>Simple Server With Expressjs</title>
-      <link>http://localhost:1313/blog/en/posts/simple-server-with-expressjs/</link>
-      <pubDate>Sat, 18 May 2024 11:11:49 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/simple-server-with-expressjs/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;a href=&#34;#introduction&#34; class=&#34;anchor&#34; aria-hidden=&#34;true&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;&#xA;      stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&#xA;      &lt;path d=&#34;M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3&#34;&gt;&lt;/path&gt;&#xA;      &lt;line x1=&#34;8&#34; y1=&#34;12&#34; x2=&#34;16&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&#xA;   &lt;/svg&gt;&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;Express.js is a &lt;em&gt;de facto&lt;/em&gt; standard for the Node.js back-end development of REST Services and simple servers. It is a simple and fast web framework that allows Javascript developers to write all kinds of applications ranging from simple toy projects to fully-fledged production-ready web services deployed by large companies. Due to its simplicity and flexibility it is suitable for any type of project you may work on. Moreover, it has a thriving ecosystem supported by numerous population of dedicated developers (for example when I search NPM for term &lt;code&gt;express middleware&lt;/code&gt;, I received &lt;a href=&#34;https://www.npmjs.com/search?q=express%20middleware&#34;&gt;6000 results&lt;/a&gt;).&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>Create Project Templates With Cookiecutter</title>
-      <link>http://localhost:1313/blog/en/posts/create-project-templates-with-cookiecutter/</link>
+      <link>https://msemjan.github.io/blog/en/posts/create-project-templates-with-cookiecutter/</link>
       <pubDate>Sun, 05 May 2024 16:01:14 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/create-project-templates-with-cookiecutter/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/create-project-templates-with-cookiecutter/</guid>
       <description>Cookiecutter is a cross-platform application that can be used to create projects from templates and save  you some time when you start a new project. Read this to learn how to use it with existing templates and how to create your own one.</description>
     </item>
     <item>
       <title>My Experience With JSNAD</title>
-      <link>http://localhost:1313/blog/en/posts/my-experience-with-jsnad/</link>
+      <link>https://msemjan.github.io/blog/en/posts/my-experience-with-jsnad/</link>
       <pubDate>Sat, 13 Apr 2024 09:55:35 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/my-experience-with-jsnad/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/my-experience-with-jsnad/</guid>
       <description>&lt;h2 id=&#34;what-is-openjs-nodejs-application-developer-jsnad&#34;&gt;What Is OpenJS Node.js Application Developer (JSNAD)?&lt;a href=&#34;#what-is-openjs-nodejs-application-developer-jsnad&#34; class=&#34;anchor&#34; aria-hidden=&#34;true&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;&#xA;      stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&#xA;      &lt;path d=&#34;M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3&#34;&gt;&lt;/path&gt;&#xA;      &lt;line x1=&#34;8&#34; y1=&#34;12&#34; x2=&#34;16&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&#xA;   &lt;/svg&gt;&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://training.linuxfoundation.org/certification/jsnad/&#34;&gt;JSNAD&lt;/a&gt; is a certification offered by &lt;a href=&#34;https://www.linuxfoundation.org/&#34;&gt;Linux Foundation&lt;/a&gt; that verifies candidate&amp;rsquo;s skill in using &lt;a href=&#34;https://nodejs.org/en&#34;&gt;Node.js&lt;/a&gt; to build applications of any kind. Unlike many other certifications, this is not a quiz in which you pick a correct answer from a given list of options. It is a practical exam in which you connect to a remote computer and write real code to solve various programming problems. The company I work for bought a voucher for me, so I had an opportunity to take the exam.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Introduction Into gRPC in Go</title>
-      <link>http://localhost:1313/blog/en/posts/introduction-into-grpc-in-go/</link>
+      <link>https://msemjan.github.io/blog/en/posts/introduction-into-grpc-in-go/</link>
       <pubDate>Wed, 15 Nov 2023 18:35:15 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/introduction-into-grpc-in-go/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/introduction-into-grpc-in-go/</guid>
       <description>gRPC is a modern alternative to REST APIs, which uses protocol buffers to encode messages to decrease the size of data that needs to be send over the networ and increase the speed of encoding and decoding messages. Read this post to learn more about gRPC, it&amp;rsquo;s advantages and disadvantages, and how to get started with this technology.</description>
     </item>
     <item>
       <title>Getting Started With Latex</title>
-      <link>http://localhost:1313/blog/en/posts/getting-started-with-latex/</link>
+      <link>https://msemjan.github.io/blog/en/posts/getting-started-with-latex/</link>
       <pubDate>Sun, 01 Oct 2023 17:29:22 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/getting-started-with-latex/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/getting-started-with-latex/</guid>
       <description>Latex is a typesetting software commonly used in Academia. It allows you to easily create publication quality documents with beautiful equations. In this post I will show you the basics of Latex and teach you how to create simple documents with automatically generated table of contents, list of figures, and bibliography.</description>
     </item>
     <item>
-      <title>Writing Simple Webpage With Alpine.js and Tailwind</title>
-      <link>http://localhost:1313/blog/en/posts/writing-simple-webpage-with-alpine.js-and-tailwind/</link>
-      <pubDate>Mon, 04 Sep 2023 21:21:13 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/writing-simple-webpage-with-alpine.js-and-tailwind/</guid>
-      <description>Alpine.js is a lightweight Javscript framework that was designed to be a minimal tool for composing behavior directly in your markup. In this post I&amp;rsquo;ll show you how to create a simple website with Alpine.js.</description>
-    </item>
-    <item>
       <title>Introduction Into Protocol Buffers in Go</title>
-      <link>http://localhost:1313/blog/en/posts/introduction-into-protocol-buffers-in-go/</link>
+      <link>https://msemjan.github.io/blog/en/posts/introduction-into-protocol-buffers-in-go/</link>
       <pubDate>Sat, 26 Aug 2023 09:14:53 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/introduction-into-protocol-buffers-in-go/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/introduction-into-protocol-buffers-in-go/</guid>
       <description>Protocol buffers are a language-agnostic and platform-independent mechanism for serialization of data created by Google. Protocol buffers can be used as a replacement for older formats, such as JSON or XML, but they are designed to be much smaller, faster and simpler.</description>
     </item>
     <item>
       <title>What Front End Framework Should You Pick in 2023?</title>
-      <link>http://localhost:1313/blog/en/posts/what-front-end-framework-should-you-pick-in-2023/</link>
+      <link>https://msemjan.github.io/blog/en/posts/what-front-end-framework-should-you-pick-in-2023/</link>
       <pubDate>Fri, 18 Aug 2023 19:07:26 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/what-front-end-framework-should-you-pick-in-2023/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/what-front-end-framework-should-you-pick-in-2023/</guid>
       <description>There are many options for anyone who wants to choose a front-end framework. It may be difficult for a beginner to pick one. Recenly I wanted to learn some framework that would allow me to create beautiful websites without much effort. In this post I&amp;rsquo;ll briefly sum up various choices and what framework would I recommend for anyone who wants to start with front-end development.</description>
     </item>
     <item>
       <title>About</title>
-      <link>http://localhost:1313/blog/en/about-hugo/</link>
+      <link>https://msemjan.github.io/blog/en/about-hugo/</link>
       <pubDate>Fri, 11 Aug 2023 21:36:44 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/about-hugo/</guid>
+      <guid>https://msemjan.github.io/blog/en/about-hugo/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3hmamN2bm45Znl1eTV1bGUyamJmc2h3ODVjaDExejJiOWM3d2ZxZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xTiIzJSKB4l7xTouE8/giphy.gif&#34; alt=&#34;Hello there&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Hi, my name is Marek. I live in a small country in the heart of Europe, Slovakia 🇸🇰, where I work as a software engineering company.&lt;/p&gt;&#xA;&lt;p&gt;Ever since I was a child, I&amp;rsquo;ve found computers and technology fascinating and they naturally attracted me. The first language I came into contact with was Lua. At the time I was 14 or so, and I was playing the World of Warcraft (WoW) with my friends. I wanted to learn how the mods work in this game, and even write my own. They were written in Lua, so I&amp;rsquo;ve wanted to properly learn it, but I&amp;rsquo;ve never found time for it, and my knowledge never reached beyond the simplest things such as simple macros for selecting a random mount.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Introducing GHAST Stack</title>
-      <link>http://localhost:1313/blog/en/posts/introducing-ghast-stack/</link>
+      <link>https://msemjan.github.io/blog/en/posts/introducing-ghast-stack/</link>
       <pubDate>Fri, 11 Aug 2023 18:12:17 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/introducing-ghast-stack/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/introducing-ghast-stack/</guid>
       <description>GHAST stack is a new tech-stack for developing web applications without excessive use of Javascript. In this article I describe why I am suggesting usage of this tech-stack and what technologies it uses.</description>
     </item>
     <item>
       <title>How to Learn New Technology With Stack Overflow</title>
-      <link>http://localhost:1313/blog/en/posts/how-to-learn-new-technology-with-stack-overflow/</link>
+      <link>https://msemjan.github.io/blog/en/posts/how-to-learn-new-technology-with-stack-overflow/</link>
       <pubDate>Fri, 14 Jul 2023 18:07:25 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/how-to-learn-new-technology-with-stack-overflow/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/how-to-learn-new-technology-with-stack-overflow/</guid>
       <description>Constant learning is important to keep up with constantly changing technical fields, such as programming, software engineering, data science, or DevOps. Therefore, it makes sense to pick up a studying tips and tricks to optimize learning. In this post I&amp;rsquo;ll describe how to use Stack Overflow to learn new things.</description>
     </item>
     <item>
-      <title>Optimize Your brain</title>
-      <link>http://localhost:1313/blog/en/posts/health_optimize_your_brain/</link>
-      <pubDate>Sat, 01 Apr 2023 12:39:47 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/health_optimize_your_brain/</guid>
-      <description>In this post I summarize various habits and strategies that can improve your brain health.</description>
-    </item>
-    <item>
-      <title>Adding Math Support to Hugo</title>
-      <link>http://localhost:1313/blog/en/posts/adding-math-support-to-hugo/</link>
-      <pubDate>Sat, 01 Apr 2023 11:45:03 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/adding-math-support-to-hugo/</guid>
-      <description>In this post I describe how I&amp;rsquo;ve added Math support to my template with MathJax.</description>
-    </item>
-    <item>
       <title>Github Markdown Emoji Reference</title>
-      <link>http://localhost:1313/blog/en/posts/emoji/</link>
+      <link>https://msemjan.github.io/blog/en/posts/emoji/</link>
       <pubDate>Tue, 28 Mar 2023 16:54:44 +0100</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/emoji/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/emoji/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;a href=&#34;#introduction&#34; class=&#34;anchor&#34; aria-hidden=&#34;true&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;&#xA;      stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&#xA;      &lt;path d=&#34;M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3&#34;&gt;&lt;/path&gt;&#xA;      &lt;line x1=&#34;8&#34; y1=&#34;12&#34; x2=&#34;16&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&#xA;   &lt;/svg&gt;&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;You may have noticed that many &lt;code&gt;README&lt;/code&gt; files on Github are enhanced with the use of emojis. Github flavor of Markdown adds special shortcodes that let you easily work with emojis in your Markdown documents.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Terminal Tips and Tricks</title>
-      <link>http://localhost:1313/blog/en/posts/terminal-tips-and-tricks/</link>
+      <link>https://msemjan.github.io/blog/en/posts/terminal-tips-and-tricks/</link>
       <pubDate>Mon, 27 Mar 2023 11:33:22 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/terminal-tips-and-tricks/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/terminal-tips-and-tricks/</guid>
       <description>Learn tips and tricks for effective work with Terminal - useful tricks for both interactive shell usage and scripting are included.</description>
     </item>
     <item>
       <title>Creating a blog with Hugo</title>
-      <link>http://localhost:1313/blog/en/posts/creating-a-blog-with-hugo/</link>
+      <link>https://msemjan.github.io/blog/en/posts/creating-a-blog-with-hugo/</link>
       <pubDate>Sun, 26 Mar 2023 21:58:30 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/creating-a-blog-with-hugo/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/creating-a-blog-with-hugo/</guid>
       <description>Hugo is a fast framework for building websites written in Go. With this post, you will learn how to create a simple blog with Hugo.</description>
     </item>
     <item>
       <title>My First Post</title>
-      <link>http://localhost:1313/blog/en/posts/my-first-post/</link>
+      <link>https://msemjan.github.io/blog/en/posts/my-first-post/</link>
       <pubDate>Sun, 26 Mar 2023 16:34:01 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/my-first-post/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/my-first-post/</guid>
       <description>So&amp;hellip; I&amp;rsquo;ve started a blog.</description>
-    </item>
-    <item>
-      <title>Linking Vimwiki And Markdown Notes</title>
-      <link>http://localhost:1313/blog/en/posts/first-markdown-note/</link>
-      <pubDate>Sun, 26 Feb 2023 17:03:52 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/first-markdown-note/</guid>
-      <description>Can you link notes written in Markdown and Vimwiki syntax? If yes, how? This was a question that is answered in this post.</description>
     </item>
   </channel>
 </rss>

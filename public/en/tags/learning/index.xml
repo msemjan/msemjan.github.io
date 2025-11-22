@@ -2,17 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Learning on Marek&#39;s Blog (ᵔ◡ᵔ)	</title>
-    <link>http://localhost:1313/blog/en/tags/learning/</link>
+    <link>https://msemjan.github.io/blog/en/tags/learning/</link>
     <description>Recent content in Learning on Marek&#39;s Blog (ᵔ◡ᵔ)	</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 14 Jul 2023 18:07:25 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/blog/en/tags/learning/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 22 Nov 2025 16:57:02 +0100</lastBuildDate>
+    <atom:link href="https://msemjan.github.io/blog/en/tags/learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Does It Make Sense to Write Tutorials in AI Era?</title>
+      <link>https://msemjan.github.io/blog/en/posts/does-it-make-sense-to-write-tutorials-in-ai-era/</link>
+      <pubDate>Sat, 22 Nov 2025 16:57:02 +0100</pubDate>
+      <guid>https://msemjan.github.io/blog/en/posts/does-it-make-sense-to-write-tutorials-in-ai-era/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;a href=&#34;#introduction&#34; class=&#34;anchor&#34; aria-hidden=&#34;true&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34;&#xA;      stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&#xA;      &lt;path d=&#34;M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3&#34;&gt;&lt;/path&gt;&#xA;      &lt;line x1=&#34;8&#34; y1=&#34;12&#34; x2=&#34;16&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&#xA;   &lt;/svg&gt;&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;It is 2025, and LLMs, such as ChatGPT, Claud, Gemini, and the AI more in general are nothing new anymore. In the recent years, they quickly became wide-spread and most technical people use them in some capacity. For the new developers, who started programming after the release of the LLMs, it is a indispensable tool and they probably would not be able to function without it. And even for the others who use it much less, it is still a very useful tool that can speed up everything from writing simple boilerplate code, auto-completing functions, and even the full implementations of more routine software. Not only that, but the AI can help with learning new technologies by explaining existing code, providing code examples for whatever technology that you might want to learn, fixing the mistakes, and giving you feedback and doing code reviews for you, or at least offering a structured learning road map with timeline and study projects to strengthen the learned concepts, even if you want to take a more traditional approach and learn from non-AI resources.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>How to Learn New Technology With Stack Overflow</title>
-      <link>http://localhost:1313/blog/en/posts/how-to-learn-new-technology-with-stack-overflow/</link>
+      <link>https://msemjan.github.io/blog/en/posts/how-to-learn-new-technology-with-stack-overflow/</link>
       <pubDate>Fri, 14 Jul 2023 18:07:25 +0200</pubDate>
-      <guid>http://localhost:1313/blog/en/posts/how-to-learn-new-technology-with-stack-overflow/</guid>
+      <guid>https://msemjan.github.io/blog/en/posts/how-to-learn-new-technology-with-stack-overflow/</guid>
       <description>Constant learning is important to keep up with constantly changing technical fields, such as programming, software engineering, data science, or DevOps. Therefore, it makes sense to pick up a studying tips and tricks to optimize learning. In this post I&amp;rsquo;ll describe how to use Stack Overflow to learn new things.</description>
     </item>
   </channel>
